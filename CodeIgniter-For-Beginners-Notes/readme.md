@@ -2,9 +2,9 @@
 
 ## <a name="1. Table-of-Content"></a>Chapter 1. Table of content
 
-- [#1](2.%20Table%20of%20content)
-- [#2](2. Dev tools)
-- [#3](3. Apps core)
+- [1.Table of content](#1)
+- [2. Dev tools](#2)
+- [3. Apps core](#3)
   
 
 ## <a name="2"></a> Dev tools

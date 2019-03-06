@@ -23,7 +23,7 @@
 ### Intro
 #### Routes
 #### Controllers
-This is a templating processor. To quote Wikipedia - "A template processor is software designed to combine templates (in our case views) with a data model (in our case models) to produce result documents (or in our case web pages)".
+This is a templating processor. To quote Wikipedia - "A template processor is software designed to combine templates (in our case views) with a data model (in our case models) to produce result documents (or in our case web pages)". Except in our case one controller creates one web page.
  
 
 

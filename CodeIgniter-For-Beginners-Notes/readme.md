@@ -20,6 +20,9 @@
 - Download the version of CodeIgniter you want (we will be using v.3.0.1) commit it add it as a project folder to Atom and test it in Xampp.
 
 ## <a name="4"></a>Chapter 4. Apps components
-### 
+### Intro
+- Routes - 
+- Controllers - This a templating processor. A template processor is software designed to combine templates (can be considered as "styling" data - in our case views) with a data model (in our case both content from the filesystem and database) to produce result documents (or in our case a web page).
+- 
 
 

@@ -21,8 +21,9 @@
 
 ## <a name="4"></a>Chapter 4. Apps components
 ### Intro
-- Routes - 
-- Controllers - This a templating processor. A template processor is software designed to combine templates (can be considered as "styling" data - in our case views) with a data model (in our case both content from the filesystem and database) to produce result documents (or in our case a web page).
-- 
+#### Routes
+#### Controllers
+This a templating processor. A template processor is software designed to combine templates (can be considered as "styling" data - in our case views) with a data model (in our case both content from the filesystem and database) to produce result documents (or in our case a web page).
+ 
 
 

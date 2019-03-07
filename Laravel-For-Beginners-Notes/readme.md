@@ -605,7 +605,7 @@
   then solve it by running this in git bash `composer dump-autoload`
   
 
-## <a name="14."></a> Chapter 5. Route component
+## <a name="6."></a> Chapter 5. Route component
 
 ### Table Of Content
 - [Routes](#routes)
@@ -2367,7 +2367,7 @@
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="5."></a>Chapter 5. Real world examples
+## <a name="14."></a>Chapter 5. Real world examples
 ### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
 #### Make a new laravel powered app

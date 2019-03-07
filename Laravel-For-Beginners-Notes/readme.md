@@ -36,9 +36,9 @@
 - This course is based on a video course on Udemy.com which can be found here - [Laravel for beginners](https://www.udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel/)
 
 
-##<a name="3."></a>3. Settup
+##<a name="3.d"></a>3. Settup
 
-### <a name="3.1.%20Development%20Tools"></a>Chapter 3.1 Development Tools
+### <a name="3."></a>Chapter 3.1 Development Tools
 #### Table Of Content
 
 - [For Windows](#For_Windows)
@@ -484,7 +484,7 @@
 
 
 
-## <a name="4."></a>Chapter 4. Database component 
+## <a name="5."></a>Chapter 4. Database component 
 
 ### Table Of Content
 - [Database](#Database)

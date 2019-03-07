@@ -8,14 +8,14 @@
 - [4. Setting up the Laravel powered app](#4.)
 - [5. Database component](#5.)
 - [6. Routes component](#6.)
-- [7. /4.3.1. Introduction to queries](#7.)
-- [8. /4.3.2. Basic Queries](#8.)
-- [9. /4.3.3. Queries with basic relationships](#9.)
-- [10. /4.3.4. Queries with advanced relationships](#10.)
-- [11. /4.3.5. Query Testing Environment](#11.)
-- [12. /4.3.6. Accessors and mutators queries](#12.)
-- [13. /4.4. Views](#13.)
-- [14. /5. Real-World Examples](#14.)
+- [7. Introduction to queries](#7.)
+- [8. Basic Queries](#8.)
+- [9. Queries with basic relationships](#9.)
+- [10. Queries with advanced relationships](#10.)
+- [11. Query Testing Environment](#11.)
+- [12. Accessors and mutators queries](#12.)
+- [13. Views component](#13.)
+- [14. Real-World Examples](#14.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
@@ -605,7 +605,7 @@
   then solve it by running this in git bash `composer dump-autoload`
   
 
-## <a name="5."></a> Chapter 5. Route component
+## <a name="14."></a> Chapter 5. Route component
 
 ### Table Of Content
 - [Routes](#routes)
@@ -689,7 +689,7 @@
 ```
 
 
-## <a name="4.3.1.%20Introduction"></a>Chapter 4.3.1. Introduction
+## <a name="7."></a>Chapter 4.3.1. Introduction
 
 ### Table Of Content
 
@@ -952,7 +952,7 @@
       });
     ```
 
-## <a name="4.3.2.%20Basic%20Queries"></a> Chapter 4.3.2. Basic Queries
+## <a name="8."></a> Chapter 4.3.2. Basic Queries
 
 ### Table Of Content
 
@@ -1216,7 +1216,7 @@
   ```
 
 
-## <a name="4.3.3.%20Basic%20Relationships"></a> Chapter 4.3.3. Basic Relationships
+## <a name="9."></a> Chapter 4.3.3. Basic Relationships
 
 ### Table Of Content
 
@@ -1594,7 +1594,7 @@
 
 
 
-## <a name="4.3.4.%20Advanced%20Relationships"></a>Chapter 4.3.4. Advanced Relationships
+## <a name="10."></a>Chapter 4.3.4. Advanced Relationships
 
 ### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -2028,7 +2028,7 @@
 
 
 
-## <a name="4.3.5.%20Query%20Testing%20Environment"></a>Chapter 4.3.5. Query Testing Environment
+## <a name="11."></a>Chapter 4.3.5. Query Testing Environment
 
 ### Table Of Content
 - [Query Testing Environment](#Query-Testing-Environment)
@@ -2088,7 +2088,7 @@
   
   
 
-## <a name="4.3.6.%20Accessors%20and%20Mutators"></a>Chapter 4.3.6. Accessors and Mutators
+## <a name="12."></a>Chapter 4.3.6. Accessors and Mutators
 
 ### Table Of Content
 - [Dates](#Dates)
@@ -2195,7 +2195,7 @@
 
 
 
-## <a name="4.4.%20Views"></a>Chapter 4.4. Views
+## <a name="13."></a>Chapter 4.4. Views component
 
 ### Table Of Content
 - [Views](#)
@@ -2367,7 +2367,7 @@
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="5.%20real%20world%20examples"></a>Chapter 5. Real world examples
+## <a name="5."></a>Chapter 5. Real world examples
 ### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
 #### Make a new laravel powered app

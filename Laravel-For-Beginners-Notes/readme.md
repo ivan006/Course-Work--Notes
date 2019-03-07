@@ -1,6 +1,6 @@
 # Automation with Laravel
 
-## <a name="1. Table-of-Content"></a>Chapter 1. Table of Content
+## <a name="1."></a>Chapter 1. Table of Content
 
 - [1. Table of Content](#1.)
 - [2. Introduction](#2.)
@@ -22,7 +22,7 @@
   - [8.4. /5.4. Coming soon](##)
   
 
-## <a name="2. Introduction"></a>Chapter 2. Introduction
+## <a name="2."></a>Chapter 2. Introduction
 
 ### About
 - This is a place for you to learn the ins and outs of Lary Wary (Laravel).
@@ -36,7 +36,7 @@
 - This course is based on a video course on Udemy.com which can be found here - [Laravel for beginners](https://www.udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel/)
 
 
-##<a name="3.%20Setup"></a>3. Settup
+##<a name="3."></a>3. Settup
 
 ### <a name="3.1.%20Development%20Tools"></a>Chapter 3.1 Development Tools
 #### Table Of Content

@@ -331,7 +331,7 @@
   - To open MYSQL WorkBench launch it from its launch icon. 
 
 
-### <a name="3.2.%20Laravel%20Powered%20App"></a>Chapter 3.2 Laravel Powered App
+### <a name="4."></a>Chapter 3.2 Laravel Powered App
 #### Table Of Content
 
 

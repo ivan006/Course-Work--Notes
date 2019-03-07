@@ -2402,241 +2402,239 @@
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-# <a name="5.%20real%20world%20examples"></a>Chapter 5. Real world examples
-## <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
+## <a name="5.%20real%20world%20examples"></a>Chapter 5. Real world examples
+### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
-### Make a new laravel powered app
-#### Install
+#### Make a new laravel powered app
+##### Install
 - Called it `real-world-examples-app` the method was previously demonstrated.
 
-#### Make table-model pairs
-##### Create them
-- posts
-  - Command:
-    - Orientate with `cd C:/laravel-apps/real-world-examples-app`
-    - Run `php artisan make:model Post -m`
-- users
-  - Already made
-- role_user
-  - Commands:
-    - Table/Migration: `php artisan make:migration role_user --create="role_user"`
-    - Model: `php artisan make:model RoleUser`
-- roles
-  - Command: `php artisan make:model Role -m`
-- countries
-  - Command: `php artisan make:model Country -m`
-- photos
-  - Command: `php artisan make:model Photo -m`
-- videos
-  - Command: `php artisan make:model Video -m`
-- tags
-  - Command: `php artisan make:model Tag -m`
-- tag_relationships
-  - Command: `php artisan make:model TagRelationship -m`
+##### Make table-model pairs
+- Create them
+	- posts
+	  - Command:
+	    - Orientate with `cd C:/laravel-apps/real-world-examples-app`
+	    - Run `php artisan make:model Post -m`
+	- users
+	  - Already made
+	- role_user
+	  - Commands:
+	    - Table/Migration: `php artisan make:migration role_user --create="role_user"`
+	    - Model: `php artisan make:model RoleUser`
+	- roles
+	  - Command: `php artisan make:model Role -m`
+	- countries
+	  - Command: `php artisan make:model Country -m`
+	- photos
+	  - Command: `php artisan make:model Photo -m`
+	- videos
+	  - Command: `php artisan make:model Video -m`
+	- tags
+	  - Command: `php artisan make:model Tag -m`
+	- tag_relationships
+	  - Command: `php artisan make:model TagRelationship -m`
+- Configure them
+	- General: Add the following column functions (to the migrations) and model methods (to the models)
+	- posts
+	  - Similar to
+	    - Model: example_models
+	    - From the section on: Database 	
+	    - Video course's section: 41s
+	  - Columns
+	  ```
+			$table->string('title');
+			$table->text('content');
+			$table->integer('user_id')->unsigned();    
+			$table->softDeletes();
+	  ```
+	  - Model methods
+	    - Part 1 (put this underneath the other `use` function)
+	    ```
+	      use Illuminate\Database\Eloquent\SoftDeletes;
+	    ```
+	    - Part 2
+	    ```
+		use SoftDeletes;
+		protected $dates = ['deleted_at'];
+		protected $table = 'posts';
+		protected $fillable = [
+		  'title',
+		  'body',
+		  'user_id',
+		];
+		public function User(){
+		  return $this->belongsTo('App\User');
+		}
+		public function Roles(){
+		  return $this->belongsToMany('App\Role')->withPivot('created_at');
+		}
+		public function Photos() {
+		  return $this->morphMany('App\Photo', 'photo_relative');
+		}
+		public function Tags() {
+		  return $this->morphToMany('App\Tag', 'tag_relative');
+		}
+	    ```
+	- users
+	  - Similar to
+	    - Model: example_parent_models
+	    - From the section on: Basic Relationships - One to One 	
+	    - Video course's section: 62
+	  - Columns: Already set
+	  - Model methods
+	  ```
+	      public function Post(){
+		return $this->hasOne('App\Post');
+	      }
+	      public function Posts(){
+		return $this->hasMany('App\Post');
+	      }
+	      public function Roles(){
+		return $this->belongsToMany('App\Role')->withPivot('created_at');
+	      }
+	      public function Photos() {
+		return $this->morphMany('App\Photo', 'photo_relative');
+	      }
+	  ```
+	- role_user
+	  - Similar to
+	    - Model: example_grandparent_model_example_parent_model
+	    - From the section on: Basic Relationships - Many to many 	
+	    - Video course's section: 66-67
+	  - Columns
+	  ```
+			$table->integer('user_id');
+			$table->integer('role_id');
+	  ```
+	  - Model methods
+	  ```
+	      protected $table = 'role_user';
+	      protected $fillable = [
+		'user_id',
+		'role_id',
+	      ];
+	  ```
+	- roles
+	  - Similar to
+	    - Model:  example_grandparent_models
+	    - From the section on: Basic Relationships - Many to many  	
+	    - Video course's section: 	66-67
+	  - Columns
+	  ```
+			$table->string('name');
+	  ```
+	  - Model methods
+	  ```
+	      protected $fillable = [
+	      'name'
+	      ];
+	      public function Users(){
+		return $this->belongsToMany('App\User');
+	      }
+	  ```
+	- countries
+	  - Similar to
+	    - Model:  example_grandparent2_models
+	    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
+	    - Video course's section: 68-70
+	  - Columns
+	  ```
+			$table->string('name');
+	  ```
+	  - Model methods
+	  ```
+	      protected $fillable = [
+	      'name',
+	      ];
+	      public function Posts(){
+		return $this->hasManyThrough('App\Post', 'App\User');
+	      }
+	  ```
+	- photos
+	  - Similar to
+	    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
+	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
+	    - Video course's section: 71-73
+	  - Columns
+	  ```
+			$table->integer('photo_relative_id');
+			$table->string('photo_relative_type');
+			$table->string('file');
+	  ```
+	  - Model methods
+	  ```
+	      protected $fillable = [
+		'photo_relative_id',
+		'photo_relative_type',
+		'file',
+	      ];
+	      public function photo_relative() {
+		return $this->morphTo();
+	      }
+	  ```
+	- videos
+	  - Similar to
+	    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
+	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
+	    - Video course's section: 71-73
+	  - Columns
+	  ```
+			$table->string('file');
+	  ```
+	  - Model methods
+	  ```
+	      protected $fillable = [
+		'file',
+	      ];
+	      public function Tags() {
+		return $this->morphToMany('App\Tag', 'tag_relative');
+	      }
+	  ```
+	- tags
+	  - Similar to
+	    - Model:  example_parent_model2s
+	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many  	
+	    - Video course's section: 	74-77
+	  - Columns
+	  ```
+			$table->string('name');
+	  ```
+	  - Model methods
+	  ```
+	      protected $fillable = [
+	      'name',
+	      ];
+	      public function Posts() {
+		return $this->morphedByMany('App\Post', 'tag_relative');
+	      }
+	      public function Photos() {
+		return $this->morphedByMany('App\Video', 'tag_relative');
+	      }
+	  ```
+	- tag_relationships
+	  - Similar to
+	    - Model:  example_parent_model2_relation
+	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
+	    - Video course's section: 74-77
+	  - Columns
+	  ```
+			$table->string('tag_id');
+			$table->integer('tag_relative_id');
+			$table->string('tag_relative_type');
+	  ```
+	  - Model methods
+	  ```
+	      protected $fillable = [
+	      'tag_id',
+	      'tag_relative_id',
+	      'tag_relative_type',
+	      ];
+	  ```
+- Impliment them
+	- Orientate yourself with `cd C:/laravel-apps/real-world-examples-app`
+	- Run `php artisan migrate`
 
-##### Configure them
-- General: Add the following column functions (to the migrations) and model methods (to the models)
-- posts
-  - Similar to
-    - Model: example_models
-    - From the section on: Database 	
-    - Video course's section: 41s
-  - Columns
-  ```
-                $table->string('title');
-                $table->text('content');
-                $table->integer('user_id')->unsigned();    
-                $table->softDeletes();
-  ```
-  - Model methods
-    - Part 1 (put this underneath the other `use` function)
-    ```
-      use Illuminate\Database\Eloquent\SoftDeletes;
-    ```
-    - Part 2
-    ```
-        use SoftDeletes;
-        protected $dates = ['deleted_at'];
-        protected $table = 'posts';
-        protected $fillable = [
-          'title',
-          'body',
-          'user_id',
-        ];
-        public function User(){
-          return $this->belongsTo('App\User');
-        }
-        public function Roles(){
-          return $this->belongsToMany('App\Role')->withPivot('created_at');
-        }
-        public function Photos() {
-          return $this->morphMany('App\Photo', 'photo_relative');
-        }
-        public function Tags() {
-          return $this->morphToMany('App\Tag', 'tag_relative');
-        }
-    ```
-- users
-  - Similar to
-    - Model: example_parent_models
-    - From the section on: Basic Relationships - One to One 	
-    - Video course's section: 62
-  - Columns: Already set
-  - Model methods
-  ```
-      public function Post(){
-        return $this->hasOne('App\Post');
-      }
-      public function Posts(){
-        return $this->hasMany('App\Post');
-      }
-      public function Roles(){
-        return $this->belongsToMany('App\Role')->withPivot('created_at');
-      }
-      public function Photos() {
-        return $this->morphMany('App\Photo', 'photo_relative');
-      }
-  ```
-- role_user
-  - Similar to
-    - Model: example_grandparent_model_example_parent_model
-    - From the section on: Basic Relationships - Many to many 	
-    - Video course's section: 66-67
-  - Columns
-  ```
-                $table->integer('user_id');
-                $table->integer('role_id');
-  ```
-  - Model methods
-  ```
-      protected $table = 'role_user';
-      protected $fillable = [
-        'user_id',
-        'role_id',
-      ];
-  ```
-- roles
-  - Similar to
-    - Model:  example_grandparent_models
-    - From the section on: Basic Relationships - Many to many  	
-    - Video course's section: 	66-67
-  - Columns
-  ```
-                $table->string('name');
-  ```
-  - Model methods
-  ```
-      protected $fillable = [
-      'name'
-      ];
-      public function Users(){
-        return $this->belongsToMany('App\User');
-      }
-  ```
-- countries
-  - Similar to
-    - Model:  example_grandparent2_models
-    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
-    - Video course's section: 68-70
-  - Columns
-  ```
-                $table->string('name');
-  ```
-  - Model methods
-  ```
-      protected $fillable = [
-      'name',
-      ];
-      public function Posts(){
-        return $this->hasManyThrough('App\Post', 'App\User');
-      }
-  ```
-- photos
-  - Similar to
-    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
-    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
-    - Video course's section: 71-73
-  - Columns
-  ```
-                $table->integer('photo_relative_id');
-                $table->string('photo_relative_type');
-                $table->string('file');
-  ```
-  - Model methods
-  ```
-      protected $fillable = [
-        'photo_relative_id',
-        'photo_relative_type',
-        'file',
-      ];
-      public function photo_relative() {
-        return $this->morphTo();
-      }
-  ```
-- videos
-  - Similar to
-    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
-    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
-    - Video course's section: 71-73
-  - Columns
-  ```
-                $table->string('file');
-  ```
-  - Model methods
-  ```
-      protected $fillable = [
-        'file',
-      ];
-      public function Tags() {
-        return $this->morphToMany('App\Tag', 'tag_relative');
-      }
-  ```
-- tags
-  - Similar to
-    - Model:  example_parent_model2s
-    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many  	
-    - Video course's section: 	74-77
-  - Columns
-  ```
-                $table->string('name');
-  ```
-  - Model methods
-  ```
-      protected $fillable = [
-      'name',
-      ];
-      public function Posts() {
-        return $this->morphedByMany('App\Post', 'tag_relative');
-      }
-      public function Photos() {
-        return $this->morphedByMany('App\Video', 'tag_relative');
-      }
-  ```
-- tag_relationships
-  - Similar to
-    - Model:  example_parent_model2_relation
-    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
-    - Video course's section: 74-77
-  - Columns
-  ```
-                $table->string('tag_id');
-                $table->integer('tag_relative_id');
-                $table->string('tag_relative_type');
-  ```
-  - Model methods
-  ```
-      protected $fillable = [
-      'tag_id',
-      'tag_relative_id',
-      'tag_relative_type',
-      ];
-  ```
-
-##### Impliment them
-- Orientate yourself with `cd C:/laravel-apps/real-world-examples-app`
-- Run `php artisan migrate`
-
-#### Create a layout view file
+##### Create a layout view file
 - Orientate yourself to you views folder
 - Create and orientate yourself to a subfolder called `layouts`
 - Create the file `app.blade.php`
@@ -2659,16 +2657,16 @@
 
 
 
-## <a name="5.2.%20Forms"></a>Chapter 5.2. Forms
+### <a name="5.2.%20Forms"></a>Chapter 5.2. Forms
 
-### Table Of Content
+#### Table Of Content
 - [Basics](#Basics)
 - [LC Form Builder](#LC-Form-Builder)
 - [Validation](#Validation)
 
 
-### <a name="Basics"></a> Basics
-#### Setup
+#### <a name="Basics"></a> Basics
+##### Setup
 
 - Controller: `php artisan make:controller --resource PostsController`
 - Route  
@@ -2687,269 +2685,262 @@
     - `show.blade.php`
     - `edit.blade.php`
 
-#### Fine tuning
-##### Create Post page
-- Part 1
-  - View
-    - Orientate yourself to `create.blade.php`
-    ```
-      @extends('layouts.app')
-      @section('content')
-      <h1>Create Post</h1>
-      <form class="" action="/posts" method="post">
-        <input type="text" name="title" value=""  placeholder="Enter title">
-        {{csrf_field()}}
-        <input type="submit" name="submit" value="Submit">
-      </form>
-      @endsection
-    ```
-  - Controller
-    - This goes in the posts controller's "create" method
-    ```
-      return view('posts.create');
-    ```
-- Part 2
-  - Controller
-    - Add a model usage namespace
-      - Orientate yourself to your posts controller file
-      - Add the model usage namespace `use  App\Post;`  at the top directly underneath the "namespace" function.
-    - This goes in the posts controller's "store" method
-      - Part A
-        - Option 1
-        ```
-          Post::create($request->all());
-        ```
-        - Option 2
-        ```
-          $input = $request->all();
-          $input['title'] = $request->title;
-          Post::create($request->all());
-        ```
-        - Option 3
-        ```
-          $post = new Post;
-          $post->title = $request->title;
-          $post->save();
-        ```
-      - Part B
-      ```
-        return redirect('/posts');
-      ```
-- Test URL: `../posts/create`
+##### Fine tuning
+- Create Post page
+	- Part 1
+	  - View
+	    - Orientate yourself to `create.blade.php`
+	    ```
+	      @extends('layouts.app')
+	      @section('content')
+	      <h1>Create Post</h1>
+	      <form class="" action="/posts" method="post">
+		<input type="text" name="title" value=""  placeholder="Enter title">
+		{{csrf_field()}}
+		<input type="submit" name="submit" value="Submit">
+	      </form>
+	      @endsection
+	    ```
+	  - Controller
+	    - This goes in the posts controller's "create" method
+	    ```
+	      return view('posts.create');
+	    ```
+	- Part 2
+	  - Controller
+	    - Add a model usage namespace
+	      - Orientate yourself to your posts controller file
+	      - Add the model usage namespace `use  App\Post;`  at the top directly underneath the "namespace" function.
+	    - This goes in the posts controller's "store" method
+	      - Part A
+		- Option 1
+		```
+		  Post::create($request->all());
+		```
+		- Option 2
+		```
+		  $input = $request->all();
+		  $input['title'] = $request->title;
+		  Post::create($request->all());
+		```
+		- Option 3
+		```
+		  $post = new Post;
+		  $post->title = $request->title;
+		  $post->save();
+		```
+	      - Part B
+	      ```
+		return redirect('/posts');
+	      ```
+	- Test URL: `../posts/create`
+- Lists Posts page
+	- View
+	  - Orientate yourself to `index.blade.php`
+	  ```
+	    @extends('layouts.app')
+	    @section('content')
+	    <h1>List Posts</h1>
+	    <ul>
+	      <li><a href="{{route('posts.create')}}">Create post</a></li>
+	      @foreach($posts as $post)
+	      <li><a href="{{route('posts.show',$post->id)}}">{{$post->title}}</a></li>
+	      @endforeach
+	    </ul>
+	    @endsection
+	  ```
+	- Controller
+	  - This goes in the posts controller's "index" method
+	    - Part 1
+	    ```
+	      $posts = Post::all();
+	    ```
+	    - Part 2
+	    ```
+	      return view('posts.index', compact('posts'));
+	    ```
+	- Test URL: `../posts`
+- View Posts page
+	- View
+	  - Orientate yourself to `show.blade.php`
+	  ```
+	    @extends('layouts.app')
+	    @section('content')
+	    <h1>View Post</h1>
+	    <h2><a href="{{route('posts.edit',$post->id)}}">{{$post->title}}</a></h2>
+	    @endsection
+	  ```
+	- Controller
+	  - This goes in the posts controller's "show" method
+	  ```
+	    $post = Post::findorfail($id);
+	    return view('posts.show', compact('post'));
+	  ```
+	- Test URL: `../posts/4`
+- Edit/Delete Posts page
+	- Part 1
+	  - View
+	    - Orientate yourself to `edit.blade.php`
+	    ```
+	    @extends('layouts.app')
+	    @section('content')
+	    <h1>Edit Post</h1>
+	    <form class="" action="/posts/{{$post->id}}" method="post">
+	      {{csrf_field()}}
+	      <input type="hidden" name="_method" value="PUT">
+	      <input type="text" name="title" value="{{$post->title}}"  placeholder="Enter title">
+	      <input type="submit" name="submit" value="Update">
+	    </form>
+	    <form class="" action="/posts/{{$post->id}}" method="post">
+	      <input type="hidden" name="_method" value="DELETE">
+	      {{csrf_field()}}
+	      <input type="submit" value="Delete">
+	    </form>
+	    @endsection
+	    ```
+	  - Controller
+	    - This goes in the posts controller's "edit" method
+	    ```
+	      $post = Post::findOrFail($id);
+	      return view('posts.edit', compact('post'));
+	    ```
+	- Part 2
+	  - Controller
+	    - This goes in the posts controller's "update" method
+	    ```
+	      $post = Post::findOrFail($id);
+	      $post->update($request->all());
+	      return redirect('/posts');
+	    ```
+	- Part 3
+	  - Controller
+	    - This goes in the posts controller's "delete" method
+	    ```
+	      $post = Post::whereId($id)->first()->delete();
+	      return redirect('/posts');
+	    ```
+	- Test URL: `../posts/4/edit`
 
-##### Lists Posts page
-- View
-  - Orientate yourself to `index.blade.php`
-  ```
-    @extends('layouts.app')
-    @section('content')
-    <h1>List Posts</h1>
-    <ul>
-      <li><a href="{{route('posts.create')}}">Create post</a></li>
-      @foreach($posts as $post)
-      <li><a href="{{route('posts.show',$post->id)}}">{{$post->title}}</a></li>
-      @endforeach
-    </ul>
-    @endsection
-  ```
-- Controller
-  - This goes in the posts controller's "index" method
-    - Part 1
-    ```
-      $posts = Post::all();
-    ```
-    - Part 2
-    ```
-      return view('posts.index', compact('posts'));
-    ```
-- Test URL: `../posts`
-
-##### View Posts page
-- View
-  - Orientate yourself to `show.blade.php`
-  ```
-    @extends('layouts.app')
-    @section('content')
-    <h1>View Post</h1>
-    <h2><a href="{{route('posts.edit',$post->id)}}">{{$post->title}}</a></h2>
-    @endsection
-  ```
-- Controller
-  - This goes in the posts controller's "show" method
-  ```
-    $post = Post::findorfail($id);
-    return view('posts.show', compact('post'));
-  ```
-- Test URL: `../posts/4`
-
-##### Edit/Delete Posts page
-- Part 1
-  - View
-    - Orientate yourself to `edit.blade.php`
-    ```
-    @extends('layouts.app')
-    @section('content')
-    <h1>Edit Post</h1>
-    <form class="" action="/posts/{{$post->id}}" method="post">
-      {{csrf_field()}}
-      <input type="hidden" name="_method" value="PUT">
-      <input type="text" name="title" value="{{$post->title}}"  placeholder="Enter title">
-      <input type="submit" name="submit" value="Update">
-    </form>
-    <form class="" action="/posts/{{$post->id}}" method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      {{csrf_field()}}
-      <input type="submit" value="Delete">
-    </form>
-    @endsection
-    ```
-  - Controller
-    - This goes in the posts controller's "edit" method
-    ```
-      $post = Post::findOrFail($id);
-      return view('posts.edit', compact('post'));
-    ```
-- Part 2
-  - Controller
-    - This goes in the posts controller's "update" method
-    ```
-      $post = Post::findOrFail($id);
-      $post->update($request->all());
-      return redirect('/posts');
-    ```
-- Part 3
-  - Controller
-    - This goes in the posts controller's "delete" method
-    ```
-      $post = Post::whereId($id)->first()->delete();
-      return redirect('/posts');
-    ```
-- Test URL: `../posts/4/edit`
-
-###  <a name="LC-Form-Builder"></a> LC Form Builder
-#### Setup
+####  <a name="LC-Form-Builder"></a> LC Form Builder
+##### Setup
 - If you like you can see more info about the Laravel Collective Form Builder at https://laravelcollective.com/docs/5.2/html
 
-##### Install packages
-- Configure composer
-  - Oriented yourself to `composer.json` and paste `"laravelcollective/html":"^5.2.0"` as a new line in the `"require"` section. Make sure to put a comma after the previous item.
-  - If your using a Laravel version that doesn't fit into the `5.2` range then you will need to adapt the code.
-- Run composer
-  - Orientate yourself `cd C:/laravel-apps/real-world-examples-app`
-  - Run `composer update`
+- Install packages
+	- Configure composer
+	  - Oriented yourself to `composer.json` and paste `"laravelcollective/html":"^5.2.0"` as a new line in the `"require"` section. Make sure to put a comma after the previous item.
+	  - If your using a Laravel version that doesn't fit into the `5.2` range then you will need to adapt the code.
+	- Run composer
+	  - Orientate yourself `cd C:/laravel-apps/real-world-examples-app`
+	  - Run `composer update`
+- Configure package
+	- Configure `app.php`
+	  - Part 1
+	    - Orientate yourself to `config/app.php`
+	    - Paste the following code directly above the existing comment
+	      - The code
+	      ```
+	      Collective\Html\HtmlServiceProvider::class,
+	      ```
+	      - The comment
+	      ```
+		/*
+		 * Application Service Providers...
+		 */
+	      ```
+	  - Part 2
+	    - Orientate yourself to `config/app.php` and paste the following code as a new line in the `'aliases'` section. Make sure to put a comma after the previous item.
+	    ```
+	      'Form' => Collective\Html\FormFacade::class,
+	      'Html' => Collective\Html\HtmlFacade::class,
+	    ```
 
-##### Configure package
-- Configure `app.php`
-  - Part 1
-    - Orientate yourself to `config/app.php`
-    - Paste the following code directly above the existing comment
-      - The code
-      ```
-      Collective\Html\HtmlServiceProvider::class,
-      ```
-      - The comment
-      ```
-        /*
-         * Application Service Providers...
-         */
-      ```
-  - Part 2
-    - Orientate yourself to `config/app.php` and paste the following code as a new line in the `'aliases'` section. Make sure to put a comma after the previous item.
-    ```
-      'Form' => Collective\Html\FormFacade::class,
-      'Html' => Collective\Html\HtmlFacade::class,
-    ```
+##### Usage
+- Create Post page
+	- View
+	  - Orientate yourself to `create.blade.php`
+	  - Edit the file to look like this
+	  ```
+	    @extends('layouts.app')
+	    @section('content')
+	    <h1>Create Post</h1>
+	    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store']) !!}
+	      <div class="form-group">
+		{!! Form::label('title', 'Title:') !!}
+		{!! Form::text('title', null, ['class'=>'form-control']) !!}
+	      </div>
+	      <div class="form-group">
+		{!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
+	      </div>
+	    {!! Form::close() !!}
+	    @endsection
+	  ```
+- Lists Posts page
+	- View
+	  - Orientate yourself to `index.blade.php`
+	  - Edit the file to look like this
+	  ```
+	  ```
+- View Posts page
+	- View
+	  - Orientate yourself to `show.blade.php`
+	  - Edit the file to look like this
+	  ```
+	  ```
+- Edit/Delete Posts page
+	- View
+	  - Orientate yourself to `edit.blade.php`
+	  - Edit the file
+	    - Final result
+	    ```
+	      @extends('layouts.app')
+	      @section('content')
+	      <h1>Edit Post</h1>
+	      {!! Form::model($post, ['method'=>'PATCH', 'action'=>['PostsController@update', $post->id]]) !!}
+		<div class="form-group">
+		  {!! Form::label('title', 'Title:') !!}
+		  {!! Form::text('title', null, ['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+		  {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
+		</div>
+	      {!! Form::close() !!}
+	      {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
+		<div class="form-group">
+		  {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+		</div>
+	      {!! Form::close() !!}
+	      @endsection
+	    ```
+	    - How we got the final result
+	      - Edit part
+		- Replaced the first form with the same form content as we used in the recent `create.blade.php`
+		- Adaptions
+		  - but used the method `PATCH` not `POST`
+		  - and used the action `PostsController@update` not `PostsController@store`
+		  - Used the submit text `Update` not `Create Post`
+		  - For the opening form function
+		    - Used the opening form function `model` not `open` and add a new parameter of `$post` which goes first
+		    - Made the action an array so that it can also include `$post->id`
+		    - So it looks like this
+		    ```
+		    {!! Form::model($post, ['method'=>'PATCH', 'action'=>'PostsController@update']) !!}
+		    ```
+	      - Delete part
+		- Replaced the second form also with the same form content as we used in the recent `create.blade.php`
+		- Adaptions
+		  - but used the method `DELETE` not `POST`
+		  - and used the action `PostsController@destroy` not `PostsController@store`
+		  - Used the submit text `Delete` not `Create Post`
+		  - Used the css class text `btn-danger` not `btn-primary`
+		  - And removed the title text, title label and their form group
+		  - For the opening form function
+		    - Made the action an array so that it can also include `$post->id`
+		    - So it looked like this
+		    ```
+		    {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
+		    ```
 
-#### Usage
-##### Create Post page
-- View
-  - Orientate yourself to `create.blade.php`
-  - Edit the file to look like this
-  ```
-    @extends('layouts.app')
-    @section('content')
-    <h1>Create Post</h1>
-    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store']) !!}
-      <div class="form-group">
-        {!! Form::label('title', 'Title:') !!}
-        {!! Form::text('title', null, ['class'=>'form-control']) !!}
-      </div>
-      <div class="form-group">
-        {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
-      </div>
-    {!! Form::close() !!}
-    @endsection
-  ```
-
-##### Lists Posts page
-- View
-  - Orientate yourself to `index.blade.php`
-  - Edit the file to look like this
-  ```
-  ```
-
-##### View Posts page
-- View
-  - Orientate yourself to `show.blade.php`
-  - Edit the file to look like this
-  ```
-  ```
-
-##### Edit/Delete Posts page
-- View
-  - Orientate yourself to `edit.blade.php`
-  - Edit the file
-    - Final result
-    ```
-      @extends('layouts.app')
-      @section('content')
-      <h1>Edit Post</h1>
-      {!! Form::model($post, ['method'=>'PATCH', 'action'=>['PostsController@update', $post->id]]) !!}
-        <div class="form-group">
-          {!! Form::label('title', 'Title:') !!}
-          {!! Form::text('title', null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group">
-          {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
-        </div>
-      {!! Form::close() !!}
-      {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
-        <div class="form-group">
-          {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
-        </div>
-      {!! Form::close() !!}
-      @endsection
-    ```
-    - How we got the final result
-      - Edit part
-        - Replaced the first form with the same form content as we used in the recent `create.blade.php`
-        - Adaptions
-          - but used the method `PATCH` not `POST`
-          - and used the action `PostsController@update` not `PostsController@store`
-          - Used the submit text `Update` not `Create Post`
-          - For the opening form function
-            - Used the opening form function `model` not `open` and add a new parameter of `$post` which goes first
-            - Made the action an array so that it can also include `$post->id`
-            - So it looks like this
-            ```
-            {!! Form::model($post, ['method'=>'PATCH', 'action'=>'PostsController@update']) !!}
-            ```
-      - Delete part
-        - Replaced the second form also with the same form content as we used in the recent `create.blade.php`
-        - Adaptions
-          - but used the method `DELETE` not `POST`
-          - and used the action `PostsController@destroy` not `PostsController@store`
-          - Used the submit text `Delete` not `Create Post`
-          - Used the css class text `btn-danger` not `btn-primary`
-          - And removed the title text, title label and their form group
-          - For the opening form function
-            - Made the action an array so that it can also include `$post->id`
-            - So it looked like this
-            ```
-            {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
-            ```
-
-#### LC Form Builder Snippets
+##### LC Form Builder Snippets
 - Intro
   - To make the writing of commonly used LC Form Builder code samples easier we will make them into snippets
   - If you're using the Atom IDE the method of doing this was demonstrated in the Development Tools part of this course
@@ -2997,8 +2988,8 @@
     '''
   ```
 
-### <a name="Validation"></a> Validation
-####
+#### <a name="Validation"></a> Validation
+#####
 
 - Intro
   - We will use Laravel's automatic validation errors messages (e.g. "please enter a password with more that 5 characters")

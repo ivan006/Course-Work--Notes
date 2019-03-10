@@ -1,6 +1,3 @@
-<script id="input">
-
-
 
 # Classy courgettes
 

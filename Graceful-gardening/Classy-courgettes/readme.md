@@ -1,4 +1,3 @@
-
 # Classy courgettes
 
 ## 1. Note: 
@@ -59,7 +58,7 @@
 ### Day 6 and onwards 
 - Watering - If the plant still hasn't shot above ground water with 1L per day until it does
 
-## 5. Seedling stage
+## 5. Vegetative stage
 ### Note
 - This stage begins as soon as a sprout has shot above ground
 - When watering from now on water with a watering can but not directly on the plant
@@ -105,5 +104,4 @@
 - Watering - From now on, starting today, water with 6L every three days
 ### Week 3, 6, 9 and 12
 - Bed preparation and tending the soil - Repeat the soil tending and bed preparation steps as shown in day 1 and 2  unless the plants are soon to die or are no longer productive
-
 

@@ -22,7 +22,7 @@
 	- dig a hole in the middle of each plant's section that is 1 spade wide and 1 spade deep discarding the removed soil
 	- Add a total of 10L of compost and mix with the soil a bit
 
-## 3. Sprout stage part 1
+## 3. Sprout stage - part 1
 
 ### Note
 - if the weather is hot this process may go quicker
@@ -46,7 +46,7 @@
 	- Unplant the bundle
 	- Retrieve the sprouts that have sprouted and plant them as shown in part 2 of the sprout stage
 	- The rest are faulty seed so you can throw them away
-## 4. Sprout stage part 2
+## 4. Sprout stage - part 2
 ### Day 1 (feb 5nd and 6rd)
 - Watering - Water plants section with 5L of water and mix it into the compost before planting 
 - Planting

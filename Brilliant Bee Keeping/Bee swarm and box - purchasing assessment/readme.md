@@ -10,7 +10,7 @@
 - Photo 
 	- what does a photo of the hive look like? ---------------
 - Brood configuration 
-	- The optimal and standard configuration is for the brood to inhabit a brood box, sometimes the brood will volinterily inhabit a super which is suboptimal
+	- The brood wil sometimes volenterily inhabit a super box not a brood box which can be problematic.
 
 ## Quality of the swarm
 - Queen patern - is there a queen patern? (im not sure what this means)

@@ -81,7 +81,7 @@
 - Now is the time fruits will start appearing
 - Harvest each fruit the moment it has a full flower 
 - If you want you can indeed let your fruits get more mature before harvesting but if you do your plant will take strain and be less productive over all
-### Day 1 
+### Day 1 (2019/03/10)
 - Bed preparation - Move the mulch to the side
 - Watering - water with 6L
 - Tending the soil 
@@ -89,7 +89,7 @@
 		- the plants safe space is from the stem of the plant all the way to as far as its leaves can reach
 		- weed after watering as the watering will help losen the roots of the weeds
 		- this will take about 3 minutes per plant  
-### Day 2
+### Day 2 (3 of the was 2019/03/12, rest was...)
 - Bed preparation
 	- While you tend the soil in the next step make sure to arrange the plants "safe space" soil into a bowl shape for retaining water 
 	- After you have finished tending the soil be sure to put the mulch back

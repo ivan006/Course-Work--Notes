@@ -1,3 +1,9 @@
+model is for reusing data queries
+
+controllers are for grouping similar pages to ave time writing model usage functions
+
+views are for the buiding the pages themselves
+
 # Automation with Laravel
 
 ## <a name="1."></a>Chapter 1. Table of Content

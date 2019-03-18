@@ -1,3 +1,3 @@
 # Destiny Code
 
-We model our outlook of society as a heirarchy, and rightly so, but to model it as a heirarchy of people only creates inquality. To create equality we should see society with new eyes not as a heirarchy of people but as a hierarchy of assets. 
+Perspective is everything and it shapes our destiny. If we changed our perception of society from it being a hierarchy of people to it being a hierarchy of assets we would end inequality and create equality.

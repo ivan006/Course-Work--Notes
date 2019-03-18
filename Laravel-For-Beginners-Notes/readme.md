@@ -4,7 +4,7 @@
 
 - [1. Table of Content](#1.)
 - [2. Introduction](#2.)
-- Settup chapters
+- Setup chapters
 	- [3. Setting up the development tools](#3.)
 	- [4. Setting up the Laravel powered app](#4.)
 - Web app component chapters

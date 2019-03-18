@@ -1,6 +1,6 @@
 model is for reusing data queries
 
-controllers are for grouping similar pages to ave time writing model usage functions
+controllers are for grouping similar pages (well more like tools (edit /view) for a page type) to ave time writing model usage functions
 
 views are for the buiding the pages themselves
 

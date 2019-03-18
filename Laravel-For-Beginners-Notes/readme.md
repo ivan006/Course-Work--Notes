@@ -704,6 +704,7 @@
 
 ### <a name="Concepts"></a> Concepts
 #### MVC
+- MVC or rather PDR-MVC (page, database, route, model, view and controller)
 - ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern.png)
 - MVC is a programming pattern.
 - It's central parts are "models", "views" and "controllers", thus how it got it's name.

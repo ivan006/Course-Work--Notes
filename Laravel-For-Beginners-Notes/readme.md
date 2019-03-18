@@ -704,6 +704,7 @@
 
 ### <a name="Concepts"></a> Concepts
 #### MVC
+- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern.png)
 - MVC is a programming pattern.
 - It's central parts are "models", "views" and "controllers", thus how it got it's name.
 - MVC is commonly used nowadays.

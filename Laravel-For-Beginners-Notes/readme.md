@@ -1,14 +1,14 @@
-Routes - 
+Routes - Define the URL the entity types pages
 
-Page - What you see when you are browsing a website.
+Pages - What you see when you are browsing a website.
 
 Database - Defines the data of the webapps entities.
 
 Models - Locate the data of the webapps entity types
 
-Views - Define the page template style of the webapps entity types.
+Views - Define the page template of the webapps entity types.
 
-Controllers - Define the page templates of the webapps entity types by referencing the view and models (e.g. for generating the "view entity" and "edit entity" pages)
+Controllers - Define the pages of the webapps entity types by referencing the view and models (an entity type will need at least 2 page templates one for generating the "view entity" page and aother for generating the "edit entity" page)
 
 
 

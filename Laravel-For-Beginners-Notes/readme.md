@@ -1,8 +1,8 @@
-model is for reusing data queries
+Models are for building reusable data queries.
+Controllers are for grouping a post types different views.
+Views are for buiding the different pages for a post type (both the reading and editing version of it).
 
-controllers are for grouping similar pages (well more like tools (edit /view) for a page type) to ave time writing model usage functions
 
-views are for the buiding the pages themselves
 
 # Automation with Laravel
 

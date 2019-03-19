@@ -1,8 +1,6 @@
-Models are for building reusable data queries.
-Controllers are for grouping a post types different views.
-Views are for buiding the different pages for a post type (both the reading and editing version of it).
-
-
+Models - Defines the location of an entity types data
+Controllers - Defines the associated templates for an entity type (templates for generating the view entity and edit entity pages)
+Views - Defines the style of each of the entity types associated templates.
 
 # Automation with Laravel
 

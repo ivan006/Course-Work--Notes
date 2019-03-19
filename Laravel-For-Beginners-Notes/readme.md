@@ -1,10 +1,14 @@
-Database - Defines the data of the apps entities.
+Routes - 
 
-Models - Locate the data of the apps entity types
+Page - What you see when you are browsing a website.
 
-Views - Define the page templates of the apps entity types.
+Database - Defines the data of the webapps entities.
 
-Controllers - Locates the page templates of the apps entity types (e.g. for generating the "view entity" and "edit entity" pages)
+Models - Locate the data of the webapps entity types
+
+Views - Define the page template style of the webapps entity types.
+
+Controllers - Define the page templates of the webapps entity types by referencing the view and models (e.g. for generating the "view entity" and "edit entity" pages)
 
 
 

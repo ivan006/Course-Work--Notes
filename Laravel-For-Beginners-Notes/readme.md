@@ -1,6 +1,12 @@
-Models - Defines the location of an entity types data
-Controllers - Defines the associated templates for an entity type (templates for generating the view entity and edit entity pages)
-Views - Defines the style of each of the entity types associated templates.
+Database - Defines the data of the apps entities.
+
+Models - Locate the data of the apps entity types
+
+Views - Define the page templates of the apps entity types.
+
+Controllers - Locates the page templates of the apps entity types (e.g. for generating the "view entity" and "edit entity" pages)
+
+
 
 # Automation with Laravel
 

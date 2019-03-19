@@ -1,15 +1,14 @@
-Routes - Define the URL the entity types pages
+Pages - Display the entities.
 
-Pages - What you see when you are browsing a website.
+Controllers - Define the template - for the entity types pages (the templates generate the pages and an entity will need at least 2 pages a "view entity" page and a "edit entity" page)
 
-Database - Defines the data of the webapps entities.
+Models - Locate the template data - for the entity types pages.
 
-Models - Locate the data of the webapps entity types
+Views - Define the template style - for the entity types pages.
 
-Views - Define the page template of the webapps entity types.
+Routes - Define the URL - for the entity types pages
 
-Controllers - Define the pages of the webapps entity types by referencing the view and models (an entity type will need at least 2 page templates one for generating the "view entity" page and aother for generating the "edit entity" page)
-
+Database - Defines the template data - for the entity types pages.
 
 
 # Automation with Laravel

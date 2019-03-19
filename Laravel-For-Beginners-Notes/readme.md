@@ -1,6 +1,6 @@
 Pages - Display the entities.
 
-Controllers - Define the template - for the entity types pages (the templates generate the pages and an entity will need at least 2 pages a "view entity" page and a "edit entity" page)
+Controllers - Define the templates - for the entity types pages (the templates generate the pages and an entity will need at least 2 pages a "view entity" page and a "edit entity" page)
 
 Models - Locate the template data - for the entity types pages.
 

@@ -1,11 +1,10 @@
-
-- A database - stores the content data of the entities
-- A model - stores the content structure of an entity
-- A URL - is the action request of an entity
-- A route - is the action request handler of an entity 
-- A controller - is the action of an entity 
-- A view - is the action responce template of an entity 
-- A page - is the action responce of an entity 
+- A database - stores the data of the entities content
+- A model - stores the structure of an entity's content
+- A URL - is the request of an entity action
+- A route - is the request handler of an entity action
+- A controller - is an entity action
+- A view - is the responce template of an entity action
+- A page - is the responce of an entity action
 
 
 # Automation with Laravel

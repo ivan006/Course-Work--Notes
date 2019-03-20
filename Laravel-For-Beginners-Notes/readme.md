@@ -1,7 +1,7 @@
 
 - A database - stores entity data
 - A model - stores an entity's structure
-- A URL - is a anction request
+- A URL - is an action request
 - A routes - is an action request handler
 - A controller - is an action
 - A views - is an action responce template

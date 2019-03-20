@@ -1,6 +1,6 @@
 
 - Database - The entity data
-- Models - The entity data proxy
+- Models - The entity data structure
 - URL - The entity action request
 - Routes - The entity action request handler
 - Controllers - The entity action

@@ -1,12 +1,11 @@
 
-Database - The entity data
-Models - The entity data proxy
-
-URL - The entity action request
-Routes - The entity action request handler
-Controllers - The entity action
-Views - The entity action responce template
-Pages - The entity action responce
+- Database - The entity data
+- Models - The entity data proxy
+- URL - The entity action request
+- Routes - The entity action request handler
+- Controllers - The entity action
+- Views - The entity action responce template
+- Pages - The entity action responce
 
 
 # Automation with Laravel

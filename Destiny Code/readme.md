@@ -1,6 +1,5 @@
 # Destiny Code
 
-Perspective is everything and it shapes our destiny. If we changed our perspective of society from being a people centric hierarchy to being a asset centric hierarchy it would end inequality. 
+Perspective is everything and it shapes our destiny. If we changed our perspective of society from seeing it as hierarchy of people to seeing it as a hierarchy of assets it would end inequality.
 
-Our belief in subject centric hierarchy causes us to enforce subject centric hierarchy and thus enforce inequality. 
-Our society currently re-enforces inequality upon itself. This can be seen in the widespread encouragement of obedience.
+Our perspective causes society to re-enforce inequality upon itself. This can be seen in the widespread encouragement of obedience.

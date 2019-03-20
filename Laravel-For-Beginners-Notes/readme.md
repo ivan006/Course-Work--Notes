@@ -1,5 +1,5 @@
 
-- A database - store entity sdata
+- A database - stores entity sdata
 - A model - stores an entity's structure
 - A URL - is a anction request
 - A routes - is an action request handler

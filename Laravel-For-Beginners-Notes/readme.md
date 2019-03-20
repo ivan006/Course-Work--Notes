@@ -1,14 +1,12 @@
-Pages - Display the entities.
 
-Controllers - Define the templates - for the entity types pages (the templates generate the pages and an entity will need at least 2 pages a "view entity" page and a "edit entity" page)
+Database - The entity data
+Models - The entity data proxy
 
-Models - Locate the template data - for the entity types pages.
-
-Views - Define the template style - for the entity types pages.
-
-Routes - Define the URL - for the entity types pages
-
-Database - Defines the template data - for the entity types pages.
+URL - The entity action request
+Routes - The entity action request handler
+Controllers - The entity action
+Views - The entity action responce template
+Pages - The entity action responce
 
 
 # Automation with Laravel

@@ -1,6 +1,6 @@
 
-- A database - stores entity data
-- A model - stores an entity's structure
+- A database - stores entity content data
+- A model - stores an entity's content structure
 - A URL - is an entity action request
 - A route - is an entity action request handler
 - A controller - is an entity action

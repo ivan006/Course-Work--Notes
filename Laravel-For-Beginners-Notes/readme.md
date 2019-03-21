@@ -1,5 +1,5 @@
-- Database - stores the page data
-- Model - structures the page data
+- Database - stores the pages
+- Model - structures the page
 - URL - requests the page query
 - Route - translates the URL for the page query
 - Controller - performs the page query

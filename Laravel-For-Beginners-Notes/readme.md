@@ -1,4 +1,4 @@
-- Datbase - stores the pages data
+- Database - stores the pages data
 - Model - structure the pages data
 - URL - requests the page querie
 - Route - translates the request for the page querie

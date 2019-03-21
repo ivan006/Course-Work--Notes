@@ -1,7 +1,7 @@
 - Database - stores the page data
 - Model - structures the page data
 - URL - requests the page query
-- Route - translates the request for the page query
+- Route - translates the URL for the page query
 - Controller - performs the page query
 - View - formats the responce of the page query
 - Page display - Is the responce of the page query

@@ -1,10 +1,10 @@
-- A database - stores the data of the web pages
-- A model - stores the structure of a web page
-- A URL - is the request of a page queries
-- A route - is the request handler of a page queries
-- A controller - is a page queries
-- A view - is the responce template of a page queries
-- A page display - is the responce of a page queries
+- Datbase - stores the pages data
+- Model - structure the pages data
+- URL - requests the page querie
+- Route - translates the request for the page querie
+- Controller - performs the page querie
+- View - formats the responce of the page querie
+- Page display - Is the responce of the page querie
 
 
 # Automation with Laravel

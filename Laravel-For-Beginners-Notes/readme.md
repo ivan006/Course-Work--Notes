@@ -1,12 +1,12 @@
 - Pages - are the building blocks of a website
 - Database - stores the pages
-- Model - structures the page
-- Page action - interacts with the page, wether to retrieve from it or store onto it
-- URL - requests the page action
-- Route - translates the URL for the page action
-- Controller - performs the page action
-- View - formats the responce of the page action
-- Page display - Is the responce of the page action
+- A model - structures the page
+- A page action - interacts with the page, wether to retrieve from it or store onto it
+- A URL - requests the page action
+- A route - translates the URL for the page action
+- A controller - performs the page action
+- A view - formats the responce of the page action
+- A page display - Is the responce of the page action
 
 
 # Automation with Laravel

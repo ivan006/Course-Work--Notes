@@ -1,10 +1,10 @@
 - Database - stores the pages data
 - Model - structure the pages data
-- URL - requests the page querie
-- Route - translates the request for the page querie
-- Controller - performs the page querie
-- View - formats the responce of the page querie
-- Page display - Is the responce of the page querie
+- URL - requests the page query
+- Route - translates the request for the page query
+- Controller - performs the page query
+- View - formats the responce of the page query
+- Page display - Is the responce of the page query
 
 
 # Automation with Laravel

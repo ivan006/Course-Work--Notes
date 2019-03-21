@@ -1,4 +1,4 @@
-- Database - stores the pages data
+- Database - stores the page data
 - Model - structures the page data
 - URL - requests the page query
 - Route - translates the request for the page query

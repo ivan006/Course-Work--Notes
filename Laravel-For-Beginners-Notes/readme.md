@@ -1,5 +1,5 @@
-- A database - stores the data of the pages content
-- A model - stores the structure of a page's content
+- A database - stores the data of the web pages
+- A model - stores the structure of a web page
 - A URL - is the request of a page action
 - A route - is the request handler of a page action
 - A controller - is a page action

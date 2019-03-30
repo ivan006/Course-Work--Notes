@@ -1,6 +1,5 @@
 
 - Database - (data) - Is the page data storage
-
 - A URL - (action request) - Is the page action request 
 - A route - (action request translator) - Is the page action request translator 
 - A controller - (action resources) - Is the page action

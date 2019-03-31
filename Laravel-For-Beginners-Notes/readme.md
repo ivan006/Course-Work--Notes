@@ -1,12 +1,11 @@
 
-- Database - (data) - Is the page data storage
-- A URL - (action request) - Is the page action request 
-- A route - (action request translator) - Is the page action request translator 
-- A controller - (action resources) - Is the page action
-- A model - (action queries) - Is the page data map
-- A view - (action responce template) - Is the page action responce template
-- A page rendition - (action responce) - Is the page action responce
-
+- Database - data/data storage
+- A URL - action request
+- A route - action URL translator
+- A controller - action resources
+- A model - action queries
+- A view - action responce template
+- A page rendition - action responce
 
 # Automation with Laravel
 

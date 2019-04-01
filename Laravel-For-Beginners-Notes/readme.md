@@ -624,10 +624,7 @@
 	- It separates the execution script from the helpers scripts
 	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
 - ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
-- MVC is a programming pattern.
-- It's central parts are "models", "views" and "controllers", thus how it got it's name.
-- MVC is commonly used nowadays.
-- MVC enables us to among other things use developer friendly ORM queries, in the past however we simply used SQL queries.
+
 
 
 #### Controllers

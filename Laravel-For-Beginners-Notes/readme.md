@@ -52,7 +52,7 @@
 - This course is based on a video course on Udemy.com which can be found here - [Laravel for beginners](https://www.udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel/)
 
 
-##<a name="3.d"></a>3. Settup
+## <a name="3.d"></a>3. Settup
 
 ### <a name="3."></a>Chapter 3.1 Development Tools
 #### Table Of Content
@@ -285,98 +285,83 @@
 
 #### <a name="Source-Code">Source Code</a>
 
-##### Using Windows
 
-- Installation
-	- In Git Bash locate yourself using ```cd c:/laravel-apps```
-	- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
-	- Decide if you want the latest version or and older versions
-	  - For latest do this
-	     - Run `composer create-project --prefer-dist laravel/laravel`. And if you have the Laravel extension for composer you can even use `laravel new fundamental-mechanisms-app`
-	  - Or for old version do This
-	     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
-	     - If you get an error try first restarting Git Bash.
-- Configurations
-	- Map it in Homestead - to do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
-	   - Configure these attributes
-	      - sites:
-		 - \- map: ```fundamental-mechanisms-app.test```
-		 - to: ```/home/vagrant/code/fundamental-mechanisms-app/public```
-	   - For multiple project running in parallel do This
-	      - Duplicate the above mentioned set of attributes and configure like this
-	      ```
-		sites:
-		    - map: fundamental-mechanisms-app.test
-		      to: /home/vagrant/code/fundamental-mechanisms-app/public
-		    - map: fundamental-mechanisms-app2.test
-		      to: /home/vagrant/code/fundamental-mechanisms-app2/public
-	      ```
-	- Map it in your host file
-	   - Using windows explorer locate yourself to here ```C:\Windows\System32\drivers\etc\```
-	   - Temporarily move the ```host``` file to your desktop.
-	   - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
-	   ```
-	   192.168.10.10 laravel.test
-	   192.168.10.10 homestead.test
-	   192.168.10.10 fundamental-mechanisms-app.test
-	   ```
-	   - Move it back into it's original location ```C:\Windows\System32\drivers\etc\```.
-	- Provision homestead
-	    - Run homestead - run `cd c:/Homestead` and then `vagrant up`
-	    - Run the command ```vagrant provision```.
-- PHP version
-	- Check
-	  - Add this to your routes (see how in later sections) and
-	  ```
-	    Route::get('/phpversion', function () {
-	      echo phpversion();
-	    });
-	  ```
-	  - Then open the corresponding page in your browser
-	- Change
-	  - Open `Homestead.yaml`
-	  - Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
-	   ```
-	     sites:
-		 - map: fundamental-mechanisms-app.test
-		   to: /home/vagrant/code/fundamental-mechanisms-app/public
-		   php: "5.6"
-	   ```
-	   - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
-- Testing
-	- Run your local server. Open your browser and enter the URL   ```fundamental-mechanisms-app.test/``` and see if a page opens with the text "Laravel".
-	- After completion close Homestead - run `vagrant halt`
-- Patches
-	- Foreach loop error
-	  - Cause
-	    - Software incompatibility: If you are running a version  of PHP that is higher than 7.1 with a version of Laravel that is lower than 5.6 you will get this error
-	    - Test your PHP and Laravel versions, here's how
-	      - Oriented yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-	      - Run `php artisan --version` and `php -v`
-	  - Fix
-	    - Option 1
-	      - Go to `vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php` (eloquent builder file)
-		- Replace this: `$originalWhereCount = count($query->wheres);`
-		- With this: `$originalWhereCount = is_null($query->wheres) ? 0 : count($query->wheres);`
-	    - More info
-	      - This error shows when you try to run certain types of foreach loops and looks like this `count(): Parameter must be an array or an object that implements Countable`
-	      - See more at  https://stackoverflow.com/questions/48343557/count-parameter-must-be-an-array-or-an-object-that-implements-countable
-	    - Option 2
-	      - If your using Laravel version `5.2.29` revert your php version to `5.6`
-
-##### Using Ubuntu
-- Installation
-	- In terminal orientate yourself to `laravel-apps`
-	- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
-	- Decide if you want the latest version or and older versions
-	  - For latest do this
-	     - Run `composer create-project --prefer-dist laravel/laravel`.
-	  - Or for old version do This
-	     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
-	     - If you get an error try first restarting terminal.
-- Testing
-	- Run your local server. Open your browser and enter the URL `127.0.0.1` and see if a page opens with the text "Laravel".
-
+##### Installation
+- In Git Bash locate yourself using ```cd c:/laravel-apps```
+- Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
+- Decide if you want the latest version or and older versions
+  - For latest do this
+     - Run `composer create-project --prefer-dist laravel/laravel`. And if you have the Laravel extension for composer you can even use `laravel new fundamental-mechanisms-app`
+  - Or for old version do This
+     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
+     - If you get an error try first restarting Git Bash.
+##### Configurations
+- Map it in Homestead - to do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
+   - Configure these attributes
+      - sites:
+	 - \- map: ```fundamental-mechanisms-app.test```
+	 - to: ```/home/vagrant/code/fundamental-mechanisms-app/public```
+   - For multiple project running in parallel do This
+      - Duplicate the above mentioned set of attributes and configure like this
+      ```
+	sites:
+	    - map: fundamental-mechanisms-app.test
+	      to: /home/vagrant/code/fundamental-mechanisms-app/public
+	    - map: fundamental-mechanisms-app2.test
+	      to: /home/vagrant/code/fundamental-mechanisms-app2/public
+      ```
+- Map it in your host file
+   - Using windows explorer locate yourself to here ```C:\Windows\System32\drivers\etc\```
+   - Temporarily move the ```host``` file to your desktop.
+   - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
+   ```
+   192.168.10.10 laravel.test
+   192.168.10.10 homestead.test
+   192.168.10.10 fundamental-mechanisms-app.test
+   ```
+   - Move it back into it's original location ```C:\Windows\System32\drivers\etc\```.
+- Provision homestead
+    - Run homestead - run `cd c:/Homestead` and then `vagrant up`
+    - Run the command ```vagrant provision```.
+##### PHP version
+- Check
+  - Add this to your routes (see how in later sections) and
+  ```
+    Route::get('/phpversion', function () {
+      echo phpversion();
+    });
+  ```
+  - Then open the corresponding page in your browser
+- Change
+  - Open `Homestead.yaml`
+  - Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
+   ```
+     sites:
+	 - map: fundamental-mechanisms-app.test
+	   to: /home/vagrant/code/fundamental-mechanisms-app/public
+	   php: "5.6"
+   ```
+   - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
+##### Testing
+- Run your local server. Open your browser and enter the URL   ```fundamental-mechanisms-app.test/``` and see if a page opens with the text "Laravel".
+- After completion close Homestead - run `vagrant halt`
+##### Patches
+- Foreach loop error
+  - Cause
+    - Software incompatibility: If you are running a version  of PHP that is higher than 7.1 with a version of Laravel that is lower than 5.6 you will get this error
+    - Test your PHP and Laravel versions, here's how
+      - Oriented yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+      - Run `php artisan --version` and `php -v`
+  - Fix
+    - Option 1
+      - Go to `vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php` (eloquent builder file)
+	- Replace this: `$originalWhereCount = count($query->wheres);`
+	- With this: `$originalWhereCount = is_null($query->wheres) ? 0 : count($query->wheres);`
+    - More info
+      - This error shows when you try to run certain types of foreach loops and looks like this `count(): Parameter must be an array or an object that implements Countable`
+      - See more at  https://stackoverflow.com/questions/48343557/count-parameter-must-be-an-array-or-an-object-that-implements-countable
+    - Option 2
+      - If your using Laravel version `5.2.29` revert your php version to `5.6`
 
 #### <a name="Database">Database</a>
 ##### Installation
@@ -545,7 +530,7 @@
   - [Route Parameters](#Route-cont.-Route-Parameters)
 
 ### General
-- Routes are kind of like "request handlers". This is because they define what certain URL requests do.
+- Routes "request translators". This is because they link a URL with a controller.
 - They are located in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\routes.php`
 
 #### <a name="Check-All-Route-Details"></a> Check All Route Details
@@ -622,7 +607,7 @@
 ```
 
 
-## <a name="7."></a>Chapter 4.3.1. Introduction
+## <a name="7."></a>Chapter 7. Introduction to controllers
 
 ### Table Of Content
 
@@ -635,7 +620,9 @@
 
 ### <a name="Concepts"></a> Concepts
 #### MVC
-- MVC or rather PDR-MVC (page, database, route, model, view and controller)
+- MVC is a code organizational structure
+	- It separates the execution script from the helpers scripts
+	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
 - ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern.png)
 - MVC is a programming pattern.
 - It's central parts are "models", "views" and "controllers", thus how it got it's name.

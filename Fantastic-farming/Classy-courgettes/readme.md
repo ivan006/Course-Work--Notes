@@ -1,10 +1,10 @@
 # Classy courgettes
 
-## 1. Note: 
+## Note: 
 - These instructions are for sandy soil types
 - When watering - water in the evening to save water
 
-## 2. Preparation stage
+## Stage 1 - preparation
 ### Bed preparation
 ![](https://image.flaticon.com/icons/png/128/1144/1144062.png)
 - Demark your bed layout 
@@ -21,7 +21,7 @@
 	- dig a hole in the middle of each plant's section that is 1 spade wide and 1 spade deep discarding the removed soil
 	- Add a total of 10L of compost and mix with the soil a bit
 
-## 3. Sprout stage - part 1
+## Stage 2 - sprouting in cloth
 
 ### Note
 - if the weather is hot this process may go quicker
@@ -45,7 +45,9 @@
 	- Unplant the bundle
 	- Retrieve the sprouts that have sprouted and plant them as shown in part 2 of the sprout stage
 	- The rest are faulty seed so you can throw them away
-## 4. Sprout stage - part 2
+
+## Stage 3 - Continue sprouting in soil
+
 ### Day 1 (feb 5nd and 6rd)
 - Watering - Water plants section with 5L of water and mix it into the compost before planting 
 - Planting
@@ -58,7 +60,8 @@
 ### Day 6 and onwards 
 - Watering - If the plant still hasn't shot above ground water with 1L per day until it does
 
-## 5. Vegetative stage
+## Stage 4 - vegetative growth
+
 ### Note
 - This stage begins as soon as a sprout has shot above ground
 - When watering from now on water with a watering can but not directly on the plant
@@ -73,7 +76,7 @@
 - Watering - For the next 2 weeks water with 5L every three days
 
 
-## 6. Fruiting stage
+## Stage 5 - fruit growth
 
 ### Note
 - This stage begins 3 weeks after the sprout has shot above ground 
@@ -81,7 +84,7 @@
 - Now is the time fruits will start appearing
 - Harvest each fruit the moment it has a full flower 
 - If you want you can indeed let your fruits get more mature before harvesting but if you do your plant will take strain and be less productive over all
-### Day 1 (2019/03/10)
+### Day 1 (was mean to be feb 5th but did on feb 9th)
 - Bed preparation - Move the mulch to the side
 - Watering - water with 6L
 - Tending the soil 
@@ -89,19 +92,49 @@
 		- the plants safe space is from the stem of the plant all the way to as far as its leaves can reach
 		- weed after watering as the watering will help losen the roots of the weeds
 		- this will take about 3 minutes per plant  
-### Day 2 (3 of the was 2019/03/12, rest was...)
+### Day 2 (3 of the was 2019/03/12, rest was...14th)
 - Bed preparation
 	- While you tend the soil in the next step make sure to arrange the plants "safe space" soil into a bowl shape for retaining water 
 	- After you have finished tending the soil be sure to put the mulch back
 - Tending the soil 
 	- Airate the soil
-		- turn the soil in the plants safe space but not closer than 10cm to the plants stem to a depth of 1/2 a spade
+		- turn the soil in the plants safe space but not closer than 10cm to the plants stem to a depth of 1/2 a spade, this will take about 4min per plant
 	- Fertilisation
 		- put 1 hand full of chicken manure in a circle 10cm from the stem of the plant
 		- in the plant space evenly spread 10L of compost 
 - Watering - water again with 7L
+
 ### Day 5
 - Watering - From now on, starting today, water with 6L every three days
+
+### Week 2
+- Harvesting - your first big harvest will be around this time (my harvest for the week was 1/3kg per plant)
+
 ### Week 3, 6, 9 and 12
 - Bed preparation and tending the soil - Repeat the soil tending and bed preparation steps as shown in day 1 and 2  unless the plants are soon to die or are no longer productive
 
+
+
+
+# fff
+- this stage starts at 5 weeks after germination
+- for pests
+	- sypemephrine
+	- tamalon
+	- organanaciide plu 
+		- canola oil
+		- garlic extract 	
+		- pyrethrins extract from flower of chrysanthemum cinerariaefolium
+		- piperonyl butoxide (synergist)
+- ff
+	- bed preparation
+		- spacing
+		- water retention (mulch/water catchement)
+	- soil tendering
+		- soil airation (losen soil)
+		- fertilisation (feeding)
+		- weeding
+	- planting
+	- watering
+	- harvesting
+	- pest control

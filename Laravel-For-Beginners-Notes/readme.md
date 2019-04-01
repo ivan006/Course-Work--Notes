@@ -22,16 +22,17 @@
 	- [3. Setting up the development tools](#3.)
 	- [4. Setting up the Laravel powered app](#4.)
 - Web app component chapters
-	- [5. Database component](#5.)
-	- [6. Routes component](#6.)
-	- [7. Introduction to queries](#7.)
-	- [8. Basic Queries](#8.)
-	- [9. Queries with basic relationships](#9.)
-	- [10. Queries with advanced relationships](#10.)
-	- [11. Query Testing Environment](#11.)
-	- [12. Accessors and mutators queries](#12.)
-	- [13. Views component](#13.)
-- [14. Real-World Examples](#14.)
+	- [5. Introduction to web app components](#5.)
+	- [5. Database component](#6.)
+	- [6. Routes component](#7.)
+	- [7. Introduction to queries](#8.)
+	- [8. Basic Queries](#9.)
+	- [9. Queries with basic relationships](#10.)
+	- [10. Queries with advanced relationships](#11.)
+	- [11. Query Testing Environment](#12.)
+	- [12. Accessors and mutators queries](#13.)
+	- [13. Views component](#14.)
+- [14. Real-World Examples](#15.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
@@ -401,8 +402,16 @@
 - When your done run `exit`
 
 
+## <a name="5."></a>Chapter 5. Introduction to web app components
+- [Concepts](#Concepts)
+### <a name="Concepts"></a> Concepts
+#### MVC
+- MVC is a code organizational structure
+	- It separates the execution script from the helpers scripts
+	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
+	- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
 
-## <a name="5."></a>Chapter 4. Database component
+## <a name="6."></a>Chapter 6. Database component
 
 ### Table Of Content
 - [Database](#Database)
@@ -523,7 +532,7 @@
   then solve it by running this in git bash `composer dump-autoload`
 
 
-## <a name="6."></a> Chapter 5. Route component
+## <a name="7."></a> Chapter 7. Route component
 
 ### Table Of Content
 - [Routes](#routes)
@@ -607,23 +616,15 @@
 ```
 
 
-## <a name="7."></a>Chapter 7. Introduction to controllers
+## <a name="8."></a> Chapter 8. Introduction to controllers
 
 ### Table Of Content
 
 
-- [Concepts](#Concepts)
+
 - [Basic Setup](#Basic-Setup)
 - [Integration with Route Parameters](#Integration-with-Route-Parameters)
 - [SQL Queries](#SQL-Queries)
-
-
-### <a name="Concepts"></a> Concepts
-#### MVC
-- MVC is a code organizational structure
-	- It separates the execution script from the helpers scripts
-	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
-	- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
 
 
 
@@ -871,7 +872,7 @@
       });
     ```
 
-## <a name="8."></a> Chapter 4.3.2. Basic Queries
+## <a name="9."></a> Chapter 9. Basic Queries
 
 ### Table Of Content
 
@@ -1135,7 +1136,7 @@
   ```
 
 
-## <a name="9."></a> Chapter 4.3.3. Basic Relationships
+## <a name="10."></a> Chapter 10. Basic Relationships
 
 ### Table Of Content
 
@@ -1513,7 +1514,7 @@
 
 
 
-## <a name="10."></a>Chapter 4.3.4. Advanced Relationships
+## <a name="11."></a>Chapter 11. Advanced Relationships
 
 ### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -1947,7 +1948,7 @@
 
 
 
-## <a name="11."></a>Chapter 4.3.5. Query Testing Environment
+## <a name="12."></a>Chapter 12. Query Testing Environment
 
 ### Table Of Content
 - [Query Testing Environment](#Query-Testing-Environment)
@@ -2007,7 +2008,7 @@
 
 
 
-## <a name="12."></a>Chapter 4.3.6. Accessors and Mutators
+## <a name="13."></a>Chapter 13. Accessors and Mutators
 
 ### Table Of Content
 - [Dates](#Dates)
@@ -2114,7 +2115,7 @@
 
 
 
-## <a name="13."></a>Chapter 4.4. Views component
+## <a name="14."></a>Chapter 14. Views component
 
 ### Table Of Content
 - [Views](#)
@@ -2286,7 +2287,7 @@
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="14."></a>Chapter 5. Real world examples
+## <a name="15."></a>Chapter 15. Real world examples
 ### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
 #### Make a new laravel powered app

@@ -1,3 +1,12 @@
+
+- A URL - request, front end action component
+- A page rendition - responce, front end action component
+- A route - request translator, back end action component
+- A controller - executor, back end action component
+- A model - query templates, back end action component
+- A view - responce template, back end action component
+- Database - data/data storage
+
 # Automation with Laravel
 
 ## <a name="1."></a>Chapter 1. Table of Content
@@ -704,6 +713,7 @@
 
 ### <a name="Concepts"></a> Concepts
 #### MVC
+- MVC or rather PDR-MVC (page, database, route, model, view and controller)
 - ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern.png)
 - MVC is a programming pattern.
 - It's central parts are "models", "views" and "controllers", thus how it got it's name.

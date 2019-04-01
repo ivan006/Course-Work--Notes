@@ -660,8 +660,7 @@
 
 ##### Definition and Location
 - Definition:
-  - A model is a kind of "proxy" or "go between" for your raw data (database). This is because in MVC we don't directly handle data in the database but rather through our models. This allows easier handling.
-  - A model is what makes, the easy to use, ORM queries possible it also can set limitations and freedoms on the types of queries possible for it's associated table.
+  - A model contains your queries templates.
 - Location: `C:/laravel-apps/fundamental-mechanisms-app/app`.
 
 
@@ -2548,6 +2547,9 @@
 - [Basics](#Basics)
 - [LC Form Builder](#LC-Form-Builder)
 - [Validation](#Validation)
+
+
+
 
 
 #### <a name="Basics"></a> Basics

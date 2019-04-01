@@ -1,10 +1,15 @@
+
+
+
+
+
 - A URL - request, front end action component
-- A page rendition - responce, front end action component
+- A page rendition - response, front end action component
 - Database - data/data storage
 - A route - request translator, back end action component
 - A controller - executor, back end action component
 - A model - query templates, back end action component
-- A view - responce template, back end action component
+- A view - response template, back end action component
 
 
 # Automation with Laravel
@@ -31,7 +36,7 @@
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
   - [8.4. /5.4. Coming soon](##)
-  
+
 
 ## <a name="2."></a>Chapter 2. Introduction
 
@@ -52,294 +57,211 @@
 ### <a name="3."></a>Chapter 3.1 Development Tools
 #### Table Of Content
 
-- [For Windows](#For_Windows)
-  - [Virtual Local Server (VLS)](#Virtual_Local_Server)
-  - [Package Installation Manager ](#Package_Installation_Manager)
-  - [IDE](#IDE)
-  - [Database Manager](#Database_Manager)
-- [For Ubuntu](#For_Ubuntu)
-  - [Local Server](#Local_Server)
-  - [Package Installation Manager ](#Package_Installation_Manager_2)
-  - [IDE](#IDE_2)
-  - [Database Manager](#Database_Manager_2)
+- [Virtual Local Server (VLS)](#Virtual_Local_Server)
+- [Package Installation Manager ](#Package_Installation_Manager)
+- [IDE](#IDE)
+- [Database Manager](#Database_Manager)
 
 
-#### <a name="For_Windows"></a>For Windows
-##### <a name="Virtual_Local_Server"></a>Virtual Local Server (VLS)
+#### <a name="Virtual_Local_Server"></a>Virtual Local Server (VLS)
 
-- This VLS system comprises of 5 parts.
-  - VLS Terminal
-  - VLS Engine
-  - VLS Content Location
-  - VLS Configuration Manager
-  - VLS Configuration Package
-  - VLS Environment
+##### This VLS system comprises of 5 parts.
 - VLS Terminal
-	- Intro
-		- Purpose: An interface to the virtual server
-		- Name: Git Bash
-	- Installation
-		- [Git Bash](https://git-scm.com/download/win).
 - VLS Engine
-	- Intro
-		- Purpose: Used to run the virtual server
-		- Name: VirtualBox
-	- Installation
-		- [Virtual Box](https://www.virtualbox.org/wiki/Downloads) (then click "windows hosts").
-		- Then edit your environment variables:
-		  - Orientate yourself to `Control Panel\System and Security\System`
-		  - Click `Advanced System Settings` and `Environment Variables`
-		  - Click `User variables for Person > Path`
-		  - Edit `Variable value`
-		    - Add this to the beginning `C:\Program Files\Oracle\VirtualBox;`
 - VLS Content Location
-	- Make this folder: `c:/laravel-apps`
 - VLS Configuration Manager
-	- Intro
-		- Purpose: Used to help configure our virtual server
-		- Name: Vagrant
-	- Installation
-		- [Vagrant](https://www.vagrantup.com/downloads.html).
-- VLS Configuration Package (Known as a "Box")
-	- Intro
-		- Purpose: Used to configure our virtual server so that it can facilitate the specified framework.
-		- Name: Laravel Homestead
-	- Installation
-		- For Very Fast Connections:
-		  - The file is about a gig.
-		  - Open a new instance of Git Bash and run this `vargant box add laravel/homestead`.
-		  - When prompted enter `2` for virtualbox installation type.
-		- For Normal Connections:
-		  - Installer Downloading
-		    - The file is about a gig.
-		    - Go to https://app.vagrantup.com/boxes/search
-		    - Search for `Laravel` and choose Homestead by Laravel
-		    - Either click the latest version or a version you want (only version 6 and above is able to have it's PHP version switched, which will be necessary).
-		    - Then prepend the URL link with this `/providers/virtualbox.box`
-		  - Installation
-		    - Rename the downloaded file to `virtualbox.box`.
-		    - Use Git Bash to install it
-		      - By running this command `vagrant box add laravel/homestead file:///C:/Users/Ivan/Downloads/virtualbox.box`.
-		    - Download  [metadata_url](https://abbasharoon.me/metadata_url) (right click this link and say "save link as"), remove its file extension and move it to your newly formed folder           
-		    `%USERPROFILE%\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead`.
-		    - In this same location rename the directory named “0” to the same number as the version of the box that that you installed
-		      - E.g. ```6.1.0```.
-	- Uninstallation
-		- `vagrant box remove laravel/homestead --box-version=6.2.0`
-		- Configure the box number version to your case
+- VLS Configuration Package
 - VLS Environment
-	- Installation
-		- Part 1 (ssh keys)
-			- Open a new instance of Git Bash, locate yourself with `cd .ssh/` and the run `ssh-keygen -t rsa -b 4096 -C "your@email.com"` replace the email here with your email.
-			- When prompted for more detail just click enter each time (without entering any details) until it says that the keys have been "saved".
-		- Part 2 (Homestead folder)
-			- Open Git Bash, locate yourself with this command `cd c:`
-			- Run this command `git clone https://github.com/laravel/homestead.git Homestead`.
-			- From windows explorer run this file `C:\Homestead\init.bat`.
-			- Homestead.yaml
-			  - In this file `C:\Homestead\Homestead.yaml` configure this attributes
-			     - folders:
-				- \- map: `C:\laravel-apps`
-		- Part 3 (homestead-7 folder)
-		  - Orientate yourself to `cd c:/Homestead` and then run the command `vagrant up`
-		    - Note if you are not using the latest version of Homestead you might need to clarify that
-			- In the `homestead.rb` file
-				- Location: - `C:\Homestead\scripts`
-				- Edit: Change the version number in this line `config.vm.box_version = settings['version'] ||= '>= 6.3.0'`
-			- And in the `homestead.yaml` file in the folder `C:\Homestead`
-		  - If this doesn't work the first time restart Git Bash and try again.
-		  - When the first launch has complete run the command `vagrant halt`
-	- Uninstallation (if ever you need to)
-		- Part 1 (homestead-7 folder)
-			- Get environment ID by running `vagrant global-status` and checking the ID code of the specific environment
-			- Run `vagrant destroy 1a1a1a1a` (replace `1a1a1a1a` with the environment ID)
-		- Part 2 (Homestead folder)
-			- Delete the `Homestead` folder inside `C:`
-		- Part 3 (ssh keys)
-			- Go to `%USERPROFILE%\.ssh`
-			- Manually delete it's contents
-	- Operation
-		- Please note: In later sections of this course you will be editing source code for that you will need to make sure Laravel Homestead is open and to save computer resources close it when your not working.
-		- Open - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant up` (executing this may take a while).
-		- Close - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant halt`
-		- Check status
-		  - This just tells you if the virtual machine is running or not.
-		  - Using Git Bash locate yourself with `cd c:/Homestead` and then run `vagrant global-status`.
-		- Provision
-		  - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
-		- Troubleshoot
-		  - If at some point you get the message `No input file selected` either
-		    - Restart homestead
-		    - Provision homestead
-##### <a name="Package_Installation_Manager"></a>Package Installation Manager </summary>
+##### VLS Terminal
+- Intro
+	- Purpose: An interface to the virtual server
+	- Name: Git Bash
+- Installation
+	- [Git Bash](https://git-scm.com/download/win).
+##### VLS Engine
+- Intro
+	- Purpose: Used to run the virtual server
+	- Name: VirtualBox
+- Installation
+	- [Virtual Box](https://www.virtualbox.org/wiki/Downloads) (then click "windows hosts").
+	- Then edit your environment variables:
+	  - Orientate yourself to `Control Panel\System and Security\System`
+	  - Click `Advanced System Settings` and `Environment Variables`
+	  - Click `User variables for Person > Path`
+	  - Edit `Variable value`
+	    - Add this to the beginning `C:\Program Files\Oracle\VirtualBox;`
+##### VLS Content Location
+- Make this folder: `c:/laravel-apps`
+##### VLS Configuration Manager
+- Intro
+	- Purpose: Used to help configure our virtual server
+	- Name: Vagrant
+- Installation
+	- [Vagrant](https://www.vagrantup.com/downloads.html).
+##### VLS Configuration Package (Known as a "Box")
+- Intro
+	- Purpose: Used to configure our virtual server so that it can facilitate the specified framework.
+	- Name: Laravel Homestead
+- Installation
+	- For Very Fast Connections:
+	  - The file is about a gig.
+	  - Open a new instance of Git Bash and run this `vargant box add laravel/homestead`.
+	  - When prompted enter `2` for virtualbox installation type.
+	- For Normal Connections:
+	  - Installer Downloading
+	    - The file is about a gig.
+	    - Go to https://app.vagrantup.com/boxes/search
+	    - Search for `Laravel` and choose Homestead by Laravel
+	    - Either click the latest version or a version you want (only version 6 and above is able to have it's PHP version switched, which will be necessary).
+	    - Then prepend the URL link with this `/providers/virtualbox.box`
+	  - Installation
+	    - Rename the downloaded file to `virtualbox.box`.
+	    - Use Git Bash to install it
+	      - By running this command `vagrant box add laravel/homestead file:///C:/Users/Ivan/Downloads/virtualbox.box`.
+	    - Download  [metadata_url](https://abbasharoon.me/metadata_url) (right click this link and say "save link as"), remove its file extension and move it to your newly formed folder           
+	    `%USERPROFILE%\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead`.
+	    - In this same location rename the directory named “0” to the same number as the version of the box that that you installed
+	      - E.g. ```6.1.0```.
+- Uninstallation
+	- `vagrant box remove laravel/homestead --box-version=6.2.0`
+	- Configure the box number version to your case
+##### VLS Environment
+- Installation
+	- Part 1 (ssh keys)
+		- Open a new instance of Git Bash, locate yourself with `cd .ssh/` and the run `ssh-keygen -t rsa -b 4096 -C "your@email.com"` replace the email here with your email.
+		- When prompted for more detail just click enter each time (without entering any details) until it says that the keys have been "saved".
+	- Part 2 (Homestead folder)
+		- Open Git Bash, locate yourself with this command `cd c:`
+		- Run this command `git clone https://github.com/laravel/homestead.git Homestead`.
+		- From windows explorer run this file `C:\Homestead\init.bat`.
+		- Homestead.yaml
+		  - In this file `C:\Homestead\Homestead.yaml` configure this attributes
+		     - folders:
+			- \- map: `C:\laravel-apps`
+	- Part 3 (homestead-7 folder)
+	  - Orientate yourself to `cd c:/Homestead` and then run the command `vagrant up`
+	    - Note if you are not using the latest version of Homestead you might need to clarify that
+		- In the `homestead.rb` file
+			- Location: - `C:\Homestead\scripts`
+			- Edit: Change the version number in this line `config.vm.box_version = settings['version'] ||= '>= 6.3.0'`
+		- And in the `homestead.yaml` file in the folder `C:\Homestead`
+	  - If this doesn't work the first time restart Git Bash and try again.
+	  - When the first launch has complete run the command `vagrant halt`
+- Uninstallation (if ever you need to)
+	- Part 1 (homestead-7 folder)
+		- Get environment ID by running `vagrant global-status` and checking the ID code of the specific environment
+		- Run `vagrant destroy 1a1a1a1a` (replace `1a1a1a1a` with the environment ID)
+	- Part 2 (Homestead folder)
+		- Delete the `Homestead` folder inside `C:`
+	- Part 3 (ssh keys)
+		- Go to `%USERPROFILE%\.ssh`
+		- Manually delete it's contents
+- Operation
+	- Please note: In later sections of this course you will be editing source code for that you will need to make sure Laravel Homestead is open and to save computer resources close it when your not working.
+	- Open - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant up` (executing this may take a while).
+	- Close - using Git Bash locate yourself with `cd c:/Homestead` and then run the command `vagrant halt`
+	- Check status
+	  - This just tells you if the virtual machine is running or not.
+	  - Using Git Bash locate yourself with `cd c:/Homestead` and then run `vagrant global-status`.
+	- Provision
+	  - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
+	- Troubleshoot
+	  - If at some point you get the message `No input file selected` either
+	    - Restart homestead
+	    - Provision homestead
+#### <a name="Package_Installation_Manager"></a>Package Installation Manager </summary>
 - We will be using Composer
 
-- Installation
-	- Installation: [Composer](https://getcomposer.org/download/)
-- Operation
-	- Composer functions are used through a command line interface.
-- Extensions
-	- Laravel Installer
-		- Add the globally available "create new Laravel project" command to composer
-		  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
+##### Installation
+- Installation: [Composer](https://getcomposer.org/download/)
+##### Operation
+- Composer functions are used through a command line interface.
+##### Extensions
+- Laravel Installer
+	- Add the globally available "create new Laravel project" command to composer
+	  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
 
-##### <a name="IDE"></a>IDE
+#### <a name="IDE"></a>IDE
 - An IDE is just a souped-up code editor. The IDE we will use is called Atom. Alternatively we suggest Microsoft Visual Studio
 - Core
 	- Google `Atom`, download installer and install.
-- <a name="Plugins/Extra_Features"></a> Plugins/Extra Features
-	- Custom Code Snippets
-		- Intro
-		  - Code Snippets enable you to create a custom library of commonly used code samples.
-		  - This means that instead of writing a full block of code (for instance `Hello Jack. How are you today?`) you can just use a shortcut (e.g. `greet` then tab key)
-		- Usage
-		  - Many IDEs support this either as a built-in extra feature or as an optional plugin (just search online for your IDE's variant)
-		  - If your using Atom
-		  - Atom Snippets comes as a built-in extra feature
-		  - In atom orient yourself to the snippets settings file with `File > Snippets`
-		  - At the bottom of the file add this code
-		  ```
-		    '.php':
-		    'Greeting for php':
-		    'prefix': 'greet'
-		    'body': 'Hello $1. How are you today?'
-		  ```
-		    - Line 1: Type of code
-		    - Line 2: Name
-		    - Line 3: Shortcut
-		    - Line 4: Sample
-		    - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
-		    - For multi lines samples wrap the code in two sets of these `'''`
-		  - To make multiple snippet for the same code type you must structure it like this
-		  ```
-		    '.php':
-		    'Greeting for php':
-		    'prefix': 'greet'
-		    'body': 'Hello $1. How are you today?'
-		    'Greeting for php2':
-		    'prefix': 'greet2'
-		    'body': 'Hello $1. How are you today2?'
-		  ```
-	- Setup to work with `.blade.php`
-		- To make it work with `blade` file you must install the blade syntax highlighter plugin called `language-blade` (then restart Atom)
-	- Blade Snippet Library
-		- This may also be useful (if your using Atom search for `blade-snippets`)
-	- Laravel Snippets
-		- This may also be useful (if your using Atom search for `Laravel`  by Cronos87)
+##### <a name="Plugins/Extra_Features"></a> Plugins/Extra Features
+- Custom Code Snippets
+	- Intro
+	  - Code Snippets enable you to create a custom library of commonly used code samples.
+	  - This means that instead of writing a full block of code (for instance `Hello Jack. How are you today?`) you can just use a shortcut (e.g. `greet` then tab key)
+	- Usage
+	  - Many IDEs support this either as a built-in extra feature or as an optional plugin (just search online for your IDE's variant)
+	  - If your using Atom
+	  - Atom Snippets comes as a built-in extra feature
+	  - In atom orient yourself to the snippets settings file with `File > Snippets`
+	  - At the bottom of the file add this code
+	  ```
+	    '.php':
+	    'Greeting for php':
+	    'prefix': 'greet'
+	    'body': 'Hello $1. How are you today?'
+	  ```
+	    - Line 1: Type of code
+	    - Line 2: Name
+	    - Line 3: Shortcut
+	    - Line 4: Sample
+	    - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
+	    - For multi lines samples wrap the code in two sets of these `'''`
+	  - To make multiple snippet for the same code type you must structure it like this
+	  ```
+	    '.php':
+	    'Greeting for php':
+	    'prefix': 'greet'
+	    'body': 'Hello $1. How are you today?'
+	    'Greeting for php2':
+	    'prefix': 'greet2'
+	    'body': 'Hello $1. How are you today2?'
+	  ```
+- Setup to work with `.blade.php`
+	- To make it work with `blade` file you must install the blade syntax highlighter plugin called `language-blade` (then restart Atom)
+- Blade Snippet Library
+	- This may also be useful (if your using Atom search for `blade-snippets`)
+- Laravel Snippets
+	- This may also be useful (if your using Atom search for `Laravel`  by Cronos87)
 
-##### <a name="Database_Manager"></a> Database Manager
+#### <a name="Database_Manager"></a> Database Manager
 - General: We will be using MySQL Workbench this is a MySQL tool which allows you to manage databases.
 - Note: A homestead connection wont work if you have not launched your local server.
 - Install: Download installer from here [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/).
-- Configuration
-  - Setup Connection
-    - General: Note that if this doesn't work the first time close the connection and try again.
-    - Launch MySQL Workbench and by default you will be on the welcome page which shows the message `Welcome to MySQL Workbench`
-    - Click the plus symbol in the page.
-    - In the popup configure these attributes
-      - Connection Name: `Local_Server`
-      - Connection Method: Standard TCP/IP over SSH
-      - SSH Hostname: your SSH Hostname
-        - To find out what your SSH Hostname is do this:
-          - Launch vagrant
-          - Check the load message for a field called `SSH address` the value here is your SSH Hostname. Copy it.
-      - SSH Username: `vagrant`
-      - SSH Password: click store in vault then enter `vagrant`
-      - MySQL Hostname: `localhost`
-      - Username: `homestead`
-      - Password: click store in vault then enter `secret`
-    - Then your connection will be saved to the welcome page.
-  - Reposition tools - Schemas tool bar
-    - Run the connection
-    - In the sidebar locate the schemas tool bar
-    - Click its expand/collapse toggler
-    - Now is will be nice and visible
+##### Configuration
+- Setup Connection
+  - General: Note that if this doesn't work the first time close the connection and try again.
+  - Launch MySQL Workbench and by default you will be on the welcome page which shows the message `Welcome to MySQL Workbench`
+  - Click the plus symbol in the page.
+  - In the popup configure these attributes
+    - Connection Name: `Local_Server`
+    - Connection Method: Standard TCP/IP over SSH
+    - SSH Hostname: your SSH Hostname
+      - To find out what your SSH Hostname is do this:
+        - Launch vagrant
+        - Check the load message for a field called `SSH address` the value here is your SSH Hostname. Copy it.
+    - SSH Username: `vagrant`
+    - SSH Password: click store in vault then enter `vagrant`
+    - MySQL Hostname: `localhost`
+    - Username: `homestead`
+    - Password: click store in vault then enter `secret`
+  - Then your connection will be saved to the welcome page.
+- Reposition tools - Schemas tool bar
+  - Run the connection
+  - In the sidebar locate the schemas tool bar
+  - Click its expand/collapse toggler
+  - Now is will be nice and visible
 - Operations
-  - To open MYSQL WorkBench launch it from its launch icon.
-
-
-#### <a name="For_Ubuntu"></a>For Ubuntu
-##### <a name="Local_Server"></a>Local Server
+- To open MYSQL WorkBench launch it from its launch icon.
 
 
 
-- Installation and Configuration
-	- Ubuntu
-		- I recommend
-		  - Organize a new internal hard-drive
-		  - Learn how to switch it with your old hard-drive
-		  - Turn off your PC and switch them
-		  - Install Ubuntu onto the new drive, this will delete everything that was on the drive
-	- Ngine X
-		- Install
-		  - `sudo apt install nginx`
-		  - Type `Y` then enter
-		- Configurations
-		  - Uninstall apache
-		    - `sudo apt autoremove apache2*`
-		- Test `nginx -v`
-	-PHP
-		- Install
-		```
-		  sudo apt-get install python-software-properties
-		  sudo add-apt-repository ppa:ondrej/php
-		  sudo apt-get update
-		  sudo apt-get install -y php7.2
-		```
-		- Extras
-		  - For using it with Laravel
-		    ```
-		      sudo apt install php7.2-zip php7.2-mbstring php7.2-json php7.2-gd php7.2-mysql php7.2-xml
-		    ```
-	- MySQL
-		- Install `sudo apt install mysql-client mysql-server mysql-common`
-		- Configure - Get connection to DB server by making a user account
-			- Open MySQL as admin - run `sudo mysql`
-			- Set account details `GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'password';`
-			- exit MySQL - run `exit`
-	- App folder
-		- Make this folder: `Documents/Multimedia/laravel-apps`
-- Operation
-	- Run server orientate yourself in the terminal to your app inside `laravel-apps` and the run `php -S localhost`
-	- After completion close the server - press `ctrl+C`
 
 
-##### <a name="Package_Installation_Manager_2"></a>Package Installation Manager </summary>
-- We will be using Composer
-
-- Installation
-	- Method 1
-		- Run `sudo apt install composer`
-		- enter your desktop password`
-	- Method 2: [Composer](https://getcomposer.org/download/)
-- Operation
-	- Composer functions are used through a command line interface.
-- Extensions
-	- Laravel Installer
-		- Add the globally available "create new Laravel project" command to composer
-		  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
-
-##### <a name="IDE_2"></a>IDE
-- An IDE is just a souped-up code editor. The IDE we will use is called Atom. Alternatively we suggest Microsoft Visual Studio
-- Core
-	- Go to `https://atom.io/`
-	- Download .deb installer
-- Plugins/Extra Features
-	- See the Window option's section of the same name [Plugins/Extra Features](#Plugins/Extra_Features)
 
 
-##### <a name="Database_Manager_2"></a> Database Manager
-- General: We will be using MySQL Workbench this is a MySQL tool which allows you to manage databases.
-- Note: A homestead connection wont work if you have not launched your local server.
-- Installation
-  - `sudo apt install mysql-workbench`
-  - Click yes
-- Test
-  - Press start key and type workbench
-- Configurations
-  - Make new connection called `local` to your DB server using your database user details
-- Operations
-  - To open MYSQL WorkBench launch it from its launch icon. 
+
 
 
 ### <a name="4."></a>Chapter 3.2 Laravel Powered App
@@ -495,7 +417,7 @@
 
 
 
-## <a name="5."></a>Chapter 4. Database component 
+## <a name="5."></a>Chapter 4. Database component
 
 ### Table Of Content
 - [Database](#Database)
@@ -614,7 +536,7 @@
   include(blabla): failed to open stream: No such file or directory
   ```
   then solve it by running this in git bash `composer dump-autoload`
-  
+
 
 ## <a name="6."></a> Chapter 5. Route component
 
@@ -2097,9 +2019,9 @@
     - Run `$example_variable = App\ExampleModel::find(1);`
     - Run `$example_variable->ExampleGreatGrandChildModels`
   - Create, update, delete just like u do in the `Query Testing Environment- Basic ORM Queries` section
-  
-  
-  
+
+
+
 
 ## <a name="12."></a>Chapter 4.3.6. Accessors and Mutators
 

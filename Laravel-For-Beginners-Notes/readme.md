@@ -1,16 +1,11 @@
 
-
-
-
-
 - A URL - request, front end action component
-- A page rendition - response, front end action component
-- Database - data/data storage
+- A page - response, front end action component
+- Database - posts data storage
 - A route - request translator, back end action component
 - A controller - executor, back end action component
 - A model - query templates, back end action component
 - A view - response template, back end action component
-
 
 # Automation with Laravel
 

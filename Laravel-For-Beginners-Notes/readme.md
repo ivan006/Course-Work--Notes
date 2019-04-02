@@ -575,59 +575,37 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### General
 - Routes "request translators". This is because they link a URL with a controller.
-- They are located in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\routes.php`
+- They are located in `C:\laravel-apps\fundamental-mechanisms-app\routes\web.php`
 
 #### <a name="Check-All-Route-Details"></a> Check All Route Details
 - Once you've created some routes you can check their details
 - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
 - Run `php artisan route:list`
 
-### Route URL Path
-- This defines the URL path (the bit of the URL that comes after the top level domain i.e. .com or .org).
-- Example of use:  ```Route::get('/ExampleRoute', 'ExampleController@ExampleControllerMethod');```.
+### Route URL
+- Example
+	- ```Route::get('/URL', 'PostTypeA@PostTypeAController');```.
+	- In this case it's the word `/URL`
 
 
-### Route Content
-- This defines the page content.
-- Again example of use (in this case it's ExampleController@ExampleControllerMethod): ```Route::get('/ExampleRoute', 'ExampleController@ExampleControllerMethod');```.
-
-#### Route Content Types
-
-- Functions
-  - This references contents from the same file.
+### Route action execution script
+- Example
+  ```
+    Route::get('/ExampleRoute', 'PostTypeA@PostTypeAController');
+  ```
+  - In this case it's the controller called `PostTypeAController` found inside a controller file called `PostTypeA`
+- Resourced route
+	- This creates not 1 but a set of routes.
+	- E.g. `Route::resource('/ExampleRoute', 'PostTypeA');`
+  - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
+  - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
+- Non-separated action script
+  - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
   ```
     Route::get('/ExampleRoute', function(){
       return "Hello world";
     });
   ```
-  - Example:
-  ```
-    Route::get('/ExampleRoute', function(){
-      return "Hello world";
-    });
-  ```
-- Views
-  - This references contents from a view file
-  ```
-    Route::get('/ExampleRoute', function () {
-      return view('ExampleView');
-    });
-  ```
-  - In this case from here:  `C:\laravel-apps\fundamental-mechanisms-app\resources\views\ExampleView.blade.php`.
-  - When we demonstrate an example of this in a later section.
-- Controller Methods
-  - This references contents from a method inside a controller file
-  ```
-    Route::get('/ExampleRoute', 'ExampleController@ExampleControllerMethod');
-  ```
-  - In this case from this file `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers\ExampleController.php` and this method `ExampleControllerMethod`.
-  - When we demonstrate an example of this in a later section.
-- CRUD Controller Method Sets
-  - This you use in accordance with a CRUD type controller (mentioned later).
-  - This creates not 1 but a set of pages.
-  - `Route::resource('/ExampleRoute', 'ExampleController');`
-  - This will give your users access to all of the CRUD methods in the controller in the route content position. Check what they are by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
-  - When we demonstrate an example of this in a later section.
 
 ### Routes Names
 - Names can be used to abbreviate routes making it easier for developers to reference them.

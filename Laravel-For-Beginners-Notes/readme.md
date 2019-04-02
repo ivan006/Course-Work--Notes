@@ -20,8 +20,8 @@
 	- [5. Introduction to web app components](#5.)
 	- [6. Database component](#6.)
 	- [7. Routes component](#7.)
-	- [8. Introduction to queries](#8.)
-	- [9. Basic Queries](#9.)
+	- [8. Controllers](#8.)
+	- [9. Models](#9.)
 	- [10. Queries with basic relationships](#10.)
 	- [11. Queries with advanced relationships](#11.)
 	- [12. Query Testing Environment](#12.)
@@ -651,46 +651,41 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ```
 
 
-## <a name="8."></a> Chapter 8. Introduction to controllers
+## <a name="8."></a> Chapter 8. Controllers
 
 ### Table Of Content
 
-
-
+- [Basic Setup](#Basic-Setup)
 - [Integration with Route Parameters](#Integration-with-Route-Parameters)
 
-
-
-
 ###  <a name="Basic-Setup"></a> Basic Setup
-
 
 #### Plain Type
 - These are come with no default code, so are quite hard to make.
 - Using a code editor or windows explorer locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers`.
-- Create a new php file, the name format should be camel case e.g. `ExampleController.php`.
+- Create a new php file, the name format should be camel case e.g. `PostTypeA.php`.
 
 #### Basic Type
 - These come with some default code, so are easier to make.
 - Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-- `php artisan make:controller ExampleController`
+- `php artisan make:controller PostTypeA`
 
 #### CRUD Type
 - These come with a lot of default code, so are the easiest to make.
 - Using Git Bash locate to your project with `cd C:/laravel-apps/fundamental-mechanisms-app`
-- Run `php artisan make:controller --resource ExampleController`, note the camel casing on the controller name.
+- Run `php artisan make:controller --resource PostTypeA`, note the camel casing on the controller name.
 
 
 
 ### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
 - Put `{ExampleParameter}` in the route URL
-- Put `$ExampleParameter` in the ExampleControllerMethod method of the controller class.
+- Put `$ExampleParameter` in the PostTypeAController method of the controller class.
 - Example:
   - Route
-    - `Route::get('/ExampleRoute5/{ExampleParameter}', 'ExampleController@ExampleControllerMethod2');`
+    - `Route::get('/ExampleRoute5/{ExampleParameter}', 'PostTypeA@PostTypeAController2');`
   - Controller
     ```
-      public function ExampleControllerMethod2($ExampleParameter)
+      public function PostTypeAController2($ExampleParameter)
       {
         return "Hello ".$ExampleParameter."!";
       }
@@ -699,11 +694,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="9."></a> Chapter 9. Basic Queries
+## <a name="9."></a> Chapter 9. Models
 
 ### Table Of Content
-
-
 
 - [Basic Setup](#Basic-Setup)
 - [SQL Queries](#SQL-Queries)
@@ -717,7 +710,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Create one
     - Choose a name - use  a camel cased version of the table name and remove the "s" from the end
     - Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-    - Then run `php artisan make:model ExampleModel`
+    - Then run `php artisan make:model PostTypeA`
   - Configure it
     - Table specifier
       - If you didn't format the name of model or the table correctly you will have to specify what table the model refers to
@@ -727,9 +720,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       - To specify the primary key put this into your model class `protected $primaryKey = 'id';`
   - Importing model into the routes
     - Option 1 - Model function (this you have to do every single time you want to us that model)
-      - Put this inside the route `$example_variable = App\ExampleModel;`
+      - Put this inside the route `$example_variable = App\PostTypeA;`
     - Option 2 - Model usage function (this is once off so use this one to save time)
-      - Put this at the beginning of your routes file `use App\ExampleModel;`
+      - Put this at the beginning of your routes file `use App\PostTypeA;`
 
 
 
@@ -741,7 +734,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - This is the shortcut
     - Choose the models name - use camel casing and do not end it with an "s" as this will be done automatically to your table only.
     - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-    - Run `php artisan make:model ExampleModel -m`
+    - Run `php artisan make:model PostTypeA -m`
   - Create the table with the migration
     - Finish sitting up the migration
       - Add a column function to the migration
@@ -775,9 +768,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       ```
   - Importing model into the routes
     - Option 1 - Model function (this you have to do every single time you want to us that model)
-      - Put this inside the route `$example_variable = App\ExampleModel;`
+      - Put this inside the route `$example_variable = App\PostTypeA;`
     - Option 2 - Model usage function (this is once off so use this one to save time)
-      - Put this at the beginning of your routes file `use App\ExampleModel;`
+      - Put this at the beginning of your routes file `use App\PostTypeA;`
 - Without Using the Shortcut
   - Create a table with a migration
     - Setup the migration
@@ -804,7 +797,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - Create one
       - Choose a name - use  a camel cased version of the table name and remove the "s" from the end
       - Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-      - Then run `php artisan make:model ExampleModel`
+      - Then run `php artisan make:model PostTypeA`
     - Configure it
       - Table specifier
         - If you didn't format the name of model or the table correctly you will have to specify what table the model refers to
@@ -826,10 +819,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Importing model into the routes
     - Option 1 - Model function (this you have to do every single time you want to us that model)
       - Choose the same model name as the one above
-      - Put this inside the route `$example_variable = App\ExampleModel;`
+      - Put this inside the route `$example_variable = App\PostTypeA;`
     - Option 2 - Model usage function (this is once off so use this one to save time)
       - Choose the same model name as the one above
-      - Put this at the beginning of your routes file `use App\ExampleModel;`
+      - Put this at the beginning of your routes file `use App\PostTypeA;`
 
 ### <a name="SQL-Queries"></a>  SQL Queries
 - There are four types of database queries and the are abbreviated with "CRUD"

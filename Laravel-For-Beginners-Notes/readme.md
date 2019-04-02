@@ -19,7 +19,7 @@
 - Web app component chapters
 	- [5. Introduction to web app components](#5.)
 	- [6. Database component](#6.)
-	- [7. Routes component](#7.)
+	- [7. Routes](#7.)
 	- [8. Controllers](#8.)
 	- [9. Models](#9.)
 	- [10. Queries with basic relationships](#10.)
@@ -567,7 +567,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   then solve it by running this in git bash `composer dump-autoload`
 
 
-## <a name="7."></a> Chapter 7. Route component
+## <a name="7."></a> Chapter 7. Routes
 
 ### Table Of Content
 - [Routes](#routes)
@@ -582,30 +582,25 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
 - Run `php artisan route:list`
 
-### Route URL
+### Route anatomy
 - Example
 	- ```Route::get('/URL', 'PostTypeA@PostTypeAController');```.
-	- In this case it's the word `/URL`
+	- In this case the URL is the word `/URL` and the controller is called `PostTypeAController` and is found inside a controller file called `PostTypeA`
+	- Try this out - bear in mind it wont work properly until you make a controller.
 
+### Resourced route
+- This creates not 1 but a set of routes.
+- E.g. `Route::resource('/URL', 'PostTypeA');`
+- This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
+- Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
-### Route action execution script
-- Example
-  ```
-    Route::get('/ExampleRoute', 'PostTypeA@PostTypeAController');
-  ```
-  - In this case it's the controller called `PostTypeAController` found inside a controller file called `PostTypeA`
-- Resourced route
-	- This creates not 1 but a set of routes.
-	- E.g. `Route::resource('/ExampleRoute', 'PostTypeA');`
-  - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
-  - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
-- Non-separated action script
-  - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
-  ```
-    Route::get('/ExampleRoute', function(){
-      return "Hello world";
-    });
-  ```
+### Non-separated action script
+- Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
+```
+  Route::get('/URL', function(){
+    return "Hello world";
+  });
+```
 
 ### Routes Names
 - Names can be used to abbreviate routes making it easier for developers to reference them.
@@ -618,15 +613,15 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 ### <a name="Route-cont.-Route-Parameters"></a>Route Parameters
-- General: Route parameters are variables that the user can define through the address bar.
-- Usefulness: You could create an exchange rate page that displays the value of a certain amount of dollars converted to pounds. You would do this by letting users to type the preferred dollar amount somewhere in the address bar.
-- Put `{ExampleParameter}` in the route URL
+- General: Route parameters are variables are passed through the URL.
+- Usefulness: The URL could have a number in it which reflects a the id number of a post that you would like to see.
 - Example:
-```
-  Route::get('/ExampleRoute4/{ExampleParameter}', function($ExampleParameter){
-    return "Hello ".$ExampleParameter."!";
-  });
-```
+	- In this case it's called `ExampleParameter`
+	```  
+	  Route::get('/URL2/{ExampleParameter}', 'PostTypeA@PostTypeAController');
+	```
+	- Try this out
+		- bear in mind it wont work properly until you make a controller.
 
 
 ## <a name="8."></a> Chapter 8. Controllers
@@ -638,39 +633,43 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ###  <a name="Basic-Setup"></a> Basic Setup
 
-#### Plain Type
-- These are come with no default code, so are quite hard to make.
-- Using a code editor or windows explorer locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers`.
-- Create a new php file, the name format should be camel case e.g. `PostTypeA.php`.
+#### From scratch controller
+- These are completely blank and must be made from scratch
+- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case e.g. `PostTypeA.php`.
 
-#### Basic Type
-- These come with some default code, so are easier to make.
-- Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-- `php artisan make:controller PostTypeA`
+#### Generated controller
+- These come with the controller file's foundation code already in place
+- To create one
+	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
+	- Run `php artisan make:controller PostTypeA`
+- Try this out
+	- bear in mind it wont work properly until you make a controller.
 
-#### CRUD Type
-- These come with a lot of default code, so are the easiest to make.
-- Using Git Bash locate to your project with `cd C:/laravel-apps/fundamental-mechanisms-app`
-- Run `php artisan make:controller --resource PostTypeA`, note the camel casing on the controller name.
+#### Resourced controller
+- These come with the controller file's foundation code already in place and some commonly used controllers set up
+- To create one
+	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
+	- Run `php artisan make:controller --resource PostTypeA`, note the camel casing on the controller name.
 
 
 
 ### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
-- Put `{ExampleParameter}` in the route URL
-- Put `$ExampleParameter` in the PostTypeAController method of the controller class.
 - Example:
   - Route
-    - `Route::get('/ExampleRoute5/{ExampleParameter}', 'PostTypeA@PostTypeAController2');`
+    - `Route::get('/URL2/{ExampleParameter}', 'PostTypeA@PostTypeAController');`
   - Controller
     ```
-      public function PostTypeAController2($ExampleParameter)
+      public function PostTypeAController($ExampleParameter)
       {
         return "Hello ".$ExampleParameter."!";
       }
     ```
-  - Test using: `fundamental-mechanisms-app.test/ExampleRoute5/example-parameter-string`.
+	- Try this out
+		- Test using: `fundamental-mechanisms-app.test/URL2/Bob`.
 
-
+---------
+up till here
+-------
 
 ## <a name="9."></a> Chapter 9. Models
 

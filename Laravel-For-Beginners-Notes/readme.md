@@ -23,16 +23,16 @@
 	- [4. Setting up the Laravel powered app](#4.)
 - Web app component chapters
 	- [5. Introduction to web app components](#5.)
-	- [5. Database component](#6.)
-	- [6. Routes component](#7.)
-	- [7. Introduction to queries](#8.)
-	- [8. Basic Queries](#9.)
-	- [9. Queries with basic relationships](#10.)
-	- [10. Queries with advanced relationships](#11.)
-	- [11. Query Testing Environment](#12.)
-	- [12. Accessors and mutators queries](#13.)
-	- [13. Views component](#14.)
-- [14. Real-World Examples](#15.)
+	- [6. Database component](#6.)
+	- [7. Routes component](#7.)
+	- [8. Introduction to queries](#8.)
+	- [9. Basic Queries](#9.)
+	- [10. Queries with basic relationships](#10.)
+	- [11. Queries with advanced relationships](#11.)
+	- [12. Query Testing Environment](#12.)
+	- [13. Accessors and mutators queries](#13.)
+	- [14. Views component](#14.)
+- [15. Real-World Examples](#15.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
@@ -403,13 +403,53 @@
 
 
 ## <a name="5."></a>Chapter 5. Introduction to web app components
-- [Concepts](#Concepts)
-### <a name="Concepts"></a> Concepts
-#### MVC
+
+### MVC
 - MVC is a code organizational structure
 	- It separates the execution script from the helpers scripts
 	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
 	- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
+
+
+### Controllers
+
+#### Definition
+ A controller is the execution script for a post type's actions.
+
+#### Location
+They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` in a controller file together with the other controllers that are also associated with the same post type.
+
+#### Controller types
+- Note: these are merely examples of controllers types there are i fact more
+- Create post
+- Read post
+- Update post
+- Delete post
+
+#### Example
+```
+  namespace App\Http\Controllers;
+  use Illuminate\Http\Request;
+  use App\Http\Requests;
+  class ExampleController extends Controller
+  {
+      public function ExampleControllerMethod()
+      {
+        return "Hello wolrd!";
+      }
+  }
+```
+
+
+
+### Models
+
+####  Definition:
+- A model contains your queries templates.
+#### Location
+- `C:/laravel-apps/fundamental-mechanisms-app/app`.
+
+
 
 ## <a name="6."></a>Chapter 6. Database component
 
@@ -622,69 +662,61 @@
 
 
 
-- [Basic Setup](#Basic-Setup)
 - [Integration with Route Parameters](#Integration-with-Route-Parameters)
-- [SQL Queries](#SQL-Queries)
 
-
-
-#### Controllers
-
-##### Definition and Location
-- Definition:
-  - A controller handles data - both raw database data and styling data. Styling data is stored in a type of file called a "view" which we will look at later.
-  - A controller is where you write your ORM queries
-- Location: They are located in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers`
-
-##### Controller Methods
-- Controller are what make up controllers
-```
-  namespace App\Http\Controllers;
-  use Illuminate\Http\Request;
-  use App\Http\Requests;
-  class ExampleController extends Controller
-  {
-      public function ExampleControllerMethod()
-      {
-        return "Hello wolrd!";
-      }
-  }
-```
-
-##### Types of Controller Methods
-- The normal type of controller method will use both queries and a view
-- But you can also set up a controller method that doesn't use queries (and so doesn't use any models or the database), and so any desired content you have to hardcode.
-- Also you can set up a controller method that doesn't use a view, and so any desired styling you have to hardcode.
-
-#### Models
-
-##### Definition and Location
-- Definition:
-  - A model contains your queries templates.
-- Location: `C:/laravel-apps/fundamental-mechanisms-app/app`.
 
 
 
 ###  <a name="Basic-Setup"></a> Basic Setup
 
-#### Controllers
-##### Plain Type
+
+#### Plain Type
 - These are come with no default code, so are quite hard to make.
 - Using a code editor or windows explorer locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers`.
 - Create a new php file, the name format should be camel case e.g. `ExampleController.php`.
 
-##### Basic Type
+#### Basic Type
 - These come with some default code, so are easier to make.
 - Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
 - `php artisan make:controller ExampleController`
 
-##### CRUD Type
+#### CRUD Type
 - These come with a lot of default code, so are the easiest to make.
 - Using Git Bash locate to your project with `cd C:/laravel-apps/fundamental-mechanisms-app`
 - Run `php artisan make:controller --resource ExampleController`, note the camel casing on the controller name.
 
-#### Models
-##### Just a Model
+
+
+### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
+- Put `{ExampleParameter}` in the route URL
+- Put `$ExampleParameter` in the ExampleControllerMethod method of the controller class.
+- Example:
+  - Route
+    - `Route::get('/ExampleRoute5/{ExampleParameter}', 'ExampleController@ExampleControllerMethod2');`
+  - Controller
+    ```
+      public function ExampleControllerMethod2($ExampleParameter)
+      {
+        return "Hello ".$ExampleParameter."!";
+      }
+    ```
+  - Test using: `fundamental-mechanisms-app.test/ExampleRoute5/example-parameter-string`.
+
+
+
+## <a name="9."></a> Chapter 9. Basic Queries
+
+### Table Of Content
+
+
+
+- [Basic Setup](#Basic-Setup)
+- [SQL Queries](#SQL-Queries)
+- [ORM Queries](#ORM-Queries)
+
+###  <a name="Basic-Setup"></a> Basic Setup
+
+#### Just a Model
 - Example
   - Note: this model will be required in the later sections
   - Create one
@@ -707,7 +739,7 @@
 
 
 
-##### A Table-Model Pair
+#### A Table-Model Pair
 - General: Tables and models are rarely made independently so here's how to make them simultaneously.
 - Using the Shortcut
   - Create the migration and the model at the same time
@@ -804,21 +836,6 @@
       - Choose the same model name as the one above
       - Put this at the beginning of your routes file `use App\ExampleModel;`
 
-### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
-- Put `{ExampleParameter}` in the route URL
-- Put `$ExampleParameter` in the ExampleControllerMethod method of the controller class.
-- Example:
-  - Route
-    - `Route::get('/ExampleRoute5/{ExampleParameter}', 'ExampleController@ExampleControllerMethod2');`
-  - Controller
-    ```
-      public function ExampleControllerMethod2($ExampleParameter)
-      {
-        return "Hello ".$ExampleParameter."!";
-      }
-    ```
-  - Test using: `fundamental-mechanisms-app.test/ExampleRoute5/example-parameter-string`.
-
 ### <a name="SQL-Queries"></a>  SQL Queries
 - There are four types of database queries and the are abbreviated with "CRUD"
   - Create
@@ -870,13 +887,6 @@
         return $example_variable;
       });
     ```
-
-## <a name="9."></a> Chapter 9. Basic Queries
-
-### Table Of Content
-
-
-- [ORM Queries](#ORM-Queries)
 
 
 ### <a name="ORM-Queries"></a> ORM Queries

@@ -726,7 +726,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Controller method
 			- Import the model - put `use App\TypeAPost;` in the header of your controller
 	    ```
-				public function MethodA() {
+				public function MethodA()
+			  {
 			    TypeAPost::create("hello", "hello", "hello");
 			    return "success!";
 			  }

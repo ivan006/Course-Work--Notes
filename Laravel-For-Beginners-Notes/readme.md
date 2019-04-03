@@ -723,11 +723,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Example:
     - Route
 			- Reuse the ```/URL``` route
-	    ```
-	      Route::get('/ExampleRoute11', function(){
-	        DB::insert('insert into example_models(example_column, example_column_2, example_column_3) values(?, ?, ?)', ['example_value', 'example_value2', 1]);
-	      });
-	    ```
 		- Controller method
 			- Import the model - put `use App\TypeAPost;` in the header of your controller
 	    ```

@@ -566,13 +566,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Route anatomy
 - Example
-	- ```Route::get('/URL', 'TypeAPost@MethodA');```.
-	- In this case the URL is the word `/URL` and the controller is called `MethodA` and is found inside a controller file called `TypeAPost`
+	- ```Route::get('/URL', 'TypeAPost_Controller@MethodA');```.
+	- In this case the URL is the word `/URL` and the controller is called `MethodA` and is found inside a controller file called `TypeAPost_Controller`
 	- Try this out - bear in mind it wont work properly until you make a controller.
 
 ### Resourced route
 - This creates not 1 but a set of routes.
-- E.g. `Route::resource('/URL', 'TypeAPost');`
+- E.g. `Route::resource('/URL', 'TypeAPost_Controller');`
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
@@ -600,7 +600,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Example:
 	- In this case it's called `ExampleParameter`
 	```  
-	  Route::get('/URL2/{ExampleParameter}', 'TypeAPost@MethodB');
+	  Route::get('/URL2/{ExampleParameter}', 'TypeAPost_Controller@MethodB');
 	```
 	- Try this out
 		- bear in mind it wont work properly until you make a controller.
@@ -617,13 +617,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### From scratch controller
 - These are completely blank and must be made from scratch
-- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case e.g. `TypeAPost.php`.
+- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case but e.g. `TypeAPost_Controller.php`
+- To avoid class name collisions we recommend ending your controller with `_Controller`
 
 #### Generated controller
 - These come with the controller file's foundation code already in place
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
-	- Run `php artisan make:controller TypeAPost`
+	- Run `php artisan make:controller TypeAPost_Controller`
 - Try this out
 	- bear in mind it wont work properly until you make a controller.
 
@@ -631,7 +632,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - These come with the controller file's foundation code already in place and some commonly used controllers set up
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
-	- Run `php artisan make:controller --resource TypeAPost`, note the camel casing on the controller name.
+	- Run `php artisan make:controller --resource TypeAPost_Controller`, note the camel casing on the controller name.
 
 
 
@@ -688,12 +689,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				'DataTypeC',
 			];
 		```
-- Importing model into it's associated controller
-  - Case by case basis
-		- This you have to do every single time you want to use one of it's model methods.
-    - Put this inside the route `$example_variable = App\TypeAPost;`
-  - Once of basis Model usage function (this is once off so use this one to save time)
-    - Put this at the beginning of your routes file `use App\TypeAPost;`
+- Importing model into the controller
+  - Put this in the header of the associated controller file `use App\TypeAPost;`
 
 
 

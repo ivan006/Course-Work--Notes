@@ -409,31 +409,18 @@
 ### Controllers
 
 #### Definition
- A controller is the execution script for a post type's actions.
+ - A controller contains a set of controller methods
+ - A controller method is the execution script for a post type's action.
 
 #### Location
 They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` in a controller file together with the other controllers that are also associated with the same post type.
 
 #### Controller types
-- Note: these are merely examples of controllers types there are i fact more
+- Note: these are merely examples of controllers types there are in fact more
 - Create post
 - Read post
 - Update post
 - Delete post
-
-#### Example
-```
-  namespace App\Http\Controllers;
-  use Illuminate\Http\Request;
-  use App\Http\Requests;
-  class ExampleController extends Controller
-  {
-      public function ExampleControllerMethod()
-      {
-        return "Hello wolrd!";
-      }
-  }
-```
 
 
 
@@ -465,60 +452,55 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Column migrations for adding ad hoc columns to tables that are already created
 - Migration files are located here: `C:\laravel-apps\fundamental-mechanisms-app\database\migrations`
 - Migration files contain migration column action functions which basically specify the details of the columns your want to create
-  - E.g. `$table->string('example_column');`
-- These are different depending on the column type you want to use
-  - For strings (short line of text)
-    - `$table->string('example_column');`
-  - For text (long block of text)
-    - `$table->text('example_column_2');`
-  - For a column with further configurations you can append the code line with a function, for instance
-    - `$table->string('example_column')->unique();`
-- Artisan commands
-  - To see all the artisan commands
+- Migration commands
+  - Activate the migrations
     - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-    - Run `php artisan`
-  - Migration specific
-    - Activate the migrations
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate`
-    - Deactivate the migrations
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate:reset`
-    - Deactivate recently activated migrations
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate:rollback`
-    - Refresh all the migrations
-      - Combing the effect of deactivating and then activating the migrations causes the tables to loose all their records.
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate:refresh`
-    - Check the migrations activation status
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate:status`
+    - Run `php artisan migrate`
+  - Deactivate the migrations
+    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+    - Run `php artisan migrate:reset`
+  - Deactivate recently activated migrations
+    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+    - Run `php artisan migrate:rollback`
+  - Refresh all the migrations
+    - Combing the effect of deactivating and then activating the migrations causes the tables to loose all their records.
+    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+    - Run `php artisan migrate:refresh`
+  - Check the migrations activation status
+    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+    - Run `php artisan migrate:status`
 - See more info here: [https://laravel.com/docs/5.6/migrations#columns](https://laravel.com/docs/5.6/migrations#columns)
 
 #### Handling Tables with a Migrations
-- Create a table with a migration
-  - Example
-    - Setup the migration
-      - Create migration
-        - Choose the table name - make it uses underscores for spaces and ends with an "s"
-        - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-        - Run `php artisan make:migration example_objects --create="example_objects"`
-      - Add a column function to the migration
-        - Choose the column's names and types (e.g. string or text etc.)
-        - Open the migration file in a code editor. Locate the schema function in your migration's up method.
-        - Add the functions so this is the result
-        ```
-          Schema::create('example_objects', function (Blueprint $table) {
-              $table->increments('id');
-              $table->timestamps();
-              $table->string('example_column');
-              $table->text('example_column_2');
-          });
-        ```
-    - Activate the migrations
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate`
+- Creating a table using a migration
+	- Try this out
+  - Determine the names and types
+		- Determine the table's name
+			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model)
+			- E.g. ```type_a_posts```
+		- Determine the field names and field data types (string or text etc.) of the tables data fields
+			- E.g.
+				- ```data_field_a```
+					- data type: ```string```
+				- ```data_field_b```
+					- data type: ```string```
+				- ```data_field_c```
+					- data type: ```string```
+  - Generate file command
+		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
+  	- Run `php artisan make:migration type_a_posts --create="type_a_posts"`
+  - Configure it
+    - Open the migration file in a code editor. Locate the schema function in your migration's up method.
+    - Add this to the ```Schema::create``` function
+    ```
+        $table->string('data_field_a');
+        $table->string('data_field_b');
+        $table->string('data_field_c');
+    ```
+		- Note: when editing this be sure not to remove the default "id" (`$table->increments('id');`) and timestamps (`$table->timestamps();`) functions as they are best to keep.
+  - Generate the table
+    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+    - Run `php artisan migrate`
 
 #### Handling Columns with a Migration
 - General: These allow you to add columns to tables without interrupting the tables content/records that are already created
@@ -584,13 +566,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Route anatomy
 - Example
-	- ```Route::get('/URL', 'PostTypeA@PostTypeAController');```.
-	- In this case the URL is the word `/URL` and the controller is called `PostTypeAController` and is found inside a controller file called `PostTypeA`
+	- ```Route::get('/URL', 'TypeAPost@MethodA');```.
+	- In this case the URL is the word `/URL` and the controller is called `MethodA` and is found inside a controller file called `TypeAPost`
 	- Try this out - bear in mind it wont work properly until you make a controller.
 
 ### Resourced route
 - This creates not 1 but a set of routes.
-- E.g. `Route::resource('/URL', 'PostTypeA');`
+- E.g. `Route::resource('/URL', 'TypeAPost');`
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
@@ -618,7 +600,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Example:
 	- In this case it's called `ExampleParameter`
 	```  
-	  Route::get('/URL2/{ExampleParameter}', 'PostTypeA@PostTypeAController');
+	  Route::get('/URL2/{ExampleParameter}', 'TypeAPost@MethodB');
 	```
 	- Try this out
 		- bear in mind it wont work properly until you make a controller.
@@ -635,13 +617,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### From scratch controller
 - These are completely blank and must be made from scratch
-- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case e.g. `PostTypeA.php`.
+- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case e.g. `TypeAPost.php`.
 
 #### Generated controller
 - These come with the controller file's foundation code already in place
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
-	- Run `php artisan make:controller PostTypeA`
+	- Run `php artisan make:controller TypeAPost`
 - Try this out
 	- bear in mind it wont work properly until you make a controller.
 
@@ -649,27 +631,25 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - These come with the controller file's foundation code already in place and some commonly used controllers set up
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
-	- Run `php artisan make:controller --resource PostTypeA`, note the camel casing on the controller name.
+	- Run `php artisan make:controller --resource TypeAPost`, note the camel casing on the controller name.
 
 
 
 ### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
 - Example:
   - Route
-    - `Route::get('/URL2/{ExampleParameter}', 'PostTypeA@PostTypeAController');`
+    - Reuse `/URL2`
   - Controller
     ```
-      public function PostTypeAController($ExampleParameter)
+      public function MethodB($a)
       {
-        return "Hello ".$ExampleParameter."!";
+        return "Hello ".$a."!";
       }
     ```
 	- Try this out
 		- Test using: `fundamental-mechanisms-app.test/URL2/Bob`.
 
----------
-up till here
--------
+
 
 ## <a name="9."></a> Chapter 9. Models
 
@@ -681,125 +661,56 @@ up till here
 
 ###  <a name="Basic-Setup"></a> Basic Setup
 
-#### Just a Model
-- Example
-  - Note: this model will be required in the later sections
-  - Create one
-    - Choose a name - use  a camel cased version of the table name and remove the "s" from the end
-    - Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-    - Then run `php artisan make:model PostTypeA`
-  - Configure it
-    - Table specifier
-      - If you didn't format the name of model or the table correctly you will have to specify what table the model refers to
-      - To specify a table put this into your model's class `protected $table = 'example_table_model';`
-    - Primary key specifier
-      - If your tables primary key is not "id" you will need to specify it.
-      - To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-  - Importing model into the routes
-    - Option 1 - Model function (this you have to do every single time you want to us that model)
-      - Put this inside the route `$example_variable = App\PostTypeA;`
-    - Option 2 - Model usage function (this is once off so use this one to save time)
-      - Put this at the beginning of your routes file `use App\PostTypeA;`
+#### Setting up a new model
+- Determine the name
+	- Table association
+		- Explanation
+			- If you format the name of model and the table in a certain way the app will automatically associate the otherwise would will have to configure the table associator
+		- The format is this
+			- Use  a camel cased version of the table name and remove the "s" from the end
+		- Otherwise this is how to configure the table associator
+			- To specify a table put this into your model's class `protected $table = 'example_table_model';`
+- Generate file command
+	- Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
+	- Then run `php artisan make:model TypeAPost`
+- Primary key associator
+	- If your tables primary key is not "id" you will need to specify it.
+	- To specify the primary key put this into your model class `protected $primaryKey = 'id';`
+- Set model restriction
+	- Give the model some freedoms like allowing it to do multiple value inserts
+		- By default a new post can't be populated with content on inception this changes that
+		- Choose the data fields that you want to be able to be populated on the post's inception
+		- Put this into your model's class
+		```
+			protected $fillable = [
+				'DataTypeA',
+				'DataTypeB',
+				'DataTypeC',
+			];
+		```
+- Importing model into it's associated controller
+  - Case by case basis
+		- This you have to do every single time you want to use one of it's model methods.
+    - Put this inside the route `$example_variable = App\TypeAPost;`
+  - Once of basis Model usage function (this is once off so use this one to save time)
+    - Put this at the beginning of your routes file `use App\TypeAPost;`
 
 
 
-
-#### A Table-Model Pair
+#### Setup a Table-Model Pair
 - General: Tables and models are rarely made independently so here's how to make them simultaneously.
-- Using the Shortcut
-  - Create the migration and the model at the same time
-    - This is the shortcut
-    - Choose the models name - use camel casing and do not end it with an "s" as this will be done automatically to your table only.
-    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-    - Run `php artisan make:model PostTypeA -m`
-  - Create the table with the migration
-    - Finish sitting up the migration
-      - Add a column function to the migration
-        - Choose the column's names and types (e.g. string or text etc.)
-        - Open the migration file in a code editor. Locate the schema function in your migration's up method.
-        - Add these functions so this is the result
-        ```
-              $table->increments('id');
-              $table->timestamps();
-              $table->string('example_column');
-              $table->text('example_column_2');
-        ```
-          - Note: when editing this be sure not to remove the default "id" and timestamps functions as they are always best to keep.
-    - Activate the migrations
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate`
-  - Configure the model
-    - Primary key specifier
-      - If your tables primary key is not "id" you will need to specify it.
-      - To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-    - Allowable multiple value inserts
-      - Set model to allow multiple value inserts
-      - Choose the values that need allowing
-      - Put this into your model's class
-      ```
-        protected $fillable = [
-          'example_column',
-          'example_column_2',
-          'example_column_3',
-        ];
-      ```
-  - Importing model into the routes
-    - Option 1 - Model function (this you have to do every single time you want to us that model)
-      - Put this inside the route `$example_variable = App\PostTypeA;`
-    - Option 2 - Model usage function (this is once off so use this one to save time)
-      - Put this at the beginning of your routes file `use App\PostTypeA;`
-- Without Using the Shortcut
-  - Create a table with a migration
-    - Setup the migration
-      - Create migration
-        - Choose the table name - make it uses underscores for spaces and ends with an "s"
-        - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-        - Run `php artisan make:migration example_TableModel --create="example_table_model"`
-      - Add a column function to the migration
-        - Choose the column's names and types (e.g. string or text etc.)
-        - Open the migration file in a code editor. Locate the schema function in your migration's up method.
-        - Add the functions so this is the result
-        ```
-          Schema::create('example_table_model', function (Blueprint $table) {
-              $table->increments('id');
-              $table->timestamps();
-              $table->string('example_column');
-              $table->text('example_column_2');
-          });
-        ```
-    - Activate the migrations
-      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-      - Run `php artisan migrate`
-  - Setup a new model
-    - Create one
-      - Choose a name - use  a camel cased version of the table name and remove the "s" from the end
-      - Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-      - Then run `php artisan make:model PostTypeA`
-    - Configure it
-      - Table specifier
-        - If you didn't format the name of model or the table correctly you will have to specify what table the model refers to
-        - To specify a table put this into your model's class `protected $table = 'example_table_model';`
-      - Primary key specifier
-        - If your tables primary key is not "id" you will need to specify it.
-        - To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-      - Allowable multiple value inserts
-        - Set model to allow multiple value inserts
-        - Choose the values that need allowing
-        - Put this into your model's class
-        ```
-          protected $fillable = [
-            'example_column',
-            'example_column_2',
-            'example_column_3',
-          ];
-        ```
-  - Importing model into the routes
-    - Option 1 - Model function (this you have to do every single time you want to us that model)
-      - Choose the same model name as the one above
-      - Put this inside the route `$example_variable = App\PostTypeA;`
-    - Option 2 - Model usage function (this is once off so use this one to save time)
-      - Choose the same model name as the one above
-      - Put this at the beginning of your routes file `use App\PostTypeA;`
+
+##### Using the Shortcut
+- Try this out
+- Follow the `Creating a table using a migration` and `Setting up a new model` steps as normal except replace the two `generate file command` steps with this single command
+- Generate the migration and model file with a single command
+	  - In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
+	  - Run `php artisan make:model TypeAPost -m`
+
+
+##### Without Using the Shortcut
+- Follow the steps in `Creating a table using a migration`
+- Follow steps in `Setting up a new model`
 
 ### <a name="SQL-Queries"></a>  SQL Queries
 - There are four types of database queries and the are abbreviated with "CRUD"
@@ -808,17 +719,39 @@ up till here
   - Update
   - Delete
 - SQL means Structure Query Language
-- SQL is a language for managing values in a database.
+- SQL is a language for managing the data in a database.
 
 #### Create (Insert)
   - Use `DB::insert();`
   - Example:
     - Route
-    ```
-      Route::get('/ExampleRoute11', function(){
-        DB::insert('insert into example_models(example_column, example_column_2, example_column_3) values(?, ?, ?)', ['example_value', 'example_value2', 1]);
-      });
-    ```
+			- Reuse the ```/URL``` route
+	    ```
+	      Route::get('/ExampleRoute11', function(){
+	        DB::insert('insert into example_models(example_column, example_column_2, example_column_3) values(?, ?, ?)', ['example_value', 'example_value2', 1]);
+	      });
+	    ```
+		- Controller method
+			- Import the model - put `use App\TypeAPost;` in the header of your controller
+	    ```
+				public function MethodA()
+			  {
+			    TypeAPost::create("hello", "hello", "hello");
+			    return "success!";
+			  }
+	    ```
+		- Model
+			- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
+			```
+				static function create($a, $b, $c)
+		    {
+		      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
+		    }
+			```
+
+---
+Here
+---
 
 #### Read
   - Use `DB::select();`

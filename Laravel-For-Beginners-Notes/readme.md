@@ -567,20 +567,20 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Route anatomy
 - Example
-	- ```Route::get('/URL', 'TypeAPost_Controller@MethodA');```.
-	- In this case the URL is the word `/URL` and the controller is called `MethodA` and is found inside a controller file called `TypeAPost_Controller`
+	- ```Route::get('/URLCreate', 'TypeAPost_Controller@MethodCreate');```.
+	- In this case the URL is the word `/URLCreate` and the controller is called `MethodCreate` and is found inside a controller file called `TypeAPost_Controller`
 	- Try this out - bear in mind it wont work properly until you make a controller.
 
 ### Resourced route
 - This creates not 1 but a set of routes.
-- E.g. `Route::resource('/URL', 'TypeAPost_Controller');`
+- E.g. `Route::resource('/URLCreate', 'TypeAPost_Controller');`
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
 ### Non-separated action script
 - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
 ```
-  Route::get('/URL', function(){
+  Route::get('/URLRead', function(){
     return "Hello world";
   });
 ```
@@ -601,7 +601,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Example:
 	- In this case it's called `ExampleParameter`
 	```  
-	  Route::get('/URL2/{ExampleParameter}', 'TypeAPost_Controller@MethodB');
+	  Route::get('/URLRead/{ExampleParameter}', 'TypeAPost_Controller@MethodRead');
 	```
 	- Try this out
 		- bear in mind it wont work properly until you make a controller.
@@ -640,16 +640,16 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
 - Example:
   - Route
-    - Reuse `/URL2`
+    - Reuse `/URLRead`
   - Controller
     ```
-      public function MethodB($a)
+      public function MethodRead($a)
       {
         return "Hello ".$a."!";
       }
     ```
 	- Try this out
-		- Test using: `fundamental-mechanisms-app.test/URL2/Bob`.
+		- Test using: `fundamental-mechanisms-app.test/URLRead/Bob`.
 
 
 
@@ -720,53 +720,60 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - SQL is a language for managing the data in a database.
 
 #### Create (Insert)
-  - Use `DB::insert();`
-  - Example:
-    - Route
-			- Reuse the ```/URL``` route
-		- Controller method
-			- Import the model - put `use App\TypeAPost;` in the header of your controller
-	    ```
-				public function MethodA()
-			  {
-			    TypeAPost::create("hello", "hello", "hello");
-			    return "success!";
-			  }
-	    ```
-		- Model
-			- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
-			```
-				static function create($a, $b, $c)
-		    {
-		      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
-		    }
-			```
+- Example:
+	- Try this out
+  - Route
+		- Reuse the ```/URLCreate``` route
+	- Controller method
+		- Import the model - put `use App\TypeAPost;` in the header of your controller
+    ```
+			public function MethodCreate()
+		  {
+		    TypeAPost::create("hello", "hello", "hello");
+		  }
+    ```
+	- Model
+		- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
+		```
+			static function create($a, $b, $c)
+	    {
+	      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
+	    }
+		```
+	- Test with: `fundamental-mechanisms-app.test/URLCreate`
 
----
-Here
----
+
 
 #### Read
-  - Use `DB::select();`
-  - Example:
-    - Route
-    ```
-      Route::get('/ExampleRoute12', function(){
-        $example_variable = DB::select('select * from example_models where example_column  = ?', ['example_value']);
-        return "<pre>".var_dump($example_variable)."</pre>";
-      });
-    ```
+- Use `DB::select();`
+- Example:
+	- Try this out
+  - Route:
+		- Name: reuse `URLRead`
+		- Parameters: none
+	- Controller method:
+		- Name: reuse `MethodRead`
+		- Parameters: none
+		- Script: `return "<pre>".var_dump(TypeAPost::read("hello"))."</pre>";`
+	- Model:
+		- Name: `read`
+		- Parameters: `$a`
+		- Query: `return DB::select('select * from type_a_posts where data_field_a  = ?', [$a]);`
 
 #### Update
   - Use `DB::update();`
   - Example:
-    - Route
-    ```
-      Route::get('/ExampleRoute13', function(){
-        $example_variable = DB::update('update example_models set example_column  = ? where example_column = ?', ['example_value2', 'example_value3']);
-        return $example_variable;
-      });
-    ```
+		- Try this out
+	  - Route:
+			- Name: reuse `URLUpdate`
+			- Association: `MethodUpdate`
+		- Controller method:
+			- Name: `MethodUpdate`
+			- Script: `TypeAPost::update("bye", 1);`
+		- Model:
+			- Name: `edit`
+			- Parameters `$a, $b`
+			- Query `DB::update('update type_a_posts set data_field_b  = ? where id = ?', [$a, $b]);`
 
 #### Delete
   - Use `DB::delete();`

@@ -1,4 +1,4 @@
-# Destiny code - A political theory
+# Destinyism - A political theory
 
 - Our perspective shapes our destiny. 
 - Destiny A 

@@ -1,6 +1,6 @@
 # Destinyism - A political theory
 
-- Our perspective shapes our destiny. 
+- Our beliefs shape our behaviour which in turn shapes our destiny. 
 - Destiny A 
   - What: Disharmony
   - How: When we believe people are the center of life it leads us also to believe that heirarchies of people and thus inequality is natural. These beliefs make us behave in a way that re-enforces inequality onto ourselves. 

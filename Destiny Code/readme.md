@@ -3,7 +3,7 @@
 
 - Our perspective shapes our destiny. 
 - Destiny A 
-  - What: Disharmony and obedience
+  - What: Disharmony
   - How
     - Belief: people centered perspective leads us to believing that heirarchies of people and thus inequality is natural.
     - Behaviour: This motivates us to re-enforce inequality onto ourselves. 

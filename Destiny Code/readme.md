@@ -1,5 +1,4 @@
-# Destiny code 
-## A political theory
+# Destiny code - A political theory
 
 - Our perspective shapes our destiny. 
 - Destiny A 

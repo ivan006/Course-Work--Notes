@@ -743,21 +743,21 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 #### Update
-  - Use `DB::update($a);`
-  - Example:
-		- Try this out:
-	  - Route:
-				- Name: reuse `URLUpdate/{a}/{b}`
-				- Association: `MethodUpdate`
-		- Controller method:
-				- Name: `MethodUpdate`
-				- Parameters: `$a, $b`
-				- Script: `TypeAPost::model_update($a, $b);`
-		- Model:
-				- Name: `model_update`
-				- Parameters: `$a, $b`
-				- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
-		- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
+- Use `DB::update($a);`
+- Example:
+	- Try this out:
+  - Route:
+		- Name: reuse `URLUpdate/{a}/{b}`
+		- Association: `MethodUpdate`
+	- Controller method:
+		- Name: `MethodUpdate`
+		- Parameters: `$a, $b`
+		- Script: `TypeAPost::model_update($a, $b);`
+	- Model:
+		- Name: `model_update`
+		- Parameters: `$a, $b`
+		- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
+	- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
 #### Delete
   - Use `DB::delete();`

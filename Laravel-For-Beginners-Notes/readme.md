@@ -703,17 +703,17 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Create (Insert)
 - Example:
 	- Try this out
-  - Route
+	- Route
 		- Reuse the ```/URLCreate/{a}``` route
 	- Controller method
 		- Import the model - put `use App\TypeAPost;` in the header of your controller
 		- Script
-    ```
+	  ```
 			public function MethodCreate($a)
 		  {
 		    TypeAPost::model_create($a, $a, $a);
 		  }
-    ```
+	  ```
 	- Model
 		- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
 		```

@@ -745,7 +745,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Update
   - Use `DB::update($a);`
   - Example:
-		- Try this out
+		- Try this out:
 	  - Route:
 			- Name: reuse `URLUpdate/{a}/{b}`
 			- Association: `MethodUpdate`
@@ -755,7 +755,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			- Script: `TypeAPost::model_update($a, $b);`
 		- Model:
 			- Name: `model_update`
-			- Parameters `$a, $b`
+			- Parameters: `$a, $b`
 			- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
 		- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 

@@ -1,4 +1,4 @@
-name="3."
+
 - A URL - request, front end action component
 - A page - response, front end action component
 - Database - posts data storage
@@ -10,20 +10,20 @@ name="3."
 # Building Laravel apps for beginners
 
 - Section 1. Setup your app and tools
-	- [1. Setting up the development tools](#3.)
-	- [2. Setting up the Laravel powered app](#4.)
+	- [1. Setting up the development tools](#1.)
+	- [2. Setting up the Laravel powered app](#2.)
 - Section 2. Get familiar with the app components
-	- [3. Introduction to web app components](#5.)
-	- [4. Database component](#6.)
-	- [5. Routes](#7.)
-	- [6. Controllers](#8.)
-	- [7. Models](#9.)
-	- [8. Queries with basic relationships](#10.)
-	- [9. Queries with advanced relationships](#11.)
-	- [10. Query Testing Environment](#12.)
-	- [11. Accessors and mutators queries](#13.)
-	- [12. Views component](#14.)
-- [13. Real-World Examples](#15.)
+	- [3. Introduction to web app components](#3.)
+	- [4. Database component](#4.)
+	- [5. Routes](#5.)
+	- [6. Controllers](#6.)
+	- [7. Models](#7.)
+	- [8. Queries with basic relationships](#8.)
+	- [9. Queries with advanced relationships](#9.)
+	- [10. Query Testing Environment](#10.)
+	- [11. Accessors and mutators queries](#11.)
+	- [12. Views component](#12.)
+- [13. Real-World Examples](#13.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)

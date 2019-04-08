@@ -639,8 +639,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ### Table Of Content
 
 - [Setup a model](#7.1.)
-- [SQL Queries](#7.2.)
-- [ORM Queries](#7.3.)
+- [SQL models](#7.2.)
+- [ORM models](#7.3.)
 
 ###  <a name="7.1."></a> Setup a model
 

@@ -1,4 +1,4 @@
-5. Routes3. Introduction to web app components1. Setting up the development tools
+
 - A URL - request, front end action component
 - A page - response, front end action component
 - Database - posts data storage
@@ -31,7 +31,7 @@
 
 
 
-## <a name="1."></a>Chapter 3.1 Setting up the development tools
+## <a name="1."></a>Chapter 1. Setting up the development tools
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)
@@ -379,7 +379,7 @@ sites:
 - When your done run `exit`
 
 
-## <a name="3."></a>Chapter 5. Introduction to web app components
+## <a name="3."></a>Chapter 3. Introduction to web app components
 
 ### MVC
 - MVC is a code organizational structure
@@ -531,7 +531,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   then solve it by running this in git bash `composer dump-autoload`
 
 
-## <a name="5."></a> Chapter 7. Routes
+## <a name="5."></a> Chapter 5. Routes
 
 ### Table Of Content
 - [Routes](#routes)

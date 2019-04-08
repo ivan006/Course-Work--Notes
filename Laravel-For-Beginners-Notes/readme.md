@@ -780,6 +780,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/URLDelete/1`
 
 
+---
+up till here
+---
+
 ### <a name="7.3."></a> ORM Models
 
 

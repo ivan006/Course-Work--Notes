@@ -21,7 +21,7 @@
 	- [8. Model with basic relationships](#8.)
 	- [9. Queries with advanced relationships](#9.)
 	- [10. Query Testing Environment](#10.)
-	- [11. Accessors and mutators queries](#11.)
+	- [11. Models with Accessors and mutators](#11.)
 	- [12. Views component](#12.)
 - [13. Real-World Examples](#13.)
   - [8.1. /5.1. Intro](#8.1)
@@ -638,11 +638,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Table Of Content
 
-- [Basic Setup](#Basic-Setup)
-- [SQL Queries](#SQL-Queries)
-- [ORM Queries](#ORM-Queries)
+- [Setup a model](#7.1.)
+- [SQL Queries](#7.2.)
+- [ORM Queries](#7.3.)
 
-###  <a name="Basic-Setup"></a> Basic Setup
+###  <a name="7.1."></a> Setup a model
 
 #### Setting up a new model
 - Determine the name
@@ -691,7 +691,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Follow the steps in `Creating a table using a migration`
 - Follow steps in `Setting up a new model`
 
-### <a name="SQL-Queries"></a>  SQL Queries
+### <a name="7.2."></a>  SQL Model
 - There are four types of database queries and the are abbreviated with "CRUD"
   - Create
   - Read
@@ -704,24 +704,25 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Example:
 	- Try this out
   - Route
-		- Reuse the ```/URLCreate``` route
+		- Reuse the ```/URLCreate/{a}``` route
 	- Controller method
 		- Import the model - put `use App\TypeAPost;` in the header of your controller
+		- Script
     ```
-			public function MethodCreate()
+			public function MethodCreate($a)
 		  {
-		    TypeAPost::create("hello", "hello", "hello");
+		    TypeAPost::model_create($a, $a, $a);
 		  }
     ```
 	- Model
 		- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
 		```
-			static function create($a, $b, $c)
+			static function model_create($a, $b, $c)
 	    {
 	      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
 	    }
 		```
-	- Test with: `fundamental-mechanisms-app.test/URLCreate`
+	- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
 
@@ -730,45 +731,54 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Example:
 	- Try this out
   - Route:
-		- Name: reuse `URLRead`
-		- Parameters: none
+		- Name: reuse `URLRead/{a}`
 	- Controller method:
 		- Name: reuse `MethodRead`
-		- Parameters: none
-		- Script: `return "<pre>".var_dump(TypeAPost::read("hello"))."</pre>";`
+		- Parameters: `$a`
+		- Script: `return "<pre>".var_dump(TypeAPost::model_read($a))."</pre>";`
 	- Model:
-		- Name: `read`
+		- Name: `model_read`
 		- Parameters: `$a`
 		- Query: `return DB::select('select * from type_a_posts where data_field_a  = ?', [$a]);`
+	- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 #### Update
-  - Use `DB::update();`
+  - Use `DB::update($a);`
   - Example:
 		- Try this out
 	  - Route:
-			- Name: reuse `URLUpdate`
+			- Name: reuse `URLUpdate/{a}/{b}`
 			- Association: `MethodUpdate`
 		- Controller method:
 			- Name: `MethodUpdate`
-			- Script: `TypeAPost::update("bye", 1);`
+			- Parameters: `$a, $b`
+			- Script: `TypeAPost::model_update($a, $b);`
 		- Model:
-			- Name: `edit`
+			- Name: `model_update`
 			- Parameters `$a, $b`
-			- Query `DB::update('update type_a_posts set data_field_b  = ? where id = ?', [$a, $b]);`
+			- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
+		- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
 #### Delete
   - Use `DB::delete();`
   - Example:
-    - Route
-    ```
-      Route::get('/ExampleRoute14', function(){
-        $example_variable = DB::delete('delete from example_models where example_column = ?', ['example_value2']);
-        return $example_variable;
-      });
-    ```
+		- Try this out
+	  - Route:
+			- Name: reuse `URLDelete/{a}`
+			- Association: `MethodDelete`
+			- Parameters `$a`
+		- Controller method:
+			- Name: `MethoDelete`
+			- Parameters `$a`
+			- Script: `TypeAPost::model_delete($a);`
+		- Model:
+			- Name: `model_delete`
+			- Parameters `$a`
+			- Query `DB::delete('delete from type_a_posts where id = ?', [$a]);`
+		- URL example: `fundamental-mechanisms-app.test/URLDelete/1`
 
 
-### <a name="ORM-Queries"></a> ORM Queries
+### <a name="7.3."></a> ORM Models
 
 
 
@@ -1896,7 +1906,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="11."></a>Chapter 11. Accessors and mutators queries
+## <a name="11."></a>Chapter 11. Models with Accessors and mutators
 
 ### Table Of Content
 - [Dates](#Dates)

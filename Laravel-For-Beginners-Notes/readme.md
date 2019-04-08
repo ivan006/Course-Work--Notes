@@ -746,7 +746,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Use `DB::update($a);`
 - Example:
 	- Try this out:
-  - Route:
+	- Route:
 		- Name: reuse `URLUpdate/{a}/{b}`
 		- Association: `MethodUpdate`
 	- Controller method:

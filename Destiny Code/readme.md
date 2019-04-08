@@ -1,5 +1,9 @@
-# Destiny Code
+# Destinyism - A political theory
 
-Our perspective shapes our destiny. 
-Our people centric perspective makes inequality seem natural and causes us to re-enforce inequality upon ourselves. This can be seen in the widespread encouragement of obedience like we have in school, university and most companies.
-If we adopted an asset centric perspective it would create equality. This would cause our schools, universities and companies to be much more harmonious.
+- Our beliefs shape our behaviour which in turn shapes our destiny. 
+- Destiny A 
+  - What: Disharmony
+  - How: When we believe people are the center of life it leads us also to believe that heirarchies of people and thus inequality is natural. These beliefs make us behave in a way that re-enforces inequality onto ourselves. 
+- Destiny B 
+  - What: Harmony
+  - How: If  we believe assets are the center of life it would lead us to also believe that it is not hierarchies of people but hierarchies of assets, and thus equality, that is natural. These beliefs would make us behave in a way that re-enforces equality onto ourselves. 

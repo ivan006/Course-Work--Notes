@@ -703,7 +703,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Create (Insert)
 - Example:
 	- Try this out
-  - Route: Reuse the ```/URLCreate/{a}``` route
+  - Route
+		- Reuse the ```/URLCreate/{a}``` route
 	- Controller method
 		- Import the model - put `use App\TypeAPost;` in the header of your controller
 		- Script
@@ -729,7 +730,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Use `DB::select();`
 - Example:
 	- Try this out
-  - Route - Name: reuse `URLRead/{a}`
+  - Route:
+		- Name: reuse `URLRead/{a}`
 	- Controller method:
 		- Name: reuse `MethodRead`
 		- Parameters: `$a`
@@ -743,19 +745,19 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Update
 - Use `DB::update($a);`
 - Example:
-	- Try this out:
-  - Route:
-		- Name: reuse `URLUpdate/{a}/{b}`
-		- Association: `MethodUpdate`
-	- Controller method:
-		- Name: `MethodUpdate`
-		- Parameters: `$a, $b`
-		- Script: `TypeAPost::model_update($a, $b);`
-	- Model:
-		- Name: `model_update`
-		- Parameters: `$a, $b`
-		- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
-	- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
+		- Try this out:
+	  - Route:
+				- Name: reuse `URLUpdate/{a}/{b}`
+				- Association: `MethodUpdate`
+		- Controller method:
+				- Name: `MethodUpdate`
+				- Parameters: `$a, $b`
+				- Script: `TypeAPost::model_update($a, $b);`
+		- Model:
+				- Name: `model_update`
+				- Parameters: `$a, $b`
+				- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
+		- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
 #### Delete
   - Use `DB::delete();`

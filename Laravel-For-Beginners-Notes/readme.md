@@ -765,7 +765,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Use `DB::delete();`
 - Example:
 	- Try this out
-  - Route:
+	- Route:
 		- Name: reuse `URLDelete/{a}`
 		- Association: `MethodDelete`
 		- Parameters `$a`

@@ -703,8 +703,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Create (Insert)
 - Example:
 	- Try this out
-  - Route
-		- Reuse the ```/URLCreate/{a}``` route
+  - Route: Reuse the ```/URLCreate/{a}``` route
 	- Controller method
 		- Import the model - put `use App\TypeAPost;` in the header of your controller
 		- Script
@@ -730,8 +729,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Use `DB::select();`
 - Example:
 	- Try this out
-  - Route:
-		- Name: reuse `URLRead/{a}`
+  - Route - Name: reuse `URLRead/{a}`
 	- Controller method:
 		- Name: reuse `MethodRead`
 		- Parameters: `$a`

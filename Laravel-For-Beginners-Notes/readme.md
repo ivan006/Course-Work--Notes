@@ -1,4 +1,4 @@
-
+5. Routes3. Introduction to web app components1. Setting up the development tools
 - A URL - request, front end action component
 - A page - response, front end action component
 - Database - posts data storage
@@ -9,7 +9,7 @@
 
 # Building Laravel apps for beginners
 
-- Section 1. Setup your app and tools
+- Section 1. Setup your tools and app
 	- [1. Setting up the development tools](#1.)
 	- [2. Setting up the Laravel powered app](#2.)
 - Section 2. Get familiar with the app components
@@ -18,7 +18,7 @@
 	- [5. Routes](#5.)
 	- [6. Controllers](#6.)
 	- [7. Models](#7.)
-	- [8. Queries with basic relationships](#8.)
+	- [8. Model with basic relationships](#8.)
 	- [9. Queries with advanced relationships](#9.)
 	- [10. Query Testing Environment](#10.)
 	- [11. Accessors and mutators queries](#11.)
@@ -241,7 +241,7 @@
 
 
 
-## <a name="2."></a>Chapter 3.2 Laravel Powered App
+## <a name="2."></a>Chapter 2. Setting up the Laravel powered app
 ### Table Of Content
 
 
@@ -415,7 +415,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="4."></a>Chapter 6. Database component
+## <a name="4."></a>Chapter 4. Database component
 
 ### Table Of Content
 - [Database](#Database)
@@ -588,7 +588,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- bear in mind it wont work properly until you make a controller.
 
 
-## <a name="6."></a> Chapter 8. Controllers
+## <a name="6."></a> Chapter 6. Controllers
 
 ### Table Of Content
 
@@ -634,7 +634,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="7."></a> Chapter 9. Models
+## <a name="7."></a> Chapter 7. Models
 
 ### Table Of Content
 
@@ -1024,7 +1024,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   ```
 
 
-## <a name="8."></a> Chapter 10. Basic Relationships
+## <a name="8."></a> Chapter 8. Model with basic relationships
 
 ### Table Of Content
 
@@ -1402,7 +1402,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="9."></a>Chapter 11. Advanced Relationships
+## <a name="9."></a>Chapter 9. Queries with advanced relationships
 
 ### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -1836,7 +1836,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="10."></a>Chapter 12. Query Testing Environment
+## <a name="10."></a>Chapter 10. Query Testing Environment
 
 ### Table Of Content
 - [Query Testing Environment](#Query-Testing-Environment)
@@ -1896,7 +1896,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="11."></a>Chapter 13. Accessors and Mutators
+## <a name="11."></a>Chapter 11. Accessors and mutators queries
 
 ### Table Of Content
 - [Dates](#Dates)
@@ -2003,7 +2003,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="12."></a>Chapter 14. Views component
+## <a name="12."></a>Chapter 12. Views component
 
 ### Table Of Content
 - [Views](#)

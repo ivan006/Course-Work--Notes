@@ -84,7 +84,7 @@
 - Now is the time fruits will start appearing
 - Harvest each fruit the moment it has a full flower 
 - If you want you can indeed let your fruits get more mature before harvesting but if you do your plant will take strain and be less productive over all
-### Day 1 (was mean to be feb 5th but did on feb 9th)
+### Week 1 - Day 1 (was mean to be feb 5th but did on feb 9th)
 - Bed preparation - Move the mulch to the side
 - Watering - water with 6L
 - Tending the soil 
@@ -92,25 +92,25 @@
 		- the plants safe space is from the stem of the plant all the way to as far as its leaves can reach
 		- weed after watering as the watering will help losen the roots of the weeds
 		- this will take about 3 minutes per plant  
-### Day 2 (3 of the was 2019/03/12, rest was...14th)
+### Week 1 - Day 2 (3 of the was 2019/03/12, rest was...14th)
 - Bed preparation
 	- While you tend the soil in the next step make sure to arrange the plants "safe space" soil into a bowl shape for retaining water 
 	- After you have finished tending the soil be sure to put the mulch back
 - Tending the soil 
 	- Airate the soil
 		- turn the soil in the plants safe space but not closer than 10cm to the plants stem to a depth of 1/2 a spade, this will take about 4min per plant
-	- Fertilisation
-		- put 1 hand full of chicken manure in a circle 10cm from the stem of the plant
+	- Feeding
+		- make a very shallow circlular groove 10cm from the stem of the plant and lay it with 1 hand full of chicken manure
 		- in the plant space evenly spread 10L of compost 
 - Watering - water again with 7L
 
-### Day 5
+### Week 1 - Day 5
 - Watering - From now on, starting today, water with 6L every three days
 
-### Week 2
+### Week 3
 - Harvesting - your first big harvest will be around this time (my harvest for the week was 1/3kg per plant)
 
-### Week 3, 6, 9 and 12
+### Week 4, 7, 10 and 13 (week 3: was 16 plants to feed; date was 2019/04/07; used R165 compost; used 10L chicken manure(double what i was meant to); used 112minutes (7min per plant))
 - Bed preparation and tending the soil - Repeat the soil tending and bed preparation steps as shown in day 1 and 2  unless the plants are soon to die or are no longer productive
 
 

@@ -1,4 +1,4 @@
-
+name="3."
 - A URL - request, front end action component
 - A page - response, front end action component
 - Database - posts data storage
@@ -9,48 +9,29 @@
 
 # Building Laravel apps for beginners
 
-## <a name="1."></a>Chapter 1. Table of Content
-
-- Section 1. Introduction
-	- [1. Table of Content](#1.)
-	- [2. Introduction](#2.)
-- Section 2. Setup your app and tools
-	- [3. Setting up the development tools](#3.)
-	- [4. Setting up the Laravel powered app](#4.)
-- Section 3. Get familiar with the app components
-	- [5. Introduction to web app components](#5.)
-	- [6. Database component](#6.)
-	- [7. Routes](#7.)
-	- [8. Controllers](#8.)
-	- [9. Models](#9.)
-	- [10. Queries with basic relationships](#10.)
-	- [11. Queries with advanced relationships](#11.)
-	- [12. Query Testing Environment](#12.)
-	- [13. Accessors and mutators queries](#13.)
-	- [14. Views component](#14.)
-- [15. Real-World Examples](#15.)
+- Section 1. Setup your app and tools
+	- [1. Setting up the development tools](#3.)
+	- [2. Setting up the Laravel powered app](#4.)
+- Section 2. Get familiar with the app components
+	- [3. Introduction to web app components](#5.)
+	- [4. Database component](#6.)
+	- [5. Routes](#7.)
+	- [6. Controllers](#8.)
+	- [7. Models](#9.)
+	- [8. Queries with basic relationships](#10.)
+	- [9. Queries with advanced relationships](#11.)
+	- [10. Query Testing Environment](#12.)
+	- [11. Accessors and mutators queries](#13.)
+	- [12. Views component](#14.)
+- [13. Real-World Examples](#15.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
   - [8.4. /5.4. Coming soon](##)
 
 
-## <a name="2."></a>Chapter 2. Introduction
 
-### About
-- This is a place for you to learn the ins and outs of Lary Wary (Laravel).
-- Laravel is a kind of development tool more specifically it is a development framework.
-- Please follow this course in the order laid out in the menu -  starting from "Introductions" and ending at "Views".
-- Just your luck
-   - You are very privileged to be able to see this course.
-   - All are welcome to venture into the land of milk and honey!
-
-### Credits
-- This course is based on a video course on Udemy.com which can be found here - [Laravel for beginners](https://www.udemy.com/php-with-laravel-for-beginners-become-a-master-in-laravel/)
-
-
-
-## <a name="3."></a>Chapter 3.1 Development Tools
+## <a name="1."></a>Chapter 3.1 Setting up the development tools
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)
@@ -260,7 +241,7 @@
 
 
 
-## <a name="4."></a>Chapter 3.2 Laravel Powered App
+## <a name="2."></a>Chapter 3.2 Laravel Powered App
 ### Table Of Content
 
 
@@ -398,7 +379,7 @@ sites:
 - When your done run `exit`
 
 
-## <a name="5."></a>Chapter 5. Introduction to web app components
+## <a name="3."></a>Chapter 5. Introduction to web app components
 
 ### MVC
 - MVC is a code organizational structure
@@ -434,7 +415,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="6."></a>Chapter 6. Database component
+## <a name="4."></a>Chapter 6. Database component
 
 ### Table Of Content
 - [Database](#Database)
@@ -550,7 +531,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   then solve it by running this in git bash `composer dump-autoload`
 
 
-## <a name="7."></a> Chapter 7. Routes
+## <a name="5."></a> Chapter 7. Routes
 
 ### Table Of Content
 - [Routes](#routes)
@@ -607,7 +588,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- bear in mind it wont work properly until you make a controller.
 
 
-## <a name="8."></a> Chapter 8. Controllers
+## <a name="6."></a> Chapter 8. Controllers
 
 ### Table Of Content
 
@@ -653,7 +634,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="9."></a> Chapter 9. Models
+## <a name="7."></a> Chapter 9. Models
 
 ### Table Of Content
 
@@ -1043,7 +1024,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   ```
 
 
-## <a name="10."></a> Chapter 10. Basic Relationships
+## <a name="8."></a> Chapter 10. Basic Relationships
 
 ### Table Of Content
 
@@ -1421,7 +1402,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="11."></a>Chapter 11. Advanced Relationships
+## <a name="9."></a>Chapter 11. Advanced Relationships
 
 ### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -1855,7 +1836,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="12."></a>Chapter 12. Query Testing Environment
+## <a name="10."></a>Chapter 12. Query Testing Environment
 
 ### Table Of Content
 - [Query Testing Environment](#Query-Testing-Environment)
@@ -1915,7 +1896,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="13."></a>Chapter 13. Accessors and Mutators
+## <a name="11."></a>Chapter 13. Accessors and Mutators
 
 ### Table Of Content
 - [Dates](#Dates)
@@ -2022,7 +2003,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="14."></a>Chapter 14. Views component
+## <a name="12."></a>Chapter 14. Views component
 
 ### Table Of Content
 - [Views](#)
@@ -2194,7 +2175,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="15."></a>Chapter 15. Real world examples
+## <a name="13."></a>Chapter 15. Real world examples
 ### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
 #### Make a new laravel powered app

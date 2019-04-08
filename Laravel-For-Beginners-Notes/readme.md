@@ -747,16 +747,16 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Example:
 		- Try this out:
 	  - Route:
-			- Name: reuse `URLUpdate/{a}/{b}`
-			- Association: `MethodUpdate`
+				- Name: reuse `URLUpdate/{a}/{b}`
+				- Association: `MethodUpdate`
 		- Controller method:
-			- Name: `MethodUpdate`
-			- Parameters: `$a, $b`
-			- Script: `TypeAPost::model_update($a, $b);`
+				- Name: `MethodUpdate`
+				- Parameters: `$a, $b`
+				- Script: `TypeAPost::model_update($a, $b);`
 		- Model:
-			- Name: `model_update`
-			- Parameters: `$a, $b`
-			- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
+				- Name: `model_update`
+				- Parameters: `$a, $b`
+				- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
 		- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
 #### Delete

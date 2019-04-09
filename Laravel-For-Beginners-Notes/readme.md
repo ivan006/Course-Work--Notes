@@ -98,7 +98,7 @@
     - Download  [metadata_url](https://abbasharoon.me/metadata_url) (right click this link and say "save link as"), remove its file extension and move it to your newly formed folder           
     `%USERPROFILE%\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead`.
     - In this same location rename the directory named “0” to the same number as the version of the box that that you installed
-      - E.g. ```6.1.0```.
+      - E.g. `6.1.0`.
 ##### Uninstallation
 - `vagrant box remove laravel/homestead --box-version=6.2.0`
 - Configure the box number version to your case
@@ -156,7 +156,7 @@
 #### Extensions
 ##### Laravel Installer
 - Add the globally available "create new Laravel project" command to composer
-  - open a new instance of Git Bash and run ```composer global require "laravel/installer"```.
+  - open a new instance of Git Bash and run `composer global require "laravel/installer"`.
 
 ### <a name="IDE"></a>IDE
 - An IDE is just a souped-up code editor. The IDE we will use is called Atom. Alternatively we suggest Microsoft Visual Studio
@@ -173,7 +173,7 @@
   - Atom Snippets comes as a built-in extra feature
   - In atom orient yourself to the snippets settings file with `File > Snippets`
   - At the bottom of the file add this code
-  ```
+  ```code
     '.php':
     'Greeting for php':
     'prefix': 'greet'
@@ -186,7 +186,7 @@
     - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
     - For multi lines samples wrap the code in two sets of these `'''`
   - To make multiple snippet for the same code type you must structure it like this
-  ```
+  ```code
     '.php':
     'Greeting for php':
     'prefix': 'greet'
@@ -264,24 +264,24 @@
 
 
 #### Installation
-- In Git Bash locate yourself using ```cd c:/laravel-apps```
+- In Git Bash locate yourself using `cd c:/laravel-apps`
 - Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
 - Decide if you want the latest version or and older versions
   - For latest do this
      - Run `composer create-project --prefer-dist laravel/laravel`. And if you have the Laravel extension for composer you can even use `laravel new fundamental-mechanisms-app`
   - Or for old version do This
-     - Run ```composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29``` for specific version (in this case version 5.2.29).
+     - Run `composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29` for specific version (in this case version 5.2.29).
      - If you get an error try first restarting Git Bash.
 #### Configurations
 ##### Map it in Homestead
 - To do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
  - Configure these attributes
     - sites:
- - \- map: ```fundamental-mechanisms-app.test```
- - to: ```/home/vagrant/code/fundamental-mechanisms-app/public```
+ - \- map: `fundamental-mechanisms-app.test`
+ - to: `/home/vagrant/code/fundamental-mechanisms-app/public`
  - For multiple project running in parallel do This
     - Duplicate the above mentioned set of attributes and configure like this
-    ```
+    ```code
 sites:
     - map: fundamental-mechanisms-app.test
       to: /home/vagrant/code/fundamental-mechanisms-app/public
@@ -289,22 +289,22 @@ sites:
       to: /home/vagrant/code/fundamental-mechanisms-app2/public
     ```
 ##### Map it in your host file
- - Using windows explorer locate yourself to here ```C:\Windows\System32\drivers\etc\```
- - Temporarily move the ```host``` file to your desktop.
+ - Using windows explorer locate yourself to here `C:\Windows\System32\drivers\etc\`
+ - Temporarily move the `host` file to your desktop.
  - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
- ```
+ ```code
  192.168.10.10 laravel.test
  192.168.10.10 homestead.test
  192.168.10.10 fundamental-mechanisms-app.test
  ```
- - Move it back into it's original location ```C:\Windows\System32\drivers\etc\```.
+ - Move it back into it's original location `C:\Windows\System32\drivers\etc\`.
 ##### Provision homestead
   - Run homestead - run `cd c:/Homestead` and then `vagrant up`
-  - Run the command ```vagrant provision```.
+  - Run the command `vagrant provision`.
 #### PHP version
 ##### Check
 - Add this to your routes (see how in later sections) and
-```
+```php
   Route::get('/phpversion', function () {
     echo phpversion();
   });
@@ -313,7 +313,7 @@ sites:
 ##### Change
 - Open `Homestead.yaml`
 - Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
- ```
+ ```code
    sites:
  - map: fundamental-mechanisms-app.test
    to: /home/vagrant/code/fundamental-mechanisms-app/public
@@ -321,7 +321,7 @@ sites:
  ```
  - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
 #### Testing
-- Run your local server. Open your browser and enter the URL   ```fundamental-mechanisms-app.test/``` and see if a page opens with the text "Laravel".
+- Run your local server. Open your browser and enter the URL   `fundamental-mechanisms-app.test/` and see if a page opens with the text "Laravel".
 - After completion close Homestead - run `vagrant halt`
 #### Patches
 ##### Foreach loop error
@@ -459,22 +459,22 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Determine the names and types
 		- Determine the table's name
 			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model)
-			- E.g. ```type_a_posts```
+			- E.g. `type_a_posts`
 		- Determine the field names and field data types (string or text etc.) of the tables data fields
 			- E.g.
-				- ```data_field_a```
-					- data type: ```string```
-				- ```data_field_b```
-					- data type: ```string```
-				- ```data_field_c```
-					- data type: ```string```
+				- `data_field_a`
+					- data type: `string`
+				- `data_field_b`
+					- data type: `string`
+				- `data_field_c`
+					- data type: `string`
   - Generate file command
 		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
   	- Run `php artisan make:migration type_a_posts --create="type_a_posts"`
   - Configure it
     - Open the migration file in a code editor. Locate the schema function in your migration's up method.
-    - Add this to the ```Schema::create``` function
-    ```
+    - Add this to the `Schema::create` function
+    ```php
         $table->string('data_field_a');
         $table->string('data_field_b');
         $table->string('data_field_c');
@@ -498,7 +498,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Locate the schema function in your migration's up method
         - Here you will add a new line of code
         - For example
-        ```
+        ```php
           Schema::table('example_objects', function (Blueprint $table) {
               $table->integer('example_column_3')->unsigned();
           });
@@ -508,7 +508,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Locate the schema function in your migration's down method
         - Here you will add a new line of code
         - For example here I am adding two custom columns
-        ```
+        ```php
           Schema::table('example_objects', function (Blueprint $table) {
               $table->dropColumn('example_column_3');
           });
@@ -524,7 +524,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - which will delete either all or some of your db content.  
   - After that you can delete the migration and then reactivate the migrations again.
   - If after that you try to create new migrations but get this error
-  ```
+  ```shell
   [ErrorException]
   include(blabla): failed to open stream: No such file or directory
   ```
@@ -548,7 +548,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Route anatomy
 - Example
-	- ```Route::get('/URLCreate', 'TypeAPost_Controller@MethodCreate');```.
+	- `Route::get('/URLCreate', 'TypeAPost_Controller@MethodCreate');`.
 	- In this case the URL is the word `/URLCreate` and the controller is called `MethodCreate` and is found inside a controller file called `TypeAPost_Controller`
 	- Try this out - bear in mind it wont work properly until you make a controller.
 
@@ -560,7 +560,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Non-separated action script
 - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
-```
+```php
   Route::get('/URLRead', function(){
     return "Hello world";
   });
@@ -581,7 +581,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Usefulness: The URL could have a number in it which reflects a the id number of a post that you would like to see.
 - Example:
 	- In this case it's called `ExampleParameter`
-	```  
+	```php  
 	  Route::get('/URLRead/{ExampleParameter}', 'TypeAPost_Controller@MethodRead');
 	```
 	- Try this out
@@ -623,7 +623,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Route
     - Reuse `/URLRead`
   - Controller
-    ```
+    ```php
       public function MethodRead($a)
       {
         return "Hello ".$a."!";
@@ -664,7 +664,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- By default a new post can't be populated with content on inception this changes that
 		- Choose the data fields that you want to be able to be populated on the post's inception
 		- Put this into your model's class
-		```
+		```php
 			protected $fillable = [
 				'data_field_a',
 				'data_field_b',
@@ -703,13 +703,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Create (Insert)
 - Try this out
 - Route
-	- Reuse the ```/URLCreate/{a}``` route
+	- Reuse the `/URLCreate/{a}` route
 	- Where the name is: `URLCreate`
 	- And the parameters are: `{a}`
 - Controller method
 	- Import the model - put `use App\TypeAPost;` in the header of your controller
 	- Here's the entire body of code
-  ```
+  ```php
 		public function MethodCreate($a)
 	  {
 	    TypeAPost::model_create($a, $a, $a);
@@ -721,7 +721,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Model method
 	- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
 	- Heres the entire body of code
-	```
+	```php
 		static function model_create($a, $b, $c)
     {
       DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
@@ -798,7 +798,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethoDeleteCreate`
 	- Parameters `$a`
 	- Script:
-	```
+	```php
 		$var = new TypeAPost;
 		$var->data_field_a = $a;
 		$var->data_field_b = $a;
@@ -817,7 +817,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethoDeleteCreate`
 	- Parameters `$a`
 	- Script:
-	```
+	```php
 		TypeAPost::create([
       'data_field_a'=>$a,
       'data_field_b'=>$a,
@@ -837,7 +837,7 @@ up till here
 #### Read types
 ##### Find all records (and return a field's values)
 - Route
-```
+```php
   Route::get('/ExampleRoute17', function(){
     $example_variable = ExampleModel::all();
     foreach ($example_variable as $example_variable_part) {
@@ -848,7 +848,7 @@ up till here
 ##### Find all records and sort by date created
 - Method 1
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute17.1', function(){
       $example_variable = ExampleModel::latest()->get();
       foreach ($example_variable as $example_variable_part) {
@@ -858,7 +858,7 @@ up till here
   ```
 - Method 2
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute17.2', function(){
       $example_variable = ExampleModel::orderBy('id', 'desc')->get();
       foreach ($example_variable as $example_variable_part) {
@@ -868,7 +868,7 @@ up till here
   ```
 - Method 3
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute17.3', function(){
       $example_variable = ExampleModel::orderBy('id', 'asc')->get();
       foreach ($example_variable as $example_variable_part) {
@@ -878,7 +878,7 @@ up till here
   ```
 ##### Find based on primary key (and return a field's values)
 - Route
-```
+```php
   Route::get('/ExampleRoute18', function(){
     $example_variable = ExampleModel::find(1);
     return $example_variable->example_column;
@@ -886,7 +886,7 @@ up till here
 ```
 ##### Find based on primary key (and return a field's values) or display an error
 - Route
-```
+```php
   Route::get('/ExampleRoute19', function(){
     $example_variable = ExampleModel::findOrFail(100);
     return $example_variable;
@@ -894,14 +894,14 @@ up till here
 ```
 ##### Find based on other conditions (and return a field's values)
 - Route
-```
+```php
   Route::get('/ExampleRoute19.5', function(){
     return $example_variable = ExampleModel::withTrashed()->orderBy('id','desc')->get();
   });
 ```
 ##### Find based on other conditions (and return a field's values) or display an error
 - Route
-```
+```php
   Route::get('/ExampleRoute20', function(){
     $example_variable = ExampleModel::where('id','>',50)->firstOrFail();
     return $example_variable;
@@ -911,7 +911,7 @@ up till here
 #### Update types
 ##### Update based on primary key
 - Route
-```
+```php
   Route::get('/ExampleRoute21', function(){
     $example_variable = ExampleModel::find(1);
     $example_variable->example_column = 'example_value5';
@@ -920,7 +920,7 @@ up till here
 ```
 ##### Update based on other conditions
 - Route
-```
+```php
   Route::get('/ExampleRoute22', function(){
     ExampleModel::where('id', 2)->where('example_column', 'example_value6')->update(['example_column'=>'example_value8', 'example_column_2'=>'example_value9']);
   });
@@ -930,7 +930,7 @@ up till here
 ##### Delete method 1
 - Note: this works only works when soft delete is not activated
 - Route
-```
+```php
   Route::get('/ExampleRoute23', function(){
     ExampleModel::find(2)->delete();
   });
@@ -938,21 +938,21 @@ up till here
 ##### Delete method 2
 - Note: this works only works when soft delete is not activated
 - Route
-```
+```php
   Route::get('/ExampleRoute24', function(){
     ExampleModel::destroy(3);
   });
 ```
 ##### Delete multiple
 - Route
-```
+```php
   Route::get('/ExampleRoute25', function(){
     ExampleModel::destroy([4,7]);
   });
-```  
+```
 ##### Delete one or multiple based on condition
 - Route
-```
+```php
   Route::get('/ExampleRoute26', function(){
     ExampleModel::where('example_column','example_value6')->delete();
   });
@@ -979,7 +979,7 @@ up till here
       - In the `down` method write `$table->dropColumn('deleted_at');`
 ##### Soft Delete
 - Route
-```
+```php
   Route::get('/ExampleRoute27', function(){
     ExampleModel::find(7)->delete();
   });
@@ -987,7 +987,7 @@ up till here
 ##### Read Items That Have Been Soft Deleted
 - Find all records
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute27.5', function(){
       $example_variable = ExampleModel::withTrashed()->get();
       foreach ($example_variable as $example_variable_part) {
@@ -997,7 +997,7 @@ up till here
   ```
 - Find all trashed
   - Route
-  ```
+  ```php
    Route::get('/ExampleRoute28', function(){
      $example_variable = ExampleModel::onlyTrashed()->get();
      return $example_variable;
@@ -1005,14 +1005,14 @@ up till here
   ```
 ##### Restore All Soft Deleted items
 - Route
-```
+```php
   Route::get('/ExampleRoute29', function(){
     ExampleModel::onlyTrashed()->restore();
   });
 ```
 ##### Normal Delete All Soft Deleted Items (While Soft Delete is Activated)
 - Route
-```
+```php
   Route::get('/ExampleRoute30', function(){
     ExampleModel::onlyTrashed()->forceDelete();
   });
@@ -1022,18 +1022,17 @@ up till here
 
 
 
-## <a name="8."></a> Chapter 8. Model with basic relationships
+### <a name="8."></a> Chapter 8. Model with basic relationships
 
-### Table Of Content
+#### Table Of Content
 
 - [Basic Relationships](#Basic-Relationships)
   - [One to One Relationship](#One-to-One-Relationship)
   - [One to Many Relationships](#One-to-Many-Relationships)
   - [Many to Many Relationships](#Many-to-Many-Relationships)
 
-### <a name=""></a> Basic Relationships
-
 #### <a name=""></a> Basic Relationships
+
 
 ##### <a name="General-2"></a> General
 - This section covers ORM queries that use tables that have interrelationships. Tables can be related like for instance records in one table can give further information about a record in another table. There are many different types of relationships though and here you'll see how to use them.
@@ -1047,7 +1046,7 @@ up till here
     - Set Up a New Table and Model Using the Shortcut (as previously demonstrated) - use these specs
       - Table name `example_parent_models`
       - Table columns
-      ```
+      ```php
         $table->string('example_column');
         $table->text('example_column_2');
       ```
@@ -1063,7 +1062,7 @@ up till here
     - Model
       - Add one of the following code blocks to the parent model's model
       - Method 1 - Specify the column to refer to for the child model's parent model id column
-      ```
+      ```php
         public funcion ExampleModel(){
           return $this->hasOne('App\ExampleModel', 'example_parent_model_id');
         }
@@ -1071,7 +1070,7 @@ up till here
         - So as you can see you do it in the `hasOne()` function's second parameter.
         - Also note your if your child  models's primary key column is not simple called `id` you can specify it as the third parameter.
       - Method 2 - Use default specifier which will be the parent model's name prepended with `_id` (also note that camel case `ExampleParentModel` converts to underscored `example_parent_model` and then obviously gets prepended `example_parent_model_id`)
-      ```
+      ```php
         public funcion ExampleModel(){
           return $this->hasOne('App\ExampleModel');
         }
@@ -1079,7 +1078,7 @@ up till here
         - Add this in the model's class
         - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
   - Child model
-  ```
+  ```php
     public function ExampleParentModel(){
       return $this->belongsTo('App\ExampleParentModel');
     }
@@ -1090,14 +1089,14 @@ up till here
     - Add model usage function to top `use App\ExampleParentModel;`
     - For the model: Add `example_parent_model_id` to the list fillable function list.
     - Route
-    ```
+    ```php
       Route::get('/ExampleRoute32', function(){
         ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
       });
     ```
   - View child of parent
     - Route
-        ```
+        ```php
           Route::get('/ExampleRoute33/{id}', function($id){
             return ExampleParentModel::find($id)->examplemodel;
           });
@@ -1105,7 +1104,7 @@ up till here
     - Test with `fundamental-mechanisms-app.test/ExampleRoute33/1`
   - View parent of child
     - Route
-        ```
+        ```php
           Route::get('/ExampleRoute34/{id}', function($id){
             return ExampleModel::find($id)->exampleparentmodel;
           });
@@ -1114,7 +1113,7 @@ up till here
 - Full CRUD
   - Create through a relative
     - Route
-      ```
+      ```php
       Route::get('/ExampleRoute34.1', function(){
         $example_variable = ExampleParentModel::findOrFail(1);
         $example_variable_2 = new ExampleModel(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
@@ -1124,7 +1123,7 @@ up till here
   - Read - we already did this, see "view" above
   - Update
     - Route
-      ```
+      ```php
       Route::get('/ExampleRoute34.2', function(){
         $example_variable = ExampleModel::whereExampleParentModelId(1)->first();
         $example_variable->example_column = "example_model_value_2";
@@ -1133,7 +1132,7 @@ up till here
       ```
   - Delete
     - Route
-      ```
+      ```php
         Route::get('/ExampleRoute34.3', function(){
           $example_variable = ExampleParentModel::findOrFail(1);
           $example_variable->ExampleModel->forceDelete();
@@ -1144,7 +1143,7 @@ up till here
 ##### <a name="One-to-Many-Relationships"></a> One to Many Relationships
 - Prerequisites
   - Parent model
-  ```
+  ```php
     public function ExampleModels(){
       return $this->hasMany('App\ExampleModel');
     }
@@ -1155,7 +1154,7 @@ up till here
 - Basic Queries
   - Read/view
     - Route
-    ```
+    ```php
       Route::get('/ExampleRoute35', function(){
         $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
         foreach ($example_variable as $example_variable_part){
@@ -1166,7 +1165,7 @@ up till here
 - Full CRUD
   - Read
     - Route
-    ```
+    ```php
       Route::get('/ExampleRoute35.1', function(){
         $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
         foreach ($example_variable as $example_variable_part){
@@ -1176,7 +1175,7 @@ up till here
     ```
   - Update
     - Route
-    ```
+    ```php
       Route::get('/ExampleRoute35.2', function(){
         $example_variable = ExampleParentModel::findOrFail(2);
         $example_variable_2 = $example_variable->examplemodels()->whereId(9);
@@ -1185,7 +1184,7 @@ up till here
     ```
   - Delete
     - Route
-    ```
+    ```php
     Route::get('/ExampleRoute35.3', function(){
       $example_variable = ExampleParentModel::findOrFail(1);
       $example_variable_2 = $example_variable->examplemodels()->whereId(8)->first();
@@ -1213,7 +1212,7 @@ up till here
             - The naming convention here is that:
               - They must be named according to the foreign tables the refer to and then have `_id` at the end.
             - E.g.
-            ```
+            ```php
               $table->integer('example_parent_model_id');
               $table->integer('example_grandparent_model_id');
             ```
@@ -1230,7 +1229,7 @@ up till here
       - Migration
         - Tables name `ExampleGrandparentModel`
         - Table columns
-        ```
+        ```php
           $table->string('name');
         ```        
       - Model
@@ -1238,7 +1237,7 @@ up till here
           - `name`
         - Grandparent model
           - Add this in the model's class
-          ```
+          ```php
             public function ExampleParentModels(){
               return $this->belongsToMany('App\ExampleParentModel');
             }
@@ -1249,7 +1248,7 @@ up till here
       - Short method
         - If the table pivot table name and it's foreign keys columns are named according to the convention then you can use this method.
         - Add this in the model's class
-        ```
+        ```php
           public function ExampleGrandparentModels(){
             return $this->belongsToMany('App\ExampleGrandparentModel')->withPivot('created_at');
           }
@@ -1257,7 +1256,7 @@ up till here
       - Long method
         - Add this in the model's class
         - If the table pivot table name and it's foreign keys columns aren't named according to the convention then you must use this method.
-        ```
+        ```php
           public function ExampleGrandparentModels(){
             return $this->belongsToMany('App\ExampleGrandparentModel', 'example_grandparent_model_example_parent_model', 'example_parent_model_id', 'example_grandparent_model_id');
           }
@@ -1269,7 +1268,7 @@ up till here
       - For the route name use: `/ExampleRoute38`
       - For the referenced model use `ExampleGrandparentModel`
       - E.g.
-      ```
+      ```php
         Route::get('/ExampleRoute38', function(){
           ExampleGrandparentModel::create(['name'=>'example_value_1']);
           ExampleGrandparentModel::create(['name'=>'example_value_2']);
@@ -1277,7 +1276,7 @@ up till here
       ```
     - Parents
       - 2 parent records
-      ```
+      ```php
       Route::get('/ExampleRoute40', function(){
         ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1']);
         ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1']);
@@ -1287,7 +1286,7 @@ up till here
       - Do as demonstrated in `insert record with multiple field values`
       - For the route name use: `/ExampleRoute36`
       - For the referenced model use `ExampleGrandparentModelExampleParentModel`
-      ```
+      ```php
         Route::get('/ExampleRoute36', function(){
           ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>1, 'example_grandparent_model_id'=>1]);
           ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>2]);
@@ -1296,7 +1295,7 @@ up till here
       ```
     - 2 relationship records through a parent and delete any old relationships for that parent
       - Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
-      ```
+      ```php
         Route::get('/ExampleRoute36.1', function(){
           ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->sync([2,3]);
         });
@@ -1304,7 +1303,7 @@ up till here
   - Read
     - Read parents of child
       - Type 1
-      ```
+      ```php
         Route::get('/ExampleRoute41', function(){
           $example_variable = ExampleParentModel::find(2);
           foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
@@ -1313,7 +1312,7 @@ up till here
         });
       ```
       - Type 2
-      ```
+      ```php
         Route::get('/ExampleRoute41.2', function(){
           $example_variable = ExampleParentModel::find(2);
           dd($example_variable->ExampleGrandparentModels);
@@ -1321,7 +1320,7 @@ up till here
       ```
     - Read parental relationships of child
       - Parent model's route
-        ```
+        ```php
         Route::get('/ExampleRoute42', function(){
           $example_variable = ExampleParentModel::find(2);
           foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
@@ -1331,7 +1330,7 @@ up till here
         ```
     - Read children of parent
         - Route
-        ```
+        ```php
           Route::get('/ExampleRoute43', function(){
             $example_variable = ExampleGrandparentModel::find(1);
             foreach ($example_variable->exampleparentmodels as $example_variable_part){
@@ -1341,13 +1340,13 @@ up till here
         ```
   - Update
     - Relationship through a parent record
-    ```
+    ```php
       Route::get('/ExampleRoute43.1', function(){
         ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->attach(1);
       });
     ```
     - Grandparent through parent record
-    ```
+    ```php
       Route::get('/ExampleRoute43.2', function(){
         $example_variable = ExampleParentModel::find(1);
         if($example_variable->has("ExampleGrandparentModels")){
@@ -1364,13 +1363,13 @@ up till here
     - Grandparent
       - 2 grandparent records
         - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-        ```
+        ```php
           Route::get('/ExampleRoute39', function(){
             ExampleGrandparentModel::destroy(3);
           });
         ```
       - Delete grandparent through parent
-      ```
+      ```php
         Route::get('/ExampleRoute39.2', function(){
           $example_variable = ExampleParentModel::find(1);
           foreach($example_variable->ExampleGrandparentModels as $example_variable2){
@@ -1386,13 +1385,13 @@ up till here
         });
       ```
       - Delete 1 Method 2
-      ```
+      ```php
         Route::get('/ExampleRoute37.1', function(){
           ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach(1);
         });
       ```
       - Delete all for parent
-      ```
+      ```php
         Route::get('/ExampleRoute37.2', function(){
           ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach();
         });
@@ -1416,22 +1415,22 @@ up till here
       - Migration
         - Tables name `ExampleGrandparent2Model`
         - Table columns
-        ```
+        ```php
           $table->string('name');
         ```        
       - Model
         - Allowable multiple value inserts
           - `name`
         - Relationship
-        ```
+        ```php
           public function ExampleModels(){
             return $this->hasManyThrough('App\ExampleModel', 'App\ExampleParentModel');
           }
         ```
           - The first table specifier/parameter is for the distant relative
           - The second table specifier/parameter is for the intermediate relative
-          - Then if the foreign id column in your intermediary table isn't the same name as the ExampleGrandparent2Model table (converted into camel case and without the "s" at the end) with ```_id``` at the end then you can put in a third parameter specifying its name.
-          - Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with ```_id``` at the end then you can put in a forth parameter specifying its name.
+          - Then if the foreign id column in your intermediary table isn't the same name as the ExampleGrandparent2Model table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a third parameter specifying its name.
+          - Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a forth parameter specifying its name.
     - Manage records
       - Create records
         - Route
@@ -1440,7 +1439,7 @@ up till here
           - For the route name use: `/ExampleRoute44`
           - For the referenced model use `ExampleGrandparent2Model`
           - E.g.
-          ```
+          ```php
             Route::get('/ExampleRoute44', function(){
               ExampleGrandparent2Model::create(['name'=>'example_value_1']);
               ExampleGrandparent2Model::create(['name'=>'example_value_2']);
@@ -1448,18 +1447,18 @@ up till here
           ```
       - Delete records
         - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-        ```
+        ```php
         Route::get('/ExampleRoute45', function(){
           ExampleGrandparent2Model::destroy(3);
         });
         ```
   - Parent model's new column
     - Setup it up
-      - Migration - As seen in the section ```Handling Columns with a Migration```
-        - Use the migration name of ```parent_model_example_grandparent2_model_id_column```
-        - Use the table specifier of ```example_parent_models```.
+      - Migration - As seen in the section `Handling Columns with a Migration`
+        - Use the migration name of `parent_model_example_grandparent2_model_id_column`
+        - Use the table specifier of `example_parent_models`.
         - Table columns
-        ```
+        ```php
           $table->integer('example_grandparent2_model_id');
         ```
         - Then activate migration      
@@ -1469,14 +1468,14 @@ up till here
     - Manage records
       - Create at least 2 records
       - To create 2 records
-      ```
+      ```php
       Route::get('/ExampleRoute46', function(){
         ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'1']);
         ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'2']);
       });
       ```
       - To delete records
-      ```
+      ```php
         Route::get('/ExampleRoute47', function(){
           ExampleParentModel::destroy(1);
           ExampleParentModel::destroy(2);
@@ -1487,16 +1486,16 @@ up till here
   - Manage records
     - Create at least 2 records
     - To create
-      - As done here ```Insert record with multiple field values```
+      - As done here `Insert record with multiple field values`
       - Use these details
-      ```
+      ```php
         Route::get('/ExampleRoute48', function(){
           ExampleModel::create(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
         });
       ```
-        - For the ```example_parent_model_id``` value use the id of whatever record you have that also has a example_grandparent2_model_id value. In my case it's ```13``` and ```14```.
+        - For the `example_parent_model_id` value use the id of whatever record you have that also has a example_grandparent2_model_id value. In my case it's `13` and `14`.
     - To delete
-    ```
+    ```php
       Route::get('/ExampleRoute49', function(){
         ExampleModel::find(1)->forceDelete();
         ExampleModel::find(2)->forceDelete();
@@ -1505,7 +1504,7 @@ up till here
     ```
   - View them as per grandparent
     - Parent model
-    ```
+    ```php
       public function ExampleModels(){
         return $this->hasMany('App\ExampleModel');
       }
@@ -1513,7 +1512,7 @@ up till here
       - Add this in the model's class
       - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
     - Route
-    ```
+    ```php
       Route::get('/ExampleRoute50', function(){
         $example_variable = ExampleGrandparent2Model::find(1);
         foreach ($example_variable->examplemodels as $example_variable_part){
@@ -1534,7 +1533,7 @@ up till here
             - Migration
                 - Table's name `ExampleGreatGrandChildModel`
                 - Table columns
-                ```
+                ```php
                   $table->integer('parent_id');
                   $table->string('parent_type');
                   $table->string('example_column');
@@ -1545,7 +1544,7 @@ up till here
                     - `parent_type`
                     - `example_column`
                 - Relationship
-                ```
+                ```php
                   public function parent() {
                     return $this->morphTo();
                   }
@@ -1558,7 +1557,7 @@ up till here
         - Model
             - Relationship
                 - Add this
-                ```
+                ```php
                   public function ExampleGreatGrandChildModels() {
                     return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
                   }
@@ -1567,7 +1566,7 @@ up till here
         - Model
             - Relationship
                 - Add this
-                ```
+                ```php
                   public function ExampleGreatGrandChildModels() {
                     return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
                   }
@@ -1584,14 +1583,14 @@ up till here
       - Create 2 great grandchild records
           - As done here `Insert record with multiple field values`
           - Use these details
-          ```
+          ```php
             Route::get('/ExampleRoute51', function(){
               ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleModel']);
               ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleParentModel']);
             });
           ```
       - Create a great grandchild record through a parent
-      ```
+      ```php
         Route::get('/ExampleRoute51.2', function(){
           ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->create(['example_column'=>'example_value']);
         });
@@ -1600,7 +1599,7 @@ up till here
       - View the descendent polymorphically
           - Example model
               - Route
-              ```
+              ```php
                 Route::get('/ExampleRoute53', function(){
                     $example_variable = ExampleModel::find(1);
                     foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
@@ -1610,7 +1609,7 @@ up till here
               ```
           - Example parent model
               - Route
-              ```
+              ```php
                 Route::get('/ExampleRoute54', function(){
                     $example_variable = ExampleParentModel::find(1);
                     foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
@@ -1620,7 +1619,7 @@ up till here
               ```
       - View the ancestor polymorphically (inverse of view the descendent polymorphically)
         - Route
-        ```
+        ```php
           Route::get('/ExampleRoute55', function(){
               $example_variable = ExampleGreatGrandChildModel::find(1);
               return $example_variable->parent;
@@ -1628,7 +1627,7 @@ up till here
         ```
     - Update
       - Update great grandchild through it's parent
-      ```
+      ```php
         Route::get('/ExampleRoute55.1', function(){
           $example_variable = ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->first();
           $example_variable->example_column = "example_value2";
@@ -1637,26 +1636,26 @@ up till here
       ```
       - Update a great grandchild's relationship through a parent
         - Give it a new parent
-        ```
+        ```php
           Route::get('/ExampleRoute55.2', function(){
             ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->save(ExampleGreatGrandChildModel::findOrFail(2));
           });
         ```
         - Remove it's parent
-        ```
+        ```php
           Route::get('/ExampleRoute55.3', function(){
             ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->update(['parent_id'=>'', 'parent_type'=>'']);
           });
         ```
     - Delete
       - Delete great grandchild records
-      ```
+      ```php
         Route::get('/ExampleRoute52', function(){
           ExampleGreatGrandChildModel::find(1)->forceDelete();
         });
       ```
       - Delete great grandchild record through parent
-      ```
+      ```php
         Route::get('/ExampleRoute52.1', function(){
           ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(7)->delete();
         });
@@ -1668,14 +1667,14 @@ up till here
             - Migration
                 - Table's name `ExampleParentModel2`
                 - Table columns
-                ```
+                ```php
                   $table->string('name');
                 ```
             - Model
                 - Allowable multiple value inserts
                     - `name`
                 - Relationship
-                ```
+                ```php
                   public function ExampleModels() {
                     return $this->morphedByMany('App\ExampleModel', 'example_parent_model2_relation');
                   }
@@ -1688,14 +1687,14 @@ up till here
             - Migration
                 - Table's name `ExampleParentModel2Relationship`
                 - Table columns
-                ```
+                ```php
                   $table->string('example_parent_model2_id');
                   $table->integer('example_parent_model2_relation_id');
                   $table->string('example_parent_model2_relation_type');
                 ```
             - Model
                 - Allowable multiple value inserts
-                ```
+                ```php
                   protected $fillable = [
                   'example_parent_model2_id',
                   'example_parent_model2_relation_id',
@@ -1706,7 +1705,7 @@ up till here
       - Model
           - Relationship
               - Add this
-              ```
+              ```php
                 public function ExampleParentModel2s() {
                   return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
                 }
@@ -1715,7 +1714,7 @@ up till here
       - Model
           - Relationship
               - Add this
-              ```
+              ```php
                 public function ExampleParentModel2s() {
                   return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
                 }
@@ -1725,7 +1724,7 @@ up till here
       - Create 2 parent 2 records
           - As done here `Insert record with multiple field values`
           - Use these details
-          ```
+          ```php
             Route::get('/ExampleRoute56', function(){
               ExampleParentModel2::create(['name'=>'grand-child2.1']);
               ExampleParentModel2::create(['name'=>'grand-child2.2']);
@@ -1734,21 +1733,21 @@ up till here
       - Create 2 relationship records
         - As done here `Insert record with multiple field values`
         - Bear in mind you can use either the `save()` function of the `attach()` function
-        ```
+        ```php
           Route::get('/ExampleRoute58', function(){
             ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'1', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleModel']);
             ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'2', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleGreatGrandChildModel']);
           });
         ```
       - Create relationship records through a child
-      ```
+      ```php
         Route::get('/ExampleRoute58.1', function(){
           $example_variable = ExampleParentModel2::findOrFail(1);
           ExampleModel::findOrFail(7)->ExampleParentModel2s()->save($example_variable);
         });
       ```
       - Create relationship records through a child and delete any old relationships for that child
-      ```
+      ```php
         Route::get('/ExampleRoute58.2 ', function(){
           ExampleModel::findOrFail(7)->ExampleParentModel2s()->sync([2]);
         });
@@ -1757,7 +1756,7 @@ up till here
       - View polymorphic parents of children
         - While specifying child type 1
           - Route
-          ```
+          ```php
           Route::get('/ExampleRoute60', function(){
               $example_variable = ExampleModel::find(1);
               foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
@@ -1767,7 +1766,7 @@ up till here
           ```
         - While specifying child type 2
           - Route
-          ```
+          ```php
           Route::get('/ExampleRoute61', function(){
               $example_variable = ExampleGreatGrandChildModel::find(1);
               foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
@@ -1776,7 +1775,7 @@ up till here
           });
           ```
         - Read the parent through child
-        ```
+        ```php
           Route::get('/ExampleRoute61.1', function(){
             $example_variable = ExampleModel::findOrFail(7);
             foreach($example_variable->ExampleParentModel2s as $example_variable2){
@@ -1787,7 +1786,7 @@ up till here
       - View child of a specified child type of the polymorphic parent (inverse of above). Polymorphic means shared between different tables/types of data.
         - While specifying child type 1
           - Route
-          ```
+          ```php
             Route::get('/ExampleRoute62', function(){
               $example_variable = ExampleParentModel2::find(1);
               foreach ($example_variable->ExampleModels as $example_variable_part) {
@@ -1797,7 +1796,7 @@ up till here
           ```
         - While specifying child type 2
           - Route
-          ```
+          ```php
           Route::get('/ExampleRoute63', function(){
             $example_variable = ExampleParentModel2::find(1);
             foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
@@ -1807,26 +1806,26 @@ up till here
           ```
     - Update
       - Update parent through child
-      ```
+      ```php
         Route::get('/ExampleRoute63.1', function(){
           $example_variable = ExampleModel::findOrFail(7)->ExampleParentModel2s->first()->update(['name'=>'updated']);
         });
       ```
     - Delete
       - Delete parent 2 records
-      ```
+      ```php
         Route::get('/ExampleRoute57', function(){
           ExampleParentModel2::find(1)->forceDelete();
         });
       ```   
       - Delete parent through child
-      ```
+      ```php
         Route::get('/ExampleRoute57.1', function(){
           $example_variable = ExampleObject::findOrFail(7)->ExampleParentModel2s->first()->delete();
         });
       ```
       - Delete parent 2 records
-      ```
+      ```php
         Route::get('/ExampleRoute59', function(){
           ExampleParentModel2Relationship::find(1)->forceDelete();
         });
@@ -1904,7 +1903,7 @@ up till here
 ### <a name="Dates"></a> Dates
 #### Basic Dates
 - Route
-```
+```php
   Route::get('/64', function (){
     $date = new DateTime('+1 weeks');
     echo $date->format('m-d-Y');
@@ -1915,41 +1914,41 @@ up till here
 - Setup
   - Laravel comes with a library called Carbon that helps with this
   - This the following code at the top of your route file
-  ```
+  ```php
     use Carbon\Carbon;
   ```
 - Usage  
   - Now (non-human readable)
     - Route
-    ```
+    ```php
       Route::get('/65', function (){
         echo Carbon::now();
       });
     ```
   - Now
     - Route
-    ```
+    ```php
       Route::get('/66', function (){
         echo Carbon::now()->diffForHumans();
       });
     ```
   - Ten Days from now
     - Route
-    ```
+    ```php
       Route::get('/67', function (){
         echo Carbon::now()->addDays(10)->diffForHumans();
       });
     ```
   - 5 Months Ago
     - Route
-    ```
+    ```php
       Route::get('/68', function (){
         echo Carbon::now()->subMonths(5)->diffForHumans();
       });
     ```
   - Yesterday
     - Route
-    ```
+    ```php
       Route::get('/69', function (){
         echo Carbon::now()->yesterday()->diffForHumans();
       });
@@ -1958,7 +1957,7 @@ up till here
 ### <a name="Accessors"></a> Accessors
 - Query without an accessor
   - Route
-  ```
+  ```php
     Route::get('/70', function(){
       $example_variable = ExampleModel::find(7);
       echo $example_variable->example_column;
@@ -1969,20 +1968,20 @@ up till here
     - Route: Reuse route `70` for this
     - Model
       - Upper Case First Letter
-      ```
+      ```php
         public function getExampleColumnAttribute($value) {
           return ucfirst($value);
         }
       ```
       - Or Upper Case All Letters
         - Change the returned value to
-        ```
+        ```php
           strtoupper($value);
         ```
 
 ### <a name="Mutators"></a> Mutators Model
   - Route
-  ```
+  ```php
     Route::get('/71', function(){
       $example_variable = ExampleObject::find(7);
       $example_variable->example_column = $example_variable->example_column;
@@ -1990,7 +1989,7 @@ up till here
     });
   ```
   - Model
-  ```
+  ```php
     public function setExampleColumnAttribute($value) {
       $this->attributes['example_column'] = strtoupper($value);
     }
@@ -2013,7 +2012,7 @@ up till here
 - Using a code editor or windows explorer locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\resources\views`.
 - Create a new .blade.php file, the name format should be camel case e.g. `ExampleView.blade.php`.:
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute2', function () {
       return view('ExampleView');
     });
@@ -2021,7 +2020,7 @@ up till here
   - View
     - Name `ExampleView.blade.php`
     - Content
-    ```
+    ```php
       Hello world!
     ```
 
@@ -2030,7 +2029,7 @@ up till here
 - A common example for this is to wrap all your html in html tags and to insert a generic head block.
 - Example:
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute9', function () {
       return view('ExampleView6');
     });
@@ -2039,7 +2038,7 @@ up till here
     - Location: `C:\laravel-apps\fundamental-mechanisms-app\resources\views\layouts` (you will need to create the "layouts" folder).
     - Name: `ExampleParentView.blade.php`.
     - Content:
-    ```
+    ```html
       <!DOCTYPE html>
       <html>
       <head>
@@ -2058,7 +2057,7 @@ up till here
     - Location: `C:\laravel-apps\fundamental-mechanisms-app\resources\views`
     - Name: `ExampleView6.blade.php`.
     - Content:
-    ```
+    ```html
       @extends('layouts.ExampleParentView')
       @section('content')
         <h1>Example content</h1>
@@ -2076,14 +2075,14 @@ up till here
     - `Route::get('/ExampleRoute6/{ExampleParameter}', 'ExampleController@ExampleControllerMethod3');`
   - Controller method
     - Method 1
-    ```
+    ```php
       public function ExampleControllerMethod3($ExampleParameter)
       {
         return view('ExampleView3')->with('ExampleParameter',$ExampleParameter);
       }
     ```
     - Method 2 (this method can also be used in controller that have multiple parameters)
-    ```
+    ```php
       public function ExampleControllerMethod3($ExampleParameter)
       {
         return view('ExampleView3', compact('ExampleParameter'));
@@ -2092,7 +2091,7 @@ up till here
   - View
     - Name `ExampleView3.blade.php`
     - Content
-    ```
+    ```php
       Example message with {{$ExampleParameter}}.
     ```
   - Test using something like: `fundamental-mechanisms-app.test/ExampleRoute6/example-parameter-string`.
@@ -2101,11 +2100,11 @@ up till here
 ##### As a set of variables
 - Example:
   - Route
-  ```
+  ```php
   Route::get('/ExampleRoute7/{ExampleParameter}/{ExampleParameter2}/{ExampleParameter3}', 'ExampleController@ExampleControllerMethod4');
   ```
   - Controller method
-  ```
+  ```php
     public function ExampleControllerMethod4($ExampleParameter, $ExampleParameter2, $ExampleParameter3)
     {
       return view('ExampleView4', compact('ExampleParameter','ExampleParameter2','ExampleParameter3'));
@@ -2114,7 +2113,7 @@ up till here
   - View
     - Name `ExampleView4.blade.php`
     - Content
-    ```
+    ```html
       Example message with {{$ExampleParameter}}, {{$ExampleParameter2}} and {{$ExampleParameter3}}.
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute7/1/2/3`.
@@ -2123,11 +2122,11 @@ up till here
 ##### As an array
 - Example:
   - Route
-  ```
+  ```php
     Route::get('/ExampleRoute8/{ExampleParameter}/{ExampleParameter2}/{ExampleParameter3}', 'ExampleController@ExampleControllerMethod5');
   ```
   - Controller Method
-  ```
+  ```php
     public function ExampleControllerMethod5($ExampleParameter, $ExampleParameter2, $ExampleParameter3)
     {
       $ExampleParameters = [$ExampleParameter,$ExampleParameter2,$ExampleParameter3];
@@ -2137,7 +2136,7 @@ up till here
   - View
     - Name `ExampleView5.blade.php`
     - Content
-    ```
+    ```html
       Example message with {{$ExampleParameters[0]}}, {{$ExampleParameters[1]}} and {{$ExampleParameters[2]}}.
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute8/1/2/3`.
@@ -2145,11 +2144,11 @@ up till here
 ### Control Structures - Foreach Loop
 - Example:
   - Route (same as in `Multiple Parameters - As an array`)
-  ```
+  ```php
     Route::get('/ExampleRoute10/{ExampleParameter}/{ExampleParameter2}/{ExampleParameter3}', 'ExampleController@ExampleControllerMethod6');
   ```
   - Controller (same as in `Multiple Parameters - As an array`)
-  ```
+  ```php
     public function ExampleControllerMethod6($ExampleParameter, $ExampleParameter2, $ExampleParameter3)
     {
       $ExampleParameters = [$ExampleParameter,$ExampleParameter2,$ExampleParameter3];
@@ -2159,7 +2158,7 @@ up till here
   - View
     - Name `ExampleView7.blade.php`
     - Content
-    ```
+    ```html
       Example message with:
       @if (count($ExampleParameters))
         <ul>
@@ -2210,7 +2209,7 @@ up till here
 	    - From the section on: Database 	
 	    - Video course's section: 41s
 	  - Columns
-	  ```
+	  ```php
 			$table->string('title');
 			$table->text('content');
 			$table->integer('user_id')->unsigned();    
@@ -2218,11 +2217,11 @@ up till here
 	  ```
 	  - Model methods
 	    - Part 1 (put this underneath the other `use` function)
-	    ```
+	    ```php
 	      use Illuminate\Database\Eloquent\SoftDeletes;
 	    ```
 	    - Part 2
-	    ```
+	    ```php
 		use SoftDeletes;
 		protected $dates = ['deleted_at'];
 		protected $table = 'posts';
@@ -2251,7 +2250,7 @@ up till here
 	    - Video course's section: 62
 	  - Columns: Already set
 	  - Model methods
-	  ```
+	  ```php
 	      public function Post(){
 		return $this->hasOne('App\Post');
 	      }
@@ -2271,12 +2270,12 @@ up till here
 	    - From the section on: Basic Relationships - Many to many 	
 	    - Video course's section: 66-67
 	  - Columns
-	  ```
+	  ```php
 			$table->integer('user_id');
 			$table->integer('role_id');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $table = 'role_user';
 	      protected $fillable = [
 		'user_id',
@@ -2289,11 +2288,11 @@ up till here
 	    - From the section on: Basic Relationships - Many to many  	
 	    - Video course's section: 	66-67
 	  - Columns
-	  ```
+	  ```php
 			$table->string('name');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $fillable = [
 	      'name'
 	      ];
@@ -2307,11 +2306,11 @@ up till here
 	    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
 	    - Video course's section: 68-70
 	  - Columns
-	  ```
+	  ```php
 			$table->string('name');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $fillable = [
 	      'name',
 	      ];
@@ -2325,13 +2324,13 @@ up till here
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
 	    - Video course's section: 71-73
 	  - Columns
-	  ```
+	  ```php
 			$table->integer('photo_relative_id');
 			$table->string('photo_relative_type');
 			$table->string('file');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $fillable = [
 		'photo_relative_id',
 		'photo_relative_type',
@@ -2347,11 +2346,11 @@ up till here
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
 	    - Video course's section: 71-73
 	  - Columns
-	  ```
+	  ```php
 			$table->string('file');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $fillable = [
 		'file',
 	      ];
@@ -2365,11 +2364,11 @@ up till here
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many  	
 	    - Video course's section: 	74-77
 	  - Columns
-	  ```
+	  ```php
 			$table->string('name');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $fillable = [
 	      'name',
 	      ];
@@ -2386,13 +2385,13 @@ up till here
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
 	    - Video course's section: 74-77
 	  - Columns
-	  ```
+	  ```php
 			$table->string('tag_id');
 			$table->integer('tag_relative_id');
 			$table->string('tag_relative_type');
 	  ```
 	  - Model methods
-	  ```
+	  ```php
 	      protected $fillable = [
 	      'tag_id',
 	      'tag_relative_id',
@@ -2408,7 +2407,7 @@ up till here
 - Create and orientate yourself to a subfolder called `layouts`
 - Create the file `app.blade.php`
 - Add this to its contents
-```
+```html
   <!DOCTYPE html>
   <html>
   <head>
@@ -2442,7 +2441,7 @@ up till here
 
 - Controller: `php artisan make:controller --resource PostsController`
 - Route  
-```
+```php
   Route::resource('/posts','PostsController');
 ```
   - Check all the resultant routes
@@ -2462,7 +2461,7 @@ up till here
 	- Part 1
 	  - View
 	    - Orientate yourself to `create.blade.php`
-	    ```
+	    ```html
 	      @extends('layouts.app')
 	      @section('content')
 	      <h1>Create Post</h1>
@@ -2475,7 +2474,7 @@ up till here
 	    ```
 	  - Controller
 	    - This goes in the posts controller's "create" method
-	    ```
+	    ```php
 	      return view('posts.create');
 	    ```
 	- Part 2
@@ -2486,30 +2485,30 @@ up till here
 	    - This goes in the posts controller's "store" method
 	      - Part A
 		- Option 1
-		```
+		```php
 		  Post::create($request->all());
 		```
 		- Option 2
-		```
+		```php
 		  $input = $request->all();
 		  $input['title'] = $request->title;
 		  Post::create($request->all());
 		```
 		- Option 3
-		```
+		```php
 		  $post = new Post;
 		  $post->title = $request->title;
 		  $post->save();
 		```
 	      - Part B
-	      ```
+	      ```php
 		return redirect('/posts');
 	      ```
 	- Test URL: `../posts/create`
 - Lists Posts page
 	- View
 	  - Orientate yourself to `index.blade.php`
-	  ```
+	  ```html
 	    @extends('layouts.app')
 	    @section('content')
 	    <h1>List Posts</h1>
@@ -2524,18 +2523,18 @@ up till here
 	- Controller
 	  - This goes in the posts controller's "index" method
 	    - Part 1
-	    ```
+	    ```php
 	      $posts = Post::all();
 	    ```
 	    - Part 2
-	    ```
+	    ```php
 	      return view('posts.index', compact('posts'));
 	    ```
 	- Test URL: `../posts`
 - View Posts page
 	- View
 	  - Orientate yourself to `show.blade.php`
-	  ```
+	  ```html
 	    @extends('layouts.app')
 	    @section('content')
 	    <h1>View Post</h1>
@@ -2544,7 +2543,7 @@ up till here
 	  ```
 	- Controller
 	  - This goes in the posts controller's "show" method
-	  ```
+	  ```php
 	    $post = Post::findorfail($id);
 	    return view('posts.show', compact('post'));
 	  ```
@@ -2553,7 +2552,7 @@ up till here
 	- Part 1
 	  - View
 	    - Orientate yourself to `edit.blade.php`
-	    ```
+	    ```html
 	    @extends('layouts.app')
 	    @section('content')
 	    <h1>Edit Post</h1>
@@ -2572,14 +2571,14 @@ up till here
 	    ```
 	  - Controller
 	    - This goes in the posts controller's "edit" method
-	    ```
+	    ```php
 	      $post = Post::findOrFail($id);
 	      return view('posts.edit', compact('post'));
 	    ```
 	- Part 2
 	  - Controller
 	    - This goes in the posts controller's "update" method
-	    ```
+	    ```php
 	      $post = Post::findOrFail($id);
 	      $post->update($request->all());
 	      return redirect('/posts');
@@ -2587,7 +2586,7 @@ up till here
 	- Part 3
 	  - Controller
 	    - This goes in the posts controller's "delete" method
-	    ```
+	    ```php
 	      $post = Post::whereId($id)->first()->delete();
 	      return redirect('/posts');
 	    ```
@@ -2610,18 +2609,18 @@ up till here
 	    - Orientate yourself to `config/app.php`
 	    - Paste the following code directly above the existing comment
 	      - The code
-	      ```
+	      ```php
 	      Collective\Html\HtmlServiceProvider::class,
 	      ```
 	      - The comment
-	      ```
+	      ```php
 		/*
 		 * Application Service Providers...
 		 */
 	      ```
 	  - Part 2
 	    - Orientate yourself to `config/app.php` and paste the following code as a new line in the `'aliases'` section. Make sure to put a comma after the previous item.
-	    ```
+	    ```php
 	      'Form' => Collective\Html\FormFacade::class,
 	      'Html' => Collective\Html\HtmlFacade::class,
 	    ```
@@ -2631,7 +2630,7 @@ up till here
 	- View
 	  - Orientate yourself to `create.blade.php`
 	  - Edit the file to look like this
-	  ```
+	  ```html
 	    @extends('layouts.app')
 	    @section('content')
 	    <h1>Create Post</h1>
@@ -2650,20 +2649,20 @@ up till here
 	- View
 	  - Orientate yourself to `index.blade.php`
 	  - Edit the file to look like this
-	  ```
+	  ```html
 	  ```
 - View Posts page
 	- View
 	  - Orientate yourself to `show.blade.php`
 	  - Edit the file to look like this
-	  ```
+	  ```html
 	  ```
 - Edit/Delete Posts page
 	- View
 	  - Orientate yourself to `edit.blade.php`
 	  - Edit the file
 	    - Final result
-	    ```
+	    ```html
 	      @extends('layouts.app')
 	      @section('content')
 	      <h1>Edit Post</h1>
@@ -2694,7 +2693,7 @@ up till here
 		    - Used the opening form function `model` not `open` and add a new parameter of `$post` which goes first
 		    - Made the action an array so that it can also include `$post->id`
 		    - So it looks like this
-		    ```
+		    ```html
 		    {!! Form::model($post, ['method'=>'PATCH', 'action'=>'PostsController@update']) !!}
 		    ```
 	      - Delete part
@@ -2708,7 +2707,7 @@ up till here
 		  - For the opening form function
 		    - Made the action an array so that it can also include `$post->id`
 		    - So it looked like this
-		    ```
+		    ```html
 		    {!! Form::open(['method'=>'DELETE', 'action'=>['PostsController@destroy', $post->id]]) !!}
 		    ```
 
@@ -2721,7 +2720,7 @@ up till here
   - Name: `LC Form Builder Sumbit Button`
   - Shortcut: `LCsumbit`
   - Sample:
-  ```
+  ```html
     '''
       <div class="form-group">
         {!! Form::submit('$1', ['class'=>'btn btn-$2']) !!}
@@ -2733,7 +2732,7 @@ up till here
   - Name: `LC Form Builder Text input`
   - Shortcut: `LCtextinput`
   - Sample:
-  ```
+  ```html
     '''
       <div class="form-group">
         {!! Form::label('$1', '$2:') !!}
@@ -2746,7 +2745,7 @@ up till here
   - Name: `LC Form Builder Form`
   - Shortcut: `LCform`
   - Sample:
-  ```
+  ```html
     '''
     {!! Form::open(['method'=>'$1', 'action'=>'PostsController@$2']) !!}
       <div class="form-group">
@@ -2770,7 +2769,7 @@ up till here
   - Create Post page
     - "Store" controller
       - Add the `basic request validator` code below to the store method and make sure it goes above it's sibling functions
-      ```
+      ```php
         $this->validate($request, [
           'title'=>'required|max:50',
         ]);
@@ -2779,7 +2778,7 @@ up till here
     - View
       - Orientate yourself to `create.blade.php`
       - Add the following code after the form
-      ```
+      ```html
         @if(count($errors) > 0)
           <div class="alert alert-danger">
             <ul>
@@ -2794,16 +2793,16 @@ up till here
   - Request
     - Make new one
       - Orientate with
-      ```
+      ```shell
         cd C:/laravel-apps/real-world-examples-app
       ```
       - Run
-      ```
+      ```shell
         php artisan make:request CreatePostRequest
       ```
     - Edit it
       - Orientate yourself to
-      ```
+      ```html
         app\Http\Requests\CreatePostRequest.php
       ```
       - In the authorize method set the return value to
@@ -2816,15 +2815,15 @@ up till here
     - Using the request
       - Option 1
         - Change the first part of the store method's parameter (the `Request` part) to `Requests\CreatePostRequest` so it looks like
-        ```
+        ```php
           public function store(Requests\CreatePostRequest $request)
         ```
       - Option 2
         - Change the first part of the store method's parameter (the `Request` part) to `CreatePostRequest` so it looks like
-          ```
+          ```php
             public function store(CreatePostRequest $request)
           ```
         - Add the usage function to the top of this file (directly under the "namespace" function)
-        ```
+        ```php
           use App\Http\Requests\CreatePostRequest;
         ```

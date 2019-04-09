@@ -666,9 +666,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Put this into your model's class
 		```
 			protected $fillable = [
-				'DataTypeA',
-				'DataTypeB',
-				'DataTypeC',
+				'data_field_a',
+				'data_field_b',
+				'data_field_c',
 			];
 		```
 - Importing model into the controller
@@ -701,343 +701,325 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - SQL is a language for managing the data in a database.
 
 #### Create (Insert)
-- Example:
-	- Try this out
-	- Route
-		- Reuse the ```/URLCreate/{a}``` route
-	- Controller method
-		- Import the model - put `use App\TypeAPost;` in the header of your controller
-		- Script
-	  ```
-			public function MethodCreate($a)
-		  {
-		    TypeAPost::model_create($a, $a, $a);
-		  }
-	  ```
-	- Model
-		- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
-		```
-			static function model_create($a, $b, $c)
-	    {
-	      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
-	    }
-		```
-	- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
+- Try this out
+- Route
+	- Reuse the ```/URLCreate/{a}``` route
+	- Where the name is: `URLCreate`
+	- And the parameters are: `{a}`
+- Controller method
+	- Import the model - put `use App\TypeAPost;` in the header of your controller
+	- Here's the entire body of code
+  ```
+		public function MethodCreate($a)
+	  {
+	    TypeAPost::model_create($a, $a, $a);
+	  }
+  ```
+	- Where the name is: `MethodCreate`
+	- The parameters are: `$a`
+	- And the script is: `TypeAPost::model_create($a, $a, $a);`
+- Model method
+	- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
+	- Heres the entire body of code
+	```
+		static function model_create($a, $b, $c)
+    {
+      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
+    }
+	```
+	- Where the name is: `insert`
+	- The parameters are: `$a, $b, $c`
+	- The query is: `DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
+	- And model method type is: `static`
+- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
 
 #### Read
-- Use `DB::select();`
-- Example:
-	- Try this out
-	- Route:
-		- Name: reuse `URLRead/{a}`
-	- Controller method:
-		- Name: reuse `MethodRead`
-		- Parameters: `$a`
-		- Script: `return "<pre>".var_dump(TypeAPost::model_read($a))."</pre>";`
-	- Model:
-		- Name: `model_read`
-		- Parameters: `$a`
-		- Query: `return DB::select('select * from type_a_posts where data_field_a  = ?', [$a]);`
-	- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
+- Try this out
+- Route:
+	- Name: reuse `URLRead/{a}`
+- Controller method:
+	- Name: reuse `MethodRead`
+	- Parameters: `$a`
+	- Script: `return "<pre>".var_dump(TypeAPost::model_read($a))."</pre>";`
+- Model method:
+	- Name: `model_read`
+	- Parameters: `$a`
+	- Query: `return DB::select('select * from type_a_posts where data_field_a  = ?', [$a]);`
+	- Model method type is: `static`
+- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 #### Update
-- Use `DB::update($a);`
-- Example:
-	- Try this out:
-	- Route:
-		- Name: reuse `URLUpdate/{a}/{b}`
-		- Association: `MethodUpdate`
-	- Controller method:
-		- Name: `MethodUpdate`
-		- Parameters: `$a, $b`
-		- Script: `TypeAPost::model_update($a, $b);`
-	- Model:
-		- Name: `model_update`
-		- Parameters: `$a, $b`
-		- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
-	- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
+- Try this out:
+- Route:
+	- Name: reuse `URLUpdate/{a}/{b}`
+	- Association: `MethodUpdate`
+- Controller method:
+	- Name: `MethodUpdate`
+	- Parameters: `$a, $b`
+	- Script: `TypeAPost::model_update($a, $b);`
+- Model method:
+	- Name: `model_update`
+	- Parameters: `$a, $b`
+	- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
+	- Model method type is: `static`
+- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
 
 
 #### Delete
-- Use `DB::delete();`
-- Example:
-	- Try this out
-	- Route:
-		- Name: reuse `URLDelete/{a}`
-		- Association: `MethodDelete`
-		- Parameters `$a`
-	- Controller method:
-		- Name: `MethoDelete`
-		- Parameters `$a`
-		- Script: `TypeAPost::model_delete($a);`
-	- Model:
-		- Name: `model_delete`
-		- Parameters `$a`
-		- Query `DB::delete('delete from type_a_posts where id = ?', [$a]);`
-	- URL example: `fundamental-mechanisms-app.test/URLDelete/1`
+- Try this out
+- Route:
+	- Name: reuse `URLDelete/{a}`
+	- Association: `MethodDelete`
+	- Parameters `$a`
+- Controller method:
+	- Name: `MethoDelete`
+	- Parameters `$a`
+	- Script: `TypeAPost::model_delete($a);`
+- Model method:
+	- Name: `model_delete`
+	- Parameters `$a`
+	- Query `DB::delete('delete from type_a_posts where id = ?', [$a]);`
+	- Model method type is: `static`
+- URL example: `fundamental-mechanisms-app.test/URLDelete/1`
+
+
+
+### <a name="7.3."></a> ORM Models
+
+#### Create types
+##### Method 1
+- Try this out
+- Route:
+	- Name: reuse `URLCreate/{a}`
+- Controller method:
+	- Name: reuse `MethoDeleteCreate`
+	- Parameters `$a`
+	- Script:
+	```
+		$var = new TypeAPost;
+		$var->data_field_a = $a;
+		$var->data_field_b = $a;
+		$var->data_field_c = $a;
+		$var->save();
+	```
+- Model method:
+	- Name: this one is all ready automatically made
+- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
+
+##### Method 2
+- Try this out
+- Route:
+	- Name: reuse `URLCreate/{a}`
+- Controller method:
+	- Name: reuse `MethoDeleteCreate`
+	- Parameters `$a`
+	- Script:
+	```
+		TypeAPost::create([
+      'data_field_a'=>$a,
+      'data_field_b'=>$a,
+      'data_field_c'=>$a
+    ]);
+	```
+- Model method:
+	- Name: this one is all ready automatically made
+- Model helper variable helper: this is where the `$fillable` variable comes in handy
+- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
 ---
 up till here
 ---
 
-### <a name="7.3."></a> ORM Models
-
-
-
-#### Query Types
-##### Create types
-- Insert record with one field value
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute15', function(){
-        $example_variable = new ExampleModel;
-        $example_variable->example_column = 'example_value4';
-        $example_variable->save();
-      });
-    ```
-- Insert record with multiple field values
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute16', function(){
-        ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1]);
-      });
-    ```
-    - Model
-      - Make sure your model to allows this by configuring it like this, make sure all the relevant columns are listed in your model's class
-      - Example
-      ```
-        protected $fillable = [
-          'example_column',
-          'example_column_2',
-          'example_column_3',
-        ];
-      ```
-
-##### Read types
-- Find all records (and return a field's values)
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute17', function(){
-        $example_variable = ExampleModel::all();
-        foreach ($example_variable as $example_variable_part) {
-            echo $example_variable_part->example_column."<br>";
-        }
-      });
-    ```
-- Find all records and sort by date created
-  - Method 1
-    - Route
-    ```
-      Route::get('/ExampleRoute17.1', function(){
-        $example_variable = ExampleModel::latest()->get();
-        foreach ($example_variable as $example_variable_part) {
-            echo $example_variable_part->example_column."<br>";
-        }
-      });
-    ```
-  - Method 2
-    - Route
-    ```
-      Route::get('/ExampleRoute17.2', function(){
-        $example_variable = ExampleModel::orderBy('id', 'desc')->get();
-        foreach ($example_variable as $example_variable_part) {
-            echo $example_variable_part->example_column."<br>";
-        }
-      });
-    ```
-  - Method 3
-    - Route
-    ```
-      Route::get('/ExampleRoute17.3', function(){
-        $example_variable = ExampleModel::orderBy('id', 'asc')->get();
-        foreach ($example_variable as $example_variable_part) {
-            echo $example_variable_part->example_column."<br>";
-        }
-      });
-    ```
-- Find based on primary key (and return a field's values)
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute18', function(){
-        $example_variable = ExampleModel::find(1);
-        return $example_variable->example_column;
-      });
-    ```
-- Find based on primary key (and return a field's values) or display an error
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute19', function(){
-        $example_variable = ExampleModel::findOrFail(100);
-        return $example_variable;
-      });
-    ```
-- Find based on other conditions (and return a field's values)
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute19.5', function(){
-        return $example_variable = ExampleModel::withTrashed()->orderBy('id','desc')->get();
-      });
-    ```
-- Find based on other conditions (and return a field's values) or display an error
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute20', function(){
-        $example_variable = ExampleModel::where('id','>',50)->firstOrFail();
-        return $example_variable;
-      });
-    ```
-
-##### Update types
-- Update based on primary key
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute21', function(){
-        $example_variable = ExampleModel::find(1);
-        $example_variable->example_column = 'example_value5';
-        $example_variable->save();
-      });
-    ```
-- Update based on other conditions
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute22', function(){
-        ExampleModel::where('id', 2)->where('example_column', 'example_value6')->update(['example_column'=>'example_value8', 'example_column_2'=>'example_value9']);
-      });
-    ```
-
-##### Delete types
-- Delete method 1
-  - Note: this works only works when soft delete is not activated
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute23', function(){
-        ExampleModel::find(2)->delete();
-      });
-    ```
-- Delete method 2
-  - Note: this works only works when soft delete is not activated
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute24', function(){
-        ExampleModel::destroy(3);
-      });
-    ```
-- Delete multiple
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute25', function(){
-        ExampleModel::destroy([4,7]);
-      });
-    ```  
-- Delete one or multiple based on condition
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute26', function(){
-        ExampleModel::where('example_column','example_value6')->delete();
-      });
-    ```
-
-##### Soft Delete Functionality
-- General
-  - Records that are deleted softly are not properly deleted but they wont display when functions like `findAll` are run.
-  - Activate soft delete
-    - Examples
-      - Model
-        - General
-          - File - All of the following functions must go in the same file with this name `ExampleModel`
-        - Function 1
-          - Make sure this function is at beginning of the file just after a similar one but outside the class `use Illuminate\Database\Eloquent\SoftDeletes;`
-        - Function 2
-          - Make sure this function is at beginning of the class `use SoftDeletes;`
-        - Function 3
-          - Make sure this function is at beginning of the class but after the "use" functions `protected $dates = ['deleted_at'];`
-      - Database
-        - Add a new column handling migration called `deleted_at` with an associated table of `example_models`.
-        - Edit the new migration    
-          - Locate and open the files
-          - In the  `up` moethod write `$table->softDeletes();`
-          - In the `down` method write `$table->dropColumn('deleted_at');`
-- Soft Delete
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute27', function(){
-        ExampleModel::find(7)->delete();
-      });
-    ```
-- Read Items That Have Been Soft Deleted
-  - Find all records
-    - Example
-      - Route
-      ```
-        Route::get('/ExampleRoute27.5', function(){
-          $example_variable = ExampleModel::withTrashed()->get();
-          foreach ($example_variable as $example_variable_part) {
-              echo $example_variable_part."<br>";
-          }
-        });
-      ```
-  - Find all trashed
-    - Example
-      - Route
-      ```
-       Route::get('/ExampleRoute28', function(){
-         $example_variable = ExampleModel::onlyTrashed()->get();
-         return $example_variable;
-       });
-      ```
-- Restore All Soft Deleted items
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute29', function(){
-        ExampleModel::onlyTrashed()->restore();
-      });
-    ```
-- Normal Delete All Soft Deleted Items (While Soft Delete is Activated)
-  - Example
-    - Route
-    ```
-      Route::get('/ExampleRoute30', function(){
-        ExampleModel::onlyTrashed()->forceDelete();
-      });
-    ```
-    - First make sure record with id 6 is soft deleted again (using exampleroute27) before running this
-
-####  Query Scope
-- Example Model
+#### Read types
+##### Find all records (and return a field's values)
+- Route
+```
+  Route::get('/ExampleRoute17', function(){
+    $example_variable = ExampleModel::all();
+    foreach ($example_variable as $example_variable_part) {
+        echo $example_variable_part->example_column."<br>";
+    }
+  });
+```
+##### Find all records and sort by date created
+- Method 1
   - Route
   ```
-    Route::get('/30.1', function(){
-      $example_variable = ExampleModel::latest();
+    Route::get('/ExampleRoute17.1', function(){
+      $example_variable = ExampleModel::latest()->get();
       foreach ($example_variable as $example_variable_part) {
           echo $example_variable_part->example_column."<br>";
       }
     });
   ```
+- Method 2
+  - Route
+  ```
+    Route::get('/ExampleRoute17.2', function(){
+      $example_variable = ExampleModel::orderBy('id', 'desc')->get();
+      foreach ($example_variable as $example_variable_part) {
+          echo $example_variable_part->example_column."<br>";
+      }
+    });
+  ```
+- Method 3
+  - Route
+  ```
+    Route::get('/ExampleRoute17.3', function(){
+      $example_variable = ExampleModel::orderBy('id', 'asc')->get();
+      foreach ($example_variable as $example_variable_part) {
+          echo $example_variable_part->example_column."<br>";
+      }
+    });
+  ```
+##### Find based on primary key (and return a field's values)
+- Route
+```
+  Route::get('/ExampleRoute18', function(){
+    $example_variable = ExampleModel::find(1);
+    return $example_variable->example_column;
+  });
+```
+##### Find based on primary key (and return a field's values) or display an error
+- Route
+```
+  Route::get('/ExampleRoute19', function(){
+    $example_variable = ExampleModel::findOrFail(100);
+    return $example_variable;
+  });
+```
+##### Find based on other conditions (and return a field's values)
+- Route
+```
+  Route::get('/ExampleRoute19.5', function(){
+    return $example_variable = ExampleModel::withTrashed()->orderBy('id','desc')->get();
+  });
+```
+##### Find based on other conditions (and return a field's values) or display an error
+- Route
+```
+  Route::get('/ExampleRoute20', function(){
+    $example_variable = ExampleModel::where('id','>',50)->firstOrFail();
+    return $example_variable;
+  });
+```
+
+#### Update types
+##### Update based on primary key
+- Route
+```
+  Route::get('/ExampleRoute21', function(){
+    $example_variable = ExampleModel::find(1);
+    $example_variable->example_column = 'example_value5';
+    $example_variable->save();
+  });
+```
+##### Update based on other conditions
+- Route
+```
+  Route::get('/ExampleRoute22', function(){
+    ExampleModel::where('id', 2)->where('example_column', 'example_value6')->update(['example_column'=>'example_value8', 'example_column_2'=>'example_value9']);
+  });
+```
+
+#### Delete types
+##### Delete method 1
+- Note: this works only works when soft delete is not activated
+- Route
+```
+  Route::get('/ExampleRoute23', function(){
+    ExampleModel::find(2)->delete();
+  });
+```
+##### Delete method 2
+- Note: this works only works when soft delete is not activated
+- Route
+```
+  Route::get('/ExampleRoute24', function(){
+    ExampleModel::destroy(3);
+  });
+```
+##### Delete multiple
+- Route
+```
+  Route::get('/ExampleRoute25', function(){
+    ExampleModel::destroy([4,7]);
+  });
+```  
+##### Delete one or multiple based on condition
+- Route
+```
+  Route::get('/ExampleRoute26', function(){
+    ExampleModel::where('example_column','example_value6')->delete();
+  });
+```
+
+#### Soft delete types
+##### General
+- Records that are deleted softly are not properly deleted but they wont display when functions like `findAll` are run.
+- Activate soft delete
   - Model
+    - General
+      - File - All of the following functions must go in the same file with this name `ExampleModel`
+    - Function 1
+      - Make sure this function is at beginning of the file just after a similar one but outside the class `use Illuminate\Database\Eloquent\SoftDeletes;`
+    - Function 2
+      - Make sure this function is at beginning of the class `use SoftDeletes;`
+    - Function 3
+      - Make sure this function is at beginning of the class but after the "use" functions `protected $dates = ['deleted_at'];`
+  - Database
+    - Add a new column handling migration called `deleted_at` with an associated table of `example_models`.
+    - Edit the new migration    
+      - Locate and open the files
+      - In the  `up` moethod write `$table->softDeletes();`
+      - In the `down` method write `$table->dropColumn('deleted_at');`
+##### Soft Delete
+- Route
+```
+  Route::get('/ExampleRoute27', function(){
+    ExampleModel::find(7)->delete();
+  });
+```
+##### Read Items That Have Been Soft Deleted
+- Find all records
+  - Route
   ```
-    public static function scopeLatest($query){
-      return $query->orderBy('id', 'desc')->get();
-    }
+    Route::get('/ExampleRoute27.5', function(){
+      $example_variable = ExampleModel::withTrashed()->get();
+      foreach ($example_variable as $example_variable_part) {
+          echo $example_variable_part."<br>";
+      }
+    });
   ```
+- Find all trashed
+  - Route
+  ```
+   Route::get('/ExampleRoute28', function(){
+     $example_variable = ExampleModel::onlyTrashed()->get();
+     return $example_variable;
+   });
+  ```
+##### Restore All Soft Deleted items
+- Route
+```
+  Route::get('/ExampleRoute29', function(){
+    ExampleModel::onlyTrashed()->restore();
+  });
+```
+##### Normal Delete All Soft Deleted Items (While Soft Delete is Activated)
+- Route
+```
+  Route::get('/ExampleRoute30', function(){
+    ExampleModel::onlyTrashed()->forceDelete();
+  });
+```
+- First make sure record with id 6 is soft deleted again (using exampleroute27) before running this
+
+
 
 
 ## <a name="8."></a> Chapter 8. Model with basic relationships
@@ -1998,8 +1980,7 @@ up till here
           strtoupper($value);
         ```
 
-### <a name="Mutators"></a> Mutators
-- Example Model
+### <a name="Mutators"></a> Mutators Model
   - Route
   ```
     Route::get('/71', function(){
@@ -2030,8 +2011,7 @@ up till here
 
 ### How to Create Them
 - Using a code editor or windows explorer locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\resources\views`.
-- Create a new .blade.php file, the name format should be camel case e.g. `ExampleView.blade.php`.
-- Example:
+- Create a new .blade.php file, the name format should be camel case e.g. `ExampleView.blade.php`.:
   - Route
   ```
     Route::get('/ExampleRoute2', function () {

@@ -7,7 +7,7 @@ Our beliefs shape our behaviour which in turn shapes our destiny.
 ## Disharmonious destiny  
 The nature of a disharmonious destiny is one which is thwarted with social issues.
 
-The cause of a disharmonious destiny is the belief that people are the center of life as this leads us to also believe that heirarchies of people and thus inequality is natural. These beliefs make us behave in a way that re-enforces inequality onto ourselves. 
+The cause of a disharmonious destiny is the belief that people are the center of life as this leads us to also believe that hierarchies of people and thus inequality is natural. These beliefs make us behave in a way that re-enforces inequality onto ourselves. 
 
 ## Harmonious destiny 
 The nature of a harmonious destiny is one which is has no social issues. 

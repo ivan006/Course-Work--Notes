@@ -773,14 +773,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Route:
 	- Name: reuse `URLDelete/{a}`
 	- Association: `MethodDelete`
-	- Parameters `$a`
+	- Parameters: `$a`
 - Controller method:
-	- Name: `MethoDelete`
-	- Parameters `$a`
+	- Name: `MethodDelete`
+	- Parameters: `$a`
 	- Script: `TypeAPost::model_delete($a);`
 - Model method:
 	- Name: `model_delete`
-	- Parameters `$a`
+	- Parameters: `$a`
 	- Query `DB::delete('delete from type_a_posts where id = ?', [$a]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLDelete/1`
@@ -795,8 +795,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Route:
 	- Name: reuse `URLCreate/{a}`
 - Controller method:
-	- Name: reuse `MethoDeleteCreate`
-	- Parameters `$a`
+	- Name: reuse `MethodCreate`
+	- Parameters: `$a`
 	- Script:
 	```php
 		$var = new TypeAPost;
@@ -814,8 +814,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Route:
 	- Name: reuse `URLCreate/{a}`
 - Controller method:
-	- Name: reuse `MethoDeleteCreate`
-	- Parameters `$a`
+	- Name: reuse `MethodCreate`
+	- Parameters: `$a`
 	- Script:
 	```php
 		TypeAPost::create([
@@ -830,133 +830,175 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
----
-up till here
----
 
 #### Read types
 ##### Find all records (and return a field's values)
-- Route
-```php
-  Route::get('/ExampleRoute17', function(){
-    $example_variable = ExampleModel::all();
-    foreach ($example_variable as $example_variable_part) {
-        echo $example_variable_part->example_column."<br>";
-    }
-  });
-```
+- Try this out
+- Route:
+	- Name: reuse `URLRead`
+	- Parameters: none
+- Controller method:
+	- Name: reuse `MethodRead`
+	- Parameters: none
+	- Script:
+	```php
+		foreach (TypeAPost::all() as $var) {
+				echo $var->data_field_a."<br>";
+		}
+	```
+- Model method:
+	- Name: this one is all ready automatically made
+- URL example: `fundamental-mechanisms-app.test/URLRead`
+
 ##### Find all records and sort by date created
 - Method 1
-  - Route
-  ```php
-    Route::get('/ExampleRoute17.1', function(){
-      $example_variable = ExampleModel::latest()->get();
-      foreach ($example_variable as $example_variable_part) {
-          echo $example_variable_part->example_column."<br>";
-      }
-    });
-  ```
+	- Try this out
+	- Route:
+		- Name: reuse `URLRead`
+		- Parameters: none
+	- Controller method:
+		- Name: reuse `MethodRead`
+		- Parameters: none
+		- Script:
+		```php
+			foreach (TypeAPost::latest()->get() as $var) {
+					echo $var->data_field_a."<br>";
+			}
+		```
+	- Model method:
+		- Name: this one is all ready automatically made
+	- URL example: `fundamental-mechanisms-app.test/URLRead`
 - Method 2
-  - Route
-  ```php
-    Route::get('/ExampleRoute17.2', function(){
-      $example_variable = ExampleModel::orderBy('id', 'desc')->get();
-      foreach ($example_variable as $example_variable_part) {
-          echo $example_variable_part->example_column."<br>";
+	- Try this out
+	- Controller method:
+		- Script:
+		```php
+      foreach (TypeAPost::orderBy('id', 'desc')->get() as $var) {
+          echo $var->data_field_a."<br>";
       }
-    });
-  ```
+		```
 - Method 3
-  - Route
-  ```php
-    Route::get('/ExampleRoute17.3', function(){
-      $example_variable = ExampleModel::orderBy('id', 'asc')->get();
-      foreach ($example_variable as $example_variable_part) {
-          echo $example_variable_part->example_column."<br>";
+	- Try this out
+	- Controller method:
+		- Script:
+		```php
+      foreach (TypeAPost::orderBy('id', 'desc')->get() as $var) {
+          echo $var->data_field_a."<br>";
       }
-    });
-  ```
+		```
 ##### Find based on primary key (and return a field's values)
-- Route
-```php
-  Route::get('/ExampleRoute18', function(){
-    $example_variable = ExampleModel::find(1);
-    return $example_variable->example_column;
-  });
-```
+- Try this out
+- Controller method:
+	- Script:
+	```php
+		return TypeAPost::find(5)->data_field_a;
+	```
+
 ##### Find based on primary key (and return a field's values) or display an error
-- Route
-```php
-  Route::get('/ExampleRoute19', function(){
-    $example_variable = ExampleModel::findOrFail(100);
-    return $example_variable;
-  });
-```
-##### Find based on other conditions (and return a field's values)
-- Route
-```php
-  Route::get('/ExampleRoute19.5', function(){
-    return $example_variable = ExampleModel::withTrashed()->orderBy('id','desc')->get();
-  });
-```
+- Try this out
+- Controller method:
+	- Script:
+	```php
+		return TypeAPost::findOrFail(1);
+	```
+##### Find based on other conditions (this example only works with soft-deleted items which comes later)
+- Try this out
+- Controller method:
+	- Script:
+	```php
+		return TypeAPost::withTrashed()->orderBy('id','desc')->get();
+	```
 ##### Find based on other conditions (and return a field's values) or display an error
-- Route
-```php
-  Route::get('/ExampleRoute20', function(){
-    $example_variable = ExampleModel::where('id','>',50)->firstOrFail();
-    return $example_variable;
-  });
-```
+- Try this out
+- Controller method:
+	- Script:
+	```php
+		return TypeAPost::where('id','<',50)->firstOrFail();
+	```
 
 #### Update types
 ##### Update based on primary key
-- Route
-```php
-  Route::get('/ExampleRoute21', function(){
-    $example_variable = ExampleModel::find(1);
-    $example_variable->example_column = 'example_value5';
-    $example_variable->save();
-  });
-```
+- Try this out
+- Route:
+	- Name: reuse `URLUpdate/{a}`
+	- Parameters: `$a`
+- Controller method:
+	- Name: reuse `MethodUpdate`
+	- Parameters: `$a`
+	- Script:
+	```php
+    $var = TypeAPost::find(2);
+    $var->data_field_a = $a;
+    $var->save();
+	```
+- Model method:
+	- Name: this one is all ready automatically made
+- URL example: `fundamental-mechanisms-app.test/URLUpdate/bye`
+
 ##### Update based on other conditions
-- Route
-```php
-  Route::get('/ExampleRoute22', function(){
-    ExampleModel::where('id', 2)->where('example_column', 'example_value6')->update(['example_column'=>'example_value8', 'example_column_2'=>'example_value9']);
-  });
-```
+- Try this out
+- Controller method:
+	- Script:
+	```php
+    TypeAPost::where('id', 2)->where('data_field_a', $a)->update(['data_field_b'=>$a]);
+	```
+- URL example: `fundamental-mechanisms-app.test/URLUpdate/hello`
 
 #### Delete types
 ##### Delete method 1
-- Note: this works only works when soft delete is not activated
-- Route
-```php
-  Route::get('/ExampleRoute23', function(){
-    ExampleModel::find(2)->delete();
-  });
-```
+- Note: this works only works when soft delete (a feature we will use later) is not activated
+- Try this out
+- Route:
+	- Name: reuse `URLDelete/{a}`
+	- Parameters: `$a`
+- Controller method:
+	- Name: reuse `MethodDelete`
+	- Parameters: `$a`
+	- Script:
+	```php
+    TypeAPost::find($a)->delete();
+	```
+- Model method:
+	- Name: this one is all ready automatically made
+- URL example: `fundamental-mechanisms-app.test/URLDelete/2`
+
 ##### Delete method 2
 - Note: this works only works when soft delete is not activated
-- Route
-```php
-  Route::get('/ExampleRoute24', function(){
-    ExampleModel::destroy(3);
-  });
-```
+- Controller method:
+	- Script:
+	```php
+    TypeAPost::destroy($a);
+	```
+- URL example: `fundamental-mechanisms-app.test/URLDelete/4`
+
 ##### Delete multiple
-- Route
-```php
-  Route::get('/ExampleRoute25', function(){
-    ExampleModel::destroy([4,7]);
-  });
-```
-##### Delete one or multiple based on condition
-- Route
-```php
-  Route::get('/ExampleRoute26', function(){
-    ExampleModel::where('example_column','example_value6')->delete();
-  });
-```
+- Route:
+	- Name: reuse `URLDelete/{a}/{b}`
+	- Parameters: `$a, $b`
+- Controller method:
+	- Parameters: `$a, $b`
+	- Script:
+	```php
+    TypeAPost::destroy([$a, $b]);
+	```
+- URL example: `fundamental-mechanisms-app.test/URLDelete/5/6`
+
+##### Delete multiple based on condition
+- Route:
+	- Name: reuse `URLDelete/{a}`
+	- Parameters: `$a`
+- Controller method:
+	- Parameters: `$a`
+	- Script:
+	```php
+    TypeAPost::where('data_field_a',$a)->delete();
+	```
+- URL example: `fundamental-mechanisms-app.test/URLDelete/bye`
+
+
+---
+up till here
+---
 
 #### Soft delete types
 ##### General

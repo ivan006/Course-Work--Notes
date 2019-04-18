@@ -18,11 +18,7 @@
 	- [5. Routes](#5.)
 	- [6. Controllers](#6.)
 	- [7. Models](#7.)
-	- [8. Model with basic relationships](#8.)
-	- [9. Queries with advanced relationships](#9.)
-	- [10. Query Testing Environment](#10.)
-	- [11. Models with Accessors and mutators](#11.)
-	- [12. Views component](#12.)
+	- [12. Views component](#8.)
 - [13. Real-World Examples](#13.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
@@ -643,6 +639,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [SQL models](#7.2.)
 - [ORM models](#7.3.)
 - [ORM models with basic relationships](#7.4.)
+- [ORM models with advanced relationships](#7.5.)
+- [Model testing environment](#7.6.)
+- [Models with accessors and mutators](#7.7.)
 
 ###  <a name="7.1."></a> Setup a model
 
@@ -1069,127 +1068,475 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### <a name="7.4."></a> ORM models with basic relationships
 
-#### Table Of Content
-
-- [One to One Relationship](#One-to-One-Relationship)
-- [One to Many Relationships](#One-to-Many-Relationships)
-- [Many to Many Relationships](#Many-to-Many-Relationships)
-
-#### <a name=""></a> Basic Relationships
-
-
 ---
 up till here
 ---
 
-##### <a name="General-2"></a> General
+#### General
 - This section covers ORM queries that use tables that have interrelationships. Tables can be related like for instance records in one table can give further information about a record in another table. There are many different types of relationships though and here you'll see how to use them.
 
-
-
-
-##### <a name="One-to-One-Relationship"></a> One to One Relationship
-- Prerequisites
-  - Parent model
-    - Set Up a New Table and Model Using the Shortcut (as previously demonstrated) - use these specs
-      - Table name `example_parent_models`
-      - Table columns
-      ```php
-        $table->string('example_column');
-        $table->text('example_column_2');
-      ```
-      - Model name `ExampleParentModel`
-    - Add a parent model relationship column to the example model table.
-      - Configure your example_models migration by adding this to your set of column functions `$table->integer('example_parent_model_id')->unsigned();`.
-      - Refresh all the tables (as shown how in previous section)
-    - Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
-      - For the route
-        - Name give your route `/ExampleRoute31`.
-        - Use the model usage function `use App\ExampleParentModel;`
-        - Make sure your route references the right model e.g. `ExampleParentModel::`
-    - Model
-      - Add one of the following code blocks to the parent model's model
-      - Method 1 - Specify the column to refer to for the child model's parent model id column
-      ```php
-        public funcion ExampleModel(){
-          return $this->hasOne('App\ExampleModel', 'example_parent_model_id');
-        }
-      ```
-        - So as you can see you do it in the `hasOne()` function's second parameter.
-        - Also note your if your child  models's primary key column is not simple called `id` you can specify it as the third parameter.
-      - Method 2 - Use default specifier which will be the parent model's name prepended with `_id` (also note that camel case `ExampleParentModel` converts to underscored `example_parent_model` and then obviously gets prepended `example_parent_model_id`)
-      ```php
-        public funcion ExampleModel(){
-          return $this->hasOne('App\ExampleModel');
-        }
-      ```
-        - Add this in the model's class
-        - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
-  - Child model
-  ```php
-    public function ExampleParentModel(){
-      return $this->belongsTo('App\ExampleParentModel');
-    }
-  ```
-    - Add this in the model's class
-- Basic Queries
-  - Add a record to the example model table and make sure multiple field values are filled in.
-    - Add model usage function to top `use App\ExampleParentModel;`
-    - For the model: Add `example_parent_model_id` to the list fillable function list.
-    - Route
+#### One to One Relationship
+##### Prerequisites
+- Parent model
+  - Set Up a New Table and Model Using the Shortcut (as previously demonstrated) - use these specs
+    - Table name `example_parent_models`
+    - Table columns
     ```php
-      Route::get('/ExampleRoute32', function(){
-        ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
-      });
+      $table->string('example_column');
+      $table->text('example_column_2');
     ```
-  - View child of parent
-    - Route
-        ```php
-          Route::get('/ExampleRoute33/{id}', function($id){
-            return ExampleParentModel::find($id)->examplemodel;
-          });
-        ```
-    - Test with `fundamental-mechanisms-app.test/ExampleRoute33/1`
-  - View parent of child
-    - Route
-        ```php
-          Route::get('/ExampleRoute34/{id}', function($id){
-            return ExampleModel::find($id)->exampleparentmodel;
-          });
-        ```
-    - Test with `fundamental-mechanisms-app.test/ExampleRoute34/1`
-- Full CRUD
-  - Create through a relative
-    - Route
+    - Model name `ExampleParentModel`
+  - Add a parent model relationship column to the example model table.
+    - Configure your example_models migration by adding this to your set of column functions `$table->integer('example_parent_model_id')->unsigned();`.
+    - Refresh all the tables (as shown how in previous section)
+  - Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
+    - For the route
+      - Name give your route `/ExampleRoute31`.
+      - Use the model usage function `use App\ExampleParentModel;`
+      - Make sure your route references the right model e.g. `ExampleParentModel::`
+  - Model
+    - Add one of the following code blocks to the parent model's model
+    - Method 1 - Specify the column to refer to for the child model's parent model id column
+    ```php
+      public funcion ExampleModel(){
+        return $this->hasOne('App\ExampleModel', 'example_parent_model_id');
+      }
+    ```
+      - So as you can see you do it in the `hasOne()` function's second parameter.
+      - Also note your if your child  models's primary key column is not simple called `id` you can specify it as the third parameter.
+    - Method 2 - Use default specifier which will be the parent model's name prepended with `_id` (also note that camel case `ExampleParentModel` converts to underscored `example_parent_model` and then obviously gets prepended `example_parent_model_id`)
+    ```php
+      public funcion ExampleModel(){
+        return $this->hasOne('App\ExampleModel');
+      }
+    ```
+      - Add this in the model's class
+      - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
+- Child model
+```php
+  public function ExampleParentModel(){
+    return $this->belongsTo('App\ExampleParentModel');
+  }
+```
+  - Add this in the model's class
+
+##### Basic Queries
+- Add a record to the example model table and make sure multiple field values are filled in.
+  - Add model usage function to top `use App\ExampleParentModel;`
+  - For the model: Add `example_parent_model_id` to the list fillable function list.
+  - Route
+  ```php
+    Route::get('/ExampleRoute32', function(){
+      ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
+    });
+  ```
+- View child of parent
+  - Route
       ```php
-      Route::get('/ExampleRoute34.1', function(){
-        $example_variable = ExampleParentModel::findOrFail(1);
-        $example_variable_2 = new ExampleModel(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
-        $example_variable->ExampleModel()->save($example_variable_2);
-      });
-      ```
-  - Read - we already did this, see "view" above
-  - Update
-    - Route
-      ```php
-      Route::get('/ExampleRoute34.2', function(){
-        $example_variable = ExampleModel::whereExampleParentModelId(1)->first();
-        $example_variable->example_column = "example_model_value_2";
-        $example_variable->save();
-      });
-      ```
-  - Delete
-    - Route
-      ```php
-        Route::get('/ExampleRoute34.3', function(){
-          $example_variable = ExampleParentModel::findOrFail(1);
-          $example_variable->ExampleModel->forceDelete();
+        Route::get('/ExampleRoute33/{id}', function($id){
+          return ExampleParentModel::find($id)->examplemodel;
         });
       ```
-      - If soft delete is not enabled then you can replace `forceDelete()` with `delete()`
+  - Test with `fundamental-mechanisms-app.test/ExampleRoute33/1`
+- View parent of child
+  - Route
+      ```php
+        Route::get('/ExampleRoute34/{id}', function($id){
+          return ExampleModel::find($id)->exampleparentmodel;
+        });
+      ```
+  - Test with `fundamental-mechanisms-app.test/ExampleRoute34/1`
 
-##### <a name="One-to-Many-Relationships"></a> One to Many Relationships
-- Prerequisites
+##### Full CRUD
+- Create through a relative
+  - Route
+    ```php
+    Route::get('/ExampleRoute34.1', function(){
+      $example_variable = ExampleParentModel::findOrFail(1);
+      $example_variable_2 = new ExampleModel(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
+      $example_variable->ExampleModel()->save($example_variable_2);
+    });
+    ```
+- Read - we already did this, see "view" above
+- Update
+  - Route
+    ```php
+    Route::get('/ExampleRoute34.2', function(){
+      $example_variable = ExampleModel::whereExampleParentModelId(1)->first();
+      $example_variable->example_column = "example_model_value_2";
+      $example_variable->save();
+    });
+    ```
+- Delete
+  - Route
+    ```php
+      Route::get('/ExampleRoute34.3', function(){
+        $example_variable = ExampleParentModel::findOrFail(1);
+        $example_variable->ExampleModel->forceDelete();
+      });
+    ```
+    - If soft delete is not enabled then you can replace `forceDelete()` with `delete()`
+
+#### One to Many Relationships
+##### Prerequisites
+- Parent model
+```php
+  public function ExampleModels(){
+    return $this->hasMany('App\ExampleModel');
+  }
+```
+  - Add this in the model's class
+  - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
+- Manage records: Add a second ExampleModel record by executing `/ExampleRoute32` again.
+
+##### Basic Queries
+- Read/view
+  - Route
+  ```php
+    Route::get('/ExampleRoute35', function(){
+      $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
+      foreach ($example_variable as $example_variable_part){
+        echo $example_variable_part."<br>";
+      }
+    });
+  ```
+##### Full CRUD
+- Read
+  - Route
+  ```php
+    Route::get('/ExampleRoute35.1', function(){
+      $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
+      foreach ($example_variable as $example_variable_part){
+        echo "My ___$example_variable_part->example_column_2 ___ brings all the boys to the ___$example_variable_part->example_column ___ I can teach you but I have to charge.<br>";
+      }
+    });
+  ```
+- Update
+  - Route
+  ```php
+    Route::get('/ExampleRoute35.2', function(){
+      $example_variable = ExampleParentModel::findOrFail(2);
+      $example_variable_2 = $example_variable->examplemodels()->whereId(9);
+      $example_variable_2->update(['example_column'=>'i did it!']);
+    });
+  ```
+- Delete
+  - Route
+  ```php
+  Route::get('/ExampleRoute35.3', function(){
+    $example_variable = ExampleParentModel::findOrFail(1);
+    $example_variable_2 = $example_variable->examplemodels()->whereId(8)->first();
+    $example_variable_2->delete();
+  });
+  ```
+
+#### Many to Many Relationships
+
+##### General
+- This is useful for things like a user can have many rolls and a roll can be occupied by many users.
+- For this you need a pivot/lookup table.
+
+##### Setup
+- Relationship model
+  - Setup its table and model - using the no shortcuts method. Just follow as previously demonstrated in `Set Up a New Table-Model Pair Without Using a Shortcut` and use the following specs
+    - Table migration
+      - Table name
+        - The naming convention here is that:
+          - Must be a combo of both of the associated table names
+          - The order of the name combo must be in alphabetic order  
+          - Use the singular version of the table names
+          - E.g. `example_grandparent_model_example_parent_model`
+      - Table columns
+        - Foreign keys columns
+          - The naming convention here is that:
+            - They must be named according to the foreign tables the refer to and then have `_id` at the end.
+          - E.g.
+          ```php
+            $table->integer('example_parent_model_id');
+            $table->integer('example_grandparent_model_id');
+          ```
+    - Model
+      - Name
+        - You can use a camel cased version of the table name.
+        - E.g. `ExampleGrandparentModelExampleParentModel`
+      - Table specifier: `example_grandparent_model_example_parent_model`
+      - Allowable multiple value inserts
+        - `example_parent_model_id`
+        - `example_grandparent_model_id`
+- Grandparent model
+  - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+    - Migration
+      - Tables name `ExampleGrandparentModel`
+      - Table columns
+      ```php
+        $table->string('name');
+      ```        
+    - Model
+      - Allowable multiple value inserts
+        - `name`
+      - Grandparent model
+        - Add this in the model's class
+        ```php
+          public function ExampleParentModels(){
+            return $this->belongsToMany('App\ExampleParentModel');
+          }
+        ```
+- Parent model
+  - Parent model's model
+    - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
+    - Short method
+      - If the table pivot table name and it's foreign keys columns are named according to the convention then you can use this method.
+      - Add this in the model's class
+      ```php
+        public function ExampleGrandparentModels(){
+          return $this->belongsToMany('App\ExampleGrandparentModel')->withPivot('created_at');
+        }
+      ```
+    - Long method
+      - Add this in the model's class
+      - If the table pivot table name and it's foreign keys columns aren't named according to the convention then you must use this method.
+      ```php
+        public function ExampleGrandparentModels(){
+          return $this->belongsToMany('App\ExampleGrandparentModel', 'example_grandparent_model_example_parent_model', 'example_parent_model_id', 'example_grandparent_model_id');
+        }
+      ```
+##### Queries
+- Create
+  - 2 grandparent records
+    - Do as demonstrated in `insert record with multiple field values`
+    - For the route name use: `/ExampleRoute38`
+    - For the referenced model use `ExampleGrandparentModel`
+    - E.g.
+    ```php
+      Route::get('/ExampleRoute38', function(){
+        ExampleGrandparentModel::create(['name'=>'example_value_1']);
+        ExampleGrandparentModel::create(['name'=>'example_value_2']);
+      });
+    ```
+  - Parents
+    - 2 parent records
+    ```php
+    Route::get('/ExampleRoute40', function(){
+      ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1']);
+      ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1']);
+    });
+    ```
+  - 3 relationship records
+    - Do as demonstrated in `insert record with multiple field values`
+    - For the route name use: `/ExampleRoute36`
+    - For the referenced model use `ExampleGrandparentModelExampleParentModel`
+    ```php
+      Route::get('/ExampleRoute36', function(){
+        ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>1, 'example_grandparent_model_id'=>1]);
+        ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>2]);
+        ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>1]);
+      });
+    ```
+  - 2 relationship records through a parent and delete any old relationships for that parent
+    - Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
+    ```php
+      Route::get('/ExampleRoute36.1', function(){
+        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->sync([2,3]);
+      });
+    ```
+- Read
+  - Read parents of child
+    - Type 1
+    ```php
+      Route::get('/ExampleRoute41', function(){
+        $example_variable = ExampleParentModel::find(2);
+        foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
+          echo $example_variable_part->name."<br>";
+        }
+      });
+    ```
+    - Type 2
+    ```php
+      Route::get('/ExampleRoute41.2', function(){
+        $example_variable = ExampleParentModel::find(2);
+        dd($example_variable->ExampleGrandparentModels);
+      });
+    ```
+  - Read parental relationships of child
+    - Parent model's route
+      ```php
+      Route::get('/ExampleRoute42', function(){
+        $example_variable = ExampleParentModel::find(2);
+        foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
+          echo $example_variable_part->pivot->created_at."<br>";
+        }
+      });
+      ```
+  - Read children of parent
+      - Route
+      ```php
+        Route::get('/ExampleRoute43', function(){
+          $example_variable = ExampleGrandparentModel::find(1);
+          foreach ($example_variable->exampleparentmodels as $example_variable_part){
+            echo $example_variable_part->example_column."<br>";
+          }
+        });
+      ```
+- Update
+  - Relationship through a parent record
+  ```php
+    Route::get('/ExampleRoute43.1', function(){
+      ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->attach(1);
+    });
+  ```
+  - Grandparent through parent record
+  ```php
+    Route::get('/ExampleRoute43.2', function(){
+      $example_variable = ExampleParentModel::find(1);
+      if($example_variable->has("ExampleGrandparentModels")){
+        foreach($example_variable->ExampleGrandparentModels as $example_variable2){
+          if($example_variable2->name == 'example_value_1') {
+            $example_variable2->name = "example_value_10";
+            $example_variable2->save();
+          }
+        }
+      }
+    });
+  ```
+- Delete
+  - Grandparent
+    - 2 grandparent records
+      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
+      ```php
+        Route::get('/ExampleRoute39', function(){
+          ExampleGrandparentModel::destroy(3);
+        });
+      ```
+    - Delete grandparent through parent
+    ```php
+      Route::get('/ExampleRoute39.2', function(){
+        $example_variable = ExampleParentModel::find(1);
+        foreach($example_variable->ExampleGrandparentModels as $example_variable2){
+          $example_variable2->whereId(1)->delete();
+        }
+      });
+    ```
+  - Relationship record
+    - Delete 1 Method 1
+    ```php
+      Route::get('/ExampleRoute37', function(){
+        ExampleGrandparentModelExampleParentModel::destroy(1);
+      });
+    ```
+    - Delete 1 Method 2
+    ```php
+      Route::get('/ExampleRoute37.1', function(){
+        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach(1);
+      });
+    ```
+    - Delete all for parent
+    ```php
+      Route::get('/ExampleRoute37.2', function(){
+        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach();
+      });
+    ```
+
+### <a name="7.5."></a> ORM models with advanced relationships
+
+#### Table Of Content
+- [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
+- [Polymorphic Relationships](#Polymorphic-Relationships)
+
+#### Relationship with 2 Levels of Separation
+##### General - prerequisites
+- Grandparent2 model
+  - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+    - Migration
+      - Tables name `ExampleGrandparent2Model`
+      - Table columns
+      ```php
+        $table->string('name');
+      ```        
+    - Model
+      - Allowable multiple value inserts
+        - `name`
+      - Relationship
+      ```php
+        public function ExampleModels(){
+          return $this->hasManyThrough('App\ExampleModel', 'App\ExampleParentModel');
+        }
+      ```
+        - The first table specifier/parameter is for the distant relative
+        - The second table specifier/parameter is for the intermediate relative
+        - Then if the foreign id column in your intermediary table isn't the same name as the ExampleGrandparent2Model table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a third parameter specifying its name.
+        - Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a forth parameter specifying its name.
+  - Manage records
+    - Create records
+      - Route
+        - Create 2 records
+        - Do as demonstrated in `insert record with multiple field values`
+        - For the route name use: `/ExampleRoute44`
+        - For the referenced model use `ExampleGrandparent2Model`
+        - E.g.
+        ```php
+          Route::get('/ExampleRoute44', function(){
+            ExampleGrandparent2Model::create(['name'=>'example_value_1']);
+            ExampleGrandparent2Model::create(['name'=>'example_value_2']);
+          });
+        ```
+    - Delete records
+      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
+      ```php
+      Route::get('/ExampleRoute45', function(){
+        ExampleGrandparent2Model::destroy(3);
+      });
+      ```
+- Parent model's new column
+  - Setup it up
+    - Migration - As seen in the section `Column handling migration`
+      - Use the migration name of `parent_model_example_grandparent2_model_id_column`
+      - Use the table specifier of `example_parent_models`.
+      - Table columns
+      ```php
+        $table->integer('example_grandparent2_model_id');
+      ```
+      - Then activate migration      
+    - Parent model
+      - Allowable multiple value inserts
+        - `example_grandparent2_model_id`
+  - Manage records
+    - Create at least 2 records
+    - To create 2 records
+    ```php
+    Route::get('/ExampleRoute46', function(){
+      ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'1']);
+      ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'2']);
+    });
+    ```
+    - To delete records
+    ```php
+      Route::get('/ExampleRoute47', function(){
+        ExampleParentModel::destroy(1);
+        ExampleParentModel::destroy(2);
+        ExampleParentModel::destroy(3);
+      });
+    ```
+##### Grandchild of grandparent
+- Manage records
+  - Create at least 2 records
+  - To create
+    - As done here `Insert record with multiple field values`
+    - Use these details
+    ```php
+      Route::get('/ExampleRoute48', function(){
+        ExampleModel::create(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
+      });
+    ```
+      - For the `example_parent_model_id` value use the id of whatever record you have that also has a example_grandparent2_model_id value. In my case it's `13` and `14`.
+  - To delete
+  ```php
+    Route::get('/ExampleRoute49', function(){
+      ExampleModel::find(1)->forceDelete();
+      ExampleModel::find(2)->forceDelete();
+      ExampleModel::find(3)->forceDelete();
+    });
+  ```
+- View them as per grandparent
   - Parent model
   ```php
     public function ExampleModels(){
@@ -1198,856 +1545,487 @@ up till here
   ```
     - Add this in the model's class
     - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
-  - Manage records: Add a second ExampleModel record by executing `/ExampleRoute32` again.
-- Basic Queries
-  - Read/view
-    - Route
-    ```php
-      Route::get('/ExampleRoute35', function(){
-        $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
-        foreach ($example_variable as $example_variable_part){
-          echo $example_variable_part."<br>";
-        }
-      });
-    ```
-- Full CRUD
-  - Read
-    - Route
-    ```php
-      Route::get('/ExampleRoute35.1', function(){
-        $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
-        foreach ($example_variable as $example_variable_part){
-          echo "My ___$example_variable_part->example_column_2 ___ brings all the boys to the ___$example_variable_part->example_column ___ I can teach you but I have to charge.<br>";
-        }
-      });
-    ```
-  - Update
-    - Route
-    ```php
-      Route::get('/ExampleRoute35.2', function(){
-        $example_variable = ExampleParentModel::findOrFail(2);
-        $example_variable_2 = $example_variable->examplemodels()->whereId(9);
-        $example_variable_2->update(['example_column'=>'i did it!']);
-      });
-    ```
-  - Delete
-    - Route
-    ```php
-    Route::get('/ExampleRoute35.3', function(){
-      $example_variable = ExampleParentModel::findOrFail(1);
-      $example_variable_2 = $example_variable->examplemodels()->whereId(8)->first();
-      $example_variable_2->delete();
+  - Route
+  ```php
+    Route::get('/ExampleRoute50', function(){
+      $example_variable = ExampleGrandparent2Model::find(1);
+      foreach ($example_variable->examplemodels as $example_variable_part){
+        echo "<br><br>".$example_variable_part;
+      }
     });
-    ```
+  ```
 
-##### <a name="Many-to-Many-Relationships"></a> Many to Many Relationships
-
-- General
-  - This is useful for things like a user can have many rolls and a roll can be occupied by many users.
-  - For this you need a pivot/lookup table.
-- Setup
-  - Relationship model
-    - Setup its table and model - using the no shortcuts method. Just follow as previously demonstrated in `Set Up a New Table-Model Pair Without Using a Shortcut` and use the following specs
-      - Table migration
-        - Table name
-          - The naming convention here is that:
-            - Must be a combo of both of the associated table names
-            - The order of the name combo must be in alphabetic order  
-            - Use the singular version of the table names
-            - E.g. `example_grandparent_model_example_parent_model`
-        - Table columns
-          - Foreign keys columns
-            - The naming convention here is that:
-              - They must be named according to the foreign tables the refer to and then have `_id` at the end.
-            - E.g.
-            ```php
-              $table->integer('example_parent_model_id');
-              $table->integer('example_grandparent_model_id');
-            ```
-      - Model
-        - Name
-          - You can use a camel cased version of the table name.
-          - E.g. `ExampleGrandparentModelExampleParentModel`
-        - Table specifier: `example_grandparent_model_example_parent_model`
-        - Allowable multiple value inserts
-          - `example_parent_model_id`
-          - `example_grandparent_model_id`
-  - Grandparent model
-    - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+#### <a name="Polymorphic-Relationships"></a> Polymorphic Relationships
+##### General
+- Definition
+  - A good way of understanding this is to think of it as a kind of "either-or to many relationship"
+  - A polymorphic relationship means a relationship where a child table can be shared between different types of parents (or different parent tables)
+##### One to many polymorphic relationships
+- Prerequisites
+  - Great-grand-child table-model pair
+      - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+          - Migration
+              - Table's name `ExampleGreatGrandChildModel`
+              - Table columns
+              ```php
+                $table->integer('parent_id');
+                $table->string('parent_type');
+                $table->string('example_column');
+              ```
+          - Model
+              - Allowable multiple value inserts
+                  - `parent_id`
+                  - `parent_type`
+                  - `example_column`
+              - Relationship
+              ```php
+                public function parent() {
+                  return $this->morphTo();
+                }
+              ```
+  - Example model
       - Migration
-        - Tables name `ExampleGrandparentModel`
-        - Table columns
-        ```php
-          $table->string('name');
-        ```        
+          - Since we will now be using polymorphic relationships this will be configured.
+          - Comment this out `$table->integer('example_parent_model_id')->unsigned();`
+          - Refresh all the tables
       - Model
-        - Allowable multiple value inserts
-          - `name`
-        - Grandparent model
-          - Add this in the model's class
-          ```php
-            public function ExampleParentModels(){
-              return $this->belongsToMany('App\ExampleParentModel');
-            }
-          ```
-  - Parent model
-    - Parent model's model
-      - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
-      - Short method
-        - If the table pivot table name and it's foreign keys columns are named according to the convention then you can use this method.
-        - Add this in the model's class
-        ```php
-          public function ExampleGrandparentModels(){
-            return $this->belongsToMany('App\ExampleGrandparentModel')->withPivot('created_at');
-          }
-        ```
-      - Long method
-        - Add this in the model's class
-        - If the table pivot table name and it's foreign keys columns aren't named according to the convention then you must use this method.
-        ```php
-          public function ExampleGrandparentModels(){
-            return $this->belongsToMany('App\ExampleGrandparentModel', 'example_grandparent_model_example_parent_model', 'example_parent_model_id', 'example_grandparent_model_id');
-          }
-        ```
+          - Relationship
+              - Add this
+              ```php
+                public function ExampleGreatGrandChildModels() {
+                  return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
+                }
+              ```
+  - Example parent model
+      - Model
+          - Relationship
+              - Add this
+              ```php
+                public function ExampleGreatGrandChildModels() {
+                  return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
+                }
+              ```
+  - Repopulate some content
+      - Since we refreshed all the tables we will need to repopulate some content.
+      - Use the following routes to add content
+          - For example model use `/ExampleRoute16` do not use `/ExampleRoute48`
+          - For example parent model use `/ExampleRoute40` don't use `/ExampleRoute46`
+          - For example grandparent model use `/ExampleRoute38`
+          - For example grandparent-parent relationship model use `/ExampleRoute36`
 - Queries
   - Create
-    - 2 grandparent records
-      - Do as demonstrated in `insert record with multiple field values`
-      - For the route name use: `/ExampleRoute38`
-      - For the referenced model use `ExampleGrandparentModel`
-      - E.g.
-      ```php
-        Route::get('/ExampleRoute38', function(){
-          ExampleGrandparentModel::create(['name'=>'example_value_1']);
-          ExampleGrandparentModel::create(['name'=>'example_value_2']);
-        });
-      ```
-    - Parents
-      - 2 parent records
-      ```php
-      Route::get('/ExampleRoute40', function(){
-        ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1']);
-        ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1']);
-      });
-      ```
-    - 3 relationship records
-      - Do as demonstrated in `insert record with multiple field values`
-      - For the route name use: `/ExampleRoute36`
-      - For the referenced model use `ExampleGrandparentModelExampleParentModel`
-      ```php
-        Route::get('/ExampleRoute36', function(){
-          ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>1, 'example_grandparent_model_id'=>1]);
-          ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>2]);
-          ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>1]);
-        });
-      ```
-    - 2 relationship records through a parent and delete any old relationships for that parent
-      - Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
-      ```php
-        Route::get('/ExampleRoute36.1', function(){
-          ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->sync([2,3]);
-        });
-      ```
-  - Read
-    - Read parents of child
-      - Type 1
-      ```php
-        Route::get('/ExampleRoute41', function(){
-          $example_variable = ExampleParentModel::find(2);
-          foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
-            echo $example_variable_part->name."<br>";
-          }
-        });
-      ```
-      - Type 2
-      ```php
-        Route::get('/ExampleRoute41.2', function(){
-          $example_variable = ExampleParentModel::find(2);
-          dd($example_variable->ExampleGrandparentModels);
-        });
-      ```
-    - Read parental relationships of child
-      - Parent model's route
-        ```php
-        Route::get('/ExampleRoute42', function(){
-          $example_variable = ExampleParentModel::find(2);
-          foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
-            echo $example_variable_part->pivot->created_at."<br>";
-          }
-        });
-        ```
-    - Read children of parent
-        - Route
-        ```php
-          Route::get('/ExampleRoute43', function(){
-            $example_variable = ExampleGrandparentModel::find(1);
-            foreach ($example_variable->exampleparentmodels as $example_variable_part){
-              echo $example_variable_part->example_column."<br>";
-            }
-          });
-        ```
-  - Update
-    - Relationship through a parent record
-    ```php
-      Route::get('/ExampleRoute43.1', function(){
-        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->attach(1);
-      });
-    ```
-    - Grandparent through parent record
-    ```php
-      Route::get('/ExampleRoute43.2', function(){
-        $example_variable = ExampleParentModel::find(1);
-        if($example_variable->has("ExampleGrandparentModels")){
-          foreach($example_variable->ExampleGrandparentModels as $example_variable2){
-            if($example_variable2->name == 'example_value_1') {
-              $example_variable2->name = "example_value_10";
-              $example_variable2->save();
-            }
-          }
-        }
-      });
-    ```
-  - Delete
-    - Grandparent
-      - 2 grandparent records
-        - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-        ```php
-          Route::get('/ExampleRoute39', function(){
-            ExampleGrandparentModel::destroy(3);
-          });
-        ```
-      - Delete grandparent through parent
-      ```php
-        Route::get('/ExampleRoute39.2', function(){
-          $example_variable = ExampleParentModel::find(1);
-          foreach($example_variable->ExampleGrandparentModels as $example_variable2){
-            $example_variable2->whereId(1)->delete();
-          }
-        });
-      ```
-    - Relationship record
-      - Delete 1 Method 1
-      ```php
-        Route::get('/ExampleRoute37', function(){
-          ExampleGrandparentModelExampleParentModel::destroy(1);
-        });
-      ```
-      - Delete 1 Method 2
-      ```php
-        Route::get('/ExampleRoute37.1', function(){
-          ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach(1);
-        });
-      ```
-      - Delete all for parent
-      ```php
-        Route::get('/ExampleRoute37.2', function(){
-          ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach();
-        });
-      ```
-
-
-
-## <a name="9."></a>Chapter 9. Queries with advanced relationships
-
-### Table Of Content
-- [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
-- [Polymorphic Relationships](#Polymorphic-Relationships)
-
-
-
-
-### <a name="Relationship-with-2-Levels-of-Separation"></a> Relationship with 2 Levels of Separation
-- General - prerequisites
-  - Grandparent2 model
-    - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
-      - Migration
-        - Tables name `ExampleGrandparent2Model`
-        - Table columns
-        ```php
-          $table->string('name');
-        ```        
-      - Model
-        - Allowable multiple value inserts
-          - `name`
-        - Relationship
-        ```php
-          public function ExampleModels(){
-            return $this->hasManyThrough('App\ExampleModel', 'App\ExampleParentModel');
-          }
-        ```
-          - The first table specifier/parameter is for the distant relative
-          - The second table specifier/parameter is for the intermediate relative
-          - Then if the foreign id column in your intermediary table isn't the same name as the ExampleGrandparent2Model table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a third parameter specifying its name.
-          - Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a forth parameter specifying its name.
-    - Manage records
-      - Create records
-        - Route
-          - Create 2 records
-          - Do as demonstrated in `insert record with multiple field values`
-          - For the route name use: `/ExampleRoute44`
-          - For the referenced model use `ExampleGrandparent2Model`
-          - E.g.
-          ```php
-            Route::get('/ExampleRoute44', function(){
-              ExampleGrandparent2Model::create(['name'=>'example_value_1']);
-              ExampleGrandparent2Model::create(['name'=>'example_value_2']);
-            });
-          ```
-      - Delete records
-        - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-        ```php
-        Route::get('/ExampleRoute45', function(){
-          ExampleGrandparent2Model::destroy(3);
-        });
-        ```
-  - Parent model's new column
-    - Setup it up
-      - Migration - As seen in the section `Column handling migration`
-        - Use the migration name of `parent_model_example_grandparent2_model_id_column`
-        - Use the table specifier of `example_parent_models`.
-        - Table columns
-        ```php
-          $table->integer('example_grandparent2_model_id');
-        ```
-        - Then activate migration      
-      - Parent model
-        - Allowable multiple value inserts
-          - `example_grandparent2_model_id`
-    - Manage records
-      - Create at least 2 records
-      - To create 2 records
-      ```php
-      Route::get('/ExampleRoute46', function(){
-        ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'1']);
-        ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'2']);
-      });
-      ```
-      - To delete records
-      ```php
-        Route::get('/ExampleRoute47', function(){
-          ExampleParentModel::destroy(1);
-          ExampleParentModel::destroy(2);
-          ExampleParentModel::destroy(3);
-        });
-      ```
-- Grandchild of grandparent
-  - Manage records
-    - Create at least 2 records
-    - To create
-      - As done here `Insert record with multiple field values`
-      - Use these details
-      ```php
-        Route::get('/ExampleRoute48', function(){
-          ExampleModel::create(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
-        });
-      ```
-        - For the `example_parent_model_id` value use the id of whatever record you have that also has a example_grandparent2_model_id value. In my case it's `13` and `14`.
-    - To delete
-    ```php
-      Route::get('/ExampleRoute49', function(){
-        ExampleModel::find(1)->forceDelete();
-        ExampleModel::find(2)->forceDelete();
-        ExampleModel::find(3)->forceDelete();
-      });
-    ```
-  - View them as per grandparent
-    - Parent model
-    ```php
-      public function ExampleModels(){
-        return $this->hasMany('App\ExampleModel');
-      }
-    ```
-      - Add this in the model's class
-      - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
-    - Route
-    ```php
-      Route::get('/ExampleRoute50', function(){
-        $example_variable = ExampleGrandparent2Model::find(1);
-        foreach ($example_variable->examplemodels as $example_variable_part){
-          echo "<br><br>".$example_variable_part;
-        }
-      });
-    ```
-
-### <a name="Polymorphic-Relationships"></a> Polymorphic Relationships
-- General
-  - Definition
-    - A good way of understanding this is to think of it as a kind of "either-or to many relationship"
-    - A polymorphic relationship means a relationship where a child table can be shared between different types of parents (or different parent tables)
-- One to many polymorphic relationships
-  - Prerequisites
-    - Great-grand-child table-model pair
-        - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
-            - Migration
-                - Table's name `ExampleGreatGrandChildModel`
-                - Table columns
-                ```php
-                  $table->integer('parent_id');
-                  $table->string('parent_type');
-                  $table->string('example_column');
-                ```
-            - Model
-                - Allowable multiple value inserts
-                    - `parent_id`
-                    - `parent_type`
-                    - `example_column`
-                - Relationship
-                ```php
-                  public function parent() {
-                    return $this->morphTo();
-                  }
-                ```
-    - Example model
-        - Migration
-            - Since we will now be using polymorphic relationships this will be configured.
-            - Comment this out `$table->integer('example_parent_model_id')->unsigned();`
-            - Refresh all the tables
-        - Model
-            - Relationship
-                - Add this
-                ```php
-                  public function ExampleGreatGrandChildModels() {
-                    return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
-                  }
-                ```
-    - Example parent model
-        - Model
-            - Relationship
-                - Add this
-                ```php
-                  public function ExampleGreatGrandChildModels() {
-                    return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
-                  }
-                ```
-    - Repopulate some content
-        - Since we refreshed all the tables we will need to repopulate some content.
-        - Use the following routes to add content
-            - For example model use `/ExampleRoute16` do not use `/ExampleRoute48`
-            - For example parent model use `/ExampleRoute40` don't use `/ExampleRoute46`
-            - For example grandparent model use `/ExampleRoute38`
-            - For example grandparent-parent relationship model use `/ExampleRoute36`
-  - Queries
-    - Create
-      - Create 2 great grandchild records
-          - As done here `Insert record with multiple field values`
-          - Use these details
-          ```php
-            Route::get('/ExampleRoute51', function(){
-              ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleModel']);
-              ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleParentModel']);
-            });
-          ```
-      - Create a great grandchild record through a parent
-      ```php
-        Route::get('/ExampleRoute51.2', function(){
-          ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->create(['example_column'=>'example_value']);
-        });
-      ```
-    - Read
-      - View the descendent polymorphically
-          - Example model
-              - Route
-              ```php
-                Route::get('/ExampleRoute53', function(){
-                    $example_variable = ExampleModel::find(1);
-                    foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
-                      echo "<br><br>".$example_variable_part;
-                    }
-                });
-              ```
-          - Example parent model
-              - Route
-              ```php
-                Route::get('/ExampleRoute54', function(){
-                    $example_variable = ExampleParentModel::find(1);
-                    foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
-                      echo "<br><br>".$example_variable_part;
-                    }
-                });
-              ```
-      - View the ancestor polymorphically (inverse of view the descendent polymorphically)
-        - Route
-        ```php
-          Route::get('/ExampleRoute55', function(){
-              $example_variable = ExampleGreatGrandChildModel::find(1);
-              return $example_variable->parent;
-          });
-        ```
-    - Update
-      - Update great grandchild through it's parent
-      ```php
-        Route::get('/ExampleRoute55.1', function(){
-          $example_variable = ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->first();
-          $example_variable->example_column = "example_value2";
-          $example_variable->save();
-        });
-      ```
-      - Update a great grandchild's relationship through a parent
-        - Give it a new parent
-        ```php
-          Route::get('/ExampleRoute55.2', function(){
-            ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->save(ExampleGreatGrandChildModel::findOrFail(2));
-          });
-        ```
-        - Remove it's parent
-        ```php
-          Route::get('/ExampleRoute55.3', function(){
-            ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->update(['parent_id'=>'', 'parent_type'=>'']);
-          });
-        ```
-    - Delete
-      - Delete great grandchild records
-      ```php
-        Route::get('/ExampleRoute52', function(){
-          ExampleGreatGrandChildModel::find(1)->forceDelete();
-        });
-      ```
-      - Delete great grandchild record through parent
-      ```php
-        Route::get('/ExampleRoute52.1', function(){
-          ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(7)->delete();
-        });
-      ```
-- Many to many polymorphic relationships
-  - Prerequisites
-    - Parent 2 table-model pair
-        - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
-            - Migration
-                - Table's name `ExampleParentModel2`
-                - Table columns
-                ```php
-                  $table->string('name');
-                ```
-            - Model
-                - Allowable multiple value inserts
-                    - `name`
-                - Relationship
-                ```php
-                  public function ExampleModels() {
-                    return $this->morphedByMany('App\ExampleModel', 'example_parent_model2_relation');
-                  }
-                  public function ExampleGreatGrandChildModels() {
-                    return $this->morphedByMany('App\ExampleGreatGrandChildModel', 'example_parent_model2_relations');
-                  }
-                ```
-    - Bridging/relationship table-model pair
-        - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
-            - Migration
-                - Table's name `ExampleParentModel2Relationship`
-                - Table columns
-                ```php
-                  $table->string('example_parent_model2_id');
-                  $table->integer('example_parent_model2_relation_id');
-                  $table->string('example_parent_model2_relation_type');
-                ```
-            - Model
-                - Allowable multiple value inserts
-                ```php
-                  protected $fillable = [
-                  'example_parent_model2_id',
-                  'example_parent_model2_relation_id',
-                  'example_parent_model2_relation_type',
-                  ];
-                ```
-    - Example model
-      - Model
-          - Relationship
-              - Add this
-              ```php
-                public function ExampleParentModel2s() {
-                  return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
-                }
-              ```
-    - Example Great Grand Child model
-      - Model
-          - Relationship
-              - Add this
-              ```php
-                public function ExampleParentModel2s() {
-                  return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
-                }
-              ```
-  - Queries
-    - Create
-      - Create 2 parent 2 records
-          - As done here `Insert record with multiple field values`
-          - Use these details
-          ```php
-            Route::get('/ExampleRoute56', function(){
-              ExampleParentModel2::create(['name'=>'grand-child2.1']);
-              ExampleParentModel2::create(['name'=>'grand-child2.2']);
-            });
-          ```
-      - Create 2 relationship records
+    - Create 2 great grandchild records
         - As done here `Insert record with multiple field values`
-        - Bear in mind you can use either the `save()` function of the `attach()` function
+        - Use these details
         ```php
-          Route::get('/ExampleRoute58', function(){
-            ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'1', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleModel']);
-            ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'2', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleGreatGrandChildModel']);
+          Route::get('/ExampleRoute51', function(){
+            ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleModel']);
+            ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleParentModel']);
           });
         ```
-      - Create relationship records through a child
+    - Create a great grandchild record through a parent
+    ```php
+      Route::get('/ExampleRoute51.2', function(){
+        ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->create(['example_column'=>'example_value']);
+      });
+    ```
+  - Read
+    - View the descendent polymorphically
+        - Example model
+            - Route
+            ```php
+              Route::get('/ExampleRoute53', function(){
+                  $example_variable = ExampleModel::find(1);
+                  foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+                    echo "<br><br>".$example_variable_part;
+                  }
+              });
+            ```
+        - Example parent model
+            - Route
+            ```php
+              Route::get('/ExampleRoute54', function(){
+                  $example_variable = ExampleParentModel::find(1);
+                  foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+                    echo "<br><br>".$example_variable_part;
+                  }
+              });
+            ```
+    - View the ancestor polymorphically (inverse of view the descendent polymorphically)
+      - Route
       ```php
-        Route::get('/ExampleRoute58.1', function(){
-          $example_variable = ExampleParentModel2::findOrFail(1);
-          ExampleModel::findOrFail(7)->ExampleParentModel2s()->save($example_variable);
+        Route::get('/ExampleRoute55', function(){
+            $example_variable = ExampleGreatGrandChildModel::find(1);
+            return $example_variable->parent;
         });
       ```
-      - Create relationship records through a child and delete any old relationships for that child
+  - Update
+    - Update great grandchild through it's parent
+    ```php
+      Route::get('/ExampleRoute55.1', function(){
+        $example_variable = ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->first();
+        $example_variable->example_column = "example_value2";
+        $example_variable->save();
+      });
+    ```
+    - Update a great grandchild's relationship through a parent
+      - Give it a new parent
       ```php
-        Route::get('/ExampleRoute58.2 ', function(){
-          ExampleModel::findOrFail(7)->ExampleParentModel2s()->sync([2]);
+        Route::get('/ExampleRoute55.2', function(){
+          ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->save(ExampleGreatGrandChildModel::findOrFail(2));
         });
       ```
-    - Read
-      - View polymorphic parents of children
-        - While specifying child type 1
-          - Route
-          ```php
-          Route::get('/ExampleRoute60', function(){
-              $example_variable = ExampleModel::find(1);
-              foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
-                echo "<br><br>".$example_variable_part;
+      - Remove it's parent
+      ```php
+        Route::get('/ExampleRoute55.3', function(){
+          ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->update(['parent_id'=>'', 'parent_type'=>'']);
+        });
+      ```
+  - Delete
+    - Delete great grandchild records
+    ```php
+      Route::get('/ExampleRoute52', function(){
+        ExampleGreatGrandChildModel::find(1)->forceDelete();
+      });
+    ```
+    - Delete great grandchild record through parent
+    ```php
+      Route::get('/ExampleRoute52.1', function(){
+        ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(7)->delete();
+      });
+    ```
+##### Many to many polymorphic relationships
+- Prerequisites
+  - Parent 2 table-model pair
+      - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+          - Migration
+              - Table's name `ExampleParentModel2`
+              - Table columns
+              ```php
+                $table->string('name');
+              ```
+          - Model
+              - Allowable multiple value inserts
+                  - `name`
+              - Relationship
+              ```php
+                public function ExampleModels() {
+                  return $this->morphedByMany('App\ExampleModel', 'example_parent_model2_relation');
+                }
+                public function ExampleGreatGrandChildModels() {
+                  return $this->morphedByMany('App\ExampleGreatGrandChildModel', 'example_parent_model2_relations');
+                }
+              ```
+  - Bridging/relationship table-model pair
+      - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+          - Migration
+              - Table's name `ExampleParentModel2Relationship`
+              - Table columns
+              ```php
+                $table->string('example_parent_model2_id');
+                $table->integer('example_parent_model2_relation_id');
+                $table->string('example_parent_model2_relation_type');
+              ```
+          - Model
+              - Allowable multiple value inserts
+              ```php
+                protected $fillable = [
+                'example_parent_model2_id',
+                'example_parent_model2_relation_id',
+                'example_parent_model2_relation_type',
+                ];
+              ```
+  - Example model
+    - Model
+        - Relationship
+            - Add this
+            ```php
+              public function ExampleParentModel2s() {
+                return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
               }
-          });
-          ```
-        - While specifying child type 2
-          - Route
-          ```php
-          Route::get('/ExampleRoute61', function(){
-              $example_variable = ExampleGreatGrandChildModel::find(1);
-              foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
-                echo "<br><br>".$example_variable_part;
+            ```
+  - Example Great Grand Child model
+    - Model
+        - Relationship
+            - Add this
+            ```php
+              public function ExampleParentModel2s() {
+                return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
               }
-          });
-          ```
-        - Read the parent through child
+            ```
+- Queries
+  - Create
+    - Create 2 parent 2 records
+        - As done here `Insert record with multiple field values`
+        - Use these details
         ```php
-          Route::get('/ExampleRoute61.1', function(){
-            $example_variable = ExampleModel::findOrFail(7);
-            foreach($example_variable->ExampleParentModel2s as $example_variable2){
-              echo $example_variable2;
+          Route::get('/ExampleRoute56', function(){
+            ExampleParentModel2::create(['name'=>'grand-child2.1']);
+            ExampleParentModel2::create(['name'=>'grand-child2.2']);
+          });
+        ```
+    - Create 2 relationship records
+      - As done here `Insert record with multiple field values`
+      - Bear in mind you can use either the `save()` function of the `attach()` function
+      ```php
+        Route::get('/ExampleRoute58', function(){
+          ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'1', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleModel']);
+          ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'2', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleGreatGrandChildModel']);
+        });
+      ```
+    - Create relationship records through a child
+    ```php
+      Route::get('/ExampleRoute58.1', function(){
+        $example_variable = ExampleParentModel2::findOrFail(1);
+        ExampleModel::findOrFail(7)->ExampleParentModel2s()->save($example_variable);
+      });
+    ```
+    - Create relationship records through a child and delete any old relationships for that child
+    ```php
+      Route::get('/ExampleRoute58.2 ', function(){
+        ExampleModel::findOrFail(7)->ExampleParentModel2s()->sync([2]);
+      });
+    ```
+  - Read
+    - View polymorphic parents of children
+      - While specifying child type 1
+        - Route
+        ```php
+        Route::get('/ExampleRoute60', function(){
+            $example_variable = ExampleModel::find(1);
+            foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
+              echo "<br><br>".$example_variable_part;
             }
-          });
+        });
         ```
-      - View child of a specified child type of the polymorphic parent (inverse of above). Polymorphic means shared between different tables/types of data.
-        - While specifying child type 1
-          - Route
-          ```php
-            Route::get('/ExampleRoute62', function(){
-              $example_variable = ExampleParentModel2::find(1);
-              foreach ($example_variable->ExampleModels as $example_variable_part) {
-                echo "<br><br>".$example_variable_part;
-              }
-            });
-          ```
-        - While specifying child type 2
-          - Route
-          ```php
-          Route::get('/ExampleRoute63', function(){
+      - While specifying child type 2
+        - Route
+        ```php
+        Route::get('/ExampleRoute61', function(){
+            $example_variable = ExampleGreatGrandChildModel::find(1);
+            foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
+              echo "<br><br>".$example_variable_part;
+            }
+        });
+        ```
+      - Read the parent through child
+      ```php
+        Route::get('/ExampleRoute61.1', function(){
+          $example_variable = ExampleModel::findOrFail(7);
+          foreach($example_variable->ExampleParentModel2s as $example_variable2){
+            echo $example_variable2;
+          }
+        });
+      ```
+    - View child of a specified child type of the polymorphic parent (inverse of above). Polymorphic means shared between different tables/types of data.
+      - While specifying child type 1
+        - Route
+        ```php
+          Route::get('/ExampleRoute62', function(){
             $example_variable = ExampleParentModel2::find(1);
-            foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+            foreach ($example_variable->ExampleModels as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
           });
-          ```
-    - Update
-      - Update parent through child
-      ```php
-        Route::get('/ExampleRoute63.1', function(){
-          $example_variable = ExampleModel::findOrFail(7)->ExampleParentModel2s->first()->update(['name'=>'updated']);
+        ```
+      - While specifying child type 2
+        - Route
+        ```php
+        Route::get('/ExampleRoute63', function(){
+          $example_variable = ExampleParentModel2::find(1);
+          foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+            echo "<br><br>".$example_variable_part;
+          }
         });
-      ```
-    - Delete
-      - Delete parent 2 records
-      ```php
-        Route::get('/ExampleRoute57', function(){
-          ExampleParentModel2::find(1)->forceDelete();
-        });
-      ```   
-      - Delete parent through child
-      ```php
-        Route::get('/ExampleRoute57.1', function(){
-          $example_variable = ExampleObject::findOrFail(7)->ExampleParentModel2s->first()->delete();
-        });
-      ```
-      - Delete parent 2 records
-      ```php
-        Route::get('/ExampleRoute59', function(){
-          ExampleParentModel2Relationship::find(1)->forceDelete();
-        });
-      ```  
+        ```
+  - Update
+    - Update parent through child
+    ```php
+      Route::get('/ExampleRoute63.1', function(){
+        $example_variable = ExampleModel::findOrFail(7)->ExampleParentModel2s->first()->update(['name'=>'updated']);
+      });
+    ```
+  - Delete
+    - Delete parent 2 records
+    ```php
+      Route::get('/ExampleRoute57', function(){
+        ExampleParentModel2::find(1)->forceDelete();
+      });
+    ```   
+    - Delete parent through child
+    ```php
+      Route::get('/ExampleRoute57.1', function(){
+        $example_variable = ExampleObject::findOrFail(7)->ExampleParentModel2s->first()->delete();
+      });
+    ```
+    - Delete parent 2 records
+    ```php
+      Route::get('/ExampleRoute59', function(){
+        ExampleParentModel2Relationship::find(1)->forceDelete();
+      });
+    ```  
 
+###  <a name="7.6."></a>  Model testing environment
 
-
-## <a name="10."></a>Chapter 10. Query Testing Environment
-
-### Table Of Content
-- [Query Testing Environment](#Query-Testing-Environment)
-
-### <a name=""></a>  Query Testing Environment
-
-#### <a name=""></a> Query Testing Environment
-- General
-  - A queries testing environment is a place to test your controller queries before you add them to your script. The one that comes with Laravel is called Tinker.
-- To open it
-  - In git bash command line and run `cd C:/laravel-apps/fundamental-mechanisms-app` then `php artisan tinker`
-- To close it
-  - Run the command `exit`
-- Basic ORM queries
-  - Create a record
-    - In one go
-      - Run the command `$example_variable = App\ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1]);`
-    - In multiple steps
-      - To create a pseudo-form that will send the record data to the db - run `$example_variable = new App\ExampleModel`
-      - To add something to that pseudo-form run `$example_variable->example_column = "example_value6"`
-      - To check what the pseudo-form holds so far run `$example_variable`
-      - To submit your pseudo-form run `$example_variable->save()`
-      - To view the information is has been given while being saved to the db run `$example_variable`
-  - To view a record
-    - Just filtered by id - run `$example_variable = App\ExampleModel::find(1);`
-    - Using other filters
-      - Where filter
-        - Run `$example_variable = App\ExampleModel::where("id", "<", 6)->orderBy('id','desc')->first();`
-      - WhereId
-        - Run `$example_variable = App\ExampleModel::whereId(2)->first();`
-  - To update a record
-    - First find the records
-      - Run `$example_variable = App\ExampleModel::find(1);`
-    - Run `$example_variable->example_column = "example_value6";`
-    - Run `$example_variable->save()`
-  - To delete a record
-    - If soft-delete isn't activated
-      - First find the records
-        - Run `$example_variable = App\ExampleModel::find(2);`
-        - Run `$example_variable->delete()`
-    - If soft-delete is activated
-      - Soft delete
-        - Same method as shown is `To delete a record - If soft-delete isn't activated`
-      - Restore
-        - Run `$example_variable->restore()`
-      - Hard delete
-        - First soft delete item
-        - Then empty your
-          - Run `$example_variable = App\ExampleModel::onlyTrashed();`
-          - Run `$example_variable->forceDelete()`
-- ORM queries with relationships
-  - View
+#### General
+- A queries testing environment is a place to test your controller queries before you add them to your script. The one that comes with Laravel is called Tinker.
+#### To open it
+- In git bash command line and run `cd C:/laravel-apps/fundamental-mechanisms-app` then `php artisan tinker`
+#### To close it
+- Run the command `exit`
+#### Basic ORM queries
+- Create a record
+  - In one go
+    - Run the command `$example_variable = App\ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1]);`
+  - In multiple steps
+    - To create a pseudo-form that will send the record data to the db - run `$example_variable = new App\ExampleModel`
+    - To add something to that pseudo-form run `$example_variable->example_column = "example_value6"`
+    - To check what the pseudo-form holds so far run `$example_variable`
+    - To submit your pseudo-form run `$example_variable->save()`
+    - To view the information is has been given while being saved to the db run `$example_variable`
+- To view a record
+  - Just filtered by id - run `$example_variable = App\ExampleModel::find(1);`
+  - Using other filters
+    - Where filter
+      - Run `$example_variable = App\ExampleModel::where("id", "<", 6)->orderBy('id','desc')->first();`
+    - WhereId
+      - Run `$example_variable = App\ExampleModel::whereId(2)->first();`
+- To update a record
+  - First find the records
     - Run `$example_variable = App\ExampleModel::find(1);`
-    - Run `$example_variable->ExampleGreatGrandChildModels`
-  - Create, update, delete just like u do in the `Query Testing Environment- Basic ORM Queries` section
+  - Run `$example_variable->example_column = "example_value6";`
+  - Run `$example_variable->save()`
+- To delete a record
+  - If soft-delete isn't activated
+    - First find the records
+      - Run `$example_variable = App\ExampleModel::find(2);`
+      - Run `$example_variable->delete()`
+  - If soft-delete is activated
+    - Soft delete
+      - Same method as shown is `To delete a record - If soft-delete isn't activated`
+    - Restore
+      - Run `$example_variable->restore()`
+    - Hard delete
+      - First soft delete item
+      - Then empty your
+        - Run `$example_variable = App\ExampleModel::onlyTrashed();`
+        - Run `$example_variable->forceDelete()`
+#### ORM queries with relationships
+- View
+  - Run `$example_variable = App\ExampleModel::find(1);`
+  - Run `$example_variable->ExampleGreatGrandChildModels`
+- Create, update, delete just like u do in the `Query Testing Environment- Basic ORM Queries` section
 
 
 
 
-## <a name="11."></a>Chapter 11. Models with Accessors and mutators
+### <a name="7.7."></a> Models with accessors and mutators
 
-### Table Of Content
+#### Table Of Content
 - [Dates](#Dates)
 - [Accessors](#Accessors)
 - [Mutators](#Mutators)
 
-### <a name="Dates"></a> Dates
-#### Basic Dates
+#### <a name="Dates"></a> Dates
+##### Basic Dates
 - Route
 ```php
-  Route::get('/64', function (){
-    $date = new DateTime('+1 weeks');
-    echo $date->format('m-d-Y');
-  });
+Route::get('/64', function (){
+  $date = new DateTime('+1 weeks');
+  echo $date->format('m-d-Y');
+});
 ```
 
-#### With Human Readable Accessors
+##### With Human Readable Accessors
 - Setup
-  - Laravel comes with a library called Carbon that helps with this
-  - This the following code at the top of your route file
-  ```php
-    use Carbon\Carbon;
-  ```
+- Laravel comes with a library called Carbon that helps with this
+- This the following code at the top of your route file
+```php
+  use Carbon\Carbon;
+```
 - Usage  
-  - Now (non-human readable)
-    - Route
-    ```php
-      Route::get('/65', function (){
-        echo Carbon::now();
-      });
-    ```
-  - Now
-    - Route
-    ```php
-      Route::get('/66', function (){
-        echo Carbon::now()->diffForHumans();
-      });
-    ```
-  - Ten Days from now
-    - Route
-    ```php
-      Route::get('/67', function (){
-        echo Carbon::now()->addDays(10)->diffForHumans();
-      });
-    ```
-  - 5 Months Ago
-    - Route
-    ```php
-      Route::get('/68', function (){
-        echo Carbon::now()->subMonths(5)->diffForHumans();
-      });
-    ```
-  - Yesterday
-    - Route
-    ```php
-      Route::get('/69', function (){
-        echo Carbon::now()->yesterday()->diffForHumans();
-      });
-    ```
-
-### <a name="Accessors"></a> Accessors
-- Query without an accessor
+- Now (non-human readable)
   - Route
   ```php
-    Route::get('/70', function(){
-      $example_variable = ExampleModel::find(7);
-      echo $example_variable->example_column;
+    Route::get('/65', function (){
+      echo Carbon::now();
     });
   ```
-- Query With an accessor
-  - Example Model
-    - Route: Reuse route `70` for this
-    - Model
-      - Upper Case First Letter
-      ```php
-        public function getExampleColumnAttribute($value) {
-          return ucfirst($value);
-        }
-      ```
-      - Or Upper Case All Letters
-        - Change the returned value to
-        ```php
-          strtoupper($value);
-        ```
-
-### <a name="Mutators"></a> Mutators Model
+- Now
   - Route
   ```php
-    Route::get('/71', function(){
-      $example_variable = ExampleObject::find(7);
-      $example_variable->example_column = $example_variable->example_column;
-      $example_variable->save();
+    Route::get('/66', function (){
+      echo Carbon::now()->diffForHumans();
     });
   ```
+- Ten Days from now
+  - Route
+  ```php
+    Route::get('/67', function (){
+      echo Carbon::now()->addDays(10)->diffForHumans();
+    });
+  ```
+- 5 Months Ago
+  - Route
+  ```php
+    Route::get('/68', function (){
+      echo Carbon::now()->subMonths(5)->diffForHumans();
+    });
+  ```
+- Yesterday
+  - Route
+  ```php
+    Route::get('/69', function (){
+      echo Carbon::now()->yesterday()->diffForHumans();
+    });
+  ```
+
+#### <a name="Accessors"></a> Accessors
+##### Query without an accessor
+- Route
+```php
+  Route::get('/70', function(){
+    $example_variable = ExampleModel::find(7);
+    echo $example_variable->example_column;
+  });
+```
+##### Query With an accessor
+- Example Model
+  - Route: Reuse route `70` for this
   - Model
-  ```php
-    public function setExampleColumnAttribute($value) {
-      $this->attributes['example_column'] = strtoupper($value);
-    }
-  ```
-  - Database
-    - The check your DB data has changed
+    - Upper Case First Letter
+    ```php
+      public function getExampleColumnAttribute($value) {
+        return ucfirst($value);
+      }
+    ```
+    - Or Upper Case All Letters
+      - Change the returned value to
+      ```php
+        strtoupper($value);
+      ```
+
+#### <a name="Mutators"></a> Mutators Model
+- Route
+```php
+  Route::get('/71', function(){
+    $example_variable = ExampleObject::find(7);
+    $example_variable->example_column = $example_variable->example_column;
+    $example_variable->save();
+  });
+```
+- Model
+```php
+  public function setExampleColumnAttribute($value) {
+    $this->attributes['example_column'] = strtoupper($value);
+  }
+```
+- Database
+  - The check your DB data has changed
 
 
 
-## <a name="12."></a>Chapter 12. Views component
+## <a name="8."></a>Chapter 12. Views component
 
 ### Table Of Content
 - [Views](#)

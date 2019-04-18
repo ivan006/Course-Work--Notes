@@ -453,7 +453,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - Run `php artisan migrate:status`
 - See more info here: [https://laravel.com/docs/5.6/migrations#columns](https://laravel.com/docs/5.6/migrations#columns)
 
-#### Handling Tables with a Migrations
+#### Table handling migration
 - Creating a table using a migration
 	- Try this out
   - Determine the names and types
@@ -484,10 +484,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
     - Run `php artisan migrate`
 
-#### Handling Columns with a Migration
+#### Column handling migration
 - General: These allow you to add columns to tables without interrupting the tables content/records that are already created
 - Create a column with a migration
   - Example
+		- We will practice this later
     - Setup
       - Create migration
         - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
@@ -499,8 +500,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Here you will add a new line of code
         - For example
         ```php
-          Schema::table('example_objects', function (Blueprint $table) {
-              $table->integer('example_column_3')->unsigned();
+          Schema::table('type_a_posts', function (Blueprint $table) {
+              $table->integer('data_field_d')->unsigned();
           });
         ```
       - Add a column deletion function to the migration
@@ -509,8 +510,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Here you will add a new line of code
         - For example here I am adding two custom columns
         ```php
-          Schema::table('example_objects', function (Blueprint $table) {
-              $table->dropColumn('example_column_3');
+          Schema::table('type_a_posts', function (Blueprint $table) {
+              $table->dropColumn('data_field_e');
           });
         ```
     - Use - Activate the migration
@@ -641,6 +642,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [Setup a model](#7.1.)
 - [SQL models](#7.2.)
 - [ORM models](#7.3.)
+- [ORM models with basic relationships](#7.4.)
 
 ###  <a name="7.1."></a> Setup a model
 
@@ -702,10 +704,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### Create (Insert)
 - Try this out
-- Route
-	- Reuse the `/URLCreate/{a}` route
-	- Where the name is: `URLCreate`
-	- And the parameters are: `{a}`
+- Route:
+	- Reuse `/URLCreate/{a}` but use a parameter
 - Controller method
 	- Import the model - put `use App\TypeAPost;` in the header of your controller
 	- Here's the entire body of code
@@ -738,7 +738,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Read
 - Try this out
 - Route:
-	- Name: reuse `URLRead/{a}`
+	- Name: reuse `/URLRead/{a}`
 - Controller method:
 	- Name: reuse `MethodRead`
 	- Parameters: `$a`
@@ -753,7 +753,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Update
 - Try this out:
 - Route:
-	- Name: reuse `URLUpdate/{a}/{b}`
+	- Name: `/URLUpdate/{a}/{b}`
 	- Association: `MethodUpdate`
 - Controller method:
 	- Name: `MethodUpdate`
@@ -771,9 +771,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Delete
 - Try this out
 - Route:
-	- Name: reuse `URLDelete/{a}`
+	- Name: `/URLDelete/{a}`
 	- Association: `MethodDelete`
-	- Parameters: `$a`
 - Controller method:
 	- Name: `MethodDelete`
 	- Parameters: `$a`
@@ -793,7 +792,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Method 1
 - Try this out
 - Route:
-	- Name: reuse `URLCreate/{a}`
+	- Name: reuse `/URLCreate/{a}`
 - Controller method:
 	- Name: reuse `MethodCreate`
 	- Parameters: `$a`
@@ -812,7 +811,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Method 2
 - Try this out
 - Route:
-	- Name: reuse `URLCreate/{a}`
+	- Name: reuse `/URLCreate/{a}`
 - Controller method:
 	- Name: reuse `MethodCreate`
 	- Parameters: `$a`
@@ -835,11 +834,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Find all records (and return a field's values)
 - Try this out
 - Route:
-	- Name: reuse `URLRead`
-	- Parameters: none
+	- Name: reuse `/URLRead` but now with no parameters
 - Controller method:
-	- Name: reuse `MethodRead`
-	- Parameters: none
+	- Name: reuse `MethodRead` but now with no parameters
 	- Script:
 	```php
 		foreach (TypeAPost::all() as $var) {
@@ -854,11 +851,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Method 1
 	- Try this out
 	- Route:
-		- Name: reuse `URLRead`
-		- Parameters: none
+		- Name: reuse `/URLRead`
 	- Controller method:
 		- Name: reuse `MethodRead`
-		- Parameters: none
 		- Script:
 		```php
 			foreach (TypeAPost::latest()->get() as $var) {
@@ -920,11 +915,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Update based on primary key
 - Try this out
 - Route:
-	- Name: reuse `URLUpdate/{a}`
-	- Parameters: `$a`
+	- Name: reuse `/URLUpdate/{a}` but with only one parameter
 - Controller method:
-	- Name: reuse `MethodUpdate`
-	- Parameters: `$a`
+	- Name: reuse `MethodUpdate` but with only one parameter
 	- Script:
 	```php
     $var = TypeAPost::find(2);
@@ -949,8 +942,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Note: this works only works when soft delete (a feature we will use later) is not activated
 - Try this out
 - Route:
-	- Name: reuse `URLDelete/{a}`
-	- Parameters: `$a`
+	- Name: reuse `/URLDelete/{a}`
 - Controller method:
 	- Name: reuse `MethodDelete`
 	- Parameters: `$a`
@@ -965,6 +957,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Delete method 2
 - Note: this works only works when soft delete is not activated
 - Controller method:
+	- Name: reuse `MethodDelete`
 	- Script:
 	```php
     TypeAPost::destroy($a);
@@ -973,10 +966,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Delete multiple
 - Route:
-	- Name: reuse `URLDelete/{a}/{b}`
-	- Parameters: `$a, $b`
+	- Name: reuse `/URLDelete/{a}/{b}` but with two parameters
 - Controller method:
-	- Parameters: `$a, $b`
+	- Name: reuse `MethodDelete` but with two parameters
 	- Script:
 	```php
     TypeAPost::destroy([$a, $b]);
@@ -985,10 +977,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Delete multiple based on condition
 - Route:
-	- Name: reuse `URLDelete/{a}`
-	- Parameters: `$a`
+	- Name: reuse `/URLDelete/{a}` but with only one parameter
 - Controller method:
-	- Parameters: `$a`
+	- Name: reuse `MethodDelete` but with only one parameter
 	- Script:
 	```php
     TypeAPost::where('data_field_a',$a)->delete();
@@ -996,85 +987,100 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - URL example: `fundamental-mechanisms-app.test/URLDelete/bye`
 
 
----
-up till here
----
 
 #### Soft delete types
 ##### General
 - Records that are deleted softly are not properly deleted but they wont display when functions like `findAll` are run.
-- Activate soft delete
+- Set up
   - Model
-    - General
-      - File - All of the following functions must go in the same file with this name `ExampleModel`
-    - Function 1
-      - Make sure this function is at beginning of the file just after a similar one but outside the class `use Illuminate\Database\Eloquent\SoftDeletes;`
-    - Function 2
-      - Make sure this function is at beginning of the class `use SoftDeletes;`
-    - Function 3
-      - Make sure this function is at beginning of the class but after the "use" functions `protected $dates = ['deleted_at'];`
+    - Line 1
+      - Put this at beginning of the `TypeAPost` model file before the model class `use Illuminate\Database\Eloquent\SoftDeletes;`
+    - Line 2
+      - Put this at beginning of the `TypeAPost` model class `use SoftDeletes;`
+    - Line 3
+      - Put this in the `TypeAPost` model class - `protected $dates = ['deleted_at'];`
   - Database
-    - Add a new column handling migration called `deleted_at` with an associated table of `example_models`.
-    - Edit the new migration    
-      - Locate and open the files
-      - In the  `up` moethod write `$table->softDeletes();`
+    - Add a new column handling migration called `type_a_post_deleted_at` for the `type_a_posts` table.
+    - Configure it    
+      - In the  `up` method write `$table->softDeletes();`
       - In the `down` method write `$table->dropColumn('deleted_at');`
+
 ##### Soft Delete
-- Route
-```php
-  Route::get('/ExampleRoute27', function(){
-    ExampleModel::find(7)->delete();
-  });
-```
+
+- Route:
+	- Name: reuse `/URLDelete/{a}`
+- Controller method:
+	- Name: reuse `MethodDelete`
+	- Script:
+	```php
+    TypeAPost::find($a)->delete();
+	```
+- URL example: `fundamental-mechanisms-app.test/URLDelete/7`
+
+
 ##### Read Items That Have Been Soft Deleted
 - Find all records
-  - Route
-  ```php
-    Route::get('/ExampleRoute27.5', function(){
-      $example_variable = ExampleModel::withTrashed()->get();
-      foreach ($example_variable as $example_variable_part) {
-          echo $example_variable_part."<br>";
-      }
-    });
-  ```
+	- Route:
+		- Name: reuse `/URLRead`
+	- Controller method:
+		- Name: reuse `MethodRead`
+		- Script:
+		```php
+			foreach (TypeAPost::withTrashed()->get() as $var) {
+					echo $var."<br>";
+			}
+		```
+	- URL example: `fundamental-mechanisms-app.test/URLRead`
 - Find all trashed
-  - Route
-  ```php
-   Route::get('/ExampleRoute28', function(){
-     $example_variable = ExampleModel::onlyTrashed()->get();
-     return $example_variable;
-   });
-  ```
+	- Route:
+		- Name: reuse `/URLRead`
+	- Controller method:
+		- Name: reuse `MethodRead`
+		- Script:
+		```php
+			return TypeAPost::onlyTrashed()->get();
+		```
+	- URL example: `fundamental-mechanisms-app.test/URLRead`
+
+
 ##### Restore All Soft Deleted items
-- Route
-```php
-  Route::get('/ExampleRoute29', function(){
-    ExampleModel::onlyTrashed()->restore();
-  });
-```
-##### Normal Delete All Soft Deleted Items (While Soft Delete is Activated)
-- Route
-```php
-  Route::get('/ExampleRoute30', function(){
-    ExampleModel::onlyTrashed()->forceDelete();
-  });
-```
-- First make sure record with id 6 is soft deleted again (using exampleroute27) before running this
+- Route:
+	- Name: reuse `/URLUpdate` but without parameters
+- Controller method:
+	- Name: reuse `MethodUpdate` but without parameters
+	- Script:
+	```php
+		TypeAPost::onlyTrashed()->restore();
+	```
+- URL example: `fundamental-mechanisms-app.test/URLUpdate`
+
+##### Empty trash (While Soft Delete is Activated)
+- This will properly delete all the items that are currently only soft deleted
+- Route:
+	- Name: `/URLDelete` but without parameters
+- Controller method:
+	- Name: reuse `MethodDelete` but without parameters
+	- Script:
+	```php
+		TypeAPost::onlyTrashed()->forceDelete();
+	```
+- URL example: `fundamental-mechanisms-app.test/URLDelete`
 
 
-
-
-### <a name="8."></a> Chapter 8. Model with basic relationships
+### <a name="7.4."></a> ORM models with basic relationships
 
 #### Table Of Content
 
-- [Basic Relationships](#Basic-Relationships)
-  - [One to One Relationship](#One-to-One-Relationship)
-  - [One to Many Relationships](#One-to-Many-Relationships)
-  - [Many to Many Relationships](#Many-to-Many-Relationships)
+- [One to One Relationship](#One-to-One-Relationship)
+- [One to Many Relationships](#One-to-Many-Relationships)
+- [Many to Many Relationships](#Many-to-Many-Relationships)
 
 #### <a name=""></a> Basic Relationships
 
+
+---
+up till here
+---
 
 ##### <a name="General-2"></a> General
 - This section covers ORM queries that use tables that have interrelationships. Tables can be related like for instance records in one table can give further information about a record in another table. There are many different types of relationships though and here you'll see how to use them.
@@ -1496,7 +1502,7 @@ up till here
         ```
   - Parent model's new column
     - Setup it up
-      - Migration - As seen in the section `Handling Columns with a Migration`
+      - Migration - As seen in the section `Column handling migration`
         - Use the migration name of `parent_model_example_grandparent2_model_id_column`
         - Use the table specifier of `example_parent_models`.
         - Table columns

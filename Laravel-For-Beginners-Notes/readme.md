@@ -1068,12 +1068,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### <a name="7.4."></a> ORM models with basic relationships
 
+
+#### General
+- This section covers ORM models make tables interrelated which results in creating a more complex entity. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of another table. In the case these table would be said to be related. There are many different types of relationships.
+
 ---
 up till here
 ---
-
-#### General
-- This section covers ORM queries that use tables that have interrelationships. Tables can be related like for instance records in one table can give further information about a record in another table. There are many different types of relationships though and here you'll see how to use them.
 
 #### One to One Relationship
 ##### Prerequisites

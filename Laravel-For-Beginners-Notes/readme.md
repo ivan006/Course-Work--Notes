@@ -635,13 +635,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Table Of Content
 
-- [Setup a model](#7.1.)
-- [SQL models](#7.2.)
-- [ORM models](#7.3.)
-- [ORM models with basic relationships](#7.4.)
-- [ORM models with advanced relationships](#7.5.)
-- [Model testing environment](#7.6.)
-- [Models with accessors and mutators](#7.7.)
+- [7.1. Setup a model (Line 30)](#7.1.)
+- [7.2. SQL models (Line 695)](#7.2.)
+- [7.3. ORM models (Line 788)](#7.3.)
+- [7.4. ORM models with basic relationships (Line 1069)](#7.4.)
+- [7.5. ORM models with advanced relationships (Line )](#7.5.)
+- [7.6. Model testing environment (Line )](#7.6.)
+- [7.7. Models with accessors and mutators (Line )](#7.7.)
 
 ###  <a name="7.1."></a> Setup a model
 
@@ -692,7 +692,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Follow the steps in `Creating a table using a migration`
 - Follow steps in `Setting up a new model`
 
-### <a name="7.2."></a>  SQL Model
+### <a name="7.2."></a>  SQL Models
 - There are four types of database queries and the are abbreviated with "CRUD"
   - Create
   - Read

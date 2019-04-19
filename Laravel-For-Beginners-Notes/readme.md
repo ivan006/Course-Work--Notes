@@ -10,21 +10,20 @@
 # Building Laravel apps for beginners
 
 - Section 1. Setup your tools and app
-	- [1. Setting up the development tools (Line 30)](#1.)
-	- [2. Setting up the Laravel powered app (Line 240)](#2.)
+	- [1. (Line 30) Setting up the development tools](#1.)
+	- [2. (Line 240) Setting up the Laravel powered app](#2.)
 - Section 2. Get familiar with the app components
-	- [3. Introduction to web app components (Line 378)](#3.)
-	- [4. Database component (Line 414)](#4.)
-	- [5. Routes (Line 531)](#5.)
-	- [6. Controllers (Line 588)](#6.)
-	- [7. Models (Line 634)](#7.)
-	- [8. Views component (Line )](#8.)
-- [13. Real-World Examples (Line )](#13.)
+	- [3. (Line 378) Introduction to web app components](#3.)
+	- [4. (Line 414) Database component](#4.)
+	- [5. (Line 531) Routes](#5.)
+	- [6. (Line 588) Controllers](#6.)
+	- [7. (Line 634) Models](#7.)
+	- [8. (Line ) Views component](#8.)
+- [13. (Line ) Real-World Examples](#13.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
   - [8.4. /5.4. Coming soon](##)
-
 
 
 ## <a name="1."></a>Chapter 1. Setting up the development tools

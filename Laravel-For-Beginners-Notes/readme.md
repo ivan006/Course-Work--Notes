@@ -1094,12 +1094,12 @@ up till here
 	- This will be `TypeAEntity`'s parent
   - Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
 		- Model name `TypeBEntity`
-    - Table name: this will be automatically configured
-    - Table columns
-    ```php
-      $table->string('data_field_a');
-      $table->text('data_field_b');
-    ```
+		- Table name: this will be automatically configured
+		- Table columns
+		```php
+		  $table->string('data_field_a');
+		  $table->text('data_field_b');
+		```
   - Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
     - For the route
       - Name give your route `/ExampleRoute31`.

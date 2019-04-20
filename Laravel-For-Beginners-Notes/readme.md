@@ -1070,26 +1070,27 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 #### General
-- This section covers ORM models make tables interrelated which results in creating a more complex entity. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of another table. In the case these table would be said to be related. There are many different types of relationships.
+- This section covers ORM models methods. These are a type of model method that makes tables interrelated. The purpose of these relationships is to create more complex entities. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of a related table. There are many different types of relationships.
+
+
+
+#### One to One Relationship
+##### Prerequisites
+- Create `TypeBEntity`
+	- This will be `TypeAEntity`'s parent
+  - Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated) - use these specs
+    - Table name `type_b_entitys`
+    - Table columns
+    ```php
+      $table->string('data_field_a');
+      $table->text('data_field_b');
+    ```
+    - Model name `TypeBEntity`
 
 ---
 up till here
 ---
 
-#### One to One Relationship
-##### Prerequisites
-- Parent model
-  - Set Up a New Table and Model Using the Shortcut (as previously demonstrated) - use these specs
-    - Table name `example_parent_models`
-    - Table columns
-    ```php
-      $table->string('example_column');
-      $table->text('example_column_2');
-    ```
-    - Model name `ExampleParentModel`
-  - Add a parent model relationship column to the example model table.
-    - Configure your example_models migration by adding this to your set of column functions `$table->integer('example_parent_model_id')->unsigned();`.
-    - Refresh all the tables (as shown how in previous section)
   - Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
     - For the route
       - Name give your route `/ExampleRoute31`.
@@ -1113,13 +1114,18 @@ up till here
     ```
       - Add this in the model's class
       - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
-- Child model
-```php
-  public function ExampleParentModel(){
-    return $this->belongsTo('App\ExampleParentModel');
-  }
-```
-  - Add this in the model's class
+- Configure `TypeAEntity`
+	- Database
+		- Add a foreign key column
+			- Editing the migration by adding this to your set of column functions `$table->integer('type_b_entity_id')->unsigned();`.
+			- Then refresh all the migrations (as shown how in previous section)
+	- Model
+	```php
+	  public function ExampleParentModel(){
+	    return $this->belongsTo('App\ExampleParentModel');
+	  }
+	```
+	  - Add this in the model's class
 
 ##### Basic Queries
 - Add a record to the example model table and make sure multiple field values are filled in.

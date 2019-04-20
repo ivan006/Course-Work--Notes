@@ -475,7 +475,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					- data type: `string`
 	- Generate file command
 		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-		- Run `php artisan make:migration type_a_entities --create="type_a_entities"`
+		- Run `php artisan make:migration type_a_entities_m_table --create="type_a_entities"`
 	- Configure it
 	  - Open the migration file in a code editor. Locate the schema function in your migration's up method.
 	  - Add this to the `Schema::create` function
@@ -498,7 +498,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       - Create migration
         - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
         - Decide on a migration name.
-        - Run `php artisan make:migration migration_name --table="example_objects"`
+        - Run `php artisan make:migration type_a_entities_m_column_data_field_d --table="type_a_entities"`
       - Add a column function to the migration
         - Open the migration file in a code editor.
         - Locate the schema function in your migration's up method
@@ -516,7 +516,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - For example here I am adding two custom columns
         ```php
           Schema::table('type_a_entities', function (Blueprint $table) {
-              $table->dropColumn('data_field_e');
+              $table->dropColumn('data_field_d');
           });
         ```
     - Use - Activate the migration
@@ -669,18 +669,18 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Primary key associator
 	- If your tables primary key is not "id" you will need to specify it.
 	- To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-- Set model restriction
+- De-restrict the custom fields permissions
 	- Give the model some freedoms like allowing it to do multiple value inserts
-		- By default a new entity can't be populated with content on inception this changes that
-		- Choose the data fields that you want to be able to be populated on the entity's inception
-		- Put this into your model's class
-		```php
-			protected $fillable = [
-				'data_field_a',
-				'data_field_b',
-				'data_field_c',
-			];
-		```
+	- By default a new entity can't be populated with content on inception this changes that
+	- Choose the data fields that you want to be able to be populated on the entity's inception
+	- Put this into your model's class
+	```php
+		protected $fillable = [
+			'data_field_a',
+			'data_field_b',
+			'data_field_c',
+		];
+	```
 - Importing model into the controller
   - Put this in the header of the associated controller file `use App\TypeAEntity;`
 
@@ -797,7 +797,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ### <a name="7.3."></a> ORM Models
 
 #### Create types
-##### Method 1
+##### Insert record with one field value
 - Try this out
 - Route:
 	- Name: reuse `/URLCreate/{a}`
@@ -816,7 +816,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: this one is all ready automatically made
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
-##### Method 2
+##### Insert record with multiple field values
 - Try this out
 - Route:
 	- Name: reuse `/URLCreate/{a}`
@@ -1008,7 +1008,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - Line 3
       - Put this in the `TypeAEntity` model class - `protected $dates = ['deleted_at'];`
   - Database
-    - Add a new column handling migration called `type_a_entity_deleted_at` for the `type_a_entities` table.
+    - Add a new column handling migration called `type_a_entities_m_column_deleted_at` for the `type_a_entities` table.
     - Configure it    
       - In the  `up` method write `$table->softDeletes();`
       - In the `down` method write `$table->dropColumn('deleted_at');`
@@ -1079,17 +1079,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 #### General
-- This section covers ORM models methods. These are a type of model method that makes tables interrelated. The purpose of these relationships is to create more complex entities. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of a related table. There are many different types of relationships.
+- This section covers ORM models methods. These are a type of model method that makes tables interrelated. The purpose of these relationships is to create super entities or networks of entities. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of a related table. There are many different types of relationships.
 
 
 
 #### One to One Relationship
-##### Prerequisites
-
----
-up till here
----
-
+##### Set up
 - Create `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
 	- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
@@ -1100,43 +1095,46 @@ up till here
 		  $table->string('data_field_a');
 		  $table->text('data_field_b');
 		```
-	- Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
-	  - For the route
-	    - Name give your route `/ExampleRoute31`.
-	    - Use the model usage function `use App\ExampleParentModel;`
-	    - Make sure your route references the right model e.g. `ExampleParentModel::`
 	- Model
-	  - Add one of the following code blocks to the parent model's model
-	  - Method 1 - Specify the column to refer to for the child model's parent model id column
-	  ```php
-	    public funcion ExampleModel(){
-	      return $this->hasOne('App\ExampleModel', 'example_parent_model_id');
-	    }
-	  ```
-	    - So as you can see you do it in the `hasOne()` function's second parameter.
-	    - Also note your if your child  models's primary key column is not simple called `id` you can specify it as the third parameter.
-	  - Method 2 - Use default specifier which will be the parent model's name prepended with `_id` (also note that camel case `ExampleParentModel` converts to underscored `example_parent_model` and then obviously gets prepended `example_parent_model_id`)
-	  ```php
-	    public funcion ExampleModel(){
-	      return $this->hasOne('App\ExampleModel');
-	    }
-	  ```
-	    - Add this in the model's class
-	    - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
+		- `De-restrict the custom fields permissions` as shown in a previous section
+	  - Configure relationship
+			- Depending on how your foreign key has been named add either of the following model methods
+		  - Method 1 - The manual foreign key specifier method
+		  ```php
+		    public funcion TypeAEntity(){
+		      return $this->hasOne('App\TypeAEntity', 'type_b_entities_id');
+		    }
+		  ```
+		    - Manually specify the foreign key in the `hasOne()` object accessors second parameter.
+		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
+		  - Method 2 - The automatic foreign key specifier method
+				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` (e.g. `type_b_entities_id`)
+		  ```php
+		    public funcion TypeAEntity(){
+		      return $this->hasOne('App\TypeAEntity');
+		    }
+		  ```
+		    - Add this in the model's class
+		    - Note the name of the function (in this case `TypeAEntity`) doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
 - Configure `TypeAEntity`
 	- Database
 		- Add a foreign key column
-			- Editing the migration by adding this to your set of column functions `$table->integer('type_b_entity_id')->unsigned();`.
-			- Then refresh all the migrations (as shown how in previous section)
+			- Edit the migration by adding this to your set of column functions `$table->integer('type_b_entities_id')->unsigned();`.
+			- Then `refresh all the migrations` (as shown how in previous section)
 	- Model
 	```php
-	  public function ExampleParentModel(){
-	    return $this->belongsTo('App\ExampleParentModel');
+	  public function TypeBEntity(){
+	    return $this->belongsTo('App\TypeBEntity');
 	  }
 	```
 	  - Add this in the model's class
 
-##### Basic Queries
+---
+up till here
+---
+
+
+##### Usage
 - Add a record to the example model table and make sure multiple field values are filled in.
   - Add model usage function to top `use App\ExampleParentModel;`
   - For the model: Add `example_parent_model_id` to the list fillable function list.

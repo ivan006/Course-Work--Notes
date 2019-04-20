@@ -1122,12 +1122,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			- Edit the migration by adding this to your set of column functions `$table->integer('type_b_entities_id')->unsigned();`.
 			- Then `refresh all the migrations` (as shown how in previous section)
 	- Model
-	```php
-	  public function TypeBEntity(){
-	    return $this->belongsTo('App\TypeBEntity');
-	  }
-	```
-	  - Add this in the model's class
+		- Add this in the model's class
+		```php
+		  public function TypeBEntity(){
+		    return $this->belongsTo('App\TypeBEntity');
+		  }
+		```
 
 ---
 up till here

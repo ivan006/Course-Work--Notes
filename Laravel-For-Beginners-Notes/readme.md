@@ -3,17 +3,17 @@
 	- Database
 		- This stores the data
 - Entity action components
-	- A URL (i.e. a request)
+	- A URL - Request
 		- This requests the action, front end action component
-	- A page (i.e. a response)
+	- A page - Response
 		- This communicates the response after the rest of the action is executed, front end action component
-	- A route (i.e. a request translator)
+	- A route - Request translator
 		- This translates the action request, back end action component
-	- A controller (i.e. an executor)
+	- A controller - Executor
 		- This executes the action, back end action component
-	- A model (i.e. a set of query templates)
+	- A model - Set of query templates
 		- These guide the parts of the action that interact with the database, back end action component
-	- A view (i.e. a response template)
+	- A view - Response template
 		- These guide the parts of the action that generate the response, back end action component
 
 # Building Laravel apps for beginners

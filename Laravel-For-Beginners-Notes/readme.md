@@ -34,7 +34,7 @@
   - [8.3. /5.3. Coming soon](##)
   - [8.4. /5.4. Coming soon](##)
 
-- [(.*) ((.*))]((.*))
+
 
 ## <a name="1."></a>Chapter 1. Setting up the development tools
 ### Table Of Content

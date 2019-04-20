@@ -1092,7 +1092,7 @@ up till here
 
 - Create `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
-  - Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
+	- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
 		- Model name `TypeBEntity`
 		- Table name: this will be automatically configured
 		- Table columns
@@ -1100,29 +1100,29 @@ up till here
 	  $table->string('data_field_a');
 	  $table->text('data_field_b');
 		```
-  - Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
-    - For the route
-      - Name give your route `/ExampleRoute31`.
-      - Use the model usage function `use App\ExampleParentModel;`
-      - Make sure your route references the right model e.g. `ExampleParentModel::`
-  - Model
-    - Add one of the following code blocks to the parent model's model
-    - Method 1 - Specify the column to refer to for the child model's parent model id column
-    ```php
-      public funcion ExampleModel(){
-        return $this->hasOne('App\ExampleModel', 'example_parent_model_id');
-      }
-    ```
-      - So as you can see you do it in the `hasOne()` function's second parameter.
-      - Also note your if your child  models's primary key column is not simple called `id` you can specify it as the third parameter.
-    - Method 2 - Use default specifier which will be the parent model's name prepended with `_id` (also note that camel case `ExampleParentModel` converts to underscored `example_parent_model` and then obviously gets prepended `example_parent_model_id`)
-    ```php
-      public funcion ExampleModel(){
-        return $this->hasOne('App\ExampleModel');
-      }
-    ```
-      - Add this in the model's class
-      - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
+	- Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
+	  - For the route
+	    - Name give your route `/ExampleRoute31`.
+	    - Use the model usage function `use App\ExampleParentModel;`
+	    - Make sure your route references the right model e.g. `ExampleParentModel::`
+	- Model
+	  - Add one of the following code blocks to the parent model's model
+	  - Method 1 - Specify the column to refer to for the child model's parent model id column
+	  ```php
+	    public funcion ExampleModel(){
+	      return $this->hasOne('App\ExampleModel', 'example_parent_model_id');
+	    }
+	  ```
+	    - So as you can see you do it in the `hasOne()` function's second parameter.
+	    - Also note your if your child  models's primary key column is not simple called `id` you can specify it as the third parameter.
+	  - Method 2 - Use default specifier which will be the parent model's name prepended with `_id` (also note that camel case `ExampleParentModel` converts to underscored `example_parent_model` and then obviously gets prepended `example_parent_model_id`)
+	  ```php
+	    public funcion ExampleModel(){
+	      return $this->hasOne('App\ExampleModel');
+	    }
+	  ```
+	    - Add this in the model's class
+	    - Note the name of the function (in this case "ExampleModel") doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
 - Configure `TypeAEntity`
 	- Database
 		- Add a foreign key column

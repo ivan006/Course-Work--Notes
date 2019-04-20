@@ -463,8 +463,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Try this out
   - Determine the names and types
 		- Determine the table's name
-			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model)
-			- E.g. `type_a_entitys`
+			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model) also if the model ends in `y` then it's table must end in `ies`
+			- E.g. `type_a_entities`
 		- Determine the field names and field data types (string or text etc.) of the tables data fields
 			- E.g.
 				- `data_field_a`
@@ -475,7 +475,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					- data type: `string`
   - Generate file command
 		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-  	- Run `php artisan make:migration type_a_entitys --create="type_a_entitys"`
+  	- Run `php artisan make:migration type_a_entities --create="type_a_entities"`
   - Configure it
     - Open the migration file in a code editor. Locate the schema function in your migration's up method.
     - Add this to the `Schema::create` function
@@ -505,7 +505,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Here you will add a new line of code
         - For example
         ```php
-          Schema::table('type_a_entitys', function (Blueprint $table) {
+          Schema::table('type_a_entities', function (Blueprint $table) {
               $table->integer('data_field_d')->unsigned();
           });
         ```
@@ -515,7 +515,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Here you will add a new line of code
         - For example here I am adding two custom columns
         ```php
-          Schema::table('type_a_entitys', function (Blueprint $table) {
+          Schema::table('type_a_entities', function (Blueprint $table) {
               $table->dropColumn('data_field_e');
           });
         ```
@@ -691,10 +691,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Using the Shortcut
 - Try this out
-- Follow the `Creating a table using a migration` and `Setting up a new model` steps as normal except replace the two `generate file command` steps with this single command
 - Generate the migration and model file with a single command
-	  - In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-	  - Run `php artisan make:model TypeAEntity -m`
+	- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
+	- Run `php artisan make:model TypeAEntity -m`
+- Follow the `Creating a table using a migration` and `Setting up a new model` to finish setting them up except leave out the `generate file command` steps of course
 
 
 ##### Without Using the Shortcut
@@ -732,12 +732,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```php
 		static function model_create($a, $b, $c)
     {
-      DB::insert('insert into type_a_entitys(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
+      DB::insert('insert into type_a_entities(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
     }
 	```
 	- Where the name is: `insert`
 	- The parameters are: `$a, $b, $c`
-	- The query is: `DB::insert('insert into type_a_entitys(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
+	- The query is: `DB::insert('insert into type_a_entities(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
 	- And model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
@@ -754,7 +754,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Model method:
 	- Name: `model_read`
 	- Parameters: `$a`
-	- Query: `return DB::select('select * from type_a_entitys where data_field_a  = ?', [$a]);`
+	- Query: `return DB::select('select * from type_a_entities where data_field_a  = ?', [$a]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
@@ -770,7 +770,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Model method:
 	- Name: `model_update`
 	- Parameters: `$a, $b`
-	- Query `DB::update('update type_a_entitys set data_field_a  = ? where id = ?', [$a, $b]);`
+	- Query `DB::update('update type_a_entities set data_field_a  = ? where id = ?', [$a, $b]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
@@ -788,7 +788,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Model method:
 	- Name: `model_delete`
 	- Parameters: `$a`
-	- Query `DB::delete('delete from type_a_entitys where id = ?', [$a]);`
+	- Query `DB::delete('delete from type_a_entities where id = ?', [$a]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLDelete/1`
 
@@ -1008,7 +1008,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - Line 3
       - Put this in the `TypeAEntity` model class - `protected $dates = ['deleted_at'];`
   - Database
-    - Add a new column handling migration called `type_a_entity_deleted_at` for the `type_a_entitys` table.
+    - Add a new column handling migration called `type_a_entity_deleted_at` for the `type_a_entities` table.
     - Configure it    
       - In the  `up` method write `$table->softDeletes();`
       - In the `down` method write `$table->dropColumn('deleted_at');`
@@ -1085,21 +1085,21 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### One to One Relationship
 ##### Prerequisites
-- Create `TypeBEntity`
-	- This will be `TypeAEntity`'s parent
-  - Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated) - use these specs
-    - Table name `type_b_entitys`
-    - Table columns
-    ```php
-      $table->string('data_field_a');
-      $table->text('data_field_b');
-    ```
-    - Model name `TypeBEntity`
 
 ---
 up till here
 ---
 
+- Create `TypeBEntity`
+	- This will be `TypeAEntity`'s parent
+  - Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
+		- Model name `TypeBEntity`
+    - Table name: this will be automatically configured
+    - Table columns
+    ```php
+      $table->string('data_field_a');
+      $table->text('data_field_b');
+    ```
   - Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
     - For the route
       - Name give your route `/ExampleRoute31`.

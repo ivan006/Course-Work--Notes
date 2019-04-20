@@ -1,6 +1,6 @@
 
 - Entity data components
-	- Database
+	- Database -Storage
 		- This stores the data
 - Entity action components
 	- A URL - Request

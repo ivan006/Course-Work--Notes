@@ -461,7 +461,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Table handling migration
 - Creating a table using a migration
 	- Try this out
-  - Determine the names and types
+	- Determine the names and types
 		- Determine the table's name
 			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model) also if the model ends in `y` then it's table must end in `ies`
 			- E.g. `type_a_entities`
@@ -473,21 +473,21 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					- data type: `string`
 				- `data_field_c`
 					- data type: `string`
-  - Generate file command
+	- Generate file command
 		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-  	- Run `php artisan make:migration type_a_entities --create="type_a_entities"`
-  - Configure it
-    - Open the migration file in a code editor. Locate the schema function in your migration's up method.
-    - Add this to the `Schema::create` function
-    ```php
-        $table->string('data_field_a');
-        $table->string('data_field_b');
-        $table->string('data_field_c');
-    ```
+		- Run `php artisan make:migration type_a_entities --create="type_a_entities"`
+	- Configure it
+	  - Open the migration file in a code editor. Locate the schema function in your migration's up method.
+	  - Add this to the `Schema::create` function
+	  ```php
+	      $table->string('data_field_a');
+	      $table->string('data_field_b');
+	      $table->string('data_field_c');
+	  ```
 		- Note: when editing this be sure not to remove the default "id" (`$table->increments('id');`) and timestamps (`$table->timestamps();`) functions as they are best to keep.
-  - Generate the table
-    - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-    - Run `php artisan migrate`
+	- Generate the table
+	  - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+	  - Run `php artisan migrate`
 
 #### Column handling migration
 - General: These allow you to add columns to tables without interrupting the tables content/records that are already created
@@ -1097,8 +1097,8 @@ up till here
 		- Table name: this will be automatically configured
 		- Table columns
 		```php
-	  $table->string('data_field_a');
-	  $table->text('data_field_b');
+		  $table->string('data_field_a');
+		  $table->text('data_field_b');
 		```
 	- Add a record to the example parent model table and make sure multiple field values are filled in (use the `insert record with multiple field values` method as previously demonstrated).
 	  - For the route

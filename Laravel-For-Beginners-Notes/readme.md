@@ -1,7 +1,7 @@
 
 - A URL - request, front end action component
 - A page - response, front end action component
-- Database - posts data storage
+- Database - entitys data storage
 - A route - request translator, back end action component
 - A controller - executor, back end action component
 - A model - query templates, back end action component
@@ -388,17 +388,17 @@ sites:
 
 #### Definition
  - A controller contains a set of controller methods
- - A controller method is the execution script for a post type's action.
+ - A controller method is the execution script for a entity type's action.
 
 #### Location
-They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` in a controller file together with the other controllers that are also associated with the same post type.
+They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` in a controller file together with the other controllers that are also associated with the same entity type.
 
 #### Controller types
 - Note: these are merely examples of controllers types there are in fact more
-- Create post
-- Read post
-- Update post
-- Delete post
+- Create entity
+- Read entity
+- Update entity
+- Delete entity
 
 
 
@@ -455,7 +455,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - Determine the names and types
 		- Determine the table's name
 			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model)
-			- E.g. `type_a_posts`
+			- E.g. `type_a_entitys`
 		- Determine the field names and field data types (string or text etc.) of the tables data fields
 			- E.g.
 				- `data_field_a`
@@ -466,7 +466,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					- data type: `string`
   - Generate file command
 		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-  	- Run `php artisan make:migration type_a_posts --create="type_a_posts"`
+  	- Run `php artisan make:migration type_a_entitys --create="type_a_entitys"`
   - Configure it
     - Open the migration file in a code editor. Locate the schema function in your migration's up method.
     - Add this to the `Schema::create` function
@@ -496,7 +496,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Here you will add a new line of code
         - For example
         ```php
-          Schema::table('type_a_posts', function (Blueprint $table) {
+          Schema::table('type_a_entitys', function (Blueprint $table) {
               $table->integer('data_field_d')->unsigned();
           });
         ```
@@ -506,7 +506,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         - Here you will add a new line of code
         - For example here I am adding two custom columns
         ```php
-          Schema::table('type_a_posts', function (Blueprint $table) {
+          Schema::table('type_a_entitys', function (Blueprint $table) {
               $table->dropColumn('data_field_e');
           });
         ```
@@ -545,13 +545,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Route anatomy
 - Example
-	- `Route::get('/URLCreate', 'TypeAPost_Controller@MethodCreate');`.
-	- In this case the URL is the word `/URLCreate` and the controller is called `MethodCreate` and is found inside a controller file called `TypeAPost_Controller`
+	- `Route::get('/URLCreate', 'TypeAEntity_Controller@MethodCreate');`.
+	- In this case the URL is the word `/URLCreate` and the controller is called `MethodCreate` and is found inside a controller file called `TypeAEntity_Controller`
 	- Try this out - bear in mind it wont work properly until you make a controller.
 
 ### Resourced route
 - This creates not 1 but a set of routes.
-- E.g. `Route::resource('/URLCreate', 'TypeAPost_Controller');`
+- E.g. `Route::resource('/URLCreate', 'TypeAEntity_Controller');`
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
@@ -575,11 +575,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### <a name="Route-cont.-Route-Parameters"></a>Route Parameters
 - General: Route parameters are variables are passed through the URL.
-- Usefulness: The URL could have a number in it which reflects a the id number of a post that you would like to see.
+- Usefulness: The URL could have a number in it which reflects a the id number of a entity that you would like to see.
 - Example:
 	- In this case it's called `ExampleParameter`
 	```php  
-	  Route::get('/URLRead/{ExampleParameter}', 'TypeAPost_Controller@MethodRead');
+	  Route::get('/URLRead/{ExampleParameter}', 'TypeAEntity_Controller@MethodRead');
 	```
 	- Try this out
 		- bear in mind it wont work properly until you make a controller.
@@ -596,14 +596,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### From scratch controller
 - These are completely blank and must be made from scratch
-- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case but e.g. `TypeAPost_Controller.php`
+- To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case but e.g. `TypeAEntity_Controller.php`
 - To avoid class name collisions we recommend ending your controller with `_Controller`
 
 #### Generated controller
 - These come with the controller file's foundation code already in place
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
-	- Run `php artisan make:controller TypeAPost_Controller`
+	- Run `php artisan make:controller TypeAEntity_Controller`
 - Try this out
 	- bear in mind it wont work properly until you make a controller.
 
@@ -611,7 +611,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - These come with the controller file's foundation code already in place and some commonly used controllers set up
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
-	- Run `php artisan make:controller --resource TypeAPost_Controller`, note the camel casing on the controller name.
+	- Run `php artisan make:controller --resource TypeAEntity_Controller`, note the camel casing on the controller name.
 
 
 
@@ -656,14 +656,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			- To specify a table put this into your model's class `protected $table = 'example_table_model';`
 - Generate file command
 	- Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
-	- Then run `php artisan make:model TypeAPost`
+	- Then run `php artisan make:model TypeAEntity`
 - Primary key associator
 	- If your tables primary key is not "id" you will need to specify it.
 	- To specify the primary key put this into your model class `protected $primaryKey = 'id';`
 - Set model restriction
 	- Give the model some freedoms like allowing it to do multiple value inserts
-		- By default a new post can't be populated with content on inception this changes that
-		- Choose the data fields that you want to be able to be populated on the post's inception
+		- By default a new entity can't be populated with content on inception this changes that
+		- Choose the data fields that you want to be able to be populated on the entity's inception
 		- Put this into your model's class
 		```php
 			protected $fillable = [
@@ -673,7 +673,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			];
 		```
 - Importing model into the controller
-  - Put this in the header of the associated controller file `use App\TypeAPost;`
+  - Put this in the header of the associated controller file `use App\TypeAEntity;`
 
 
 
@@ -685,7 +685,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Follow the `Creating a table using a migration` and `Setting up a new model` steps as normal except replace the two `generate file command` steps with this single command
 - Generate the migration and model file with a single command
 	  - In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-	  - Run `php artisan make:model TypeAPost -m`
+	  - Run `php artisan make:model TypeAEntity -m`
 
 
 ##### Without Using the Shortcut
@@ -706,29 +706,29 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Route:
 	- Reuse `/URLCreate/{a}` but use a parameter
 - Controller method
-	- Import the model - put `use App\TypeAPost;` in the header of your controller
+	- Import the model - put `use App\TypeAEntity;` in the header of your controller
 	- Here's the entire body of code
   ```php
 		public function MethodCreate($a)
 	  {
-	    TypeAPost::model_create($a, $a, $a);
+	    TypeAEntity::model_create($a, $a, $a);
 	  }
   ```
 	- Where the name is: `MethodCreate`
 	- The parameters are: `$a`
-	- And the script is: `TypeAPost::model_create($a, $a, $a);`
+	- And the script is: `TypeAEntity::model_create($a, $a, $a);`
 - Model method
 	- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
 	- Heres the entire body of code
 	```php
 		static function model_create($a, $b, $c)
     {
-      DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
+      DB::insert('insert into type_a_entitys(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
     }
 	```
 	- Where the name is: `insert`
 	- The parameters are: `$a, $b, $c`
-	- The query is: `DB::insert('insert into type_a_posts(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
+	- The query is: `DB::insert('insert into type_a_entitys(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
 	- And model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
@@ -741,11 +741,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Controller method:
 	- Name: reuse `MethodRead`
 	- Parameters: `$a`
-	- Script: `return "<pre>".var_dump(TypeAPost::model_read($a))."</pre>";`
+	- Script: `return "<pre>".var_dump(TypeAEntity::model_read($a))."</pre>";`
 - Model method:
 	- Name: `model_read`
 	- Parameters: `$a`
-	- Query: `return DB::select('select * from type_a_posts where data_field_a  = ?', [$a]);`
+	- Query: `return DB::select('select * from type_a_entitys where data_field_a  = ?', [$a]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
@@ -757,11 +757,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Controller method:
 	- Name: `MethodUpdate`
 	- Parameters: `$a, $b`
-	- Script: `TypeAPost::model_update($a, $b);`
+	- Script: `TypeAEntity::model_update($a, $b);`
 - Model method:
 	- Name: `model_update`
 	- Parameters: `$a, $b`
-	- Query `DB::update('update type_a_posts set data_field_a  = ? where id = ?', [$a, $b]);`
+	- Query `DB::update('update type_a_entitys set data_field_a  = ? where id = ?', [$a, $b]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
 
@@ -775,11 +775,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Controller method:
 	- Name: `MethodDelete`
 	- Parameters: `$a`
-	- Script: `TypeAPost::model_delete($a);`
+	- Script: `TypeAEntity::model_delete($a);`
 - Model method:
 	- Name: `model_delete`
 	- Parameters: `$a`
-	- Query `DB::delete('delete from type_a_posts where id = ?', [$a]);`
+	- Query `DB::delete('delete from type_a_entitys where id = ?', [$a]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLDelete/1`
 
@@ -797,7 +797,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Parameters: `$a`
 	- Script:
 	```php
-		$var = new TypeAPost;
+		$var = new TypeAEntity;
 		$var->data_field_a = $a;
 		$var->data_field_b = $a;
 		$var->data_field_c = $a;
@@ -816,7 +816,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Parameters: `$a`
 	- Script:
 	```php
-		TypeAPost::create([
+		TypeAEntity::create([
       'data_field_a'=>$a,
       'data_field_b'=>$a,
       'data_field_c'=>$a
@@ -838,7 +838,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodRead` but now with no parameters
 	- Script:
 	```php
-		foreach (TypeAPost::all() as $var) {
+		foreach (TypeAEntity::all() as $var) {
 				echo $var->data_field_a."<br>";
 		}
 	```
@@ -855,7 +855,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Name: reuse `MethodRead`
 		- Script:
 		```php
-			foreach (TypeAPost::latest()->get() as $var) {
+			foreach (TypeAEntity::latest()->get() as $var) {
 					echo $var->data_field_a."<br>";
 			}
 		```
@@ -867,7 +867,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Controller method:
 		- Script:
 		```php
-      foreach (TypeAPost::orderBy('id', 'desc')->get() as $var) {
+      foreach (TypeAEntity::orderBy('id', 'desc')->get() as $var) {
           echo $var->data_field_a."<br>";
       }
 		```
@@ -876,7 +876,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Controller method:
 		- Script:
 		```php
-      foreach (TypeAPost::orderBy('id', 'desc')->get() as $var) {
+      foreach (TypeAEntity::orderBy('id', 'desc')->get() as $var) {
           echo $var->data_field_a."<br>";
       }
 		```
@@ -885,7 +885,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Controller method:
 	- Script:
 	```php
-		return TypeAPost::find(5)->data_field_a;
+		return TypeAEntity::find(5)->data_field_a;
 	```
 
 ##### Find based on primary key (and return a field's values) or display an error
@@ -893,21 +893,21 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Controller method:
 	- Script:
 	```php
-		return TypeAPost::findOrFail(1);
+		return TypeAEntity::findOrFail(1);
 	```
 ##### Find based on other conditions (this example only works with soft-deleted items which comes later)
 - Try this out
 - Controller method:
 	- Script:
 	```php
-		return TypeAPost::withTrashed()->orderBy('id','desc')->get();
+		return TypeAEntity::withTrashed()->orderBy('id','desc')->get();
 	```
 ##### Find based on other conditions (and return a field's values) or display an error
 - Try this out
 - Controller method:
 	- Script:
 	```php
-		return TypeAPost::where('id','<',50)->firstOrFail();
+		return TypeAEntity::where('id','<',50)->firstOrFail();
 	```
 
 #### Update types
@@ -919,7 +919,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodUpdate` but with only one parameter
 	- Script:
 	```php
-    $var = TypeAPost::find(2);
+    $var = TypeAEntity::find(2);
     $var->data_field_a = $a;
     $var->save();
 	```
@@ -932,7 +932,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Controller method:
 	- Script:
 	```php
-    TypeAPost::where('id', 2)->where('data_field_a', $a)->update(['data_field_b'=>$a]);
+    TypeAEntity::where('id', 2)->where('data_field_a', $a)->update(['data_field_b'=>$a]);
 	```
 - URL example: `fundamental-mechanisms-app.test/URLUpdate/hello`
 
@@ -947,7 +947,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Parameters: `$a`
 	- Script:
 	```php
-    TypeAPost::find($a)->delete();
+    TypeAEntity::find($a)->delete();
 	```
 - Model method:
 	- Name: this one is all ready automatically made
@@ -959,7 +959,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodDelete`
 	- Script:
 	```php
-    TypeAPost::destroy($a);
+    TypeAEntity::destroy($a);
 	```
 - URL example: `fundamental-mechanisms-app.test/URLDelete/4`
 
@@ -970,7 +970,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodDelete` but with two parameters
 	- Script:
 	```php
-    TypeAPost::destroy([$a, $b]);
+    TypeAEntity::destroy([$a, $b]);
 	```
 - URL example: `fundamental-mechanisms-app.test/URLDelete/5/6`
 
@@ -981,7 +981,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodDelete` but with only one parameter
 	- Script:
 	```php
-    TypeAPost::where('data_field_a',$a)->delete();
+    TypeAEntity::where('data_field_a',$a)->delete();
 	```
 - URL example: `fundamental-mechanisms-app.test/URLDelete/bye`
 
@@ -993,13 +993,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Set up
   - Model
     - Line 1
-      - Put this at beginning of the `TypeAPost` model file before the model class `use Illuminate\Database\Eloquent\SoftDeletes;`
+      - Put this at beginning of the `TypeAEntity` model file before the model class `use Illuminate\Database\Eloquent\SoftDeletes;`
     - Line 2
-      - Put this at beginning of the `TypeAPost` model class `use SoftDeletes;`
+      - Put this at beginning of the `TypeAEntity` model class `use SoftDeletes;`
     - Line 3
-      - Put this in the `TypeAPost` model class - `protected $dates = ['deleted_at'];`
+      - Put this in the `TypeAEntity` model class - `protected $dates = ['deleted_at'];`
   - Database
-    - Add a new column handling migration called `type_a_post_deleted_at` for the `type_a_posts` table.
+    - Add a new column handling migration called `type_a_entity_deleted_at` for the `type_a_entitys` table.
     - Configure it    
       - In the  `up` method write `$table->softDeletes();`
       - In the `down` method write `$table->dropColumn('deleted_at');`
@@ -1012,7 +1012,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodDelete`
 	- Script:
 	```php
-    TypeAPost::find($a)->delete();
+    TypeAEntity::find($a)->delete();
 	```
 - URL example: `fundamental-mechanisms-app.test/URLDelete/7`
 
@@ -1025,7 +1025,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Name: reuse `MethodRead`
 		- Script:
 		```php
-			foreach (TypeAPost::withTrashed()->get() as $var) {
+			foreach (TypeAEntity::withTrashed()->get() as $var) {
 					echo $var."<br>";
 			}
 		```
@@ -1037,7 +1037,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Name: reuse `MethodRead`
 		- Script:
 		```php
-			return TypeAPost::onlyTrashed()->get();
+			return TypeAEntity::onlyTrashed()->get();
 		```
 	- URL example: `fundamental-mechanisms-app.test/URLRead`
 
@@ -1049,7 +1049,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodUpdate` but without parameters
 	- Script:
 	```php
-		TypeAPost::onlyTrashed()->restore();
+		TypeAEntity::onlyTrashed()->restore();
 	```
 - URL example: `fundamental-mechanisms-app.test/URLUpdate`
 
@@ -1061,7 +1061,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Name: reuse `MethodDelete` but without parameters
 	- Script:
 	```php
-		TypeAPost::onlyTrashed()->forceDelete();
+		TypeAEntity::onlyTrashed()->forceDelete();
 	```
 - URL example: `fundamental-mechanisms-app.test/URLDelete`
 

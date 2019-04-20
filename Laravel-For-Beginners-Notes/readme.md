@@ -648,9 +648,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [7.2. SQL models (Line 695)](#7.2.)
 - [7.3. ORM models (Line 788)](#7.3.)
 - [7.4. ORM models with basic relationships (Line 1069)](#7.4.)
-- [7.5. ORM models with advanced relationships (Line )](#7.5.)
-- [7.6. Model testing environment (Line )](#7.6.)
-- [7.7. Models with accessors and mutators (Line )](#7.7.)
+- [7.5. ORM models with advanced relationships (Roughly Line 1450)](#7.5.)
+- [7.6. Model testing environment (Roughly Line 1882)](#7.6.)
+- [7.7. Models with accessors and mutators (Roughly Line 1930)](#7.7.)
 
 ###  <a name="7.1."></a> Setup a model
 

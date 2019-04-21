@@ -669,7 +669,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Primary key associator
 	- If your tables primary key is not "id" you will need to specify it.
 	- To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-- De-restrict the model so it's "fillable"
+- De-restricting fields
 	- Give the model some freedoms like allowing it to do multiple value inserts
 	- By default a new entity can't be populated with content on inception this changes that
 	- Choose the data fields that you want to be able to be populated on the entity's inception
@@ -818,12 +818,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		TypeAEntity::create([
       'data_field_a'=>$a,
       'data_field_b'=>$a,
-      'data_field_c'=>$a
+      'data_field_c'=>$a,
     ]);
 	```
 - Model method:
 	- Name/parameters: this one is all ready automatically made
-	- `De-restrict the model so it's "fillable"` as shown in previous section
+	- `De-restricting fields` as shown in previous section
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
@@ -1085,32 +1085,32 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		  $table->text('data_field_b');
 		```
 	- Model
-		- `De-restrict the model so it's "fillable"` as shown in a previous section
+		- `De-restricting fields` as shown in a previous section
 	  - Configure relationship
 			- Depending on how your foreign key has been named add either of the following model methods
 		  - Method 1 - The manual foreign key specifier method
 		  ```php
 		    public funcion TypeAEntity(){
-		      return $this->hasOne('App\TypeAEntity', 'type_b_entities_id');
+		      return $this->hasOne('App\TypeAEntity', 'type_b_entity_id');
 		    }
 		  ```
 		    - Manually specify the foreign key in the `hasOne()` alias's second parameter.
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method
-				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` (e.g. `type_b_entities_id`)
+				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` and is singular (e.g. `type_b_entity_id`)
 		  ```php
 		    public funcion TypeAEntity(){
 		      return $this->hasOne('App\TypeAEntity');
 		    }
 		  ```
 		    - Add this in the model's class
-		    - Note the name of the function (in this case `TypeAEntity`) doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
+		    - Note: the name of the controller (in this case `TypeAEntity`) doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
 - Configure `TypeAEntity`
 	- Database
 		- Add a foreign key column
 			- Edit the migration by adding this to your set of column functions
 			```php
-				$table->integer('type_b_entities_id')->unsigned();
+				$table->integer('type_b_entity_id')->unsigned();
 			```
 			- Then `refresh all the migrations` (as shown how in previous section)
 	- Model
@@ -1120,12 +1120,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		    return $this->belongsTo('App\TypeBEntity');
 		  }
 		```
-
----
-up till here
----
-
-
 ##### Usage
 - Create a `type_a_entity` record with a foreign key value
 	- Try this out
@@ -1133,30 +1127,20 @@ up till here
 		- Name/parameters: reuse `/URLCreate/{a}`
 	- Controller method:
 		- Name/parameters: reuse `MethodCreate`
-		- Script:
+		- Script: just add this
 		```php
-			TypeAEntity::create([
-	      'data_field_a'=>$a,
-	      'data_field_b'=>$a,
-	      'data_field_c'=>$a,
-				`type_b_entities_id`=>$a
-	    ]);
+				'type_b_entity_id'=>$a,
 		```
-	- Model method:
-		- Name/parameters: this one is all ready automatically made
+	- Model:
+		- De-restrict the field `type_b_entity_id` as show in `De-restricting fields`
 	- URL example: `fundamental-mechanisms-app.test/URLCreate/1`
 
-  - Route
-  ```php
-    Route::get('/ExampleRoute32', function(){
-      TypeAEntity::create([
-				'data_field_a'=>'data_value_a',
-				'data_field_b'=>'data_value_b',
-				'data_field_c'=>1,
-				'type_b_entity_id'=>1
-			]);
-    });
-  ```
+---
+up till here
+---
+
+
+
 - View child of parent
   - Route
       ```php

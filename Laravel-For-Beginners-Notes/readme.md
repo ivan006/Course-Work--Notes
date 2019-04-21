@@ -662,7 +662,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- The format is this
 			- Use  a camel cased version of the table name and remove the "s" from the end
 		- Otherwise this is how to configure the table associator
-			- To specify a table put this into your model's class `protected $table = 'example_table_model';`
+			- To specify a table put this into your model's class `protected $table = 'table_name';`
 - Generate file command
 	- Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
 	- Then run `php artisan make:model TypeAEntity`
@@ -1141,7 +1141,7 @@ up till here
   - Route
   ```php
     Route::get('/ExampleRoute32', function(){
-      ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
+      ExampleModel::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_b', 'data_field_c'=>1, 'example_parent_model_id'=>1]);
     });
   ```
 - View child of parent
@@ -1167,7 +1167,7 @@ up till here
     ```php
     Route::get('/ExampleRoute34.1', function(){
       $example_variable = TypeBEntity::findOrFail(1);
-      $example_variable_2 = new ExampleModel(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
+      $example_variable_2 = new ExampleModel(['data_field_a'=>'example_model_value', 'data_field_b'=>'example_model_value_2', 'data_field_c'=>1, 'example_parent_model_id'=>1]);
       $example_variable->ExampleModel()->save($example_variable_2);
     });
     ```
@@ -1177,7 +1177,7 @@ up till here
     ```php
     Route::get('/ExampleRoute34.2', function(){
       $example_variable = ExampleModel::whereTypeBEntityId(1)->first();
-      $example_variable->example_column = "example_model_value_2";
+      $example_variable->data_field_a = "example_model_value_2";
       $example_variable->save();
     });
     ```
@@ -1221,7 +1221,7 @@ up till here
     Route::get('/ExampleRoute35.1', function(){
       $example_variable = TypeBEntity::findOrFail(1)->examplemodels;
       foreach ($example_variable as $example_variable_part){
-        echo "My ___$example_variable_part->example_column_2 ___ brings all the boys to the ___$example_variable_part->example_column ___ I can teach you but I have to charge.<br>";
+        echo "My ___$example_variable_part->data_field_b ___ brings all the boys to the ___$example_variable_part->data_field_a ___ I can teach you but I have to charge.<br>";
       }
     });
   ```
@@ -1231,7 +1231,7 @@ up till here
     Route::get('/ExampleRoute35.2', function(){
       $example_variable = TypeBEntity::findOrFail(2);
       $example_variable_2 = $example_variable->examplemodels()->whereId(9);
-      $example_variable_2->update(['example_column'=>'i did it!']);
+      $example_variable_2->update(['data_field_a'=>'i did it!']);
     });
   ```
 - Delete
@@ -1323,16 +1323,16 @@ up till here
     - E.g.
     ```php
       Route::get('/ExampleRoute38', function(){
-        ExampleGrandparentModel::create(['name'=>'example_value_1']);
-        ExampleGrandparentModel::create(['name'=>'example_value_2']);
+        ExampleGrandparentModel::create(['name'=>'data_value_a']);
+        ExampleGrandparentModel::create(['name'=>'data_value_b']);
       });
     ```
   - Parents
     - 2 parent records
     ```php
     Route::get('/ExampleRoute40', function(){
-      TypeBEntity::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1']);
-      TypeBEntity::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1']);
+      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a']);
+      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b']);
     });
     ```
   - 3 relationship records
@@ -1387,7 +1387,7 @@ up till here
         Route::get('/ExampleRoute43', function(){
           $example_variable = ExampleGrandparentModel::find(1);
           foreach ($example_variable->TypeBEntities as $example_variable_part){
-            echo $example_variable_part->example_column."<br>";
+            echo $example_variable_part->data_field_a."<br>";
           }
         });
       ```
@@ -1404,7 +1404,7 @@ up till here
       $example_variable = TypeBEntity::find(1);
       if($example_variable->has("ExampleGrandparentModels")){
         foreach($example_variable->ExampleGrandparentModels as $example_variable2){
-          if($example_variable2->name == 'example_value_1') {
+          if($example_variable2->name == 'data_value_a') {
             $example_variable2->name = "example_value_10";
             $example_variable2->save();
           }
@@ -1489,8 +1489,8 @@ up till here
         - E.g.
         ```php
           Route::get('/ExampleRoute44', function(){
-            ExampleGrandparent2Model::create(['name'=>'example_value_1']);
-            ExampleGrandparent2Model::create(['name'=>'example_value_2']);
+            ExampleGrandparent2Model::create(['name'=>'data_value_a']);
+            ExampleGrandparent2Model::create(['name'=>'data_value_b']);
           });
         ```
     - Delete records
@@ -1518,8 +1518,8 @@ up till here
     - To create 2 records
     ```php
     Route::get('/ExampleRoute46', function(){
-      TypeBEntity::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'1']);
-      TypeBEntity::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'2']);
+      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a', 'example_grandparent2_model_id'=>'1']);
+      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b', 'example_grandparent2_model_id'=>'2']);
     });
     ```
     - To delete records
@@ -1538,7 +1538,7 @@ up till here
     - Use these details
     ```php
       Route::get('/ExampleRoute48', function(){
-        ExampleModel::create(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
+        ExampleModel::create(['data_field_a'=>'example_model_value', 'data_field_b'=>'example_model_value_2', 'data_field_c'=>1, 'example_parent_model_id'=>1]);
       });
     ```
       - For the `example_parent_model_id` value use the id of whatever record you have that also has a example_grandparent2_model_id value. In my case it's `13` and `14`.
@@ -1584,13 +1584,13 @@ up till here
               ```php
                 $table->integer('parent_id');
                 $table->string('parent_type');
-                $table->string('example_column');
+                $table->string('data_field_a');
               ```
           - Model
               - Allowable multiple value inserts
                   - `parent_id`
                   - `parent_type`
-                  - `example_column`
+                  - `data_field_a`
               - Relationship
               ```php
                 public function parent() {
@@ -1640,7 +1640,7 @@ up till here
     - Create a great grandchild record through a parent
     ```php
       Route::get('/ExampleRoute51.2', function(){
-        ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->create(['example_column'=>'example_value']);
+        ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->create(['data_field_a'=>'example_value']);
       });
     ```
   - Read
@@ -1678,7 +1678,7 @@ up till here
     ```php
       Route::get('/ExampleRoute55.1', function(){
         $example_variable = ExampleModel::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->first();
-        $example_variable->example_column = "example_value2";
+        $example_variable->data_field_a = "example_value2";
         $example_variable->save();
       });
     ```
@@ -1890,10 +1890,10 @@ up till here
 #### Basic ORM queries
 - Create a record
   - In one go
-    - Run the command `$example_variable = App\ExampleModel::create(['example_column'=>'example_value6', 'example_column_2'=>'example_value7', 'example_column_3'=>1]);`
+    - Run the command `$example_variable = App\ExampleModel::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_b', 'data_field_c'=>1]);`
   - In multiple steps
     - To create a pseudo-form that will send the record data to the db - run `$example_variable = new App\ExampleModel`
-    - To add something to that pseudo-form run `$example_variable->example_column = "example_value6"`
+    - To add something to that pseudo-form run `$example_variable->data_field_a = "data_value_a"`
     - To check what the pseudo-form holds so far run `$example_variable`
     - To submit your pseudo-form run `$example_variable->save()`
     - To view the information is has been given while being saved to the db run `$example_variable`
@@ -1907,7 +1907,7 @@ up till here
 - To update a record
   - First find the records
     - Run `$example_variable = App\ExampleModel::find(1);`
-  - Run `$example_variable->example_column = "example_value6";`
+  - Run `$example_variable->data_field_a = "data_value_a";`
   - Run `$example_variable->save()`
 - To delete a record
   - If soft-delete isn't activated
@@ -2000,7 +2000,7 @@ Route::get('/64', function (){
 ```php
   Route::get('/70', function(){
     $example_variable = ExampleModel::find(7);
-    echo $example_variable->example_column;
+    echo $example_variable->data_field_a;
   });
 ```
 ##### Query With an accessor
@@ -2024,14 +2024,14 @@ Route::get('/64', function (){
 ```php
   Route::get('/71', function(){
     $example_variable = ExampleObject::find(7);
-    $example_variable->example_column = $example_variable->example_column;
+    $example_variable->data_field_a = $example_variable->data_field_a;
     $example_variable->save();
   });
 ```
 - Model
 ```php
   public function setExampleColumnAttribute($value) {
-    $this->attributes['example_column'] = strtoupper($value);
+    $this->attributes['data_field_a'] = strtoupper($value);
   }
 ```
 - Database

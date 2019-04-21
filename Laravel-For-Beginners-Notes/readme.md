@@ -1136,7 +1136,7 @@ up till here
 
 ##### Usage
 - Add a record to the example model table and make sure multiple field values are filled in.
-  - Add model usage function to top `use App\ExampleParentModel;`
+  - Add model usage function to top `use App\TypeBEntity;`
   - For the model: Add `example_parent_model_id` to the list fillable function list.
   - Route
   ```php
@@ -1148,7 +1148,7 @@ up till here
   - Route
       ```php
         Route::get('/ExampleRoute33/{id}', function($id){
-          return ExampleParentModel::find($id)->examplemodel;
+          return TypeBEntity::find($id)->examplemodel;
         });
       ```
   - Test with `fundamental-mechanisms-app.test/ExampleRoute33/1`
@@ -1156,7 +1156,7 @@ up till here
   - Route
       ```php
         Route::get('/ExampleRoute34/{id}', function($id){
-          return ExampleModel::find($id)->exampleparentmodel;
+          return ExampleModel::find($id)->TypeBEntity;
         });
       ```
   - Test with `fundamental-mechanisms-app.test/ExampleRoute34/1`
@@ -1166,7 +1166,7 @@ up till here
   - Route
     ```php
     Route::get('/ExampleRoute34.1', function(){
-      $example_variable = ExampleParentModel::findOrFail(1);
+      $example_variable = TypeBEntity::findOrFail(1);
       $example_variable_2 = new ExampleModel(['example_column'=>'example_model_value', 'example_column_2'=>'example_model_value_2', 'example_column_3'=>1, 'example_parent_model_id'=>1]);
       $example_variable->ExampleModel()->save($example_variable_2);
     });
@@ -1176,7 +1176,7 @@ up till here
   - Route
     ```php
     Route::get('/ExampleRoute34.2', function(){
-      $example_variable = ExampleModel::whereExampleParentModelId(1)->first();
+      $example_variable = ExampleModel::whereTypeBEntityId(1)->first();
       $example_variable->example_column = "example_model_value_2";
       $example_variable->save();
     });
@@ -1185,7 +1185,7 @@ up till here
   - Route
     ```php
       Route::get('/ExampleRoute34.3', function(){
-        $example_variable = ExampleParentModel::findOrFail(1);
+        $example_variable = TypeBEntity::findOrFail(1);
         $example_variable->ExampleModel->forceDelete();
       });
     ```
@@ -1208,7 +1208,7 @@ up till here
   - Route
   ```php
     Route::get('/ExampleRoute35', function(){
-      $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
+      $example_variable = TypeBEntity::findOrFail(1)->examplemodels;
       foreach ($example_variable as $example_variable_part){
         echo $example_variable_part."<br>";
       }
@@ -1219,7 +1219,7 @@ up till here
   - Route
   ```php
     Route::get('/ExampleRoute35.1', function(){
-      $example_variable = ExampleParentModel::findOrFail(1)->examplemodels;
+      $example_variable = TypeBEntity::findOrFail(1)->examplemodels;
       foreach ($example_variable as $example_variable_part){
         echo "My ___$example_variable_part->example_column_2 ___ brings all the boys to the ___$example_variable_part->example_column ___ I can teach you but I have to charge.<br>";
       }
@@ -1229,7 +1229,7 @@ up till here
   - Route
   ```php
     Route::get('/ExampleRoute35.2', function(){
-      $example_variable = ExampleParentModel::findOrFail(2);
+      $example_variable = TypeBEntity::findOrFail(2);
       $example_variable_2 = $example_variable->examplemodels()->whereId(9);
       $example_variable_2->update(['example_column'=>'i did it!']);
     });
@@ -1238,7 +1238,7 @@ up till here
   - Route
   ```php
   Route::get('/ExampleRoute35.3', function(){
-    $example_variable = ExampleParentModel::findOrFail(1);
+    $example_variable = TypeBEntity::findOrFail(1);
     $example_variable_2 = $example_variable->examplemodels()->whereId(8)->first();
     $example_variable_2->delete();
   });
@@ -1272,7 +1272,7 @@ up till here
     - Model
       - Name
         - You can use a camel cased version of the table name.
-        - E.g. `ExampleGrandparentModelExampleParentModel`
+        - E.g. `ExampleGrandparentModelTypeBEntity`
       - Table specifier: `example_grandparent_model_example_parent_model`
       - Allowable multiple value inserts
         - `example_parent_model_id`
@@ -1291,8 +1291,8 @@ up till here
       - Grandparent model
         - Add this in the model's class
         ```php
-          public function ExampleParentModels(){
-            return $this->belongsToMany('App\ExampleParentModel');
+          public function TypeBEntities(){
+            return $this->belongsToMany('App\TypeBEntity');
           }
         ```
 - Parent model
@@ -1331,26 +1331,26 @@ up till here
     - 2 parent records
     ```php
     Route::get('/ExampleRoute40', function(){
-      ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1']);
-      ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1']);
+      TypeBEntity::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1']);
+      TypeBEntity::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1']);
     });
     ```
   - 3 relationship records
     - Do as demonstrated in `insert record with multiple field values`
     - For the route name use: `/ExampleRoute36`
-    - For the referenced model use `ExampleGrandparentModelExampleParentModel`
+    - For the referenced model use `ExampleGrandparentModelTypeBEntity`
     ```php
       Route::get('/ExampleRoute36', function(){
-        ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>1, 'example_grandparent_model_id'=>1]);
-        ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>2]);
-        ExampleGrandparentModelExampleParentModel::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>1]);
+        ExampleGrandparentModelTypeBEntity::create(['example_parent_model_id'=>1, 'example_grandparent_model_id'=>1]);
+        ExampleGrandparentModelTypeBEntity::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>2]);
+        ExampleGrandparentModelTypeBEntity::create(['example_parent_model_id'=>2, 'example_grandparent_model_id'=>1]);
       });
     ```
   - 2 relationship records through a parent and delete any old relationships for that parent
     - Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
     ```php
       Route::get('/ExampleRoute36.1', function(){
-        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->sync([2,3]);
+        TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->sync([2,3]);
       });
     ```
 - Read
@@ -1358,7 +1358,7 @@ up till here
     - Type 1
     ```php
       Route::get('/ExampleRoute41', function(){
-        $example_variable = ExampleParentModel::find(2);
+        $example_variable = TypeBEntity::find(2);
         foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
           echo $example_variable_part->name."<br>";
         }
@@ -1367,7 +1367,7 @@ up till here
     - Type 2
     ```php
       Route::get('/ExampleRoute41.2', function(){
-        $example_variable = ExampleParentModel::find(2);
+        $example_variable = TypeBEntity::find(2);
         dd($example_variable->ExampleGrandparentModels);
       });
     ```
@@ -1375,7 +1375,7 @@ up till here
     - Parent model's route
       ```php
       Route::get('/ExampleRoute42', function(){
-        $example_variable = ExampleParentModel::find(2);
+        $example_variable = TypeBEntity::find(2);
         foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
           echo $example_variable_part->pivot->created_at."<br>";
         }
@@ -1386,7 +1386,7 @@ up till here
       ```php
         Route::get('/ExampleRoute43', function(){
           $example_variable = ExampleGrandparentModel::find(1);
-          foreach ($example_variable->exampleparentmodels as $example_variable_part){
+          foreach ($example_variable->TypeBEntities as $example_variable_part){
             echo $example_variable_part->example_column."<br>";
           }
         });
@@ -1395,13 +1395,13 @@ up till here
   - Relationship through a parent record
   ```php
     Route::get('/ExampleRoute43.1', function(){
-      ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->attach(1);
+      TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->attach(1);
     });
   ```
   - Grandparent through parent record
   ```php
     Route::get('/ExampleRoute43.2', function(){
-      $example_variable = ExampleParentModel::find(1);
+      $example_variable = TypeBEntity::find(1);
       if($example_variable->has("ExampleGrandparentModels")){
         foreach($example_variable->ExampleGrandparentModels as $example_variable2){
           if($example_variable2->name == 'example_value_1') {
@@ -1424,7 +1424,7 @@ up till here
     - Delete grandparent through parent
     ```php
       Route::get('/ExampleRoute39.2', function(){
-        $example_variable = ExampleParentModel::find(1);
+        $example_variable = TypeBEntity::find(1);
         foreach($example_variable->ExampleGrandparentModels as $example_variable2){
           $example_variable2->whereId(1)->delete();
         }
@@ -1434,19 +1434,19 @@ up till here
     - Delete 1 Method 1
     ```php
       Route::get('/ExampleRoute37', function(){
-        ExampleGrandparentModelExampleParentModel::destroy(1);
+        ExampleGrandparentModelTypeBEntity::destroy(1);
       });
     ```
     - Delete 1 Method 2
     ```php
       Route::get('/ExampleRoute37.1', function(){
-        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach(1);
+        TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->detach(1);
       });
     ```
     - Delete all for parent
     ```php
       Route::get('/ExampleRoute37.2', function(){
-        ExampleParentModel::findOrFail(2)->ExampleGrandparentModels()->detach();
+        TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->detach();
       });
     ```
 
@@ -1472,7 +1472,7 @@ up till here
       - Relationship
       ```php
         public function ExampleModels(){
-          return $this->hasManyThrough('App\ExampleModel', 'App\ExampleParentModel');
+          return $this->hasManyThrough('App\ExampleModel', 'App\TypeBEntity');
         }
       ```
         - The first table specifier/parameter is for the distant relative
@@ -1518,16 +1518,16 @@ up till here
     - To create 2 records
     ```php
     Route::get('/ExampleRoute46', function(){
-      ExampleParentModel::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'1']);
-      ExampleParentModel::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'2']);
+      TypeBEntity::create(['example_column'=>'parent_example_value_1', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'1']);
+      TypeBEntity::create(['example_column'=>'parent_example_value_2', 'example_column_2'=>'example_value_1', 'example_grandparent2_model_id'=>'2']);
     });
     ```
     - To delete records
     ```php
       Route::get('/ExampleRoute47', function(){
-        ExampleParentModel::destroy(1);
-        ExampleParentModel::destroy(2);
-        ExampleParentModel::destroy(3);
+        TypeBEntity::destroy(1);
+        TypeBEntity::destroy(2);
+        TypeBEntity::destroy(3);
       });
     ```
 ##### Grandchild of grandparent
@@ -1634,7 +1634,7 @@ up till here
         ```php
           Route::get('/ExampleRoute51', function(){
             ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleModel']);
-            ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\ExampleParentModel']);
+            ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\TypeBEntity']);
           });
         ```
     - Create a great grandchild record through a parent
@@ -1659,7 +1659,7 @@ up till here
             - Route
             ```php
               Route::get('/ExampleRoute54', function(){
-                  $example_variable = ExampleParentModel::find(1);
+                  $example_variable = TypeBEntity::find(1);
                   foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
                     echo "<br><br>".$example_variable_part;
                   }
@@ -1713,7 +1713,7 @@ up till here
   - Parent 2 table-model pair
       - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
           - Migration
-              - Table's name `ExampleParentModel2`
+              - Table's name `TypeBEntity2`
               - Table columns
               ```php
                 $table->string('name');
@@ -1733,7 +1733,7 @@ up till here
   - Bridging/relationship table-model pair
       - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
           - Migration
-              - Table's name `ExampleParentModel2Relationship`
+              - Table's name `TypeBEntity2Relationship`
               - Table columns
               ```php
                 $table->string('example_parent_model2_id');
@@ -1754,8 +1754,8 @@ up till here
         - Relationship
             - Add this
             ```php
-              public function ExampleParentModel2s() {
-                return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
+              public function TypeBEntity2s() {
+                return $this->morphToMany('App\TypeBEntity2', 'example_parent_model2_relation');
               }
             ```
   - Example Great Grand Child model
@@ -1763,8 +1763,8 @@ up till here
         - Relationship
             - Add this
             ```php
-              public function ExampleParentModel2s() {
-                return $this->morphToMany('App\ExampleParentModel2', 'example_parent_model2_relation');
+              public function TypeBEntity2s() {
+                return $this->morphToMany('App\TypeBEntity2', 'example_parent_model2_relation');
               }
             ```
 - Queries
@@ -1774,8 +1774,8 @@ up till here
         - Use these details
         ```php
           Route::get('/ExampleRoute56', function(){
-            ExampleParentModel2::create(['name'=>'grand-child2.1']);
-            ExampleParentModel2::create(['name'=>'grand-child2.2']);
+            TypeBEntity2::create(['name'=>'grand-child2.1']);
+            TypeBEntity2::create(['name'=>'grand-child2.2']);
           });
         ```
     - Create 2 relationship records
@@ -1783,21 +1783,21 @@ up till here
       - Bear in mind you can use either the `save()` function of the `attach()` function
       ```php
         Route::get('/ExampleRoute58', function(){
-          ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'1', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleModel']);
-          ExampleParentModel2Relationship::create(['example_parent_model2_id'=>'2', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleGreatGrandChildModel']);
+          TypeBEntity2Relationship::create(['example_parent_model2_id'=>'1', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleModel']);
+          TypeBEntity2Relationship::create(['example_parent_model2_id'=>'2', 'example_parent_model2_relation_id'=>1, 'example_parent_model2_relation_type'=>'App\ExampleGreatGrandChildModel']);
         });
       ```
     - Create relationship records through a child
     ```php
       Route::get('/ExampleRoute58.1', function(){
-        $example_variable = ExampleParentModel2::findOrFail(1);
-        ExampleModel::findOrFail(7)->ExampleParentModel2s()->save($example_variable);
+        $example_variable = TypeBEntity2::findOrFail(1);
+        ExampleModel::findOrFail(7)->TypeBEntity2s()->save($example_variable);
       });
     ```
     - Create relationship records through a child and delete any old relationships for that child
     ```php
       Route::get('/ExampleRoute58.2 ', function(){
-        ExampleModel::findOrFail(7)->ExampleParentModel2s()->sync([2]);
+        ExampleModel::findOrFail(7)->TypeBEntity2s()->sync([2]);
       });
     ```
   - Read
@@ -1807,7 +1807,7 @@ up till here
         ```php
         Route::get('/ExampleRoute60', function(){
             $example_variable = ExampleModel::find(1);
-            foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
+            foreach ($example_variable->TypeBEntity2s as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
         });
@@ -1817,7 +1817,7 @@ up till here
         ```php
         Route::get('/ExampleRoute61', function(){
             $example_variable = ExampleGreatGrandChildModel::find(1);
-            foreach ($example_variable->ExampleParentModel2s as $example_variable_part) {
+            foreach ($example_variable->TypeBEntity2s as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
         });
@@ -1826,7 +1826,7 @@ up till here
       ```php
         Route::get('/ExampleRoute61.1', function(){
           $example_variable = ExampleModel::findOrFail(7);
-          foreach($example_variable->ExampleParentModel2s as $example_variable2){
+          foreach($example_variable->TypeBEntity2s as $example_variable2){
             echo $example_variable2;
           }
         });
@@ -1836,7 +1836,7 @@ up till here
         - Route
         ```php
           Route::get('/ExampleRoute62', function(){
-            $example_variable = ExampleParentModel2::find(1);
+            $example_variable = TypeBEntity2::find(1);
             foreach ($example_variable->ExampleModels as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
@@ -1846,7 +1846,7 @@ up till here
         - Route
         ```php
         Route::get('/ExampleRoute63', function(){
-          $example_variable = ExampleParentModel2::find(1);
+          $example_variable = TypeBEntity2::find(1);
           foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
             echo "<br><br>".$example_variable_part;
           }
@@ -1856,26 +1856,26 @@ up till here
     - Update parent through child
     ```php
       Route::get('/ExampleRoute63.1', function(){
-        $example_variable = ExampleModel::findOrFail(7)->ExampleParentModel2s->first()->update(['name'=>'updated']);
+        $example_variable = ExampleModel::findOrFail(7)->TypeBEntity2s->first()->update(['name'=>'updated']);
       });
     ```
   - Delete
     - Delete parent 2 records
     ```php
       Route::get('/ExampleRoute57', function(){
-        ExampleParentModel2::find(1)->forceDelete();
+        TypeBEntity2::find(1)->forceDelete();
       });
     ```   
     - Delete parent through child
     ```php
       Route::get('/ExampleRoute57.1', function(){
-        $example_variable = ExampleObject::findOrFail(7)->ExampleParentModel2s->first()->delete();
+        $example_variable = ExampleObject::findOrFail(7)->TypeBEntity2s->first()->delete();
       });
     ```
     - Delete parent 2 records
     ```php
       Route::get('/ExampleRoute59', function(){
-        ExampleParentModel2Relationship::find(1)->forceDelete();
+        TypeBEntity2Relationship::find(1)->forceDelete();
       });
     ```  
 

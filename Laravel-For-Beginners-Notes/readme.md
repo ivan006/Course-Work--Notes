@@ -627,8 +627,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
 - Example:
   - Route
-    - Reuse `/URLRead`
-  - Controller
+    - Name/parameters: Reuse `/URLRead/{a}`
+  - Controller method
     ```php
       public function MethodRead($a)
       {
@@ -713,7 +713,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Create (Insert)
 - Try this out
 - Route:
-	- Reuse `/URLCreate/{a}` but use a parameter
+	- Name/parameters: Reuse `/URLCreate/{a}` but use a parameter of `$a`
 - Controller method
 	- Import the model - put `use App\TypeAEntity;` in the header of your controller
 	- Here's the entire body of code
@@ -723,8 +723,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	    TypeAEntity::model_create($a, $a, $a);
 	  }
   ```
-	- Where the name is: `MethodCreate`
-	- The parameters are: `$a`
+	- Name/parameters: `MethodCreate` but use a parameter of `$a`
 	- And the script is: `TypeAEntity::model_create($a, $a, $a);`
 - Model method
 	- Import the SQL functionality - put `use Illuminate\Support\Facades\DB;` in the header of your controller
@@ -735,8 +734,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       DB::insert('insert into type_a_entities(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);
     }
 	```
-	- Where the name is: `insert`
-	- The parameters are: `$a, $b, $c`
+	- Name/parameters: `insert` and the parameters of `$a, $b, $c`
 	- The query is: `DB::insert('insert into type_a_entities(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
 	- And model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
@@ -746,30 +744,26 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Read
 - Try this out
 - Route:
-	- Name: reuse `/URLRead/{a}`
+	- Name/parameters: reuse `/URLRead/{a}`
 - Controller method:
-	- Name: reuse `MethodRead`
-	- Parameters: `$a`
+	- Name/parameters: reuse `MethodRead` and a parameter of `$a`
 	- Script: `return "<pre>".var_dump(TypeAEntity::model_read($a))."</pre>";`
 - Model method:
-	- Name: `model_read`
-	- Parameters: `$a`
+	- Name/parameters: `model_read` and a parameter of `$a`
 	- Query: `return DB::select('select * from type_a_entities where data_field_a  = ?', [$a]);`
 	- Model method type is: `static`
-- URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
+- URL example: `fundamental-mechanisms-app.test/URLRead/hello`
 
 #### Update
 - Try this out:
 - Route:
-	- Name: `/URLUpdate/{a}/{b}`
-	- Association: `MethodUpdate`
+	- Name/parameters: `/URLUpdate/{a}/{b}`
+	- Associated controller method: `MethodUpdate`
 - Controller method:
-	- Name: `MethodUpdate`
-	- Parameters: `$a, $b`
+	- Name/parameters: `MethodUpdate` and the parameters of `$a, $b`
 	- Script: `TypeAEntity::model_update($a, $b);`
 - Model method:
-	- Name: `model_update`
-	- Parameters: `$a, $b`
+	- Name/parameters: `model_update` and the parameters of `$a, $b`
 	- Query `DB::update('update type_a_entities set data_field_a  = ? where id = ?', [$a, $b]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLUpdate/bye/1`
@@ -779,15 +773,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Delete
 - Try this out
 - Route:
-	- Name: `/URLDelete/{a}`
-	- Association: `MethodDelete`
+	- Name/parameters: `/URLDelete/{a}`
+	- Associated controller method: `MethodDelete`
 - Controller method:
-	- Name: `MethodDelete`
-	- Parameters: `$a`
+	- Name/parameters: `MethodDelete` and a parameter of `$a`
 	- Script: `TypeAEntity::model_delete($a);`
 - Model method:
-	- Name: `model_delete`
-	- Parameters: `$a`
+	- Name/parameters: `model_delete` and the parameters of `$a`
 	- Query `DB::delete('delete from type_a_entities where id = ?', [$a]);`
 	- Model method type is: `static`
 - URL example: `fundamental-mechanisms-app.test/URLDelete/1`
@@ -797,13 +789,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ### <a name="7.3."></a> ORM Models
 
 #### Create types
-##### Insert record with one field value
+##### Create record with one field value
 - Try this out
 - Route:
-	- Name: reuse `/URLCreate/{a}`
+	- Name/parameters: reuse `/URLCreate/{a}`
 - Controller method:
-	- Name: reuse `MethodCreate`
-	- Parameters: `$a`
+	- Name/parameters: reuse `MethodCreate`
 	- Script:
 	```php
 		$var = new TypeAEntity;
@@ -813,16 +804,15 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		$var->save();
 	```
 - Model method:
-	- Name: this one is all ready automatically made
+	- Name/parameters: this one is all ready automatically made
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
-##### Insert record with multiple field values
+##### Create record with multiple field values
 - Try this out
 - Route:
-	- Name: reuse `/URLCreate/{a}`
+	- Name/parameters: reuse `/URLCreate/{a}`
 - Controller method:
-	- Name: reuse `MethodCreate`
-	- Parameters: `$a`
+	- Name/parameters: reuse `MethodCreate`
 	- Script:
 	```php
 		TypeAEntity::create([
@@ -832,7 +822,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     ]);
 	```
 - Model method:
-	- Name: this one is all ready automatically made
+	- Name/parameters: this one is all ready automatically made
 	- `De-restrict the model so it's "fillable"` as shown in previous section
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
@@ -842,9 +832,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Find all records (and return a field's values)
 - Try this out
 - Route:
-	- Name: reuse `/URLRead` but now with no parameters
+	- Name/parameters: reuse `/URLRead` but now with no parameters
 - Controller method:
-	- Name: reuse `MethodRead` but now with no parameters
+	- Name/parameters: reuse `MethodRead` but now with no parameters
 	- Script:
 	```php
 		foreach (TypeAEntity::all() as $var) {
@@ -852,16 +842,16 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		}
 	```
 - Model method:
-	- Name: this one is all ready automatically made
+	- Name/parameters: this one is all ready automatically made
 - URL example: `fundamental-mechanisms-app.test/URLRead`
 
 ##### Find all records and sort by date created
 - Method 1
 	- Try this out
 	- Route:
-		- Name: reuse `/URLRead`
+		- Name/parameters: reuse `/URLRead`
 	- Controller method:
-		- Name: reuse `MethodRead`
+		- Name/parameters: reuse `MethodRead`
 		- Script:
 		```php
 			foreach (TypeAEntity::latest()->get() as $var) {
@@ -869,7 +859,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			}
 		```
 	- Model method:
-		- Name: this one is all ready automatically made
+		- Name/parameters: this one is all ready automatically made
 	- URL example: `fundamental-mechanisms-app.test/URLRead`
 - Method 2
 	- Try this out
@@ -923,9 +913,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Update based on primary key
 - Try this out
 - Route:
-	- Name: reuse `/URLUpdate/{a}` but with only one parameter
+	- Name/parameters: reuse `/URLUpdate/{a}` but with only one parameter
 - Controller method:
-	- Name: reuse `MethodUpdate` but with only one parameter
+	- Name/parameters: reuse `MethodUpdate` but with only one parameter
 	- Script:
 	```php
     $var = TypeAEntity::find(2);
@@ -933,7 +923,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     $var->save();
 	```
 - Model method:
-	- Name: this one is all ready automatically made
+	- Name/parameters: this one is all ready automatically made
 - URL example: `fundamental-mechanisms-app.test/URLUpdate/bye`
 
 ##### Update based on other conditions
@@ -950,22 +940,21 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Note: this works only works when soft delete (a feature we will use later) is not activated
 - Try this out
 - Route:
-	- Name: reuse `/URLDelete/{a}`
+	- Name/parameters: reuse `/URLDelete/{a}`
 - Controller method:
-	- Name: reuse `MethodDelete`
-	- Parameters: `$a`
+	- Name/parameters: reuse `MethodDelete`
 	- Script:
 	```php
     TypeAEntity::find($a)->delete();
 	```
 - Model method:
-	- Name: this one is all ready automatically made
+	- Name/parameters: this one is all ready automatically made
 - URL example: `fundamental-mechanisms-app.test/URLDelete/2`
 
 ##### Delete method 2
 - Note: this works only works when soft delete is not activated
 - Controller method:
-	- Name: reuse `MethodDelete`
+	- Name/parameters: reuse `MethodDelete`
 	- Script:
 	```php
     TypeAEntity::destroy($a);
@@ -974,9 +963,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Delete multiple
 - Route:
-	- Name: reuse `/URLDelete/{a}/{b}` but with two parameters
+	- Name/parameters: reuse `/URLDelete/{a}/{b}` but with two parameters
 - Controller method:
-	- Name: reuse `MethodDelete` but with two parameters
+	- Name/parameters: reuse `MethodDelete` but with two parameters
 	- Script:
 	```php
     TypeAEntity::destroy([$a, $b]);
@@ -985,9 +974,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Delete multiple based on condition
 - Route:
-	- Name: reuse `/URLDelete/{a}` but with only one parameter
+	- Name/parameters: reuse `/URLDelete/{a}` but with only one parameter
 - Controller method:
-	- Name: reuse `MethodDelete` but with only one parameter
+	- Name/parameters: reuse `MethodDelete` but with only one parameter
 	- Script:
 	```php
     TypeAEntity::where('data_field_a',$a)->delete();
@@ -1016,9 +1005,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Soft Delete
 
 - Route:
-	- Name: reuse `/URLDelete/{a}`
+	- Name/parameters: reuse `/URLDelete/{a}`
 - Controller method:
-	- Name: reuse `MethodDelete`
+	- Name/parameters: reuse `MethodDelete`
 	- Script:
 	```php
     TypeAEntity::find($a)->delete();
@@ -1029,9 +1018,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Read Items That Have Been Soft Deleted
 - Find all records
 	- Route:
-		- Name: reuse `/URLRead`
+		- Name/parameters: reuse `/URLRead`
 	- Controller method:
-		- Name: reuse `MethodRead`
+		- Name/parameters: reuse `MethodRead`
 		- Script:
 		```php
 			foreach (TypeAEntity::withTrashed()->get() as $var) {
@@ -1041,9 +1030,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/URLRead`
 - Find all trashed
 	- Route:
-		- Name: reuse `/URLRead`
+		- Name/parameters: reuse `/URLRead`
 	- Controller method:
-		- Name: reuse `MethodRead`
+		- Name/parameters: reuse `MethodRead`
 		- Script:
 		```php
 			return TypeAEntity::onlyTrashed()->get();
@@ -1053,9 +1042,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Restore All Soft Deleted items
 - Route:
-	- Name: reuse `/URLUpdate` but without parameters
+	- Name/parameters: reuse `/URLUpdate` but without parameters
 - Controller method:
-	- Name: reuse `MethodUpdate` but without parameters
+	- Name/parameters: reuse `MethodUpdate` but without parameters
 	- Script:
 	```php
 		TypeAEntity::onlyTrashed()->restore();
@@ -1065,9 +1054,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Empty trash (While Soft Delete is Activated)
 - This will properly delete all the items that are currently only soft deleted
 - Route:
-	- Name: `/URLDelete` but without parameters
+	- Name/parameters: `/URLDelete` but without parameters
 - Controller method:
-	- Name: reuse `MethodDelete` but without parameters
+	- Name/parameters: reuse `MethodDelete` but without parameters
 	- Script:
 	```php
 		TypeAEntity::onlyTrashed()->forceDelete();
@@ -1085,7 +1074,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### One to One Relationship
 ##### Set up
-- Create `TypeBEntity`
+- Create and configure `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
 	- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
 		- Model name `TypeBEntity`
@@ -1119,7 +1108,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Configure `TypeAEntity`
 	- Database
 		- Add a foreign key column
-			- Edit the migration by adding this to your set of column functions `$table->integer('type_b_entities_id')->unsigned();`.
+			- Edit the migration by adding this to your set of column functions
+			```php
+				$table->integer('type_b_entities_id')->unsigned();
+			```
 			- Then `refresh all the migrations` (as shown how in previous section)
 	- Model
 		- Add this in the model's class
@@ -1135,11 +1127,34 @@ up till here
 
 
 ##### Usage
-- Add a record to the `type_a_entity`
+- Create a `type_a_entity` record with a foreign key value
+	- Try this out
+	- Route:
+		- Name/parameters: reuse `/URLCreate/{a}`
+	- Controller method:
+		- Name/parameters: reuse `MethodCreate`
+		- Script:
+		```php
+			TypeAEntity::create([
+	      'data_field_a'=>$a,
+	      'data_field_b'=>$a,
+	      'data_field_c'=>$a,
+				`type_b_entities_id`=>$a
+	    ]);
+		```
+	- Model method:
+		- Name/parameters: this one is all ready automatically made
+	- URL example: `fundamental-mechanisms-app.test/URLCreate/1`
+
   - Route
   ```php
     Route::get('/ExampleRoute32', function(){
-      TypeAEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_b', 'data_field_c'=>1, 'type_b_entity_id'=>1]);
+      TypeAEntity::create([
+				'data_field_a'=>'data_value_a',
+				'data_field_b'=>'data_value_b',
+				'data_field_c'=>1,
+				'type_b_entity_id'=>1
+			]);
     });
   ```
 - View child of parent
@@ -1320,7 +1335,7 @@ up till here
 ##### Queries
 - Create
   - 2 grandparent records
-    - Do as demonstrated in `Insert record with multiple field values`
+    - Do as demonstrated in `Create record with multiple field values`
     - For the route name use: `/ExampleRoute38`
     - For the referenced model use `ExampleGrandparentModel`
     - E.g.
@@ -1339,7 +1354,7 @@ up till here
     });
     ```
   - 3 relationship records
-    - Do as demonstrated in `Insert record with multiple field values`
+    - Do as demonstrated in `Create record with multiple field values`
     - For the route name use: `/ExampleRoute36`
     - For the referenced model use `ExampleGrandparentModelTypeBEntity`
     ```php
@@ -1486,7 +1501,7 @@ up till here
     - Create records
       - Route
         - Create 2 records
-        - Do as demonstrated in `Insert record with multiple field values`
+        - Do as demonstrated in `Create record with multiple field values`
         - For the route name use: `/ExampleRoute44`
         - For the referenced model use `ExampleGrandparent2Model`
         - E.g.
@@ -1537,7 +1552,7 @@ up till here
 - Manage records
   - Create at least 2 records
   - To create
-    - As done here `Insert record with multiple field values`
+    - As done here `Create record with multiple field values`
     - Use these details
     ```php
       Route::get('/ExampleRoute48', function(){
@@ -1632,7 +1647,7 @@ up till here
 - Queries
   - Create
     - Create 2 great grandchild records
-        - As done here `Insert record with multiple field values`
+        - As done here `Create record with multiple field values`
         - Use these details
         ```php
           Route::get('/ExampleRoute51', function(){
@@ -1773,7 +1788,7 @@ up till here
 - Queries
   - Create
     - Create 2 parent 2 records
-        - As done here `Insert record with multiple field values`
+        - As done here `Create record with multiple field values`
         - Use these details
         ```php
           Route::get('/ExampleRoute56', function(){
@@ -1782,7 +1797,7 @@ up till here
           });
         ```
     - Create 2 relationship records
-      - As done here `Insert record with multiple field values`
+      - As done here `Create record with multiple field values`
       - Bear in mind you can use either the `save()` function of the `attach()` function
       ```php
         Route::get('/ExampleRoute58', function(){

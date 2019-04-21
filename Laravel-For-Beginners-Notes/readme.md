@@ -669,7 +669,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Primary key associator
 	- If your tables primary key is not "id" you will need to specify it.
 	- To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-- De-restricting fields
+- De-restrict fields
 	- Give the model some freedoms like allowing it to do multiple value inserts
 	- By default a new entity can't be populated with content on inception this changes that
 	- Choose the data fields that you want to be able to be populated on the entity's inception
@@ -823,7 +823,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```
 - Model method:
 	- Name/parameters: this one is all ready automatically made
-	- `De-restricting fields` as shown in previous section
+	- `De-restrict fields` as shown in previous section
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
@@ -1085,7 +1085,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		  $table->text('data_field_b');
 		```
 	- Model
-		- `De-restricting fields` as shown in a previous section
+		- `De-restrict fields` as shown in a previous section
 	  - Configure relationship
 			- Depending on how your foreign key has been named add either of the following model methods
 		  - Method 1 - The manual foreign key specifier method
@@ -1132,7 +1132,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				'type_b_entity_id'=>$a,
 		```
 	- Model:
-		- De-restrict the field `type_b_entity_id` as show in `De-restricting fields`
+		- De-restrict the field `type_b_entity_id` as show in `De-restrict fields`
 	- URL example: `fundamental-mechanisms-app.test/URLCreate/1`
 
 ---

@@ -1098,11 +1098,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method
 				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` and is singular (e.g. `type_b_entity_id`)
-		  ```php
-		    public funcion TypeAEntity(){
-		      return $this->hasOne('App\TypeAEntity');
-		    }
-		  ```
+				  ```php
+				    public funcion TypeAEntity(){
+				      return $this->hasOne('App\TypeAEntity');
+				    }
+				  ```
 		    - Add this in the model's class
 		    - Note: the name of the controller (in this case `TypeAEntity`) doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
 - Configure `TypeAEntity`

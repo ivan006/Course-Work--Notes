@@ -1089,11 +1089,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	  - Configure relationship
 			- Depending on how your foreign key has been named add either of the following model methods
 		  - Method 1 - The manual foreign key specifier method
-		  ```php
-		    public funcion TypeAEntity(){
-		      return $this->hasOne('App\TypeAEntity', 'type_b_entity_id');
-		    }
-		  ```
+			  ```php
+			    public funcion TypeAEntity(){
+			      return $this->hasOne('App\TypeAEntity', 'type_b_entity_id');
+			    }
+			  ```
 		    - Manually specify the foreign key in the `hasOne()` alias's second parameter.
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method

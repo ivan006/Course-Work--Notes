@@ -669,11 +669,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Primary key associator
 	- If your tables primary key is not "id" you will need to specify it.
 	- To specify the primary key put this into your model class `protected $primaryKey = 'id';`
-- De-restrict the custom fields permissions
+- De-restrict the model so it's "fillable"
 	- Give the model some freedoms like allowing it to do multiple value inserts
 	- By default a new entity can't be populated with content on inception this changes that
 	- Choose the data fields that you want to be able to be populated on the entity's inception
-	- Put this into your model's class
+	- Put this model configurator into your model's class
 	```php
 		protected $fillable = [
 			'data_field_a',
@@ -833,7 +833,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```
 - Model method:
 	- Name: this one is all ready automatically made
-- Model helper variable helper: this is where the `$fillable` variable comes in handy
+	- `De-restrict the model so it's "fillable"` as shown in previous section
 - URL example: `fundamental-mechanisms-app.test/URLCreate/hello`
 
 
@@ -1096,7 +1096,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		  $table->text('data_field_b');
 		```
 	- Model
-		- `De-restrict the custom fields permissions` as shown in a previous section
+		- `De-restrict the model so it's "fillable"` as shown in a previous section
 	  - Configure relationship
 			- Depending on how your foreign key has been named add either of the following model methods
 		  - Method 1 - The manual foreign key specifier method
@@ -1105,7 +1105,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		      return $this->hasOne('App\TypeAEntity', 'type_b_entities_id');
 		    }
 		  ```
-		    - Manually specify the foreign key in the `hasOne()` referencer's second parameter.
+		    - Manually specify the foreign key in the `hasOne()` alias's second parameter.
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method
 				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` (e.g. `type_b_entities_id`)
@@ -1135,9 +1135,7 @@ up till here
 
 
 ##### Usage
-- Add a record to the `type_a_entity` table and make sure multiple field values are filled in.
-  - Add model usage referencer to top `use App\TypeBEntity;`
-  - For the model: Add `type_b_entity_id` to the list fillable function list.
+- Add a record to the `type_a_entity`
   - Route
   ```php
     Route::get('/ExampleRoute32', function(){
@@ -1163,6 +1161,11 @@ up till here
 
 ##### Full CRUD
 - Create through a relative
+	- Controller
+		- Make sure multiple field values are filled in.
+	  - Add alias to top `use App\TypeBEntity;`
+	- Model
+		- For the model: Add `type_b_entity_id` to the list fillable function list.
   - Route
     ```php
     Route::get('/ExampleRoute34.1', function(){
@@ -1317,7 +1320,7 @@ up till here
 ##### Queries
 - Create
   - 2 grandparent records
-    - Do as demonstrated in `insert record with multiple field values`
+    - Do as demonstrated in `Insert record with multiple field values`
     - For the route name use: `/ExampleRoute38`
     - For the referenced model use `ExampleGrandparentModel`
     - E.g.
@@ -1336,7 +1339,7 @@ up till here
     });
     ```
   - 3 relationship records
-    - Do as demonstrated in `insert record with multiple field values`
+    - Do as demonstrated in `Insert record with multiple field values`
     - For the route name use: `/ExampleRoute36`
     - For the referenced model use `ExampleGrandparentModelTypeBEntity`
     ```php
@@ -1483,7 +1486,7 @@ up till here
     - Create records
       - Route
         - Create 2 records
-        - Do as demonstrated in `insert record with multiple field values`
+        - Do as demonstrated in `Insert record with multiple field values`
         - For the route name use: `/ExampleRoute44`
         - For the referenced model use `ExampleGrandparent2Model`
         - E.g.
@@ -2519,9 +2522,9 @@ Route::get('/64', function (){
 	    ```
 	- Part 2
 	  - Controller
-	    - Add a model usage referencer
+	    - Add an alias
 	      - Orientate yourself to your posts controller file
-	      - Add the model usage referencer `use  App\Post;`  at the top directly underneath the "namespace" function.
+	      - Add the alias `use  App\Post;`  at the top directly underneath the "namespace" function.
 	    - This goes in the posts controller's "store" method
 	      - Part A
 		- Option 1
@@ -2863,7 +2866,7 @@ Route::get('/64', function (){
           ```php
             public function store(CreatePostRequest $request)
           ```
-        - Add the model usage referencer to the top of this file (directly under the "namespace" function)
+        - Add the alias to the top of this file (directly under the "namespace" function)
         ```php
           use App\Http\Requests\CreatePostRequest;
         ```

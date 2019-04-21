@@ -1105,7 +1105,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		      return $this->hasOne('App\TypeAEntity', 'type_b_entities_id');
 		    }
 		  ```
-		    - Manually specify the foreign key in the `hasOne()` object accessors second parameter.
+		    - Manually specify the foreign key in the `hasOne()` referencer's second parameter.
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method
 				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` (e.g. `type_b_entities_id`)
@@ -1135,8 +1135,8 @@ up till here
 
 
 ##### Usage
-- Add a record to the example model table and make sure multiple field values are filled in.
-  - Add model usage function to top `use App\TypeBEntity;`
+- Add a record to the `type_a_entity` table and make sure multiple field values are filled in.
+  - Add model usage referencer to top `use App\TypeBEntity;`
   - For the model: Add `type_b_entity_id` to the list fillable function list.
   - Route
   ```php
@@ -1597,7 +1597,7 @@ up till here
                   return $this->morphTo();
                 }
               ```
-  - Example model
+  - `TypeAEntity`
       - Migration
           - Since we will now be using polymorphic relationships this will be configured.
           - Comment this out `$table->integer('type_b_entity_id')->unsigned();`
@@ -1610,7 +1610,7 @@ up till here
                   return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
                 }
               ```
-  - Example parent model
+  - `TypeBEntity`
       - Model
           - Relationship
               - Add this
@@ -1622,8 +1622,8 @@ up till here
   - Repopulate some content
       - Since we refreshed all the tables we will need to repopulate some content.
       - Use the following routes to add content
-          - For example model use `/ExampleRoute16` do not use `/ExampleRoute48`
-          - For example parent model use `/ExampleRoute40` don't use `/ExampleRoute46`
+          - For `type_a_entity` use `/ExampleRoute16` do not use `/ExampleRoute48`
+          - For `type_b_entity` use `/ExampleRoute40` don't use `/ExampleRoute46`
           - For example grandparent model use `/ExampleRoute38`
           - For example grandparent-parent relationship model use `/ExampleRoute36`
 - Queries
@@ -1645,7 +1645,7 @@ up till here
     ```
   - Read
     - View the descendent polymorphically
-        - Example model
+        - `TypeAEntity`
             - Route
             ```php
               Route::get('/ExampleRoute53', function(){
@@ -1655,7 +1655,7 @@ up till here
                   }
               });
             ```
-        - Example parent model
+        - `TypeBEntity`
             - Route
             ```php
               Route::get('/ExampleRoute54', function(){
@@ -1749,7 +1749,7 @@ up till here
                 'type_b_entity2_relation_type',
                 ];
               ```
-  - Example model
+  - `TypeAEntity`
     - Model
         - Relationship
             - Add this
@@ -2004,7 +2004,7 @@ Route::get('/64', function (){
   });
 ```
 ##### Query With an accessor
-- Example Model
+- `TypeAEntity`
   - Route: Reuse route `70` for this
   - Model
     - Upper Case First Letter
@@ -2519,9 +2519,9 @@ Route::get('/64', function (){
 	    ```
 	- Part 2
 	  - Controller
-	    - Add a model usage namespace
+	    - Add a model usage referencer
 	      - Orientate yourself to your posts controller file
-	      - Add the model usage namespace `use  App\Post;`  at the top directly underneath the "namespace" function.
+	      - Add the model usage referencer `use  App\Post;`  at the top directly underneath the "namespace" function.
 	    - This goes in the posts controller's "store" method
 	      - Part A
 		- Option 1
@@ -2863,7 +2863,7 @@ Route::get('/64', function (){
           ```php
             public function store(CreatePostRequest $request)
           ```
-        - Add the usage function to the top of this file (directly under the "namespace" function)
+        - Add the model usage referencer to the top of this file (directly under the "namespace" function)
         ```php
           use App\Http\Requests\CreatePostRequest;
         ```

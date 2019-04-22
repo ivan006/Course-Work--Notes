@@ -1151,13 +1151,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Class/name/parameters: `TypeBEntity_Controller`->`create` with a parameter of `$a`
 		- Script: just add this
 		```php
-		TypeBEntity::create([
-      'data_field_a'=>$a,
-      'data_field_b'=>$a,
-    ]);
+			TypeBEntity::create([
+	      'data_field_a'=>$a,
+	      'data_field_b'=>$a,
+	    ]);
 		```
 	- URL example: `fundamental-mechanisms-app.test/BCreate/1`
-	
+
 - Read child of parent
 	- Route:
 		- Name/parameters: `/BRead/{a}` use a parameter of `$a`

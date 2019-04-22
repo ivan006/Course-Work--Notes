@@ -1137,7 +1137,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodCreate`
 		- Script: just add this
 		```php
-				'type_b_entity_id'=>$a,
+		'type_b_entity_id'=>$a,
 		```
 	- Model:
 		- De-restrict the new field `type_b_entity_id` as show in `De-restrict fields`
@@ -1151,10 +1151,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Class/name/parameters: `TypeBEntity_Controller`->`create` with a parameter of `$a`
 		- Script: just add this
 		```php
-			TypeBEntity::create([
-	      'data_field_a'=>$a,
-	      'data_field_b'=>$a,
-	    ]);
+		TypeBEntity::create([
+      'data_field_a'=>$a,
+      'data_field_b'=>$a,
+    ]);
 		```
 	- URL example: `fundamental-mechanisms-app.test/BCreate/1`
 - Read child of parent
@@ -1164,7 +1164,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Class/name/parameters: `TypeBEntity_Controller`->`show` use a parameter of `$a`
 		- Script:
 		```php
-			return TypeBEntity::find($a)->TypeAEntity;
+		return TypeBEntity::find($a)->TypeAEntity;
 		```
 	- URL example: `fundamental-mechanisms-app.test/BRead/1`
 - View parent of child
@@ -1174,7 +1174,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead` but use a parameter of `$a`
 		- Script:
 		```php
-			return TypeAEntity::find($a)->TypeBEntity;
+		return TypeAEntity::find($a)->TypeBEntity;
 		```
 	- URL example: `fundamental-mechanisms-app.test/ARead/1`
 

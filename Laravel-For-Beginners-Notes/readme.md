@@ -1159,7 +1159,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/BCreate/1`
 
 
-
+#ssss
 
 - Read child of parent
 	- Route:

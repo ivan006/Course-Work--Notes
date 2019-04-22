@@ -1167,9 +1167,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Controller method:
 		- Class/name/parameters: `TypeBEntity_Controller`->`show` use a parameter of `$a`
 		- Script:
-		```php
-			return TypeBEntity::find($a)->TypeAEntity;
-		```
+		` return TypeBEntity::find($a)->TypeAEntity;`
 	- URL example: `fundamental-mechanisms-app.test/BRead/1`
 - View parent of child
 	- Route:
@@ -1177,9 +1175,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Controller method:
 		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead` but use a parameter of `$a`
 		- Script:
-		```php
-			return TypeAEntity::find($a)->TypeBEntity;
-		```
+		` return TypeAEntity::find($a)->TypeBEntity;`
 	- URL example: `fundamental-mechanisms-app.test/ARead/1`
 
 

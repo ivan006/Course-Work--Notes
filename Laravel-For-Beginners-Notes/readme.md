@@ -603,12 +603,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ###  <a name="Basic-Setup"></a> Basic Setup
 
-#### From scratch controller
+#### Set up a controller that is blank
 - These are completely blank and must be made from scratch
 - To create one locate yourself to `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controllers` and create a new php file, the name format should be camel case but e.g. `TypeAEntity_Controller.php`
 - To avoid class name collisions we recommend ending your controller with `_Controller`
 
-#### Generated controller
+#### Set up a controller that is generated
 - These come with the controller file's foundation code already in place
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
@@ -616,7 +616,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Try this out
 	- bear in mind it wont work properly until you make a controller.
 
-#### Resourced controller
+#### Set up a controller that is resourced
 - These come with the controller file's foundation code already in place and some commonly used controllers set up
 - To create one
 	- Open Git Bash and locate yourself using `cd` command to `C:/laravel-apps/fundamental-mechanisms-app`
@@ -1074,7 +1074,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### One to One Relationship
 ##### Set up
-- Create and configure `TypeBEntity`
+- Create and configure a table, model and controller for `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
 	- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
 		- Model name `TypeBEntity`
@@ -1105,6 +1105,15 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			  ```
 		    - Add this in the model's class
 		    - Note: the name of the controller (in this case `TypeAEntity`) doesn't matter as long as we refer to it in our route correctly, but it is easiest to base its name on the table it references.
+	- Controller
+		-
+
+
+
+---
+up till here
+---
+
 - Configure `TypeAEntity`
 	- Database
 		- Add a foreign key column
@@ -1134,14 +1143,17 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Model:
 		- De-restrict the field `type_b_entity_id` as show in `De-restrict fields`
 	- URL example: `fundamental-mechanisms-app.test/URLCreate/1`
-
----
-up till here
----
-
-
-
 - View child of parent
+	- Route:
+		- Name/parameters: reuse `/URLRead/{a}` but use a parameter of `$a`
+	- Controller method:
+		- Name/parameters: reuse `MethodRead` but use a parameter of `$a`
+		- Script:
+		```php
+			return TypeBEntity::find($a)->TypeAEntity;
+		```
+	- URL example: `fundamental-mechanisms-app.test/URLRead/1`
+
   - Route
       ```php
         Route::get('/ExampleRoute33/{id}', function($id){

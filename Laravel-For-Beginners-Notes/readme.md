@@ -1179,13 +1179,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/ARead/1`
 
 
-###sss
 
-
-
-	---
-	up till here
-	---
+---
+up till here
+---
 
 
 ##### Full CRUD

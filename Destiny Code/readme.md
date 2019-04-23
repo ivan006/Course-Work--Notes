@@ -4,4 +4,6 @@ Harmony can't be created with p-focus (people oriented management) but only with
 
 For instance imagine that instead of voting for the next president we voted for how the government budget was spent?
 
+A-focus is management of assets by assets, as oppose to management of people by people.
+
 

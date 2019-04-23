@@ -1,15 +1,9 @@
-# Destinyism
+# Harmonyism
 
-This is a political theory.
+Harmony cant be created with s-focus but only with o-focus as people simply aren't as reliable as objects.
 
-Our beliefs shape our behaviour which in turn shapes our destiny. 
+For instance imagine that instead of using such a crude system of voting for the next president we had a sophisticated system inwhich we could voted for how the government budget was spent?
 
-## Disharmonious destiny  
-The nature of a disharmonious destiny is one which is thwarted with social issues.
+The former can be called people oriented management, or s-focus for short, and the latter can be called asset or document oriented management, o-focus for short.
 
-The cause of a disharmonious destiny is the belief that people are the center of life as this leads to the belief that hierarchies of people and thus inequality is natural. These beliefs make us behave in a way that re-enforces inequality onto ourselves. 
 
-## Harmonious destiny 
-The nature of a harmonious destiny is one which is has no social issues. 
-
-The cause of a harmonious destiny is the belief that assets are the center of life as this would lead us to the belief that it is not hierarchies of people but hierarchies of assets, and thus equality, that is natural. These beliefs would make us behave in a way that re-enforces equality onto ourselves. 

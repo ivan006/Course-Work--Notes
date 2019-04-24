@@ -1171,7 +1171,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Class/name/parameters: `TypeBEntity_Controller`->`show` parameters to use - `$a`
 		- Script:
 		```php
-			return TypeBEntity::find($a)->TypeAEntity;
+			return TypeBEntity::find($a)->TypeAEntity->all();
 		```
 	- URL example: `fundamental-mechanisms-app.test/BRead/1`
 - Update

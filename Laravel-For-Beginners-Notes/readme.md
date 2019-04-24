@@ -1149,9 +1149,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Query child of entity
 - Create
 	- Route:
-		- Name/parameters: Reuse `/BCreate/{a}/{b}` parameters to use - swap to `$a`
+		- Name/parameters: Reuse `/BCreate/{a}/{b}` parameters to use - swap to `$a, $b`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`create`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`create` parameters to use - swap to `$a, $b`
 		- Script:
 		```php
 			TypeBEntity::findOrFail($a)->TypeAEntity()->save(
@@ -1163,7 +1163,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				])
 			);
 		```
-	- URL example: `fundamental-mechanisms-app.test/ACreate/1`
+	- URL example: `fundamental-mechanisms-app.test/ACreate/1/1`
 - Read
 	- Route:
 		- Name/parameters: `/BRead/{a}` parameters to use - `$a`

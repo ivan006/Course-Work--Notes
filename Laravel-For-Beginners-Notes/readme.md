@@ -1075,18 +1075,19 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-#### One to One Relationship
+#### One to one relationship
 ##### Set up
-- Create and configure a table, model, controller and record for `TypeBEntity`
+- Set up for `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
-	- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
-		- Model name `TypeBEntity`
-		- Table name: this will be automatically configured
-		- Table columns
-		```php
-		  $table->string('data_field_a');
-		  $table->text('data_field_b');
-		```
+	- Table
+		- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
+			- Model name `TypeBEntity`
+			- Table name: this will be automatically configured
+			- Table columns
+			```php
+			  $table->string('data_field_a');
+			  $table->text('data_field_b');
+			```
 	- Model
 		- `De-restrict fields` as shown in a previous section
 	  - Configure relationship
@@ -1116,21 +1117,22 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				use App\TypeBEntity;
 				use App\TypeAEntity;
 			```
-	- Create a `type_b_entity` record
-		- Route:
-			- Name/parameters: `/BCreate/{a}`
-			- Associated controller method: `TypeBEntity_Controller@create`
-		- Controller method:
-			- Class/name/parameters: `TypeBEntity_Controller`->`create` parameters to use - `$a`
-			- Script: just add this
-			```php
-				TypeBEntity::create([
-		      'data_field_a'=>$a,
-		      'data_field_b'=>$a,
-		    ]);
-			```
-		- URL example: `fundamental-mechanisms-app.test/BCreate/1`
-- Configure `TypeAEntity`
+	- Records
+		- Create a record
+			- Route:
+				- Name/parameters: `/BCreate/{a}`
+				- Associated controller method: `TypeBEntity_Controller@create`
+			- Controller method:
+				- Class/name/parameters: `TypeBEntity_Controller`->`create` parameters to use - `$a`
+				- Script: just add this
+				```php
+					TypeBEntity::create([
+			      'data_field_a'=>$a,
+			      'data_field_b'=>$a,
+			    ]);
+				```
+			- URL example: `fundamental-mechanisms-app.test/BCreate/1`
+- Set up for `TypeAEntity`
 	- Database
 		- Add a foreign key column
 			- Edit the migration by adding this to your set of column functions
@@ -1163,7 +1165,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				])
 			);
 		```
-	- URL example: `fundamental-mechanisms-app.test/ACreate/1/1`
+	- URL example: `fundamental-mechanisms-app.test/BCreate/1/1`
 - Read
 	- Route:
 		- Name/parameters: `/BRead/{a}` parameters to use - `$a`
@@ -1198,14 +1200,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/BDelete/1`
   - Note: If soft delete is not enabled then you can replace `forceDelete()` with `delete()`
 
-
-
-
----
-up till here
----
-
-
 ##### Query parent of entity
 
 - Read
@@ -1219,60 +1213,86 @@ up till here
 		```
 	- URL example: `fundamental-mechanisms-app.test/ARead/1`
 
+#### One to many relationships
+##### Set up
+- Set up for `TypeBEntity`
+	- Model
+	```php
+	  public function TypeAEntities(){
+	    return $this->hasMany('App\TypeAEntity');
+	  }
+	```
+  - After adding this you can remove the previous relationships method but it's not vital
+  - The model method's name here is plural as it is a many relationship
+- Set up for `TypeAEntity`
+ 	- Records
+		- Create a second record
+			- URL example: `fundamental-mechanisms-app.test/BCreate/1/2`
 
 
-#### One to Many Relationships
-##### Prerequisites
-- Parent model
-```php
-  public function TypeAEntities(){
-    return $this->hasMany('App\TypeAEntity');
-  }
-```
-  - Add this in the model's class
-  - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
-- Manage records: Add a second `TypeAEntity` record by executing `/ExampleRoute32` again.
-
-##### Basic Queries
-- Read/view
-  - Route
-  ```php
-    Route::get('/ExampleRoute35', function(){
-      $example_variable = TypeBEntity::findOrFail(1)->TypeAEntities;
-      foreach ($example_variable as $example_variable_part){
-        echo $example_variable_part."<br>";
-      }
-    });
-  ```
-##### Full CRUD
+##### Query children of entity
+- Create
+	- Route:
+		- Name/parameters: Reuse `/BCreate/{a}/{b}` parameters to use `$a, $b`
+	- Controller method:
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`create` parameters to use `$a, $b`
+		- Script:
+		```php
+			TypeBEntity::findOrFail($a)->TypeAEntities()->save(
+				new TypeAEntity([
+					'data_field_a'=>$b,
+					'data_field_b'=>$b,
+					'data_field_c'=>$b,
+					'type_b_entity_id'=>$b,
+				])
+			);
+		```
+	- URL example: `fundamental-mechanisms-app.test/ACreate/1/1`
+	- Note: Notice that the only change we are making to this controller is changing the queries model method
 - Read
-  - Route
-  ```php
-    Route::get('/ExampleRoute35.1', function(){
-      $example_variable = TypeBEntity::findOrFail(1)->TypeAEntities;
-      foreach ($example_variable as $example_variable_part){
-        echo "My ___$example_variable_part->data_field_b ___ brings all the boys to the ___$example_variable_part->data_field_a ___ I can teach you but I have to charge.<br>";
-      }
-    });
-  ```
+	- Route:
+		- Name/parameters: Reuse`/BRead/{a}` parameters to use - `$a`
+	- Controller method:
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`show` parameters to use - `$a`
+		- Script:
+		```php
+			foreach (TypeBEntity::findOrFail($a)->TypeAEntities as $var){
+				echo $var->data_field_a. "<br>";
+			}
+		```
+	- URL example: `fundamental-mechanisms-app.test/BRead/1`
 - Update
-  - Route
-  ```php
-    Route::get('/ExampleRoute35.2', function(){
-      $example_variable = TypeBEntity::findOrFail(2);
-      $example_variable_2 = $example_variable->TypeAEntities()->whereId(9);
-      $example_variable_2->update(['data_field_a'=>'i did it!']);
-    });
-  ```
+	- Route:
+		- Name/parameters: Reuse`/BUpdate/{a}/{b}` parameters to use - `$a, $b`
+	- Controller method:
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`update` parameters to use - `$a, $b`
+		- Script:
+		```php
+			$var = TypeBEntity::findOrFail($a)->TypeAEntities()->whereId(1)->update([
+				'data_field_a'=>$b
+			]);
+		```
+	- URL example: `fundamental-mechanisms-app.test/BUpdate/1/2`
 - Delete
-  - Route
-  ```php
-  Route::get('/ExampleRoute35.3', function(){
-    $example_variable = TypeBEntity::findOrFail(1);
-    $example_variable_2 = $example_variable->TypeAEntities()->whereId(8)->first();
-    $example_variable_2->delete();
-  });
-  ```
+	- Route:
+		- Name/parameters: Reuse `/BDelete/{a}` parameters to use - `$a`
+	- Controller method:
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`update` parameters to use - `$a`
+		- Script:
+		```php
+			$var = TypeBEntity::findOrFail($a)->TypeAEntities()->whereId(1)->delete();
+		```
+	- URL example: `fundamental-mechanisms-app.test/BDelete/1`
+
+
+
+
+
+
+---
+up till here
+---
+
 
 #### Many to Many Relationships
 

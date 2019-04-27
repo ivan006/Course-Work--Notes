@@ -1,5 +1,7 @@
 # Harmonyism
 
+Definition: An  administive approach that's asset-centric and aledgedly leads to social harmony
+
 The economy is capable of creating social harmony. But that can't be attained with p-admin (people oriented management), only with a-admin (asset oriented management), as people simply aren't as reliable as assets.
 
 For example imagine that instead of voting for the next president we voted for the government budget spending plan?

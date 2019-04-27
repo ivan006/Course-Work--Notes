@@ -1,11 +1,5 @@
-# Harmonyism
+# A-adminism
 
-Definition: An  administive approach that's asset-centric and aledgedly leads to social harmony
+Definition: An administive approach that's asset-centric and aledgedly leads to social harmony
 
-The economy is capable of creating social harmony. But that can't be attained with p-admin (people oriented management), only with a-admin (asset oriented management), as people simply aren't as reliable as assets.
-
-For example imagine that instead of voting for the next president we voted for the government budget spending plan?
-
-To be specific p-admin is "management of people done by people" and a-admin is "management of assets done by assets through people".
-
-
+Note: The opposite of a-admin is p-admin, which is people-centric and thus can't lead to harmony as people simply aren't as reliable as assets. For example imagine that instead of voting for the next president we voted for the next government budget spending plan? To be more specific p-admin is about "the management of people done by people" and a-admin is about "the management of assets done by assets through people".

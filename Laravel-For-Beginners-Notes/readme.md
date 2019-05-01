@@ -1,4 +1,3 @@
-
 - Entity data components
 	- Database -Storage
 		- This stores the data
@@ -458,68 +457,66 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - Run `php artisan migrate:status`
 - See more info here: [https://laravel.com/docs/5.6/migrations#columns](https://laravel.com/docs/5.6/migrations#columns)
 
-#### Table handling migration
-- Creating a table using a migration
-	- Try this out
-	- Determine the names and types
-		- Determine the table's name
-			- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model) also if the model ends in `y` then it's table must end in `ies`
-			- E.g. `type_a_entities`
-		- Determine the field names and field data types (string or text etc.) of the tables data fields
-			- E.g.
-				- `data_field_a`
-					- data type: `string`
-				- `data_field_b`
-					- data type: `string`
-				- `data_field_c`
-					- data type: `string`
-	- Generate file command
-		- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
-		- Run `php artisan make:migration type_a_entities_m_table --create="type_a_entities"`
-	- Configure it
-	  - Open the migration file in a code editor. Locate the schema function in your migration's up method.
-	  - Add this to the `Schema::create` function
-	  ```php
-	      $table->string('data_field_a');
-	      $table->string('data_field_b');
-	      $table->string('data_field_c');
-	  ```
-		- Note: when editing this be sure not to remove the default "id" (`$table->increments('id');`) and timestamps (`$table->timestamps();`) functions as they are best to keep.
-	- Generate the table
-	  - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-	  - Run `php artisan migrate`
+#### Creating a table using a migration
+- Try this out
+- Determine the names and types
+	- Determine the table's name
+		- Make it use underscores for spaces and ends with an "s" (this will help to automatically associate it to a model) also if the model ends in `y` then it's table must end in `ies`
+		- E.g. `type_a_entities`
+	- Determine the field names and field data types (string or text etc.) of the tables data fields
+		- E.g.
+			- `data_field_a`
+				- data type: `string`
+			- `data_field_b`
+				- data type: `string`
+			- `data_field_c`
+				- data type: `string`
+- Generate file command
+	- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
+	- Run `php artisan make:migration type_a_entities_m_table --create="type_a_entities"`
+- Configure it
+  - Open the migration file in a code editor. Locate the schema function in your migration's up method.
+  - Add this to the `Schema::create` function
+  ```php
+      $table->string('data_field_a');
+      $table->string('data_field_b');
+      $table->string('data_field_c');
+  ```
+	- Note: when editing this be sure not to remove the default "id" (`$table->increments('id');`) and timestamps (`$table->timestamps();`) functions as they are best to keep.
+- Generate the table
+  - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+  - Run `php artisan migrate`
 
-#### Column handling migration
+#### Create a column with a migration
 - General: These allow you to add columns to tables without interrupting the tables content/records that are already created
-- Create a column with a migration
-  - Example
-		- We will practice this later
-    - Setup
-      - Create migration
-        - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-        - Decide on a migration name.
-        - Run `php artisan make:migration type_a_entities_m_column_data_field_d --table="type_a_entities"`
-      - Add a column function to the migration
-        - Open the migration file in a code editor.
-        - Locate the schema function in your migration's up method
-        - Here you will add a new line of code
-        - For example
-        ```php
-          Schema::table('type_a_entities', function (Blueprint $table) {
-              $table->integer('data_field_d')->unsigned();
-          });
-        ```
-      - Add a column deletion function to the migration
-        - Open the migration file in a code editor.
-        - Locate the schema function in your migration's down method
-        - Here you will add a new line of code
-        - For example here I am adding two custom columns
-        ```php
-          Schema::table('type_a_entities', function (Blueprint $table) {
-              $table->dropColumn('data_field_d');
-          });
-        ```
-    - Use - Activate the migration
+- Example
+	- We will practice this later
+  - Setup
+    - Create migration
+      - In Git Bash locate yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+      - Decide on a migration name.
+      - Run `php artisan make:migration type_a_entities_m_column_data_field_d --table="type_a_entities"`
+    - Add a column function to the migration
+      - Open the migration file in a code editor.
+      - Locate the schema function in your migration's up method
+      - Here you will add a new line of code
+      - For example
+      ```php
+        Schema::table('type_a_entities', function (Blueprint $table) {
+            $table->integer('data_field_d')->unsigned();
+        });
+      ```
+    - Add a column deletion function to the migration
+      - Open the migration file in a code editor.
+      - Locate the schema function in your migration's down method
+      - Here you will add a new line of code
+      - For example here I am adding two custom columns
+      ```php
+        Schema::table('type_a_entities', function (Blueprint $table) {
+            $table->dropColumn('data_field_d');
+        });
+      ```
+  - Use - Activate the migration
 
 #### Deleting Migrations
 - Unfortunately deleting a migration is quite hard
@@ -654,15 +651,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ###  <a name="7.1."></a> Setup a model
 
-#### Setting up a new model
-- Determine the name
-	- Table association
-		- Explanation
-			- If you format the name of model and the table in a certain way the app will automatically associate the otherwise would will have to configure the table associator
-		- The format is this
-			- Use  a camel cased version of the table name and remove the "s" from the end
-		- Otherwise this is how to configure the table associator
-			- To specify a table put this into your model's class `protected $table = 'table_name';`
+#### Setup a model
+- Name
+	- Rules
+		- If you format the name of model and the table in a certain way the app will automatically associate them and you will not need to configure the table associator otherwise would will have to configure the table associator
+		- Use a camel cased and singlar version of the table name
+- Table associator
+	- To specify a table put this into your model's class `protected $table = 'table_name';`
 - Generate file command
 	- Using Git Bash locate yourself using  `cd C:/laravel-apps/fundamental-mechanisms-app`.
 	- Then run `php artisan make:model TypeAEntity`
@@ -686,20 +681,20 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-#### Setup a Table-Model Pair
+#### Setup a table-model pair
 - General: Tables and models are rarely made independently so here's how to make them simultaneously.
 
-##### Using the Shortcut
+##### Setup a table-model pair - The short way
 - Try this out
 - Generate the migration and model file with a single command
 	- In Git Bash locate yourself to `C:/laravel-apps/fundamental-mechanisms-app`
 	- Run `php artisan make:model TypeAEntity -m`
-- Follow the `Creating a table using a migration` and `Setting up a new model` to finish setting them up except leave out the `generate file command` steps of course
+- Follow the `Creating a table using a migration` and `Setup a model` to finish setting them up except leave out the `generate file command` steps of course
 
 
-##### Without Using the Shortcut
+##### Setup a table-model pair - The long way
 - Follow the steps in `Creating a table using a migration`
-- Follow steps in `Setting up a new model`
+- Follow steps in `Setup a model`
 
 ### <a name="7.2."></a>  SQL Models
 - There are four types of database queries and the are abbreviated with "CRUD"
@@ -1080,7 +1075,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Set up for `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
 	- Table
-		- Setup a Table-Model Pair - Using the Shortcut (as previously demonstrated)
+		- Setup a table-model pair - The short way (as previously demonstrated)
 			- Model name `TypeBEntity`
 			- Table name: this will be automatically configured
 			- Table columns
@@ -1294,87 +1289,96 @@ up till here
 ---
 
 
-#### Many to Many Relationships
+#### Many to many relationships
 
 ##### General
-- This is useful for things like a user can have many rolls and a roll can be occupied by many users.
-- For this you need a pivot/lookup table.
+
+- This can be used by things like "tags" - where a post can have multiple tags and each tag can be used by multiple posts
+- For this you need a relationships table.
 
 ##### Setup
-- Relationship model
-  - Setup its table and model - using the no shortcuts method. Just follow as previously demonstrated in `Set Up a New Table-Model Pair Without Using a Shortcut` and use the following specs
-    - Table migration
-      - Table name
-        - The naming convention here is that:
-          - Must be a combo of both of the associated table names
-          - The order of the name combo must be in alphabetic order  
-          - Use the singular version of the table names
-          - E.g. `example_grandparent_model_type_b_entity`
-      - Table columns
-        - Foreign keys columns
-          - The naming convention here is that:
-            - They must be named according to the foreign tables the refer to and then have `_id` at the end.
-          - E.g.
-          ```php
-            $table->integer('type_b_entity_id');
-            $table->integer('example_grandparent_model_id');
-          ```
-    - Model
-      - Name
-        - You can use a camel cased version of the table name.
-        - E.g. `ExampleGrandparentModelTypeBEntity`
-      - Table specifier: `example_grandparent_model_type_b_entity`
-      - Allowable multiple value inserts
-        - `type_b_entity_id`
-        - `example_grandparent_model_id`
-- Grandparent model
-  - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
-    - Migration
-      - Tables name `ExampleGrandparentModel`
-      - Table columns
+- Set up `TypeBEntityTypeCEntity`
+	- Note: This is a pseudo entity as it simple relates other entities
+	- Setup a table-model pair: `Setup a table-model pair - The long way`
+  - Table
+    - Name
+        - Rules
+					- Must be a combo of both of the entities you are trying to connect
+        	- The order of the name combo must be in alphabetic order  
+        	- Use the singular version of the table names
+        - E.g. `type_b_entity_type_c_entity`
+    - Columns
+      - These are foreign keys
+      - The naming rules
+        - They must be named according to the foreign tables the refer to and then have `_id` at the end.
+      - E.g.
       ```php
-        $table->string('name');
-      ```        
-    - Model
-      - Allowable multiple value inserts
-        - `name`
-      - Grandparent model
-        - Add this in the model's class
-        ```php
-          public function TypeBEntities(){
-            return $this->belongsToMany('App\TypeBEntity');
-          }
-        ```
-- Parent model
-  - Parent model's model
-    - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
-    - Short method
-      - If the table pivot table name and it's foreign keys columns are named according to the convention then you can use this method.
+        $table->integer('type_b_entity_id');
+        $table->integer('type_a_entity_id');
+      ```
+  - Model
+    - Name
+      - Rules: You can use a camel cased version of the table name.
+      - E.g. `TypeBEntityTypeCEntity`
+    - Table specifier: `type_b_entity_type_c_entity`
+    - De-restrict fields
+    ```php
+			'type_b_entity_id',
+	    'type_c_entity_id',
+		```
+- Set up `TypeCEntity`
+  - Table
+	 	- Method: `Setup a table-model pair - The short way`
+    - Name: `TypeCEntity`
+    - Columns
+    ```php
+      $table->string('name');
+    ```        
+  - Model
+    - De-restrict fields
+  	```php
+			'name',
+		```
+    - Grandparent model
       - Add this in the model's class
       ```php
-        public function ExampleGrandparentModels(){
-          return $this->belongsToMany('App\ExampleGrandparentModel')->withPivot('created_at');
+        public function TypeBEntities(){
+          return $this->belongsToMany('App\TypeBEntity');
         }
       ```
-    - Long method
-      - Add this in the model's class
-      - If the table pivot table name and it's foreign keys columns aren't named according to the convention then you must use this method.
-      ```php
-        public function ExampleGrandparentModels(){
-          return $this->belongsToMany('App\ExampleGrandparentModel', 'example_grandparent_model_type_b_entity', 'type_b_entity_id', 'example_grandparent_model_id');
-        }
-      ```
+- Set up `TypeBEntity`
+	- Model method:
+		- Class/name/parameters:
+			- Name:
+				- Rules: The name must be plural as it is a many relationship
+				- E.g. `TypeBEntity`->`TypeCEntities`
+		- Query: 				
+	    - Auto method
+	      - For if the relationships table and it's foreign keys columns are named according to the rules
+	      ```php
+	          return $this->belongsToMany('App\TypeCEntity')->withPivot('created_at');
+	      ```
+	    - Manual method
+	      - For if the relationships table and it's foreign keys columns aren't named according to the rules
+	      ```php
+	          return $this->belongsToMany(
+							'App\TypeCEntity',
+							'type_b_entity_type_c_entity',
+							'type_b_entity_id',
+							'type_c_entity_id'
+						);
+	      ```
 ##### Queries
 - Create
   - 2 grandparent records
     - Do as demonstrated in `Create record with multiple field values`
     - For the route name use: `/ExampleRoute38`
-    - For the referenced model use `ExampleGrandparentModel`
+    - For the referenced model use `TypeCEntity`
     - E.g.
     ```php
       Route::get('/ExampleRoute38', function(){
-        ExampleGrandparentModel::create(['name'=>'data_value_a']);
-        ExampleGrandparentModel::create(['name'=>'data_value_b']);
+        TypeCEntity::create(['name'=>'data_value_a']);
+        TypeCEntity::create(['name'=>'data_value_b']);
       });
     ```
   - Parents
@@ -1388,19 +1392,19 @@ up till here
   - 3 relationship records
     - Do as demonstrated in `Create record with multiple field values`
     - For the route name use: `/ExampleRoute36`
-    - For the referenced model use `ExampleGrandparentModelTypeBEntity`
+    - For the referenced model use `TypeCEntitiesTypeBEntity`
     ```php
       Route::get('/ExampleRoute36', function(){
-        ExampleGrandparentModelTypeBEntity::create(['type_b_entity_id'=>1, 'example_grandparent_model_id'=>1]);
-        ExampleGrandparentModelTypeBEntity::create(['type_b_entity_id'=>2, 'example_grandparent_model_id'=>2]);
-        ExampleGrandparentModelTypeBEntity::create(['type_b_entity_id'=>2, 'example_grandparent_model_id'=>1]);
+        TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>1, 'type_c_entity_id'=>1]);
+        TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>2]);
+        TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>1]);
       });
     ```
   - 2 relationship records through a parent and delete any old relationships for that parent
     - Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
     ```php
       Route::get('/ExampleRoute36.1', function(){
-        TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->sync([2,3]);
+        TypeBEntity::findOrFail(2)->TypeCEntities()->sync([2,3]);
       });
     ```
 - Read
@@ -1409,7 +1413,7 @@ up till here
     ```php
       Route::get('/ExampleRoute41', function(){
         $example_variable = TypeBEntity::find(2);
-        foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
+        foreach ($example_variable->TypeCEntities as $example_variable_part){
           echo $example_variable_part->name."<br>";
         }
       });
@@ -1418,7 +1422,7 @@ up till here
     ```php
       Route::get('/ExampleRoute41.2', function(){
         $example_variable = TypeBEntity::find(2);
-        dd($example_variable->ExampleGrandparentModels);
+        dd($example_variable->TypeCEntities);
       });
     ```
   - Read parental relationships of child
@@ -1426,7 +1430,7 @@ up till here
       ```php
       Route::get('/ExampleRoute42', function(){
         $example_variable = TypeBEntity::find(2);
-        foreach ($example_variable->examplegrandparentmodels as $example_variable_part){
+        foreach ($example_variable->TypeCEntities as $example_variable_part){
           echo $example_variable_part->pivot->created_at."<br>";
         }
       });
@@ -1435,7 +1439,7 @@ up till here
       - Route
       ```php
         Route::get('/ExampleRoute43', function(){
-          $example_variable = ExampleGrandparentModel::find(1);
+          $example_variable = TypeCEntities::find(1);
           foreach ($example_variable->TypeBEntities as $example_variable_part){
             echo $example_variable_part->data_field_a."<br>";
           }
@@ -1445,15 +1449,15 @@ up till here
   - Relationship through a parent record
   ```php
     Route::get('/ExampleRoute43.1', function(){
-      TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->attach(1);
+      TypeBEntity::findOrFail(2)->TypeCEntities()->attach(1);
     });
   ```
   - Grandparent through parent record
   ```php
     Route::get('/ExampleRoute43.2', function(){
       $example_variable = TypeBEntity::find(1);
-      if($example_variable->has("ExampleGrandparentModels")){
-        foreach($example_variable->ExampleGrandparentModels as $example_variable2){
+      if($example_variable->has("TypeCEntities")){
+        foreach($example_variable->TypeCEntities as $example_variable2){
           if($example_variable2->name == 'data_value_a') {
             $example_variable2->name = "example_value_10";
             $example_variable2->save();
@@ -1468,14 +1472,14 @@ up till here
       - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
       ```php
         Route::get('/ExampleRoute39', function(){
-          ExampleGrandparentModel::destroy(3);
+          TypeCEntities::destroy(3);
         });
       ```
     - Delete grandparent through parent
     ```php
       Route::get('/ExampleRoute39.2', function(){
         $example_variable = TypeBEntity::find(1);
-        foreach($example_variable->ExampleGrandparentModels as $example_variable2){
+        foreach($example_variable->TypeCEntities as $example_variable2){
           $example_variable2->whereId(1)->delete();
         }
       });
@@ -1484,19 +1488,19 @@ up till here
     - Delete 1 Method 1
     ```php
       Route::get('/ExampleRoute37', function(){
-        ExampleGrandparentModelTypeBEntity::destroy(1);
+        TypeCEntitiesTypeBEntity::destroy(1);
       });
     ```
     - Delete 1 Method 2
     ```php
       Route::get('/ExampleRoute37.1', function(){
-        TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->detach(1);
+        TypeBEntity::findOrFail(2)->TypeCEntities()->detach(1);
       });
     ```
     - Delete all for parent
     ```php
       Route::get('/ExampleRoute37.2', function(){
-        TypeBEntity::findOrFail(2)->ExampleGrandparentModels()->detach();
+        TypeBEntity::findOrFail(2)->TypeCEntities()->detach();
       });
     ```
 
@@ -1509,7 +1513,7 @@ up till here
 #### Relationship with 2 Levels of Separation
 ##### General - prerequisites
 - Grandparent2 model
-  - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+  - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
     - Migration
       - Tables name `ExampleGrandparent2Model`
       - Table columns
@@ -1517,8 +1521,10 @@ up till here
         $table->string('name');
       ```        
     - Model
-      - Allowable multiple value inserts
-        - `name`
+      - De-restrict fields
+	  	```php
+				'name',
+			```
       - Relationship
       ```php
         public function TypeAEntities(){
@@ -1561,8 +1567,10 @@ up till here
       ```
       - Then activate migration      
     - Parent model
-      - Allowable multiple value inserts
-        - `example_grandparent2_model_id`
+      - De-restrict fields
+	  	```php
+				'example_grandparent2_model_id',
+			```
   - Manage records
     - Create at least 2 records
     - To create 2 records
@@ -1627,7 +1635,7 @@ up till here
 ##### One to many polymorphic relationships
 - Prerequisites
   - Great-grand-child table-model pair
-      - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+      - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
           - Migration
               - Table's name `ExampleGreatGrandChildModel`
               - Table columns
@@ -1637,10 +1645,12 @@ up till here
                 $table->string('data_field_a');
               ```
           - Model
-              - Allowable multiple value inserts
-                  - `parent_id`
-                  - `parent_type`
-                  - `data_field_a`
+              - De-restrict fields
+					  	```php
+								'parent_id',
+								'parent_type',
+								'data_field_a',
+							```
               - Relationship
               ```php
                 public function parent() {
@@ -1761,7 +1771,7 @@ up till here
 ##### Many to many polymorphic relationships
 - Prerequisites
   - Parent 2 table-model pair
-      - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+      - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
           - Migration
               - Table's name `TypeBEntity2`
               - Table columns
@@ -1769,8 +1779,10 @@ up till here
                 $table->string('name');
               ```
           - Model
-              - Allowable multiple value inserts
-                  - `name`
+              - De-restrict fields
+					  	```php
+								'name',
+							```
               - Relationship
               ```php
                 public function TypeAEntities() {
@@ -1781,7 +1793,7 @@ up till here
                 }
               ```
   - Bridging/relationship table-model pair
-      - Setup it up - just follow as previously demonstrated in `Set Up a New Table-Model Pair Using the Shortcut` and use the following specs
+      - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
           - Migration
               - Table's name `TypeBEntity2Relationship`
               - Table columns
@@ -1791,14 +1803,12 @@ up till here
                 $table->string('type_b_entity2_relation_type');
               ```
           - Model
-              - Allowable multiple value inserts
-              ```php
-                protected $fillable = [
-                'type_b_entity2_id',
-                'type_b_entity2_relation_id',
-                'type_b_entity2_relation_type',
-                ];
-              ```
+              - De-restrict fields
+					  	```php
+							'type_b_entity2_id',
+							'type_b_entity2_relation_id',
+							'type_b_entity2_relation_type',
+							```
   - `TypeAEntity`
     - Model
         - Relationship
@@ -2356,7 +2366,7 @@ Route::get('/64', function (){
 	  ```
 	- role_user
 	  - Similar to
-	    - Model: `example_grandparent_model_type_b_entity`
+	    - Model: `type_b_entity_type_c_entity`
 	    - From the section on: Basic Relationships - Many to many 	
 	    - Video course's section: 66-67
 	  - Columns

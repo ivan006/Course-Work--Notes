@@ -1320,7 +1320,7 @@ up till here
     - Name
       - Rules: You can use a camel cased version of the table name.
       - E.g. `TypeBEntityTypeCEntity`
-    - Table specifier: `type_b_entity_type_c_entity`
+    - Table associator: `type_b_entity_type_c_entity`
     - De-restrict fields
     ```php
 			'type_b_entity_id',

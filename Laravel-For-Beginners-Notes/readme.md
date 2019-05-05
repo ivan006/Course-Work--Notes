@@ -386,7 +386,7 @@
 		- This communicates the response after the rest of the action is executed, front end action component
 	- A route - Request translator
 		- This translates the action request, back end action component
-	- A controller - Executor
+	- A controller - Action
 		- This executes the action, back end action component
 	- A model - Set of query templates
 		- These guide the parts of the action that interact with the database, back end action component

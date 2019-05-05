@@ -17,10 +17,9 @@
 
 # Building Laravel apps for beginners
 
-- Section 1. Setup your tools and app
-	- [1. Setting up the development tools (Line 30)](#1.)
-	- [2. Setting up the Laravel powered app (Line 240)](#2.)
-- Section 2. Get familiar with the app components
+
+- [Section 1. Tools themselves (Line 30)](#1.)
+- Section 2. Tools usage
 	- [3. Introduction to web app components (Line 378)](#3.)
 	- [4. Database component (Line 414)](#4.)
 	- [5. Routes (Line 531)](#5.)
@@ -35,13 +34,14 @@
 
 
 
-## <a name="1."></a>Chapter 1. Setting up the development tools
+## <a name="1."></a>Chapter 1. Section 1. Tools
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)
 - [Package Installation Manager ](#Package_Installation_Manager)
 - [IDE](#IDE)
 - [Database Manager](#Database_Manager)
+- [Laravel powered app](#1.5.)
 
 
 ### <a name="Virtual_Local_Server"></a>Virtual Local Server (VLS)
@@ -245,29 +245,29 @@
 
 
 
-## <a name="2."></a>Chapter 2. Setting up the Laravel powered app
-### Table Of Content
+### <a name="1.5."></a>Laravel powered app
+#### Table Of Content
 
 
 - [General](#General)
 - [Source Code](#Source-Code)
 - [Database](#Database)
 
-### <a name="General"></a>General
-#### Laravel Overview
+#### <a name="General"></a>General
+##### Laravel Overview
 - Laravel is something you install on an app by app basis.
 - It determines the architecture of your apps source code and provides it with lots of useful prebuilt functions.
 
-#### PHP artisan
+##### PHP artisan
 - Other that all the fundamental mechanisms that we will cover in later sections you will also have access to a set of command line functions called PHP artisan.
 - These commands are helpful and can assist you while you build your application.
 
 
 
-### <a name="Source-Code">Source Code</a>
+#### <a name="Source-Code">Source Code</a>
 
 
-#### Installation
+##### Installation
 - In Git Bash locate yourself using `cd c:/laravel-apps`
 - Decide on your project name e.g. `fundamental-mechanisms-app` (this is the example name because in the next section we will be practicing using what we call fundamental mechanisms)
 - Decide if you want the latest version or and older versions
@@ -276,104 +276,105 @@
   - Or for old version do This
      - Run `composer create-project --prefer-dist laravel/laravel fundamental-mechanisms-app 5.2.29` for specific version (in this case version 5.2.29).
      - If you get an error try first restarting Git Bash.
-#### Configurations
-##### Map it in Homestead
-- To do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
- - Configure these attributes
-    - sites:
- - \- map: `fundamental-mechanisms-app.test`
- - to: `/home/vagrant/code/fundamental-mechanisms-app/public`
- - For multiple project running in parallel do This
-    - Duplicate the above mentioned set of attributes and configure like this
-    ```code
-sites:
-    - map: fundamental-mechanisms-app.test
-      to: /home/vagrant/code/fundamental-mechanisms-app/public
-    - map: fundamental-mechanisms-app2.test
-      to: /home/vagrant/code/fundamental-mechanisms-app2/public
-    ```
-##### Map it in your host file
- - Using windows explorer locate yourself to here `C:\Windows\System32\drivers\etc\`
- - Temporarily move the `host` file to your desktop.
- - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
- ```code
- 192.168.10.10 laravel.test
- 192.168.10.10 homestead.test
- 192.168.10.10 fundamental-mechanisms-app.test
- ```
- - Move it back into it's original location `C:\Windows\System32\drivers\etc\`.
-##### Provision homestead
+##### Configurations
+- Map it in Homestead
+	- To do this you will need to update this file `Homestead.yaml`, which is located in either `C:\Homestead\resources\` or `C:\Homestead\`
+	 - Configure these attributes
+	    - sites:
+	 - \- map: `fundamental-mechanisms-app.test`
+	 - to: `/home/vagrant/code/fundamental-mechanisms-app/public`
+	 - For multiple project running in parallel do This
+	    - Duplicate the above mentioned set of attributes and configure like this
+	    ```code
+	sites:
+	    - map: fundamental-mechanisms-app.test
+	      to: /home/vagrant/code/fundamental-mechanisms-app/public
+	    - map: fundamental-mechanisms-app2.test
+	      to: /home/vagrant/code/fundamental-mechanisms-app2/public
+	    ```
+- Map it in your host file
+	 - Using windows explorer locate yourself to here `C:\Windows\System32\drivers\etc\`
+	 - Temporarily move the `host` file to your desktop.
+	 - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
+	 ```code
+	 192.168.10.10 laravel.test
+	 192.168.10.10 homestead.test
+	 192.168.10.10 fundamental-mechanisms-app.test
+	 ```
+	 - Move it back into it's original location `C:\Windows\System32\drivers\etc\`.
+- Provision homestead
   - Run homestead - run `cd c:/Homestead` and then `vagrant up`
   - Run the command `vagrant provision`.
-#### PHP version
-##### Check
-- Add this to your routes (see how in later sections) and
-```php
-  Route::get('/phpversion', function () {
-    echo phpversion();
-  });
-```
-- Then open the corresponding page in your browser
-##### Change
-- Open `Homestead.yaml`
-- Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
- ```code
-   sites:
- - map: fundamental-mechanisms-app.test
-   to: /home/vagrant/code/fundamental-mechanisms-app/public
-   php: "5.6"
- ```
- - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
-#### Testing
+
+##### PHP version
+- Check
+	- Add this to your routes (see how in later sections) and
+	```php
+	  Route::get('/phpversion', function () {
+	    echo phpversion();
+	  });
+	```
+	- Then open the corresponding page in your browser
+- Change
+	- Open `Homestead.yaml`
+	- Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
+	 ```code
+	   sites:
+	 - map: fundamental-mechanisms-app.test
+	   to: /home/vagrant/code/fundamental-mechanisms-app/public
+	   php: "5.6"
+	 ```
+	 - Provision homestead - Orientate yourself to `cd c:/Homestead` then `vagrant up` then `vagrant provision` then if you want `vagrant halt`
+##### Testing
 - Run your local server. Open your browser and enter the URL   `fundamental-mechanisms-app.test/` and see if a page opens with the text "Laravel".
 - After completion close Homestead - run `vagrant halt`
-#### Patches
-##### Foreach loop error
-- Cause
-  - Software incompatibility: If you are running a version  of PHP that is higher than 7.1 with a version of Laravel that is lower than 5.6 you will get this error
-  - Test your PHP and Laravel versions, here's how
-    - Oriented yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
-    - Run `php artisan --version` and `php -v`
-- Fix
-  - Option 1
-    - Go to `vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php` (eloquent builder file)
-- Replace this: `$originalWhereCount = count($query->wheres);`
-- With this: `$originalWhereCount = is_null($query->wheres) ? 0 : count($query->wheres);`
-  - More info
-    - This error shows when you try to run certain types of foreach loops and looks like this `count(): Parameter must be an array or an object that implements Countable`
-    - See more at  https://stackoverflow.com/questions/48343557/count-parameter-must-be-an-array-or-an-object-that-implements-countable
-  - Option 2
-    - If your using Laravel version `5.2.29` revert your php version to `5.6`
+##### Patches
+- Foreach loop error
+	- Cause
+	  - Software incompatibility: If you are running a version  of PHP that is higher than 7.1 with a version of Laravel that is lower than 5.6 you will get this error
+	  - Test your PHP and Laravel versions, here's how
+	    - Oriented yourself with `cd C:/laravel-apps/fundamental-mechanisms-app`
+	    - Run `php artisan --version` and `php -v`
+	- Fix
+	  - Option 1
+	    - Go to `vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php` (eloquent builder file)
+	- Replace this: `$originalWhereCount = count($query->wheres);`
+	- With this: `$originalWhereCount = is_null($query->wheres) ? 0 : count($query->wheres);`
+	  - More info
+	    - This error shows when you try to run certain types of foreach loops and looks like this `count(): Parameter must be an array or an object that implements Countable`
+	    - See more at  https://stackoverflow.com/questions/48343557/count-parameter-must-be-an-array-or-an-object-that-implements-countable
+	  - Option 2
+	    - If your using Laravel version `5.2.29` revert your php version to `5.6`
 
-### <a name="Database">Database</a>
-#### Installation
-##### Create new DB
-- Launch MySQL WorkBench then and open your server environments connection
-- Click on the "new schema" symbol and
-- Decide on a database name (we recommend using the same name as your app) `fundamental-mechanisms-app`.
+#### <a name="Database">Database</a>
+##### Installation
+- Create new DB
+	- Launch MySQL WorkBench then and open your server environments connection
+	- Click on the "new schema" symbol and
+	- Decide on a database name (we recommend using the same name as your app) `fundamental-mechanisms-app`.
 
-#### Configurations
-##### Configure .env file
-- If using Ubuntu
-  - DB_HOST= `127.0.0.1`
-  - DB_DATABASE= `fundamental-mechanisms-app`
-  - DB_USERNAME= [your username]
-  - DB_PASSWORD= [your password]
-- If using Windows
-  - DB_HOST= `192.168.10.10`
-  - DB_DATABASE= `fundamental-mechanisms-app`
-  - DB_USERNAME= `homestead`
-  - DB_PASSWORD= `secret`
-##### A note on security
-- The database.php file (location in the `config` folder) is used to connect to the DB.
-- But since the database login info may be sensitive it is not kept in that file.
-- Rather there are two extra files: A `.env` file and a `.env.example` file.
-- The `.env` file is used to store the database logins which the database.php file can reference to make the connection.
-- This is so that when sharing your app with other people, say if they want to have their own implementation of your app, then you can ensure your databases security.
-- This is done by leaving the `.env` file out and getting the recipient to set up their own `.env` file as per there own database settings.
-- They will still have access to the `.env.example` file which they can use to see how to structure their `.env` file.
+##### Configurations
+- Configure .env file
+	- If using Ubuntu
+	  - DB_HOST= `127.0.0.1`
+	  - DB_DATABASE= `fundamental-mechanisms-app`
+	  - DB_USERNAME= [your username]
+	  - DB_PASSWORD= [your password]
+	- If using Windows
+	  - DB_HOST= `192.168.10.10`
+	  - DB_DATABASE= `fundamental-mechanisms-app`
+	  - DB_USERNAME= `homestead`
+	  - DB_PASSWORD= `secret`
+- A note on security
+	- The database.php file (location in the `config` folder) is used to connect to the DB.
+	- But since the database login info may be sensitive it is not kept in that file.
+	- Rather there are two extra files: A `.env` file and a `.env.example` file.
+	- The `.env` file is used to store the database logins which the database.php file can reference to make the connection.
+	- This is so that when sharing your app with other people, say if they want to have their own implementation of your app, then you can ensure your databases security.
+	- This is done by leaving the `.env` file out and getting the recipient to set up their own `.env` file as per there own database settings.
+	- They will still have access to the `.env.example` file which they can use to see how to structure their `.env` file.
 
-#### Testing
+##### Testing
 - Run `cd C:/laravel-apps/fundamental-mechanisms-app` then `php artisan tinker`
 - Run
 `DB::connection()->getPdo();`
@@ -383,7 +384,7 @@ sites:
 - When your done run `exit`
 
 
-## <a name="3."></a>Chapter 3. Introduction to web app components
+## <a name="2."></a>Chapter 2. Introduction to web app components
 
 ### MVC
 - MVC is a code organizational structure
@@ -419,7 +420,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="4."></a>Chapter 4. Database component
+## <a name="3."></a>Chapter 3. Database component
 
 ### Table Of Content
 - [Database](#Database)
@@ -534,7 +535,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   then solve it by running this in git bash `composer dump-autoload`
 
 
-## <a name="5."></a> Chapter 5. Routes
+## <a name="4."></a> Chapter 4. Routes
 
 ### Table Of Content
 - [Routes](#routes)
@@ -591,7 +592,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- bear in mind it wont work properly until you make a controller.
 
 
-## <a name="6."></a> Chapter 6. Controllers
+## <a name="5."></a> Chapter 5. Controllers
 
 ### Table Of Content
 
@@ -637,25 +638,25 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-## <a name="7."></a> Chapter 7. Models
+## <a name="6."></a> Chapter 6. Models
 
 ### Table Of Content
 
-- [7.1. Setup a model (Line 30)](#7.1.)
-- [7.2. SQL models (Line 695)](#7.2.)
-- [7.3. ORM models (Line 788)](#7.3.)
-- [7.4. ORM models with basic relationships (Line 1069)](#7.4.)
-- [7.5. ORM models with advanced relationships (Roughly Line 1450)](#7.5.)
-- [7.6. Model testing environment (Roughly Line 1882)](#7.6.)
-- [7.7. Models with accessors and mutators (Roughly Line 1930)](#7.7.)
+- [Setup a model (Line 30)](#6.1.)
+- [SQL models (Line 695)](#6.2.)
+- [ORM models (Line 788)](#6.3.)
+- [ORM models with basic relationships (Line 1069)](#6.4.)
+- [ORM models with advanced relationships (Roughly Line 1450)](#6.5.)
+- [Model testing environment (Roughly Line 1882)](#6.6.)
+- [Models with accessors and mutators (Roughly Line 1930)](#6.7.)
 
-###  <a name="7.1."></a> Setup a model
+###  <a name="6.1."></a> Setup a model
 
 #### Setup a model
 - Name
 	- Rules
 		- If you format the name of model and the table in a certain way the app will automatically associate them and you will not need to configure the table associator otherwise would will have to configure the table associator
-		- Use a camel cased and singlar version of the table name
+		- Use a camel cased and singular version of the table name
 - Table associator
 	- To specify a table put this into your model's class `protected $table = 'table_name';`
 - Generate file command
@@ -696,7 +697,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Follow the steps in `Creating a table using a migration`
 - Follow steps in `Setup a model`
 
-### <a name="7.2."></a>  SQL Models
+### <a name="6.2."></a>  SQL Models
 - There are four types of database queries and the are abbreviated with "CRUD"
   - Create
   - Read
@@ -784,7 +785,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-### <a name="7.3."></a> ORM Models
+### <a name="6.3."></a> ORM Models
 
 #### Create types
 ##### Create record with one field value
@@ -1062,7 +1063,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - URL example: `fundamental-mechanisms-app.test/ADelete`
 
 
-### <a name="7.4."></a> ORM models with basic relationships
+### <a name="6.4."></a> ORM models with basic relationships
 
 
 #### General
@@ -1112,7 +1113,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				use App\TypeBEntity;
 				use App\TypeAEntity;
 			```
-	- Records
+	- Data
 		- Create a record
 			- Route:
 				- Name/parameters: `/BCreate/{a}`
@@ -1220,7 +1221,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
   - After adding this you can remove the previous relationships method but it's not vital
   - The model method's name here is plural as it is a many relationship
 - Set up for `TypeAEntity`
- 	- Records
+ 	- Data
 		- Create a second record
 			- URL example: `fundamental-mechanisms-app.test/BCreate/1/2`
 
@@ -1279,16 +1280,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/BDelete/1`
 
-
-
-
-
-
----
-up till here
----
-
-
 #### Many to many relationships
 
 ##### General
@@ -1297,9 +1288,93 @@ up till here
 - For this you need a relationships table.
 
 ##### Setup
+
+
+
+
+---
+up till here
+---
+
+- Set up `TypeCEntity`
+  - Table
+	 	- Method: `Setup a table-model pair - The short way`
+    - Name: `TypeCEntity`
+    - Columns
+    ```php
+      $table->string('name');
+    ```        
+  - Model
+    - De-restrict fields
+  	```php
+			'name',
+		```
+		- Relationships method
+			- Class/name/parameters:
+				- Name:
+					- Rules: The name must be plural as it is a many relationship
+					- E.g. `TypeCEntity`->`TypeBEntities`
+			- Type: `public`
+			- Query: 			
+	      - For if the relationships table and it's foreign keys columns are named according to the rules
+	      ```php
+	          return $this->belongsToMany('App\TypeBEntity');
+	      ```
+	- Data
+	  - create 2 grandparent records
+	    - Do as demonstrated in `Create record with multiple field values`
+	    - For the route name use: `/ExampleRoute38`
+	    - For the referenced model use `TypeCEntity`
+	    - E.g.
+	    ```php
+	      Route::get('/ExampleRoute38', function(){
+	        TypeCEntity::create(['name'=>'data_value_a']);
+	        TypeCEntity::create(['name'=>'data_value_b']);
+	      });
+	    ```
+    - delete 2 grandparent records
+      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
+      ```php
+        Route::get('/ExampleRoute39', function(){
+          TypeCEntities::destroy(3);
+        });
+      ```
+- Set up `TypeBEntity`
+	- Model method:
+		- Class/name/parameters:
+			- Name:
+				- Rules: The name must be plural as it is a many relationship
+				- E.g. `TypeBEntity`->`TypeCEntities`
+		- Query: 				
+	    - Auto method
+	      - For if the relationships table and it's foreign keys columns are named according to the rules
+	      ```php
+	          return $this->belongsToMany('App\TypeCEntity')->withPivot('created_at');
+	      ```
+	    - Manual method
+	      - For if the relationships table and it's foreign keys columns aren't named according to the rules
+	      ```php
+	          return $this->belongsToMany(
+							'App\TypeCEntity',
+							'type_b_entity_type_c_entity',
+							'type_b_entity_id',
+							'type_c_entity_id'
+						);
+	      ```
+	- Data
+	  - Parents
+	    - 2 parent records
+	    ```php
+	    Route::get('/ExampleRoute40', function(){
+	      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a']);
+	      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b']);
+	    });
+	    ```
 - Set up `TypeBEntityTypeCEntity`
 	- Note: This is a pseudo entity as it simple relates other entities
-	- Setup a table-model pair: `Setup a table-model pair - The long way`
+	- Table-model pair setup method
+	 	- `Setup a table-model pair - The long way`
+		- We use this method cause we want to keep our table name singular
   - Table
     - Name
         - Rules
@@ -1326,125 +1401,38 @@ up till here
 			'type_b_entity_id',
 	    'type_c_entity_id',
 		```
-- Set up `TypeCEntity`
-  - Table
-	 	- Method: `Setup a table-model pair - The short way`
-    - Name: `TypeCEntity`
-    - Columns
+
+
+
+
+##### Query parents of entity
+- Read parental relationships of child
+  - Parent model's route
     ```php
-      $table->string('name');
-    ```        
-  - Model
-    - De-restrict fields
-  	```php
-			'name',
-		```
-    - Grandparent model
-      - Add this in the model's class
-      ```php
-        public function TypeBEntities(){
-          return $this->belongsToMany('App\TypeBEntity');
-        }
-      ```
-- Set up `TypeBEntity`
-	- Model method:
-		- Class/name/parameters:
-			- Name:
-				- Rules: The name must be plural as it is a many relationship
-				- E.g. `TypeBEntity`->`TypeCEntities`
-		- Query: 				
-	    - Auto method
-	      - For if the relationships table and it's foreign keys columns are named according to the rules
-	      ```php
-	          return $this->belongsToMany('App\TypeCEntity')->withPivot('created_at');
-	      ```
-	    - Manual method
-	      - For if the relationships table and it's foreign keys columns aren't named according to the rules
-	      ```php
-	          return $this->belongsToMany(
-							'App\TypeCEntity',
-							'type_b_entity_type_c_entity',
-							'type_b_entity_id',
-							'type_c_entity_id'
-						);
-	      ```
-##### Queries
-- Create
-  - 2 grandparent records
-    - Do as demonstrated in `Create record with multiple field values`
-    - For the route name use: `/ExampleRoute38`
-    - For the referenced model use `TypeCEntity`
-    - E.g.
-    ```php
-      Route::get('/ExampleRoute38', function(){
-        TypeCEntity::create(['name'=>'data_value_a']);
-        TypeCEntity::create(['name'=>'data_value_b']);
-      });
-    ```
-  - Parents
-    - 2 parent records
-    ```php
-    Route::get('/ExampleRoute40', function(){
-      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a']);
-      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b']);
+    Route::get('/ExampleRoute42', function(){
+      $example_variable = TypeBEntity::find(2);
+      foreach ($example_variable->TypeCEntities as $example_variable_part){
+        echo $example_variable_part->pivot->created_at."<br>";
+      }
     });
     ```
-  - 3 relationship records
-    - Do as demonstrated in `Create record with multiple field values`
-    - For the route name use: `/ExampleRoute36`
-    - For the referenced model use `TypeCEntitiesTypeBEntity`
-    ```php
-      Route::get('/ExampleRoute36', function(){
-        TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>1, 'type_c_entity_id'=>1]);
-        TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>2]);
-        TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>1]);
-      });
-    ```
-  - 2 relationship records through a parent and delete any old relationships for that parent
-    - Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
-    ```php
-      Route::get('/ExampleRoute36.1', function(){
-        TypeBEntity::findOrFail(2)->TypeCEntities()->sync([2,3]);
-      });
-    ```
-- Read
-  - Read parents of child
-    - Type 1
-    ```php
-      Route::get('/ExampleRoute41', function(){
-        $example_variable = TypeBEntity::find(2);
-        foreach ($example_variable->TypeCEntities as $example_variable_part){
-          echo $example_variable_part->name."<br>";
-        }
-      });
-    ```
-    - Type 2
-    ```php
-      Route::get('/ExampleRoute41.2', function(){
-        $example_variable = TypeBEntity::find(2);
-        dd($example_variable->TypeCEntities);
-      });
-    ```
-  - Read parental relationships of child
-    - Parent model's route
-      ```php
-      Route::get('/ExampleRoute42', function(){
-        $example_variable = TypeBEntity::find(2);
-        foreach ($example_variable->TypeCEntities as $example_variable_part){
-          echo $example_variable_part->pivot->created_at."<br>";
-        }
-      });
-      ```
-  - Read children of parent
-      - Route
-      ```php
-        Route::get('/ExampleRoute43', function(){
-          $example_variable = TypeCEntities::find(1);
-          foreach ($example_variable->TypeBEntities as $example_variable_part){
-            echo $example_variable_part->data_field_a."<br>";
-          }
-        });
-      ```
+- Read parents of child
+  - Type 1
+  ```php
+    Route::get('/ExampleRoute41', function(){
+      $example_variable = TypeBEntity::find(2);
+      foreach ($example_variable->TypeCEntities as $example_variable_part){
+        echo $example_variable_part->name."<br>";
+      }
+    });
+  ```
+  - Type 2
+  ```php
+    Route::get('/ExampleRoute41.2', function(){
+      $example_variable = TypeBEntity::find(2);
+      dd($example_variable->TypeCEntities);
+    });
+  ```
 - Update
   - Relationship through a parent record
   ```php
@@ -1452,6 +1440,25 @@ up till here
       TypeBEntity::findOrFail(2)->TypeCEntities()->attach(1);
     });
   ```
+	- 3 relationship records (delete me/0)
+		- Do as demonstrated in `Create record with multiple field values`
+		- For the route name use: `/ExampleRoute36`
+		- For the referenced model use `TypeCEntitiesTypeBEntity`
+		```php
+			Route::get('/ExampleRoute36', function(){
+				TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>1, 'type_c_entity_id'=>1]);
+				TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>2]);
+				TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>1]);
+			});
+		```
+	- 2 relationship records through a parent and delete any old relationships for that parent
+		- Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
+		```php
+			Route::get('/ExampleRoute36.1', function(){
+				TypeBEntity::findOrFail(2)->TypeCEntities()->sync([2,3]);
+			});
+		```
+- Update
   - Grandparent through parent record
   ```php
     Route::get('/ExampleRoute43.2', function(){
@@ -1466,25 +1473,7 @@ up till here
       }
     });
   ```
-- Delete
-  - Grandparent
-    - 2 grandparent records
-      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-      ```php
-        Route::get('/ExampleRoute39', function(){
-          TypeCEntities::destroy(3);
-        });
-      ```
-    - Delete grandparent through parent
-    ```php
-      Route::get('/ExampleRoute39.2', function(){
-        $example_variable = TypeBEntity::find(1);
-        foreach($example_variable->TypeCEntities as $example_variable2){
-          $example_variable2->whereId(1)->delete();
-        }
-      });
-    ```
-  - Relationship record
+- delete Relationship record
     - Delete 1 Method 1
     ```php
       Route::get('/ExampleRoute37', function(){
@@ -1503,8 +1492,29 @@ up till here
         TypeBEntity::findOrFail(2)->TypeCEntities()->detach();
       });
     ```
+- Delete grandparent through parent
+```php
+  Route::get('/ExampleRoute39.2', function(){
+    $example_variable = TypeBEntity::find(1);
+    foreach($example_variable->TypeCEntities as $example_variable2){
+      $example_variable2->whereId(1)->delete();
+    }
+  });
+```
+##### Query children of entity
+- Read children of parent
+    - Route
+    ```php
+      Route::get('/ExampleRoute43', function(){
+        $example_variable = TypeCEntities::find(1);
+        foreach ($example_variable->TypeBEntities as $example_variable_part){
+          echo $example_variable_part->data_field_a."<br>";
+        }
+      });
+    ```
 
-### <a name="7.5."></a> ORM models with advanced relationships
+
+### <a name="6.5."></a> ORM models with advanced relationships
 
 #### Table Of Content
 - [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
@@ -1939,7 +1949,7 @@ up till here
       });
     ```  
 
-###  <a name="7.6."></a>  Model testing environment
+###  <a name="6.6."></a>  Model testing environment
 
 #### General
 - A queries testing environment is a place to test your controller queries before you add them to your script. The one that comes with Laravel is called Tinker.
@@ -1993,7 +2003,7 @@ up till here
 
 
 
-### <a name="7.7."></a> Models with accessors and mutators
+### <a name="6.7."></a> Models with accessors and mutators
 
 #### Table Of Content
 - [Dates](#Dates)
@@ -2099,7 +2109,7 @@ Route::get('/64', function (){
 
 
 
-## <a name="8."></a>Chapter 12. Views component
+## <a name="7."></a>Chapter 7. Views component
 
 ### Table Of Content
 - [Views](#)

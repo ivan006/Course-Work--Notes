@@ -1308,9 +1308,9 @@ up till here
     ```        
   - Model
     - De-restrict fields
-  	```php
-		'name',
-		```
+			```php
+				'name',
+			```
 		- Relationships method
 			- Class/name/parameters:
 				- Name:

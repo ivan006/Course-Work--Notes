@@ -15,7 +15,7 @@
 	- A view - Response template
 		- These guide the parts of the action that generate the response, back end action component
 
-# Building Laravel apps for beginners
+# Laravel web app development
 
 
 - [Section 1. Tools themselves (Line 30)](#1.)

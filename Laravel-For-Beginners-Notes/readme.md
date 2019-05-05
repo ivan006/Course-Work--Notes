@@ -19,9 +19,9 @@
 
 
 - [Section 1. Tools preparation (Line 30)](#1.)
-	- [Chapter 1. Tools themselves (Line 30)](#1.)
+	- [Chapter 1. Tools preparation (Line 30)](#1.)
 - Section 2. Tools usage
-	- [3. Introduction to web app components (Line 378)](#3.)
+	- [3. Introduction (Line 378)](#3.)
 	- [4. Database component (Line 414)](#4.)
 	- [5. Routes (Line 531)](#5.)
 	- [6. Controllers (Line 588)](#6.)
@@ -385,7 +385,7 @@
 - When your done run `exit`
 
 
-## <a name="2."></a>Chapter 2. Introduction to web app components
+## <a name="2."></a>Chapter 2. Introduction
 
 ### MVC
 - MVC is a code organizational structure

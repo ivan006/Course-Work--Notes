@@ -1309,7 +1309,7 @@ up till here
   - Model
     - De-restrict fields
   	```php
-			'name',
+		'name',
 		```
 		- Relationships method
 			- Class/name/parameters:

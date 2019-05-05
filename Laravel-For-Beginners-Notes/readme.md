@@ -1,32 +1,14 @@
-- Entity data components
-	- Database -Storage
-		- This stores the data
-- Entity action components
-	- A URL - Request
-		- This requests the action, front end action component
-	- A page - Response
-		- This communicates the response after the rest of the action is executed, front end action component
-	- A route - Request translator
-		- This translates the action request, back end action component
-	- A controller - Executor
-		- This executes the action, back end action component
-	- A model - Set of query templates
-		- These guide the parts of the action that interact with the database, back end action component
-	- A view - Response template
-		- These guide the parts of the action that generate the response, back end action component
-
 # Laravel web app development
 
-
-- [Section 1. Tools preparation (Line 30)](#1.)
-	- [Chapter 1. Tools preparation (Line 30)](#1.)
-- Section 2. Tools usage
-	- [3. Introduction (Line 378)](#3.)
-	- [4. Database component (Line 414)](#4.)
-	- [5. Routes (Line 531)](#5.)
-	- [6. Controllers (Line 588)](#6.)
-	- [7. Models (Line 634)](#7.)
-	- [8. Views component (Line )](#8.)
+- [Section 1. Dev tools preparation (Line 30)](#1.)
+	- [Chapter 1. Dev tools preparation (Line 30)](#1.)
+- Section 2. Dev tools usage
+	- [2. Introduction (Line 378)](#2.)
+	- [3. Database component (Line 414)](#3.)
+	- [4. Routes (Line 531)](#4.)
+	- [5. Controllers (Line 588)](#5.)
+	- [6. Models (Line 634)](#6.)
+	- [7. Views component (Line )](#7.)
 - [13. Real-World Examples (Line )](#13.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
@@ -35,7 +17,7 @@
 
 
 
-## <a name="1."></a>Chapter 1. Tools preparation
+## <a name="1."></a>Chapter 1. Dev tools preparation
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)
@@ -392,6 +374,25 @@
 	- It separates the execution script from the helpers scripts
 	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
 	- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
+
+### Overview of components
+- Entity data components
+	- Database -Storage
+		- This stores the data
+- Entity action components
+	- A URL - Request
+		- This requests the action, front end action component
+	- A page - Response
+		- This communicates the response after the rest of the action is executed, front end action component
+	- A route - Request translator
+		- This translates the action request, back end action component
+	- A controller - Executor
+		- This executes the action, back end action component
+	- A model - Set of query templates
+		- These guide the parts of the action that interact with the database, back end action component
+	- A view - Response template
+		- These guide the parts of the action that generate the response, back end action component
+
 
 
 ### Controllers

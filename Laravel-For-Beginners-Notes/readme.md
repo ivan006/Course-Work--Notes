@@ -18,7 +18,8 @@
 # Laravel web app development
 
 
-- [Section 1. Tools themselves (Line 30)](#1.)
+- [Section 1. Tools preparation (Line 30)](#1.)
+	- [Chapter 1. Tools themselves (Line 30)](#1.)
 - Section 2. Tools usage
 	- [3. Introduction to web app components (Line 378)](#3.)
 	- [4. Database component (Line 414)](#4.)
@@ -34,7 +35,7 @@
 
 
 
-## <a name="1."></a>Chapter 1. Section 1. Tools
+## <a name="1."></a>Chapter 1. Tools preparation
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)

@@ -1353,9 +1353,9 @@ up till here
 				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
 				- Script:
 				```php
-			  	TypeAEntity::destroy($a);
+					TypeAEntity::destroy($a);
 				```
-			- URL example: `fundamental-mechanisms-app.test/CDelete/1`
+				- URL example: `fundamental-mechanisms-app.test/CDelete/1`
 - Set up `TypeBEntity`
 	- Model method:
 		- Class/name/parameters:

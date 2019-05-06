@@ -1345,7 +1345,7 @@ up till here
 					]);
 				```
 			- URL example: `fundamental-mechanisms-app.test/CCreate/1`
-    - Delete records (only use if needed)
+		- Delete records (only use if needed)
 			- Do as demonstrated in `Delete method 2`
 			- Route
 				- Name/parameters: `/CDelete{A}` parameters to use - `$a`

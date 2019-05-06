@@ -1316,10 +1316,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					- E.g. `TypeCEntity`->`TypeBEntities`
 			- Type: `public`
 			- Query: 			
-	      - For if the relationships table and it's foreign keys columns are named according to the rules
-	      ```php
-	          return $this->belongsToMany('App\TypeBEntity');
-	      ```
+				- For if the relationships table and it's foreign keys columns are named according to the rules
+				```php
+				    return $this->belongsToMany('App\TypeBEntity');
+				```
 	- Data
 		- Controller
 			- `Set up a controller that is resourced` as previously demonstrated.

@@ -1330,7 +1330,7 @@ up till here
 			- `Set up a controller that is resourced` as previously demonstrated.
 			- Aliases: add this to the header
 			```php
-			use App\TypeCEntity;
+				use App\TypeCEntity;
 			```
 		- Create records
 			- Do as demonstrated in `Create record with multiple field values`

@@ -1120,6 +1120,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```
 	- Data
 		- Create a record
+			- Do as demonstrated in `Create record with multiple field values`
 			- Route:
 				- Name/parameters: `/BCreate/{a}`
 				- Associated controller method: `TypeBEntity_Controller@create`
@@ -1295,12 +1296,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Setup
 
 
-
-
----
-up till here
----
-
 - Set up `TypeCEntity`
   - Table
 	 	- Method: `Setup a table-model pair - The short way`
@@ -1328,10 +1323,11 @@ up till here
 	- Data
 		- Controller
 			- `Set up a controller that is resourced` as previously demonstrated.
-			- Aliases: add this to the header
-			```php
-				use App\TypeCEntity;
-			```
+				- Name: `TypeCEntity_Controller`
+				- Aliases: add this to the header
+				```php
+					use App\TypeCEntity;
+				```
 		- Create records
 			- Do as demonstrated in `Create record with multiple field values`
 			- Route
@@ -1348,12 +1344,12 @@ up till here
 		- Delete records (only use if needed)
 			- Do as demonstrated in `Delete method 2`
 			- Route
-				- Name/parameters: `/CDelete{A}` parameters to use - `$a`
+				- Name/parameters: `/CDelete/{a}` parameters to use - `$a`
 			- Controller method
 				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
 				- Script:
 				```php
-					TypeAEntity::destroy($a);
+					TypeCEntity::destroy($a);
 				```
 				- URL example: `fundamental-mechanisms-app.test/CDelete/1`
 - Set up `TypeBEntity`
@@ -1362,6 +1358,7 @@ up till here
 			- Name:
 				- Rules: The name must be plural as it is a many relationship
 				- E.g. `TypeBEntity`->`TypeCEntities`
+		- Type: `public`
 		- Query: 				
 	    - Auto method
 	      - For if the relationships table and it's foreign keys columns are named according to the rules
@@ -1379,14 +1376,41 @@ up till here
 						);
 	      ```
 	- Data
-	  - Parents
-	    - 2 parent records
-	    ```php
-	    Route::get('/ExampleRoute40', function(){
-	      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a']);
-	      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b']);
-	    });
-	    ```
+		- Create records
+			- Do as demonstrated in `Create record with multiple field values`
+			- Route
+				- Name/parameters: Reuse `/BCreate/{a}` parameters to use - swap to `$a`
+			- Controller method
+				- Class/name/parameters: `TypeBEntity_Controller`->`create` parameters to use - `$a`
+				- Script:
+				```php
+					TypeBEntity::create([
+						'data_field_a'=>$a,
+						'data_field_b'=>$a,
+					]);
+				```
+			- URL example: `fundamental-mechanisms-app.test/BCreate/1`
+		- Delete records (only use if needed)
+			- Do as demonstrated in `Delete method 2`
+			- Route
+				- Name/parameters: Reuse `/BDelete/{a}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeBEntity_Controller`->`destroy` parameters to use - `$a`
+				- Script:
+				```php
+					TypeBEntity::destroy($a);
+				```
+				- URL example: `fundamental-mechanisms-app.test/BDelete/1`
+
+
+
+
+
+
+---
+up till here
+---
+
 - Set up `TypeBEntityTypeCEntity`
 	- Note: This is a pseudo entity as it simple relates other entities
 	- Table-model pair setup method

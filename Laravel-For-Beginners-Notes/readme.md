@@ -954,6 +954,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Delete method 2
 - Note: this works only works when soft delete is not activated
+- Try this out
+- Route:
+	- Name/parameters: reuse `/ADelete/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete`
 	- Script:
@@ -1275,7 +1278,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Route:
 		- Name/parameters: Reuse `/BDelete/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`update` parameters to use - `$a`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`destroy` parameters to use - `$a`
 		- Script:
 		```php
 			$var = TypeBEntity::findOrFail($a)->TypeAEntities()->whereId(1)->delete();
@@ -1306,7 +1309,7 @@ up till here
     ```php
       $table->string('name');
     ```        
-  - Model
+	- Model
     - De-restrict fields
 			```php
 				'name',
@@ -1323,24 +1326,36 @@ up till here
 	          return $this->belongsToMany('App\TypeBEntity');
 	      ```
 	- Data
-	  - create 2 grandparent records
-	    - Do as demonstrated in `Create record with multiple field values`
-	    - For the route name use: `/ExampleRoute38`
-	    - For the referenced model use `TypeCEntity`
-	    - E.g.
-	    ```php
-	      Route::get('/ExampleRoute38', function(){
-	        TypeCEntity::create(['name'=>'data_value_a']);
-	        TypeCEntity::create(['name'=>'data_value_b']);
-	      });
-	    ```
-    - delete 2 grandparent records
-      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-      ```php
-        Route::get('/ExampleRoute39', function(){
-          TypeCEntities::destroy(3);
-        });
-      ```
+		- Controller
+			- `Set up a controller that is resourced` as previously demonstrated.
+			- Aliases: add this to the header
+			```php
+			use App\TypeCEntity;
+			```
+		- Create records
+			- Do as demonstrated in `Create record with multiple field values`
+			- Route
+				- Name/parameters: `/CCreate/{a}` parameters to use - `$a`
+		  - Controller method
+				- Class/name/parameters: `TypeCEntity_Controller`->`create` parameters to use - `$a`
+				- Script:
+				```php
+					TypeCEntity::create([
+						'name'=>$a,
+					]);
+				```
+			- URL example: `fundamental-mechanisms-app.test/CCreate/1`
+    - Delete records (only use if needed)
+			- Do as demonstrated in `Delete method 2`
+			- Route
+				- Name/parameters: `/CDelete{A}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
+				- Script:
+				```php
+		    	TypeAEntity::destroy($a);
+				```
+			- URL example: `fundamental-mechanisms-app.test/CDelete/1`
 - Set up `TypeBEntity`
 	- Model method:
 		- Class/name/parameters:

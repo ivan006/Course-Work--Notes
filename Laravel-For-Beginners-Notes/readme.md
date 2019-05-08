@@ -1219,7 +1219,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Route:
 		- Name/parameters: `/a/read/b/read/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: `TypeAEntity_Controller`->`showBMethodRead` parameters to use - `$a`
+		- Class/name/parameters: `TypeAEntity_Controller`->`showBMethodShow` parameters to use - `$a`
 		- Script:
 		```php
 			return TypeAEntity::find($a)->TypeBEntity;
@@ -1339,7 +1339,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				```php
 					use App\TypeCEntity;
 				```
-		- Create records
+		- Create records (make 3)
 			- Do as demonstrated in `Create record with multiple field values`
 			- Route
 				- Name/parameters: `/c/create/{a}` parameters to use - `$a`
@@ -1410,7 +1410,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       - E.g.
       ```php
         $table->integer('type_b_entity_id');
-        $table->integer('type_a_entity_id');
+        $table->integer('type_c_entity_id');
       ```
   - Model
     - Name
@@ -1428,14 +1428,58 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Create
 	- Method 1
 		- Route:
-			- Name/parameters: Reuse `/b/read/ALink/create/{a}` parameters to use - `$a`
+			- Name/parameters: `/b/read/ALink/create/{a}/{b}` parameters to use - `$a, $b`
 		- Controller method:
-			- Class/name/parameters: `TypeBEntity_Controller`->`showALinkCreate` parameters to use - `$a`
+			- Class/name/parameters: `TypeBEntity_Controller`->`showALinkCreate` parameters to use - `$a, $b`
 			- Script:
 			```php
-				TypeBEntity::findOrFail(2)->TypeCEntities()->attach(1);
+				TypeBEntity::findOrFail($a)->TypeCEntities()->attach($b);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/create/1`
+		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/create/2/1`
+	- Method 2 (detach all others)
+		- Note: The IDs of the parent entities that go in an inside the `sync` function
+		- Route:
+			- Name/parameters: Reuse `/b/read/ALink/create/{a}/{b}/{c}` parameters to use - swap to `$a, $b, $c`
+		- Controller method:
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkCreate` parameters to use - swap to `$a, $b, $c`
+			- Script:
+			```php
+				TypeBEntity::findOrFail($a)->TypeCEntities()->sync([$b,$c]);
+			```
+		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/create/2/2/3`
+- Read
+	- Route:
+		- Name/parameters: `/b/read/ALink/read/{a}` parameters to use - `$a`
+	- Controller method:
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkShow` parameters to use - `$a`
+		- Script:
+		```php
+      foreach (TypeBEntity::find($a)->TypeCEntities as $var){
+        echo $var->pivot->created_at."<br>";
+      }
+		```
+	- URL example: `fundamental-mechanisms-app.test/b/read/ALink/read/2`
+- Delete
+	- Detach 1 only
+		- Route:
+			- Name/parameters: `/b/read/ALink/delete/{a}/{b}` parameters to use - `$a, $b`
+		- Controller method:
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkDestroy` parameters to use - `$a, $b`
+			- Script:
+			```php
+				TypeBEntity::findOrFail($a)->TypeCEntities()->detach($b);
+			```
+		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/delete/2/2`
+	- Detach all
+		- Route:
+			- Name/parameters: Reuse `/b/read/ALink/delete/{a}` parameters to use - swap to `$a`
+		- Controller method:
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkDestroy` parameters to use - swap to `$a`
+			- Script:
+			```php
+		    TypeBEntity::findOrFail($a)->TypeCEntities()->detach();
+			```
+		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/delete/2`
 
 
 
@@ -1451,37 +1495,6 @@ up till here
 
 
 
-	- Method 2 (detach all other)
-		- Bear in mind the IDs of the parent models that the relationships point to go in an inside the `sync` function
-		```php
-			Route::get('/ExampleRoute36.1', function(){
-				TypeBEntity::findOrFail(2)->TypeCEntities()->sync([2,3]);
-			});
-		```
-- Delete
-	- Detach
-	  - Delete 1 Method 2
-	  ```php
-	    Route::get('/ExampleRoute37.1', function(){
-	      TypeBEntity::findOrFail(2)->TypeCEntities()->detach(1);
-	    });
-	  ```
-	- Detach all
-	```php
-	  Route::get('/ExampleRoute37.2', function(){
-	    TypeBEntity::findOrFail(2)->TypeCEntities()->detach();
-	  });
-	```
-- Read
-  - Parent model's route
-    ```php
-    Route::get('/ExampleRoute42', function(){
-      $example_variable = TypeBEntity::find(2);
-      foreach ($example_variable->TypeCEntities as $example_variable_part){
-        echo $example_variable_part->pivot->created_at."<br>";
-      }
-    });
-    ```
 
 ##### Query parents of child entity
 - Read

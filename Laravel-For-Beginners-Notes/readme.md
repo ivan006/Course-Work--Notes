@@ -1099,7 +1099,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			      return $this->hasOne('App\TypeAEntity', 'type_b_entity_id');
 			    }
 			  ```
-		    - Manually specify the foreign key in the `hasOne()` caller's second parameter.
+		    - Manually specify the foreign key in the `hasOne()` accessor's second parameter.
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method
 				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` and is singular (e.g. `type_b_entity_id`)
@@ -1582,10 +1582,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				```php
 						return $this->hasManyThrough('App\TypeAEntity', 'App\TypeBEntity');
 				```
-				- Caller 1st parameter: Distant entity name
-				- Caller 2nd parameter: Intermediate entity name
-				- Caller 3rd parameter: If you need a custom name for the foreign id column of the intermediary entity
-				- Caller 4th parameter: If you need a custom name for the foreign id column of the distant entity
+				- Accessor's 1st parameter: Distant entity name
+				- Accessor's 2nd parameter: Intermediate entity name
+				- Accessor's 3rd parameter: If you need a custom name for the foreign id column of the intermediary entity
+				- Accessor's 4th parameter: If you need a custom name for the foreign id column of the distant entity
 
 ---
 up till here

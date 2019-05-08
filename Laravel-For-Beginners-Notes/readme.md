@@ -1428,58 +1428,128 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Create
 	- Method 1
 		- Route:
-			- Name/parameters: `/b/read/ALink/create/{a}/{b}` parameters to use - `$a, $b`
+			- Name/parameters: `/b/read/CLink/create/{a}/{b}` parameters to use - `$a, $b`
 		- Controller method:
-			- Class/name/parameters: `TypeBEntity_Controller`->`showALinkCreate` parameters to use - `$a, $b`
+			- Class/name/parameters: `TypeBEntity_Controller`->`showCLinkCreate` parameters to use - `$a, $b`
 			- Script:
 			```php
 				TypeBEntity::findOrFail($a)->TypeCEntities()->attach($b);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/create/2/1`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/create/2/1`
 	- Method 2 (detach all others)
 		- Note: The IDs of the parent entities that go in an inside the `sync` function
 		- Route:
-			- Name/parameters: Reuse `/b/read/ALink/create/{a}/{b}/{c}` parameters to use - swap to `$a, $b, $c`
+			- Name/parameters: Reuse `/b/read/CLink/create/{a}/{b}/{c}` parameters to use - swap to `$a, $b, $c`
 		- Controller method:
-			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkCreate` parameters to use - swap to `$a, $b, $c`
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showCLinkCreate` parameters to use - swap to `$a, $b, $c`
 			- Script:
 			```php
 				TypeBEntity::findOrFail($a)->TypeCEntities()->sync([$b,$c]);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/create/2/2/3`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/create/2/2/3`
 - Read
 	- Route:
-		- Name/parameters: `/b/read/ALink/read/{a}` parameters to use - `$a`
+		- Name/parameters: `/b/read/CLink/read/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkShow` parameters to use - `$a`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showCLinkShow` parameters to use - `$a`
 		- Script:
 		```php
       foreach (TypeBEntity::find($a)->TypeCEntities as $var){
         echo $var->pivot->created_at."<br>";
       }
 		```
-	- URL example: `fundamental-mechanisms-app.test/b/read/ALink/read/2`
+	- URL example: `fundamental-mechanisms-app.test/b/read/CLink/read/2`
 - Delete
+	- Note: Don't do these until the end of the chapter as we will still be using these links
 	- Detach 1 only
 		- Route:
-			- Name/parameters: `/b/read/ALink/delete/{a}/{b}` parameters to use - `$a, $b`
+			- Name/parameters: `/b/read/CLink/delete/{a}/{b}` parameters to use - `$a, $b`
 		- Controller method:
-			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkDestroy` parameters to use - `$a, $b`
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showCLinkDestroy` parameters to use - `$a, $b`
 			- Script:
 			```php
 				TypeBEntity::findOrFail($a)->TypeCEntities()->detach($b);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/delete/2/2`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/delete/2/2`
 	- Detach all
 		- Route:
-			- Name/parameters: Reuse `/b/read/ALink/delete/{a}` parameters to use - swap to `$a`
+			- Name/parameters: Reuse `/b/read/CLink/delete/{a}` parameters to use - swap to `$a`
 		- Controller method:
-			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showALinkDestroy` parameters to use - swap to `$a`
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showCLinkDestroy` parameters to use - swap to `$a`
 			- Script:
 			```php
 		    TypeBEntity::findOrFail($a)->TypeCEntities()->detach();
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/delete/2`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/delete/2`
+
+##### Query parents of child entity
+
+- Read
+	- Type 1
+		- Route:
+			- Name/parameters: `/b/read/c/read/{a}` parameters to use `$a`
+		- Controller method:
+			- Class/name/parameters: `TypeBEntity_Controller`->`showCShow` parameters to use - `$a`
+			- Script:
+			```php
+				foreach (TypeBEntity::find($a)->TypeCEntities as $var){
+					echo $var->name."<br>";
+				}
+			```
+		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/2`
+  - Type 2
+		- Route:
+			- Name/parameters: Reuse `/b/read/c/read/{a}` parameters to use `$a`
+		- Controller method:
+			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showCShow` parameters to use - `$a`
+			- Script:
+			```php
+      	dd(TypeBEntity::find($a)->TypeCEntities);
+			```
+		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/2`
+- Update
+	- Route:
+		- Name/parameters: `/b/read/c/update/{a}/{b}/{c}` parameters to use `$a, $b, $c`
+	- Controller method:
+		- Class/name/parameters: `TypeBEntity_Controller`->`showCUpdate` parameters to use - `$a, $b, $c`
+		- Script:
+		```php
+			if(TypeBEntity::find($a)->has("TypeCEntities")){
+				foreach(TypeBEntity::find($a)->TypeCEntities as $var){
+					if($var->name == $b) {
+						$var->name = $c;
+						$var->save();
+					}
+				}
+			}
+		```
+	- URL example: `fundamental-mechanisms-app.test/b/read/c/update/2/1/5`
+- Delete (figure this out - this doesnt take into consideration the TypeBEntity in question )
+	- Route:
+		- Name/parameters: `/b/read/c/delete/{a}/{b}` parameters to use `$a, $b`
+	- Controller method:
+		- Class/name/parameters: `TypeCEntity_Controller`->`showCDestroy` parameters to use - `$a, $b`
+		- Script:
+		```php
+	    foreach(TypeBEntity::find($a)->TypeCEntities as $var){
+	      $var->whereId($b)->delete();
+	    }
+		```
+	- URL example: `fundamental-mechanisms-app.test/b/read/c/delete/2/2`
+
+##### Query children of parent entity
+- Read
+	- Route:
+		- Name/parameters: `/c/read/b/read/{a}` parameters to use `$a`
+	- Controller method:
+		- Class/name/parameters: `TypeCEntity_Controller`->`showBShow` parameters to use - `$a`
+		- Script:
+		```php
+			foreach (TypeCEntity::find($a)->TypeBEntities as $var){
+				echo $var->data_field_a."<br>";
+			}
+		```
+	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
 
 
@@ -1495,61 +1565,6 @@ up till here
 
 
 
-
-##### Query parents of child entity
-- Read
-  - Type 1
-  ```php
-    Route::get('/ExampleRoute41', function(){
-      $example_variable = TypeBEntity::find(2);
-      foreach ($example_variable->TypeCEntities as $example_variable_part){
-        echo $example_variable_part->name."<br>";
-      }
-    });
-  ```
-  - Type 2
-  ```php
-    Route::get('/ExampleRoute41.2', function(){
-      $example_variable = TypeBEntity::find(2);
-      dd($example_variable->TypeCEntities);
-    });
-  ```
-
-##### Query children of parent entity
-- Delete grandparent through parent
-```php
-  Route::get('/ExampleRoute39.2', function(){
-    $example_variable = TypeBEntity::find(1);
-    foreach($example_variable->TypeCEntities as $example_variable2){
-      $example_variable2->whereId(1)->delete();
-    }
-  });
-```
-- Update other info
-	- Grandparent through parent record
-	```php
-		Route::get('/ExampleRoute43.2', function(){
-			$example_variable = TypeBEntity::find(1);
-			if($example_variable->has("TypeCEntities")){
-				foreach($example_variable->TypeCEntities as $example_variable2){
-					if($example_variable2->name == 'data_value_a') {
-						$example_variable2->name = "example_value_10";
-						$example_variable2->save();
-					}
-				}
-			}
-		});
-	```
-- Read children of parent
-    - Route
-    ```php
-      Route::get('/ExampleRoute43', function(){
-        $example_variable = TypeCEntities::find(1);
-        foreach ($example_variable->TypeBEntities as $example_variable_part){
-          echo $example_variable_part->data_field_a."<br>";
-        }
-      });
-    ```
 
 
 ### <a name="6.5."></a> ORM models with advanced relationships

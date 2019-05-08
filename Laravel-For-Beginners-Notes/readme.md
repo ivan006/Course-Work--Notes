@@ -1436,7 +1436,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```php
 				TypeBEntity::findOrFail($a)->TypeCEntities()->attach($b);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/create/2/1`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/create/1/1`
 	- Method 2 (detach all others)
 		- Note: The IDs of the parent entities that go in an inside the `sync` function
 		- Route:
@@ -1459,7 +1459,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
         echo $var->pivot->created_at."<br>";
       }
 		```
-	- URL example: `fundamental-mechanisms-app.test/b/read/CLink/read/2`
+	- URL example: `fundamental-mechanisms-app.test/b/read/CLink/read/1`
 - Delete
 	- Note: Don't do these until the end of the chapter as we will still be using these links
 	- Detach 1 only
@@ -1507,7 +1507,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```php
 				dd(TypeBEntity::find($a)->TypeCEntities);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/2`
+		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/1`
 - Update
 	- Route:
 		- Name/parameters: `/b/read/c/update/{a}/{b}/{c}` parameters to use `$a, $b, $c`
@@ -1550,96 +1550,96 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
+### <a name="6.5."></a> ORM models with advanced relationships
+#### Table Of Content
+- [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
+- [Polymorphic Relationships](#Polymorphic-Relationships)
 
+#### Relationship with 2 Levels of Separation
+##### Preparation
 
-
-
-
-
-
+- Data
+	- `Refresh all the migrations` to have a clean start
+- Set up `TypeDEntity`
+  - Table
+	 	- Method: `Setup a table-model pair - The short way`
+    - Name: `TypeDEntity`
+    - Columns
+    ```php
+      $table->string('name');
+    ```        
+	- Model
+    - De-restrict fields
+			```php
+				'name',
+			```
+		- Relationships method
+			- Class/name/parameters:
+				- Name:
+					- Rules: The name must be plural as it is a many relationship
+					- E.g. `TypeCEntity`->`TypeAEntities`
+			- Type: `public`
+			- Query: 			
+				- For if the relationships table and it's foreign keys columns are named according to the rules
+				```php
+						return $this->hasManyThrough('App\TypeAEntity', 'App\TypeBEntity');
+				```
 
 ---
 up till here
 ---
 
 
+		    <!-- - Manually specify the foreign key in the `hasOne()` alias's second parameter. -->
 
+				- The first table specifier/parameter is for the distant relative
+				- The second table specifier/parameter is for the intermediate relative
+				- Then if the foreign id column in your intermediary table isn't the same name as the TypeDEntity table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a third parameter specifying its name.
+				- Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a forth parameter specifying its name.
 
-
-### <a name="6.5."></a> ORM models with advanced relationships
-
-#### Table Of Content
-- [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
-- [Polymorphic Relationships](#Polymorphic-Relationships)
-
-#### Relationship with 2 Levels of Separation
-##### General - prerequisites
-- Grandparent2 model
-  - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
-    - Migration
-      - Tables name `ExampleGrandparent2Model`
-      - Table columns
-      ```php
-        $table->string('name');
-      ```        
-    - Model
-      - De-restrict fields
-	  	```php
-				'name',
-			```
-      - Relationship
-      ```php
-        public function TypeAEntities(){
-          return $this->hasManyThrough('App\TypeAEntity', 'App\TypeBEntity');
-        }
-      ```
-        - The first table specifier/parameter is for the distant relative
-        - The second table specifier/parameter is for the intermediate relative
-        - Then if the foreign id column in your intermediary table isn't the same name as the ExampleGrandparent2Model table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a third parameter specifying its name.
-        - Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a forth parameter specifying its name.
   - Manage records
     - Create records
       - Route
         - Create 2 records
         - Do as demonstrated in `Create record with multiple field values`
         - For the route name use: `/ExampleRoute44`
-        - For the referenced model use `ExampleGrandparent2Model`
+        - For the referenced model use `TypeDEntity`
         - E.g.
         ```php
           Route::get('/ExampleRoute44', function(){
-            ExampleGrandparent2Model::create(['name'=>'data_value_a']);
-            ExampleGrandparent2Model::create(['name'=>'data_value_b']);
+            TypeDEntity::create(['name'=>'data_value_a']);
+            TypeDEntity::create(['name'=>'data_value_b']);
           });
         ```
     - Delete records
       - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
       ```php
       Route::get('/ExampleRoute45', function(){
-        ExampleGrandparent2Model::destroy(3);
+        TypeDEntity::destroy(3);
       });
       ```
 - Parent model's new column
   - Setup it up
     - Migration - As seen in the section `Column handling migration`
-      - Use the migration name of `parent_model_example_grandparent2_model_id_column`
+      - Use the migration name of `type_b_entity_m_column_type_d_entity_id`
       - Use the table specifier of `type_b_entities`.
       - Table columns
       ```php
-        $table->integer('example_grandparent2_model_id');
+        $table->integer('type_d_entity_id');
       ```
       - Then activate migration      
     - Parent model
       - De-restrict fields
 	  	```php
-				'example_grandparent2_model_id',
+				'type_d_entity_id',
 			```
   - Manage records
     - Create at least 2 records
     - To create 2 records
     ```php
     Route::get('/ExampleRoute46', function(){
-      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a', 'example_grandparent2_model_id'=>'1']);
-      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b', 'example_grandparent2_model_id'=>'2']);
+      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a', 'type_d_entity_id'=>'1']);
+      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b', 'type_d_entity_id'=>'2']);
     });
     ```
     - To delete records
@@ -1661,7 +1661,7 @@ up till here
         TypeAEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_b', 'data_field_c'=>1, 'type_b_entity_id'=>1]);
       });
     ```
-      - For the `type_b_entity_id` value use the id of whatever record you have that also has a example_grandparent2_model_id value. In my case it's `13` and `14`.
+      - For the `type_b_entity_id` value use the id of whatever record you have that also has a type_d_entity_id value. In my case it's `13` and `14`.
   - To delete
   ```php
     Route::get('/ExampleRoute49', function(){
@@ -1682,7 +1682,7 @@ up till here
   - Route
   ```php
     Route::get('/ExampleRoute50', function(){
-      $example_variable = ExampleGrandparent2Model::find(1);
+      $example_variable = TypeDEntity::find(1);
       foreach ($example_variable->TypeAEntities as $example_variable_part){
         echo "<br><br>".$example_variable_part;
       }
@@ -2464,7 +2464,7 @@ Route::get('/64', function (){
 	  ```
 	- countries
 	  - Similar to
-	    - Model:  example_grandparent2_models
+	    - Model:  type_d_entitys
 	    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
 	    - Video course's section: 68-70
 	  - Columns

@@ -1099,7 +1099,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			      return $this->hasOne('App\TypeAEntity', 'type_b_entity_id');
 			    }
 			  ```
-		    - Manually specify the foreign key in the `hasOne()` alias's second parameter.
+		    - Manually specify the foreign key in the `hasOne()` caller's second parameter.
 		    - Also note your if your parent model's primary key column is not `id` you can specify it in the third parameter.
 		  - Method 2 - The automatic foreign key specifier method
 				- This only works if the foreign keys column name is based on it's parent tables name and ends with `_id` and is singular (e.g. `type_b_entity_id`)
@@ -1575,27 +1575,58 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```
 		- Relationships method
 			- Class/name/parameters:
-				- Name:
-					- Rules: The name must be plural as it is a many relationship
-					- E.g. `TypeCEntity`->`TypeAEntities`
+				- Name: `TypeDEntity`->`TypeAEntities`
 			- Type: `public`
 			- Query: 			
 				- For if the relationships table and it's foreign keys columns are named according to the rules
 				```php
 						return $this->hasManyThrough('App\TypeAEntity', 'App\TypeBEntity');
 				```
+				- Caller 1st parameter: Distant entity name
+				- Caller 2nd parameter: Intermediate entity name
+				- Caller 3rd parameter: If you need a custom name for the foreign id column of the intermediary entity
+				- Caller 4th parameter: If you need a custom name for the foreign id column of the distant entity
 
 ---
 up till here
 ---
 
 
-		    <!-- - Manually specify the foreign key in the `hasOne()` alias's second parameter. -->
 
-				- The first table specifier/parameter is for the distant relative
-				- The second table specifier/parameter is for the intermediate relative
-				- Then if the foreign id column in your intermediary table isn't the same name as the TypeDEntity table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a third parameter specifying its name.
-				- Then if the foreign id column in your distant relative table isn't the same name as the intermediary table (converted into camel case and without the "s" at the end) with `_id` at the end then you can put in a forth parameter specifying its name.
+
+
+	- Data
+		- Controller
+			- `Set up a controller that is resourced` as previously demonstrated.
+				- Name: `TypeCEntity_Controller`
+				- Aliases: add this to the header
+				```php
+					use App\TypeCEntity;
+				```
+		- Create records (make 3)
+			- Do as demonstrated in `Create record with multiple field values`
+			- Route
+				- Name/parameters: `/c/create/{a}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeCEntity_Controller`->`create` parameters to use - `$a`
+				- Script:
+				```php
+					TypeCEntity::create([
+						'name'=>$a,
+					]);
+				```
+			- URL example: `fundamental-mechanisms-app.test/c/create/1`
+		- Delete records (only use if needed)
+			- Do as demonstrated in `Delete method 2`
+			- Route
+				- Name/parameters: `/c/delete/{a}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
+				- Script:
+				```php
+					TypeCEntity::destroy($a);
+				```
+				- URL example: `fundamental-mechanisms-app.test/c/delete/1`
 
   - Manage records
     - Create records

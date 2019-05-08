@@ -1504,7 +1504,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showCShow` parameters to use - `$a`
 			- Script:
 			```php
-      	dd(TypeBEntity::find($a)->TypeCEntities);
+		  	dd(TypeBEntity::find($a)->TypeCEntities);
 			```
 		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/2`
 - Update

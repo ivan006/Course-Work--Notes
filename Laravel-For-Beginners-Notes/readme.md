@@ -1497,7 +1497,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				}
 			```
 		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/2`
-  - Type 2
+	- Type 2
 		- Route:
 			- Name/parameters: Reuse `/b/read/c/read/{a}` parameters to use `$a`
 		- Controller method:

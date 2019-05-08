@@ -1417,10 +1417,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       - Rules: You can use a camel cased version of the table name.
       - E.g. `TypeBEntityTypeCEntity`
     - Table associator: `type_b_entity_type_c_entity`
-    - De-restrict fields
-    ```php
+		- De-restrict fields
+		```php
 			'type_b_entity_id',
-	    'type_c_entity_id',
+		  'type_c_entity_id',
 		```
 
 ##### Query relationships of child entity

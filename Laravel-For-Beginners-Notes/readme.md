@@ -554,20 +554,20 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### Route anatomy
 - Example
-	- `Route::get('/ACreate', 'TypeAEntity_Controller@MethodCreate');`.
-	- In this case the URL is the word `/ACreate` and the controller is called `MethodCreate` and is found inside a controller file called `TypeAEntity_Controller`
+	- `Route::get('/a/create', 'TypeAEntity_Controller@MethodCreate');`.
+	- In this case the URL is the word `/a/create` and the controller is called `MethodCreate` and is found inside a controller file called `TypeAEntity_Controller`
 	- Try this out - bear in mind it wont work properly until you make a controller.
 
 ### Resourced route
 - This creates not 1 but a set of routes.
-- E.g. `Route::resource('/ACreate', 'TypeAEntity_Controller');`
+- E.g. `Route::resource('/a/create', 'TypeAEntity_Controller');`
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
 ### Non-separated action script
 - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
 ```php
-  Route::get('/ARead', function(){
+  Route::get('/a/read', function(){
     return "Hello world";
   });
 ```
@@ -588,7 +588,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Example:
 	- In this case it's called `ExampleParameter`
 	```php  
-	  Route::get('/ARead/{ExampleParameter}', 'TypeAEntity_Controller@MethodRead');
+	  Route::get('/a/read/{ExampleParameter}', 'TypeAEntity_Controller@MethodRead');
 	```
 	- Try this out
 		- bear in mind it wont work properly until you make a controller.
@@ -627,7 +627,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ### <a name="Integration-with-Route-Parameters"></a> Integration with Route Parameters
 - Example:
   - Route
-    - Name/parameters: Reuse `/ARead/{a}`
+    - Name/parameters: Reuse `/a/read/{a}`
   - Controller method
     ```php
       public function MethodRead($a)
@@ -636,7 +636,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
       }
     ```
 	- Try this out
-		- Test using: `fundamental-mechanisms-app.test/ARead/Bob`.
+		- Test using: `fundamental-mechanisms-app.test/a/read/Bob`.
 
 
 
@@ -711,7 +711,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### Create (Insert)
 - Try this out
 - Route:
-	- Name/parameters: Reuse `/ACreate/{a}` parameters to use - swap to `$a`
+	- Name/parameters: Reuse `/a/create/{a}` parameters to use - swap to `$a`
 - Controller method
 	- Import the model - put `use App\TypeAEntity;` in the header of your controller
 	- Here's the entire body of code
@@ -738,14 +738,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Class/name/parameters: `TypeAEntity`->`model_create` parameters to use - `$a, $b, $c`
 	- The query is: `DB::insert('insert into type_a_entities(data_field_a, data_field_b, data_field_c) values(?, ?, ?)', [$a, $b, $c]);`
 	- And model method type is: `static`
-- URL example: `fundamental-mechanisms-app.test/ACreate/hello`
+- URL example: `fundamental-mechanisms-app.test/a/create/hello`
 
 
 
 #### Read
 - Try this out
 - Route:
-	- Name/parameters: Reuse `/ARead/{a}`
+	- Name/parameters: Reuse `/a/read/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead` parameters to use - `$a`
 	- Script: `return "<pre>".var_dump(TypeAEntity::model_read($a))."</pre>";`
@@ -753,12 +753,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Class/name/parameters: `TypeAEntity`->`model_read` parameters to use - `$a`
 	- Query: `return DB::select('select * from type_a_entities where data_field_a  = ?', [$a]);`
 	- Model method type is: `static`
-- URL example: `fundamental-mechanisms-app.test/ARead/hello`
+- URL example: `fundamental-mechanisms-app.test/a/read/hello`
 
 #### Update
 - Try this out:
 - Route:
-	- Name/parameters: `/AUpdate/{a}/{b}`
+	- Name/parameters: `/a/update/{a}/{b}`
 	- Associated controller method: `MethodUpdate`
 - Controller method:
 	- Class/name/parameters: `TypeAEntity_Controller`->`MethodUpdate` parameters to use - `$a, $b`
@@ -767,14 +767,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Class/name/parameters: `TypeAEntity`->`model_update` parameters to use - `$a, $b`
 	- Query `DB::update('update type_a_entities set data_field_a  = ? where id = ?', [$a, $b]);`
 	- Model method type is: `static`
-- URL example: `fundamental-mechanisms-app.test/AUpdate/bye/1`
+- URL example: `fundamental-mechanisms-app.test/a/update/bye/1`
 
 
 
 #### Delete
 - Try this out
 - Route:
-	- Name/parameters: `/ADelete/{a}`
+	- Name/parameters: `/a/delete/{a}`
 	- Associated controller method: `MethodDelete`
 - Controller method:
 	- Class/name/parameters: `TypeAEntity_Controller`->`MethodDelete` parameters to use - `$a`
@@ -783,7 +783,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- Class/name/parameters: `TypeAEntity`->`model_delete` parameters to use - `$a`
 	- Query `DB::delete('delete from type_a_entities where id = ?', [$a]);`
 	- Model method type is: `static`
-- URL example: `fundamental-mechanisms-app.test/ADelete/1`
+- URL example: `fundamental-mechanisms-app.test/a/delete/1`
 
 
 
@@ -793,7 +793,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Create record with one field value
 - Try this out
 - Route:
-	- Name/parameters: reuse `/ACreate/{a}`
+	- Name/parameters: reuse `/a/create/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodCreate`
 	- Script:
@@ -806,12 +806,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```
 - Model method:
 	- Class/name/parameters: this one is all ready automatically made
-- URL example: `fundamental-mechanisms-app.test/ACreate/hello`
+- URL example: `fundamental-mechanisms-app.test/a/create/hello`
 
 ##### Create record with multiple field values
 - Try this out
 - Route:
-	- Name/parameters: reuse `/ACreate/{a}`
+	- Name/parameters: reuse `/a/create/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodCreate`
 	- Script:
@@ -825,7 +825,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Model method:
 	- Class/name/parameters: this one is all ready automatically made
 	- `De-restrict fields` as shown in previous section
-- URL example: `fundamental-mechanisms-app.test/ACreate/hello`
+- URL example: `fundamental-mechanisms-app.test/a/create/hello`
 
 
 
@@ -833,7 +833,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Find all records (and return a field's values)
 - Try this out
 - Route:
-	- Name/parameters: reuse `/ARead` but now with no parameters
+	- Name/parameters: reuse `/a/read` but now with no parameters
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead` parameters to use - swap to none
 	- Script:
@@ -844,13 +844,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```
 - Model method:
 	- Class/name/parameters: this one is all ready automatically made
-- URL example: `fundamental-mechanisms-app.test/ARead`
+- URL example: `fundamental-mechanisms-app.test/a/read`
 
 ##### Find all records and sort by date created
 - Method 1
 	- Try this out
 	- Route:
-		- Name/parameters: reuse `/ARead`
+		- Name/parameters: reuse `/a/read`
 	- Controller method:
 		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead`
 		- Script:
@@ -861,7 +861,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- Model method:
 		- Class/name/parameters: this one is all ready automatically made
-	- URL example: `fundamental-mechanisms-app.test/ARead`
+	- URL example: `fundamental-mechanisms-app.test/a/read`
 - Method 2
 	- Try this out
 	- Controller method:
@@ -914,7 +914,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Update based on primary key
 - Try this out
 - Route:
-	- Name/parameters: reuse `/AUpdate/{a}` parameters to use - swap to `$a`
+	- Name/parameters: reuse `/a/update/{a}` parameters to use - swap to `$a`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodUpdate` parameters to use - swap to `$a`
 	- Script:
@@ -925,7 +925,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```
 - Model method:
 	- Class/name/parameters: this one is all ready automatically made
-- URL example: `fundamental-mechanisms-app.test/AUpdate/bye`
+- URL example: `fundamental-mechanisms-app.test/a/update/bye`
 
 ##### Update based on other conditions
 - Try this out
@@ -934,14 +934,14 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```php
     TypeAEntity::where('id', 2)->where('data_field_a', $a)->update(['data_field_b'=>$a]);
 	```
-- URL example: `fundamental-mechanisms-app.test/AUpdate/hello`
+- URL example: `fundamental-mechanisms-app.test/a/update/hello`
 
 #### Delete types
 ##### Delete method 1
 - Note: this works only works when soft delete (a feature we will use later) is not activated
 - Try this out
 - Route:
-	- Name/parameters: reuse `/ADelete/{a}`
+	- Name/parameters: reuse `/a/delete/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete`
 	- Script:
@@ -950,42 +950,42 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	```
 - Model method:
 	- Class/name/parameters: this one is all ready automatically made
-- URL example: `fundamental-mechanisms-app.test/ADelete/2`
+- URL example: `fundamental-mechanisms-app.test/a/delete/2`
 
 ##### Delete method 2
 - Note: this works only works when soft delete is not activated
 - Try this out
 - Route:
-	- Name/parameters: reuse `/ADelete/{a}`
+	- Name/parameters: reuse `/a/delete/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete`
 	- Script:
 	```php
     TypeAEntity::destroy($a);
 	```
-- URL example: `fundamental-mechanisms-app.test/ADelete/4`
+- URL example: `fundamental-mechanisms-app.test/a/delete/4`
 
 ##### Delete multiple
 - Route:
-	- Name/parameters: reuse `/ADelete/{a}/{b}` parameters to use - swap to `$a, $b`
+	- Name/parameters: reuse `/a/delete/{a}/{b}` parameters to use - swap to `$a, $b`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete` parameters to use - swap to `$a, $b`
 	- Script:
 	```php
     TypeAEntity::destroy([$a, $b]);
 	```
-- URL example: `fundamental-mechanisms-app.test/ADelete/5/6`
+- URL example: `fundamental-mechanisms-app.test/a/delete/5/6`
 
 ##### Delete multiple based on condition
 - Route:
-	- Name/parameters: reuse `/ADelete/{a}` but with only one parameter
+	- Name/parameters: reuse `/a/delete/{a}` but with only one parameter
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete` but with only one parameter
 	- Script:
 	```php
     TypeAEntity::where('data_field_a',$a)->delete();
 	```
-- URL example: `fundamental-mechanisms-app.test/ADelete/bye`
+- URL example: `fundamental-mechanisms-app.test/a/delete/bye`
 
 
 
@@ -1009,20 +1009,20 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 ##### Soft Delete
 
 - Route:
-	- Name/parameters: reuse `/ADelete/{a}`
+	- Name/parameters: reuse `/a/delete/{a}`
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete`
 	- Script:
 	```php
     TypeAEntity::find($a)->delete();
 	```
-- URL example: `fundamental-mechanisms-app.test/ADelete/7`
+- URL example: `fundamental-mechanisms-app.test/a/delete/7`
 
 
 ##### Read Items That Have Been Soft Deleted
 - Find all records
 	- Route:
-		- Name/parameters: reuse `/ARead`
+		- Name/parameters: reuse `/a/read`
 	- Controller method:
 		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead`
 		- Script:
@@ -1031,41 +1031,41 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					echo $var."<br>";
 			}
 		```
-	- URL example: `fundamental-mechanisms-app.test/ARead`
+	- URL example: `fundamental-mechanisms-app.test/a/read`
 - Find all trashed
 	- Route:
-		- Name/parameters: reuse `/ARead`
+		- Name/parameters: reuse `/a/read`
 	- Controller method:
 		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead`
 		- Script:
 		```php
 			return TypeAEntity::onlyTrashed()->get();
 		```
-	- URL example: `fundamental-mechanisms-app.test/ARead`
+	- URL example: `fundamental-mechanisms-app.test/a/read`
 
 
 ##### Restore All Soft Deleted items
 - Route:
-	- Name/parameters: reuse `/AUpdate` but without parameters
+	- Name/parameters: reuse `/a/update` but without parameters
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodUpdate` parameters to use - swap to none
 	- Script:
 	```php
 		TypeAEntity::onlyTrashed()->restore();
 	```
-- URL example: `fundamental-mechanisms-app.test/AUpdate`
+- URL example: `fundamental-mechanisms-app.test/a/update`
 
 ##### Empty trash (While Soft Delete is Activated)
 - This will properly delete all the items that are currently only soft deleted
 - Route:
-	- Name/parameters: `/ADelete` but without parameters
+	- Name/parameters: Reuse `/a/delete` parameters to use - swap to none
 - Controller method:
 	- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodDelete` parameters to use - swap to none
 	- Script:
 	```php
 		TypeAEntity::onlyTrashed()->forceDelete();
 	```
-- URL example: `fundamental-mechanisms-app.test/ADelete`
+- URL example: `fundamental-mechanisms-app.test/a/delete`
 
 
 ### <a name="6.4."></a> ORM models with basic relationships
@@ -1122,7 +1122,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Create a record
 			- Do as demonstrated in `Create record with multiple field values`
 			- Route:
-				- Name/parameters: `/BCreate/{a}`
+				- Name/parameters: `/b/create/{a}`
 				- Associated controller method: `TypeBEntity_Controller@create`
 			- Controller method:
 				- Class/name/parameters: `TypeBEntity_Controller`->`create` parameters to use - `$a`
@@ -1133,7 +1133,18 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			      'data_field_b'=>$a,
 			    ]);
 				```
-			- URL example: `fundamental-mechanisms-app.test/BCreate/1`
+			- URL example: `fundamental-mechanisms-app.test/b/create/1`
+		- Delete a record (only use if needed)
+			- Do as demonstrated in `Delete method 2`
+			- Route
+				- Name/parameters: Reuse `/b/delete/{a}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeBEntity_Controller`->`destroy` parameters to use - `$a`
+				- Script:
+				```php
+					TypeBEntity::destroy($a);
+				```
+				- URL example: `fundamental-mechanisms-app.test/b/delete/1`
 - Set up for `TypeAEntity`
 	- Database
 		- Add a foreign key column
@@ -1150,12 +1161,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		  }
 		```
 
-##### Query child of entity
+##### Query child of parent entity
 - Create
 	- Route:
-		- Name/parameters: Reuse `/BCreate/{a}/{b}` parameters to use - swap to `$a, $b`
+		- Name/parameters: `/b/read/a/create/{a}/{b}` parameters to use - `$a, $b`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`create` parameters to use - swap to `$a, $b`
+		- Class/name/parameters: `TypeBEntity_Controller`->`showACreate` parameters to use - `$a, $b`
 		- Script:
 		```php
 			TypeBEntity::findOrFail($a)->TypeAEntity()->save(
@@ -1167,53 +1178,53 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				])
 			);
 		```
-	- URL example: `fundamental-mechanisms-app.test/BCreate/1/1`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/create/1/1`
 - Read
 	- Route:
-		- Name/parameters: `/BRead/{a}` parameters to use - `$a`
+		- Name/parameters: `/b/read/a/read/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: `TypeBEntity_Controller`->`show` parameters to use - `$a`
+		- Class/name/parameters: `TypeBEntity_Controller`->`showAShow` parameters to use - `$a`
 		- Script:
 		```php
 			return TypeBEntity::find($a)->TypeAEntity->all();
 		```
-	- URL example: `fundamental-mechanisms-app.test/BRead/1`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/read/1`
 - Update
 	- Route:
-		- Name/parameters: `/BUpdate/{a}/{b}` parameters to use - `$a, $b`
+		- Name/parameters: `/b/read/a/update/{a}/{b}` parameters to use - `$a, $b`
 	- Controller method:
-		- Class/name/parameters: `TypeBEntity_Controller`->`update` parameters to use - `$a, $b`
+		- Class/name/parameters: `TypeBEntity_Controller`->`showAUpdate` parameters to use - `$a, $b`
 		- Script:
 		```php
 			$var = TypeAEntity::whereTypeBEntityId($a)->first();
 			$var->data_field_a = $b;
 			$var->save();
 		```
-	- URL example: `fundamental-mechanisms-app.test/BUpdate/1/2`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/update/1/2`
 - Delete
 	- Route:
-		- Name/parameters: `/BDelete/{a}` parameters to use - `$a`
+		- Name/parameters: `/b/read/a/delete/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: `TypeBEntity_Controller`->`update` parameters to use - `$a`
+		- Class/name/parameters: `TypeBEntity_Controller`->`showADestroy` parameters to use - `$a`
 		- Script:
 		```php
 			TypeBEntity::findOrFail($a)->TypeAEntity->forceDelete();
 		```
-	- URL example: `fundamental-mechanisms-app.test/BDelete/1`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/delete/1`
   - Note: If soft delete is not enabled then you can replace `forceDelete()` with `delete()`
 
-##### Query parent of entity
+##### Query parent of child entity
 
 - Read
 	- Route:
-		- Name/parameters: Reuse `/ARead/{a}` parameters to use - swap to `$a`
+		- Name/parameters: `/a/read/b/read/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeAEntity_Controller`->`MethodRead` parameters to use - swap to `$a`
+		- Class/name/parameters: `TypeAEntity_Controller`->`showBMethodRead` parameters to use - `$a`
 		- Script:
 		```php
 			return TypeAEntity::find($a)->TypeBEntity;
 		```
-	- URL example: `fundamental-mechanisms-app.test/ARead/1`
+	- URL example: `fundamental-mechanisms-app.test/a/read/b/read/1`
 
 #### One to many relationships
 ##### Set up
@@ -1229,15 +1240,15 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - Set up for `TypeAEntity`
  	- Data
 		- Create a second record
-			- URL example: `fundamental-mechanisms-app.test/BCreate/1/2`
+			- URL example: `fundamental-mechanisms-app.test/b/read/a/create/1/2`
 
 
-##### Query children of entity
+##### Query children of parent entity
 - Create
 	- Route:
-		- Name/parameters: Reuse `/BCreate/{a}/{b}` parameters to use `$a, $b`
+		- Name/parameters: Reuse `/b/read/a/create/{a}/{b}` parameters to use `$a, $b`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`create` parameters to use `$a, $b`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showACreate` parameters to use `$a, $b`
 		- Script:
 		```php
 			TypeBEntity::findOrFail($a)->TypeAEntities()->save(
@@ -1249,42 +1260,42 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				])
 			);
 		```
-	- URL example: `fundamental-mechanisms-app.test/ACreate/1/1`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/create/1/1`
 	- Note: Notice that the only change we are making to this controller is changing the queries model method
 - Read
 	- Route:
-		- Name/parameters: Reuse`/BRead/{a}` parameters to use - `$a`
+		- Name/parameters: Reuse`/b/read/a/read/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`show` parameters to use - `$a`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showAShow` parameters to use - `$a`
 		- Script:
 		```php
 			foreach (TypeBEntity::findOrFail($a)->TypeAEntities as $var){
 				echo $var->data_field_a. "<br>";
 			}
 		```
-	- URL example: `fundamental-mechanisms-app.test/BRead/1`
+	- URL example: `fundamental-mechanisms-app.test/b/read/b/read/1`
 - Update
 	- Route:
-		- Name/parameters: Reuse`/BUpdate/{a}/{b}` parameters to use - `$a, $b`
+		- Name/parameters: Reuse`/b/read/a/update/{a}/{b}` parameters to use - `$a, $b`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`update` parameters to use - `$a, $b`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showAUpdate` parameters to use - `$a, $b`
 		- Script:
 		```php
 			$var = TypeBEntity::findOrFail($a)->TypeAEntities()->whereId(1)->update([
 				'data_field_a'=>$b
 			]);
 		```
-	- URL example: `fundamental-mechanisms-app.test/BUpdate/1/2`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/update/1/2`
 - Delete
 	- Route:
-		- Name/parameters: Reuse `/BDelete/{a}` parameters to use - `$a`
+		- Name/parameters: Reuse `/b/read/a/delete/{a}` parameters to use - `$a`
 	- Controller method:
-		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`destroy` parameters to use - `$a`
+		- Class/name/parameters: Reuse `TypeBEntity_Controller`->`showADestroy` parameters to use - `$a`
 		- Script:
 		```php
 			$var = TypeBEntity::findOrFail($a)->TypeAEntities()->whereId(1)->delete();
 		```
-	- URL example: `fundamental-mechanisms-app.test/BDelete/1`
+	- URL example: `fundamental-mechanisms-app.test/b/read/a/delete/1`
 
 #### Many to many relationships
 
@@ -1331,7 +1342,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Create records
 			- Do as demonstrated in `Create record with multiple field values`
 			- Route
-				- Name/parameters: `/CCreate/{a}` parameters to use - `$a`
+				- Name/parameters: `/c/create/{a}` parameters to use - `$a`
 			- Controller method
 				- Class/name/parameters: `TypeCEntity_Controller`->`create` parameters to use - `$a`
 				- Script:
@@ -1340,18 +1351,18 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 						'name'=>$a,
 					]);
 				```
-			- URL example: `fundamental-mechanisms-app.test/CCreate/1`
+			- URL example: `fundamental-mechanisms-app.test/c/create/1`
 		- Delete records (only use if needed)
 			- Do as demonstrated in `Delete method 2`
 			- Route
-				- Name/parameters: `/CDelete/{a}` parameters to use - `$a`
+				- Name/parameters: `/c/delete/{a}` parameters to use - `$a`
 			- Controller method
 				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
 				- Script:
 				```php
 					TypeCEntity::destroy($a);
 				```
-				- URL example: `fundamental-mechanisms-app.test/CDelete/1`
+				- URL example: `fundamental-mechanisms-app.test/c/delete/1`
 - Set up `TypeBEntity`
 	- Model method:
 		- Class/name/parameters:
@@ -1377,40 +1388,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	      ```
 	- Data
 		- Create records
-			- Do as demonstrated in `Create record with multiple field values`
-			- Route
-				- Name/parameters: Reuse `/BCreate/{a}` parameters to use - swap to `$a`
-			- Controller method
-				- Class/name/parameters: `TypeBEntity_Controller`->`create` parameters to use - `$a`
-				- Script:
-				```php
-					TypeBEntity::create([
-						'data_field_a'=>$a,
-						'data_field_b'=>$a,
-					]);
-				```
-			- URL example: `fundamental-mechanisms-app.test/BCreate/1`
+			- URL example: `fundamental-mechanisms-app.test/b/create/1`
 		- Delete records (only use if needed)
-			- Do as demonstrated in `Delete method 2`
-			- Route
-				- Name/parameters: Reuse `/BDelete/{a}` parameters to use - `$a`
-			- Controller method
-				- Class/name/parameters: `TypeBEntity_Controller`->`destroy` parameters to use - `$a`
-				- Script:
-				```php
-					TypeBEntity::destroy($a);
-				```
-				- URL example: `fundamental-mechanisms-app.test/BDelete/1`
-
-
-
-
-
-
----
-up till here
----
-
+			- URL example: `fundamental-mechanisms-app.test/b/delete/1`
 - Set up `TypeBEntityTypeCEntity`
 	- Note: This is a pseudo entity as it simple relates other entities
 	- Table-model pair setup method
@@ -1443,11 +1423,56 @@ up till here
 	    'type_c_entity_id',
 		```
 
+##### Query relationships of child entity
+
+- Create
+	- Method 1
+		- Route:
+			- Name/parameters: Reuse `/b/read/ALink/create/{a}` parameters to use - `$a`
+		- Controller method:
+			- Class/name/parameters: `TypeBEntity_Controller`->`showALinkCreate` parameters to use - `$a`
+			- Script:
+			```php
+				TypeBEntity::findOrFail(2)->TypeCEntities()->attach(1);
+			```
+		- URL example: `fundamental-mechanisms-app.test/b/read/ALink/create/1`
 
 
 
-##### Query parents of entity
-- Read parental relationships of child
+
+
+
+
+
+
+---
+up till here
+---
+
+
+
+	- Method 2 (detach all other)
+		- Bear in mind the IDs of the parent models that the relationships point to go in an inside the `sync` function
+		```php
+			Route::get('/ExampleRoute36.1', function(){
+				TypeBEntity::findOrFail(2)->TypeCEntities()->sync([2,3]);
+			});
+		```
+- Delete
+	- Detach
+	  - Delete 1 Method 2
+	  ```php
+	    Route::get('/ExampleRoute37.1', function(){
+	      TypeBEntity::findOrFail(2)->TypeCEntities()->detach(1);
+	    });
+	  ```
+	- Detach all
+	```php
+	  Route::get('/ExampleRoute37.2', function(){
+	    TypeBEntity::findOrFail(2)->TypeCEntities()->detach();
+	  });
+	```
+- Read
   - Parent model's route
     ```php
     Route::get('/ExampleRoute42', function(){
@@ -1457,7 +1482,9 @@ up till here
       }
     });
     ```
-- Read parents of child
+
+##### Query parents of child entity
+- Read
   - Type 1
   ```php
     Route::get('/ExampleRoute41', function(){
@@ -1474,65 +1501,8 @@ up till here
       dd($example_variable->TypeCEntities);
     });
   ```
-- Update
-  - Relationship through a parent record
-  ```php
-    Route::get('/ExampleRoute43.1', function(){
-      TypeBEntity::findOrFail(2)->TypeCEntities()->attach(1);
-    });
-  ```
-	- 3 relationship records (delete me/0)
-		- Do as demonstrated in `Create record with multiple field values`
-		- For the route name use: `/ExampleRoute36`
-		- For the referenced model use `TypeCEntitiesTypeBEntity`
-		```php
-			Route::get('/ExampleRoute36', function(){
-				TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>1, 'type_c_entity_id'=>1]);
-				TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>2]);
-				TypeCEntitiesTypeBEntity::create(['type_b_entity_id'=>2, 'type_c_entity_id'=>1]);
-			});
-		```
-	- 2 relationship records through a parent and delete any old relationships for that parent
-		- Bear in mind the IDs of the grandparent models that the relationships point to go in an inside the `sync` function
-		```php
-			Route::get('/ExampleRoute36.1', function(){
-				TypeBEntity::findOrFail(2)->TypeCEntities()->sync([2,3]);
-			});
-		```
-- Update
-  - Grandparent through parent record
-  ```php
-    Route::get('/ExampleRoute43.2', function(){
-      $example_variable = TypeBEntity::find(1);
-      if($example_variable->has("TypeCEntities")){
-        foreach($example_variable->TypeCEntities as $example_variable2){
-          if($example_variable2->name == 'data_value_a') {
-            $example_variable2->name = "example_value_10";
-            $example_variable2->save();
-          }
-        }
-      }
-    });
-  ```
-- delete Relationship record
-    - Delete 1 Method 1
-    ```php
-      Route::get('/ExampleRoute37', function(){
-        TypeCEntitiesTypeBEntity::destroy(1);
-      });
-    ```
-    - Delete 1 Method 2
-    ```php
-      Route::get('/ExampleRoute37.1', function(){
-        TypeBEntity::findOrFail(2)->TypeCEntities()->detach(1);
-      });
-    ```
-    - Delete all for parent
-    ```php
-      Route::get('/ExampleRoute37.2', function(){
-        TypeBEntity::findOrFail(2)->TypeCEntities()->detach();
-      });
-    ```
+
+##### Query children of parent entity
 - Delete grandparent through parent
 ```php
   Route::get('/ExampleRoute39.2', function(){
@@ -1542,7 +1512,21 @@ up till here
     }
   });
 ```
-##### Query children of entity
+- Update other info
+	- Grandparent through parent record
+	```php
+		Route::get('/ExampleRoute43.2', function(){
+			$example_variable = TypeBEntity::find(1);
+			if($example_variable->has("TypeCEntities")){
+				foreach($example_variable->TypeCEntities as $example_variable2){
+					if($example_variable2->name == 'data_value_a') {
+						$example_variable2->name = "example_value_10";
+						$example_variable2->save();
+					}
+				}
+			}
+		});
+	```
 - Read children of parent
     - Route
     ```php

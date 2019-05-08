@@ -1306,7 +1306,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ##### Setup
 
-
+- Data
+	- `Refresh all the migrations` to have a clean start
 - Set up `TypeCEntity`
   - Table
 	 	- Method: `Setup a table-model pair - The short way`
@@ -1446,7 +1447,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```php
 				TypeBEntity::findOrFail($a)->TypeCEntities()->sync([$b,$c]);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/create/2/2/3`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/create/1/2/3`
 - Read
 	- Route:
 		- Name/parameters: `/b/read/CLink/read/{a}` parameters to use - `$a`
@@ -1470,7 +1471,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```php
 				TypeBEntity::findOrFail($a)->TypeCEntities()->detach($b);
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/delete/2/2`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/delete/1/2`
 	- Detach all
 		- Route:
 			- Name/parameters: Reuse `/b/read/CLink/delete/{a}` parameters to use - swap to `$a`
@@ -1480,7 +1481,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			```php
 		    TypeBEntity::findOrFail($a)->TypeCEntities()->detach();
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/delete/2`
+		- URL example: `fundamental-mechanisms-app.test/b/read/CLink/delete/1`
 
 ##### Query parents of child entity
 
@@ -1496,7 +1497,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 					echo $var->name."<br>";
 				}
 			```
-		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/2`
+		- URL example: `fundamental-mechanisms-app.test/b/read/c/read/1`
 	- Type 2
 		- Route:
 			- Name/parameters: Reuse `/b/read/c/read/{a}` parameters to use `$a`
@@ -1523,19 +1524,17 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				}
 			}
 		```
-	- URL example: `fundamental-mechanisms-app.test/b/read/c/update/2/1/5`
-- Delete (figure this out - this doesnt take into consideration the TypeBEntity in question )
+	- URL example: `fundamental-mechanisms-app.test/b/read/c/update/1/1/5`
+- Delete
 	- Route:
 		- Name/parameters: `/b/read/c/delete/{a}/{b}` parameters to use `$a, $b`
 	- Controller method:
 		- Class/name/parameters: `TypeCEntity_Controller`->`showCDestroy` parameters to use - `$a, $b`
 		- Script:
 		```php
-	    foreach(TypeBEntity::find($a)->TypeCEntities as $var){
-	      $var->whereId($b)->delete();
-	    }
+			TypeBEntity::find($a)->TypeCEntities()->find($b)->delete();
 		```
-	- URL example: `fundamental-mechanisms-app.test/b/read/c/delete/2/2`
+	- URL example: `fundamental-mechanisms-app.test/b/read/c/delete/1/2`
 
 ##### Query children of parent entity
 - Read

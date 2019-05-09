@@ -1069,11 +1069,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### <a name="6.4."></a> ORM models with relationships
 
-- [One to one relationship](#6.4.1.)
-- [One to many relationships](#6.4.2.)
-- [Many to many relationships](#6.4.3.)
-- [Relationship with 2 Levels of Separation](#6.4.4.)
-- [Polymorphic Relationships](#6.4.5.)
+- [One to one relationship](#)
+- [One to many relationships](#)
+- [Many to many relationships](#)
+- [One to many relationships](#)
+- [Relationship with 2 Levels of Separation](#)
+- [Polymorphic Relationships](#)
 
 
 
@@ -1083,7 +1084,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-#### <a name="6.4.1."></a> One to one relationship
+#### One to one relationship
 ##### Set up
 - Set up for `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
@@ -1233,7 +1234,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/a/read/b/read/1`
 
-#### <a name="6.4.2."></a> One to many relationships
+#### One to many relationships
 ##### Set up
 - Set up for `TypeBEntity`
 	- Model
@@ -1304,7 +1305,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/b/read/a/delete/1`
 
-#### <a name="6.4.3."></a> Many to many relationships
+#### Many to many relationships
 
 ##### General
 
@@ -1558,13 +1559,24 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
 
-#### <a name="6.4.4."></a> Relationship with 2 Levels of Separation
+#### Relationship with 2 Levels of Separation
 ##### Preparation
 
 - Data
 	- `Refresh all the migrations` to have a clean start
-- Set up `TypeCEntity`   
+- Set up `TypeCEntity`
+  - Table
+	 	- Method: `Setup a table-model pair - The short way`
+    - Name: `TypeDEntity`
+    - Columns
+    ```php
+      $table->string('name');
+    ```        
 	- Model
+    - De-restrict fields
+			```php
+				'name',
+			```
 		- Relationships method
 			- Class/name/parameters:
 				- Name: `TypeDEntity`->`TypeAEntities`
@@ -1712,7 +1724,7 @@ up till here
     });
   ```
 
-#### <a name="6.4.5."></a> Polymorphic Relationships
+#### <a name="Polymorphic-Relationships"></a> Polymorphic Relationships
 ##### General
 - Definition
   - A good way of understanding this is to think of it as a kind of "either-or to many relationship"

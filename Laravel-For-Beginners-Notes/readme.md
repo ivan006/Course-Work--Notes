@@ -647,10 +647,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [Setup a model (Line 30)](#6.1.)
 - [SQL models (Line 695)](#6.2.)
 - [ORM models (Line 788)](#6.3.)
-- [ORM models with basic relationships (Line 1069)](#6.4.)
-- [ORM models with advanced relationships (Roughly Line 1450)](#6.5.)
-- [Model testing environment (Roughly Line 1882)](#6.6.)
-- [Models with accessors and mutators (Roughly Line 1930)](#6.7.)
+- [ORM models with relationships (Line 1069)](#6.4.)
+- [Model testing environment (Roughly Line 1882)](#6.5.)
+- [Models with accessors and mutators (Roughly Line 1930)](#6.6.)
 
 ###  <a name="6.1."></a> Setup a model
 
@@ -2037,7 +2036,7 @@ up till here
       });
     ```  
 
-###  <a name="6.6."></a>  Model testing environment
+###  <a name="6.5."></a>  Model testing environment
 
 #### General
 - A queries testing environment is a place to test your controller queries before you add them to your script. The one that comes with Laravel is called Tinker.
@@ -2091,7 +2090,7 @@ up till here
 
 
 
-### <a name="6.7."></a> Models with accessors and mutators
+### <a name="6.6."></a> Models with accessors and mutators
 
 #### Table Of Content
 - [Dates](#Dates)

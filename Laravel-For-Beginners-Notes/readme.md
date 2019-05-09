@@ -1069,12 +1069,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### <a name="6.4."></a> ORM models with relationships
 
-- [One to one relationship](#)
-- [One to many relationships](#)
-- [Many to many relationships](#)
-- [One to many relationships](#)
-- [Relationship with 2 Levels of Separation](#)
-- [Polymorphic Relationships](#)
+- [One to one relationship](#6.4.1.)
+- [One to many relationships](#6.4.2.)
+- [Many to many relationships](#6.4.3.)
+- [Relationship with 2 Levels of Separation](#6.4.4.)
+- [Polymorphic Relationships](#6.4.5.)
 
 
 
@@ -1084,7 +1083,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-#### One to one relationship
+#### <a name="6.4.1."></a> One to one relationship
 ##### Set up
 - Set up for `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
@@ -1234,7 +1233,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/a/read/b/read/1`
 
-#### One to many relationships
+#### <a name="6.4.2."></a> One to many relationships
 ##### Set up
 - Set up for `TypeBEntity`
 	- Model
@@ -1305,7 +1304,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/b/read/a/delete/1`
 
-#### Many to many relationships
+#### <a name="6.4.3."></a> Many to many relationships
 
 ##### General
 
@@ -1469,7 +1468,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/b/read/CLink/read/1`
 - Delete
-	- Note: Don't do these until the end of the chapter as we will still be using these links
+	- Note: Don't do these until the end of the subsection as we will still be using these links
 	- Detach 1 only
 		- Route:
 			- Name/parameters: `/b/read/CLink/delete/{a}/{b}` parameters to use - `$a, $b`
@@ -1559,24 +1558,13 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
 
-#### Relationship with 2 Levels of Separation
+#### <a name="6.4.4."></a> Relationship with 2 Levels of Separation
 ##### Preparation
 
 - Data
 	- `Refresh all the migrations` to have a clean start
-- Set up `TypeDEntity`
-  - Table
-	 	- Method: `Setup a table-model pair - The short way`
-    - Name: `TypeDEntity`
-    - Columns
-    ```php
-      $table->string('name');
-    ```        
+- Set up `TypeCEntity`   
 	- Model
-    - De-restrict fields
-			```php
-				'name',
-			```
 		- Relationships method
 			- Class/name/parameters:
 				- Name: `TypeDEntity`->`TypeAEntities`
@@ -1724,7 +1712,7 @@ up till here
     });
   ```
 
-#### <a name="Polymorphic-Relationships"></a> Polymorphic Relationships
+#### <a name="6.4.5."></a> Polymorphic Relationships
 ##### General
 - Definition
   - A good way of understanding this is to think of it as a kind of "either-or to many relationship"

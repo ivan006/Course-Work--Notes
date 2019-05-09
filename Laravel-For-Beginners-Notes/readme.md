@@ -1072,7 +1072,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [One to one relationship](#6.4.1.)
 - [One to many relationships](#6.4.2.)
 - [Many to many relationships](#6.4.3.)
-- [Relationship with 2 Levels of Separation](#6.4.4.)
+- [One to many with 2 levels of separation](#6.4.4.)
 - [Polymorphic Relationships](#6.4.5.)
 
 
@@ -1558,7 +1558,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
 
-#### <a name="6.4.4."></a> Relationship with 2 Levels of Separation
+#### <a name="6.4.4."></a> One to many relationships with 2 levels of separation
 ##### Preparation
 
 - Data
@@ -2499,7 +2499,7 @@ Route::get('/64', function (){
 	- countries
 	  - Similar to
 	    - Model:  type_d_entitys
-	    - From the section on: Advanced Relationships - Relationship with 2 Levels of Separation 	
+	    - From the section on: Advanced Relationships - One to many with 2 levels of separation 	
 	    - Video course's section: 68-70
 	  - Columns
 	  ```php

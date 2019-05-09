@@ -1068,11 +1068,20 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - URL example: `fundamental-mechanisms-app.test/a/delete`
 
 
-### <a name="6.4."></a> ORM models with basic relationships
+### <a name="6.4."></a> ORM models with relationships
+
+- [One to one relationship](#)
+- [One to many relationships](#)
+- [Many to many relationships](#)
+- [One to many relationships](#)
+- [Relationship with 2 Levels of Separation](#)
+- [Polymorphic Relationships](#)
+
 
 
 #### General
 - This section covers ORM models methods. These are a type of model method that makes tables interrelated. The purpose of these relationships is to create super entities or networks of entities. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of a related table. There are many different types of relationships.
+- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/erd.png)
 
 
 
@@ -1393,7 +1402,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		- Delete records (only use if needed)
 			- URL example: `fundamental-mechanisms-app.test/b/delete/1`
 - Set up `TypeBEntityTypeCEntity`
-	- Note: This is a pseudo entity as it simple relates other entities
+	- Note: This is a associative entity as it simple relates other entities
 	- Table-model pair setup method
 	 	- `Setup a table-model pair - The long way`
 		- We use this method cause we want to keep our table name singular
@@ -1550,10 +1559,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
-### <a name="6.5."></a> ORM models with advanced relationships
-#### Table Of Content
-- [Relationship with 2 Levels of Separation](#Relationship-with-2-Levels-of-Separation)
-- [Polymorphic Relationships](#Polymorphic-Relationships)
 
 #### Relationship with 2 Levels of Separation
 ##### Preparation

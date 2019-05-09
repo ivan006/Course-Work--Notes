@@ -1599,10 +1599,59 @@ up till here
 
 
 	- Data
+		- Controller
+			- `Set up a controller that is resourced` as previously demonstrated.
+				- Name: `TypeCEntity_Controller`
+				- Aliases: add this to the header
+				```php
+					use App\TypeCEntity;
+				```
 		- Create records (make 3)
+			- Do as demonstrated in `Create record with multiple field values`
+			- Route
+				- Name/parameters: `/c/create/{a}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeCEntity_Controller`->`create` parameters to use - `$a`
+				- Script:
+				```php
+					TypeCEntity::create([
+						'name'=>$a,
+					]);
+				```
 			- URL example: `fundamental-mechanisms-app.test/c/create/1`
 		- Delete records (only use if needed)
-			- URL example: `fundamental-mechanisms-app.test/c/delete/1`
+			- Do as demonstrated in `Delete method 2`
+			- Route
+				- Name/parameters: `/c/delete/{a}` parameters to use - `$a`
+			- Controller method
+				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
+				- Script:
+				```php
+					TypeCEntity::destroy($a);
+				```
+				- URL example: `fundamental-mechanisms-app.test/c/delete/1`
+  - Manage records
+    - Create records
+      - Route
+        - Create 2 records
+        - Do as demonstrated in `Create record with multiple field values`
+        - For the route name use: `/ExampleRoute44`
+        - For the referenced model use `TypeDEntity`
+        - E.g.
+        ```php
+          Route::get('/ExampleRoute44', function(){
+            TypeDEntity::create(['name'=>'data_value_a']);
+            TypeDEntity::create(['name'=>'data_value_b']);
+          });
+        ```
+    - Delete records
+      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
+      ```php
+      Route::get('/ExampleRoute45', function(){
+        TypeDEntity::destroy(3);
+      });
+      ```
+
 - Parent model's new column
   - Setup it up
     - Migration - As seen in the section `Create a column with a migration`

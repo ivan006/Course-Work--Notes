@@ -1069,12 +1069,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 ### <a name="6.4."></a> ORM models with relationships
 
-- [One to one relationship](#)
-- [One to many relationships](#)
-- [Many to many relationships](#)
-- [One to many relationships](#)
-- [Relationship with 2 Levels of Separation](#)
-- [Polymorphic Relationships](#)
+- [One to one relationship](#6.4.1.)
+- [One to many relationships](#6.4.2.)
+- [Many to many relationships](#6.4.3.)
+- [Relationship with 2 Levels of Separation](#6.4.4.)
+- [Polymorphic Relationships](#6.4.5.)
 
 
 
@@ -1084,7 +1083,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 
 
-#### One to one relationship
+#### <a name="6.4.1."></a> One to one relationship
 ##### Set up
 - Set up for `TypeBEntity`
 	- This will be `TypeAEntity`'s parent
@@ -1234,7 +1233,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/a/read/b/read/1`
 
-#### One to many relationships
+#### <a name="6.4.2."></a> One to many relationships
 ##### Set up
 - Set up for `TypeBEntity`
 	- Model
@@ -1305,7 +1304,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 		```
 	- URL example: `fundamental-mechanisms-app.test/b/read/a/delete/1`
 
-#### Many to many relationships
+#### <a name="6.4.3."></a> Many to many relationships
 
 ##### General
 
@@ -1559,12 +1558,12 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
 
-#### Relationship with 2 Levels of Separation
+#### <a name="6.4.4."></a> Relationship with 2 Levels of Separation
 ##### Preparation
 
 - Data
 	- `Refresh all the migrations` to have a clean start
-- Set up `TypeCEntity`
+- Set up `TypeCEntity`  
   - Table
 	 	- Method: `Setup a table-model pair - The short way`
     - Name: `TypeDEntity`
@@ -1600,59 +1599,10 @@ up till here
 
 
 	- Data
-		- Controller
-			- `Set up a controller that is resourced` as previously demonstrated.
-				- Name: `TypeCEntity_Controller`
-				- Aliases: add this to the header
-				```php
-					use App\TypeCEntity;
-				```
 		- Create records (make 3)
-			- Do as demonstrated in `Create record with multiple field values`
-			- Route
-				- Name/parameters: `/c/create/{a}` parameters to use - `$a`
-			- Controller method
-				- Class/name/parameters: `TypeCEntity_Controller`->`create` parameters to use - `$a`
-				- Script:
-				```php
-					TypeCEntity::create([
-						'name'=>$a,
-					]);
-				```
 			- URL example: `fundamental-mechanisms-app.test/c/create/1`
 		- Delete records (only use if needed)
-			- Do as demonstrated in `Delete method 2`
-			- Route
-				- Name/parameters: `/c/delete/{a}` parameters to use - `$a`
-			- Controller method
-				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
-				- Script:
-				```php
-					TypeCEntity::destroy($a);
-				```
-				- URL example: `fundamental-mechanisms-app.test/c/delete/1`
-
-  - Manage records
-    - Create records
-      - Route
-        - Create 2 records
-        - Do as demonstrated in `Create record with multiple field values`
-        - For the route name use: `/ExampleRoute44`
-        - For the referenced model use `TypeDEntity`
-        - E.g.
-        ```php
-          Route::get('/ExampleRoute44', function(){
-            TypeDEntity::create(['name'=>'data_value_a']);
-            TypeDEntity::create(['name'=>'data_value_b']);
-          });
-        ```
-    - Delete records
-      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-      ```php
-      Route::get('/ExampleRoute45', function(){
-        TypeDEntity::destroy(3);
-      });
-      ```
+			- URL example: `fundamental-mechanisms-app.test/c/delete/1`
 - Parent model's new column
   - Setup it up
     - Migration - As seen in the section `Column handling migration`
@@ -1724,7 +1674,7 @@ up till here
     });
   ```
 
-#### <a name="Polymorphic-Relationships"></a> Polymorphic Relationships
+#### <a name="6.4.5."></a> Polymorphic Relationships
 ##### General
 - Definition
   - A good way of understanding this is to think of it as a kind of "either-or to many relationship"

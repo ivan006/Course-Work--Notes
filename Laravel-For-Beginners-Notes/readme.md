@@ -1000,7 +1000,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
     - Line 3
       - Put this in the `TypeAEntity` model class - `protected $dates = ['deleted_at'];`
   - Database
-    - Add a new column handling migration called `type_a_entities_m_column_deleted_at` for the `type_a_entities` table.
+    - Add a new `Create a column with a migration` called `type_a_entities_m_column_deleted_at` for the `type_a_entities` table.
     - Configure it    
       - In the  `up` method write `$table->softDeletes();`
       - In the `down` method write `$table->dropColumn('deleted_at');`
@@ -1563,7 +1563,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 - Data
 	- `Refresh all the migrations` to have a clean start
-- Set up `TypeCEntity`  
+- Set up `TypeDEntity`  
   - Table
 	 	- Method: `Setup a table-model pair - The short way`
     - Name: `TypeDEntity`
@@ -1605,7 +1605,7 @@ up till here
 			- URL example: `fundamental-mechanisms-app.test/c/delete/1`
 - Parent model's new column
   - Setup it up
-    - Migration - As seen in the section `Column handling migration`
+    - Migration - As seen in the section `Create a column with a migration`
       - Use the migration name of `type_b_entity_m_column_type_d_entity_id`
       - Use the table specifier of `type_b_entities`.
       - Table columns

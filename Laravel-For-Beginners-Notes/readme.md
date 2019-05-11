@@ -1088,7 +1088,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- type_d_entities		countries	 
 	- type_e_entities 	photos
 	- type_f_entities		tags and videos (but videos is faulty as has no associative table) 	 
-	- type_f_entities_relation		tag_relationships	 
+	- type_f_entity_relation		tag_relationships	 
 
 
 
@@ -1743,7 +1743,7 @@ up till here
   - Great-grand-child table-model pair
       - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
           - Migration
-              - Table's name `ExampleGreatGrandChildModel`
+              - Table's name `TypeEEntity`
               - Table columns
               ```php
                 $table->integer('parent_id');
@@ -1772,8 +1772,8 @@ up till here
           - Relationship
               - Add this
               ```php
-                public function ExampleGreatGrandChildModels() {
-                  return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
+                public function TypeEEntities() {
+                  return $this->morphMany('App\TypeEEntity', 'parent');
                 }
               ```
   - `TypeBEntity`
@@ -1781,8 +1781,8 @@ up till here
           - Relationship
               - Add this
               ```php
-                public function ExampleGreatGrandChildModels() {
-                  return $this->morphMany('App\ExampleGreatGrandChildModel', 'parent');
+                public function TypeEEntities() {
+                  return $this->morphMany('App\TypeEEntity', 'parent');
                 }
               ```
   - Repopulate some content
@@ -1799,8 +1799,8 @@ up till here
         - Use these details
         ```php
           Route::get('/ExampleRoute51', function(){
-            ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\TypeAEntity']);
-            ExampleGreatGrandChildModel::create(['parent_id'=>1, 'parent_type'=>'App\TypeBEntity']);
+            TypeEEntity::create(['parent_id'=>1, 'parent_type'=>'App\TypeAEntity']);
+            TypeEEntity::create(['parent_id'=>1, 'parent_type'=>'App\TypeBEntity']);
           });
         ```
     - Create a great grandchild record through a parent
@@ -1816,7 +1816,7 @@ up till here
             ```php
               Route::get('/ExampleRoute53', function(){
                   $example_variable = TypeAEntity::find(1);
-                  foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+                  foreach ($example_variable->TypeEEntities as $example_variable_part) {
                     echo "<br><br>".$example_variable_part;
                   }
               });
@@ -1826,7 +1826,7 @@ up till here
             ```php
               Route::get('/ExampleRoute54', function(){
                   $example_variable = TypeBEntity::find(1);
-                  foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+                  foreach ($example_variable->TypeEEntities as $example_variable_part) {
                     echo "<br><br>".$example_variable_part;
                   }
               });
@@ -1835,7 +1835,7 @@ up till here
       - Route
       ```php
         Route::get('/ExampleRoute55', function(){
-            $example_variable = ExampleGreatGrandChildModel::find(1);
+            $example_variable = TypeEEntity::find(1);
             return $example_variable->parent;
         });
       ```
@@ -1852,7 +1852,7 @@ up till here
       - Give it a new parent
       ```php
         Route::get('/ExampleRoute55.2', function(){
-          TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->save(ExampleGreatGrandChildModel::findOrFail(2));
+          TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->save(TypeEEntity::findOrFail(2));
         });
       ```
       - Remove it's parent
@@ -1865,7 +1865,7 @@ up till here
     - Delete great grandchild records
     ```php
       Route::get('/ExampleRoute52', function(){
-        ExampleGreatGrandChildModel::find(1)->forceDelete();
+        TypeEEntity::find(1)->forceDelete();
       });
     ```
     - Delete great grandchild record through parent
@@ -1879,7 +1879,7 @@ up till here
   - Parent 2 table-model pair
       - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
           - Migration
-              - Table's name `TypeBEntity2`
+              - Table's name `TypeFEntity`
               - Table columns
               ```php
                 $table->string('name');
@@ -1892,36 +1892,36 @@ up till here
               - Relationship
               ```php
                 public function TypeAEntities() {
-                  return $this->morphedByMany('App\TypeAEntity', 'type_f_entities_relation');
+                  return $this->morphedByMany('App\TypeAEntity', 'type_f_entity_relation');
                 }
-                public function ExampleGreatGrandChildModels() {
-                  return $this->morphedByMany('App\ExampleGreatGrandChildModel', 'type_f_entities_relations');
+                public function TypeEEntities() {
+                  return $this->morphedByMany('App\TypeEEntity', 'type_f_entity_relations');
                 }
               ```
   - Bridging/relationship table-model pair
       - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
           - Migration
-              - Table's name `TypeBEntity2Relationship`
+              - Table's name `TypeFEntityRelationship`
               - Table columns
               ```php
                 $table->string('type_f_entities_id');
-                $table->integer('type_f_entities_relation_id');
-                $table->string('type_f_entities_relation_type');
+                $table->integer('type_f_entity_relation_id');
+                $table->string('type_f_entity_relation_type');
               ```
           - Model
               - De-restrict fields
 					  	```php
 							'type_f_entities_id',
-							'type_f_entities_relation_id',
-							'type_f_entities_relation_type',
+							'type_f_entity_relation_id',
+							'type_f_entity_relation_type',
 							```
   - `TypeAEntity`
     - Model
         - Relationship
             - Add this
             ```php
-              public function TypeBEntity2s() {
-                return $this->morphToMany('App\TypeBEntity2', 'type_f_entities_relation');
+              public function TypeFEntities() {
+                return $this->morphToMany('App\TypeFEntity', 'type_f_entity_relation');
               }
             ```
   - Example Great Grand Child model
@@ -1929,8 +1929,8 @@ up till here
         - Relationship
             - Add this
             ```php
-              public function TypeBEntity2s() {
-                return $this->morphToMany('App\TypeBEntity2', 'type_f_entities_relation');
+              public function TypeFEntities() {
+                return $this->morphToMany('App\TypeFEntity', 'type_f_entity_relation');
               }
             ```
 - Queries
@@ -1940,8 +1940,8 @@ up till here
         - Use these details
         ```php
           Route::get('/ExampleRoute56', function(){
-            TypeBEntity2::create(['name'=>'grand-child2.1']);
-            TypeBEntity2::create(['name'=>'grand-child2.2']);
+            TypeFEntity::create(['name'=>'grand-child2.1']);
+            TypeFEntity::create(['name'=>'grand-child2.2']);
           });
         ```
     - Create 2 relationship records
@@ -1949,21 +1949,21 @@ up till here
       - Bear in mind you can use either the `save()` function of the `attach()` function
       ```php
         Route::get('/ExampleRoute58', function(){
-          TypeBEntity2Relationship::create(['type_f_entities_id'=>'1', 'type_f_entities_relation_id'=>1, 'type_f_entities_relation_type'=>'App\TypeAEntity']);
-          TypeBEntity2Relationship::create(['type_f_entities_id'=>'2', 'type_f_entities_relation_id'=>1, 'type_f_entities_relation_type'=>'App\ExampleGreatGrandChildModel']);
+          TypeFEntityRelationship::create(['type_f_entities_id'=>'1', 'type_f_entity_relation_id'=>1, 'type_f_entity_relation_type'=>'App\TypeAEntity']);
+          TypeFEntityRelationship::create(['type_f_entities_id'=>'2', 'type_f_entity_relation_id'=>1, 'type_f_entity_relation_type'=>'App\TypeEEntity']);
         });
       ```
     - Create relationship records through a child
     ```php
       Route::get('/ExampleRoute58.1', function(){
-        $example_variable = TypeBEntity2::findOrFail(1);
-        TypeAEntity::findOrFail(7)->TypeBEntity2s()->save($example_variable);
+        $example_variable = TypeFEntity::findOrFail(1);
+        TypeAEntity::findOrFail(7)->TypeFEntities()->save($example_variable);
       });
     ```
     - Create relationship records through a child and delete any old relationships for that child
     ```php
       Route::get('/ExampleRoute58.2 ', function(){
-        TypeAEntity::findOrFail(7)->TypeBEntity2s()->sync([2]);
+        TypeAEntity::findOrFail(7)->TypeFEntities()->sync([2]);
       });
     ```
   - Read
@@ -1973,7 +1973,7 @@ up till here
         ```php
         Route::get('/ExampleRoute60', function(){
             $example_variable = TypeAEntity::find(1);
-            foreach ($example_variable->TypeBEntity2s as $example_variable_part) {
+            foreach ($example_variable->TypeFEntities as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
         });
@@ -1982,8 +1982,8 @@ up till here
         - Route
         ```php
         Route::get('/ExampleRoute61', function(){
-            $example_variable = ExampleGreatGrandChildModel::find(1);
-            foreach ($example_variable->TypeBEntity2s as $example_variable_part) {
+            $example_variable = TypeEEntity::find(1);
+            foreach ($example_variable->TypeFEntities as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
         });
@@ -1992,7 +1992,7 @@ up till here
       ```php
         Route::get('/ExampleRoute61.1', function(){
           $example_variable = TypeAEntity::findOrFail(7);
-          foreach($example_variable->TypeBEntity2s as $example_variable2){
+          foreach($example_variable->TypeFEntities as $example_variable2){
             echo $example_variable2;
           }
         });
@@ -2002,7 +2002,7 @@ up till here
         - Route
         ```php
           Route::get('/ExampleRoute62', function(){
-            $example_variable = TypeBEntity2::find(1);
+            $example_variable = TypeFEntity::find(1);
             foreach ($example_variable->TypeAEntities as $example_variable_part) {
               echo "<br><br>".$example_variable_part;
             }
@@ -2012,8 +2012,8 @@ up till here
         - Route
         ```php
         Route::get('/ExampleRoute63', function(){
-          $example_variable = TypeBEntity2::find(1);
-          foreach ($example_variable->ExampleGreatGrandChildModels as $example_variable_part) {
+          $example_variable = TypeFEntity::find(1);
+          foreach ($example_variable->TypeEEntities as $example_variable_part) {
             echo "<br><br>".$example_variable_part;
           }
         });
@@ -2022,26 +2022,26 @@ up till here
     - Update parent through child
     ```php
       Route::get('/ExampleRoute63.1', function(){
-        $example_variable = TypeAEntity::findOrFail(7)->TypeBEntity2s->first()->update(['name'=>'updated']);
+        $example_variable = TypeAEntity::findOrFail(7)->TypeFEntities->first()->update(['name'=>'updated']);
       });
     ```
   - Delete
     - Delete parent 2 records
     ```php
       Route::get('/ExampleRoute57', function(){
-        TypeBEntity2::find(1)->forceDelete();
+        TypeFEntity::find(1)->forceDelete();
       });
     ```   
     - Delete parent through child
     ```php
       Route::get('/ExampleRoute57.1', function(){
-        $example_variable = ExampleObject::findOrFail(7)->TypeBEntity2s->first()->delete();
+        $example_variable = ExampleObject::findOrFail(7)->TypeFEntities->first()->delete();
       });
     ```
     - Delete parent 2 records
     ```php
       Route::get('/ExampleRoute59', function(){
-        TypeBEntity2Relationship::find(1)->forceDelete();
+        TypeFEntityRelationship::find(1)->forceDelete();
       });
     ```  
 
@@ -2093,7 +2093,7 @@ up till here
 #### ORM queries with relationships
 - View
   - Run `$example_variable = App\TypeAEntity::find(1);`
-  - Run `$example_variable->ExampleGreatGrandChildModels`
+  - Run `$example_variable->TypeEEntities`
 - Create, update, delete just like u do in the `Query Testing Environment- Basic ORM Queries` section
 
 
@@ -2587,7 +2587,7 @@ Route::get('/64', function (){
 	  ```
 	- tag_relationships
 	  - Similar to
-	    - Model:  `type_f_entities_relation`
+	    - Model:  `type_f_entity_relation`
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
 	    - Video course's section: 74-77
 	  - Columns

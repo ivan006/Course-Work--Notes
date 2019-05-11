@@ -1080,6 +1080,17 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 #### General
 - This section covers ORM models methods. These are a type of model method that makes tables interrelated. The purpose of these relationships is to create super entities or networks of entities. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of a related table. There are many different types of relationships.
 - ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/erd.png)
+- d
+	- type_a_entities		posts	 
+	- type_b_entities		users	 
+	- type_b_entity_type_c_entity	role_user	 
+	- example_grandparent_models	roles	 
+	- type_d_entitys		countries	 
+	- example_great_grand_child_models 	photos	 
+	- type_b_entity2s 	
+	- type_b_entity2s		tags and videos (but videos is faulty as has no associative table) 	 
+	- type_b_entity2_relation		tag_relationships	 
+
 
 
 

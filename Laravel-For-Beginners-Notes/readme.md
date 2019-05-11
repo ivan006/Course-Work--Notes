@@ -1073,8 +1073,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [One to many relationships](#6.4.2.)
 - [Many to many relationships](#6.4.3.)
 - [One to many with 2 levels of separation](#6.4.4.)
-- [Many to many polymorphic relationships](#6.4.5.)
-- [One to many polymorphic relationships](#6.4.6.)
+- [One to many polymorphic relationships](#6.4.5.)
+- [Many to many polymorphic relationships](#6.4.6.)
 
 
 

@@ -1072,9 +1072,9 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [One to one relationship](#6.4.1.)
 - [One to many relationships](#6.4.2.)
 - [Many to many relationships](#6.4.3.)
-- [One to many with 2 levels of separation](#6.4.4.)
-- [One to many polymorphic relationships](#6.4.5.)
-- [Many to many polymorphic relationships](#6.4.6.)
+- [Intermediate relationship (one to many)](#6.4.4.)
+- [Polymorphic relationship (one to many)](#6.4.5.)
+- [Polymorphic relationship (many to many)](#6.4.6.)
 
 
 
@@ -1569,7 +1569,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- URL example: `fundamental-mechanisms-app.test/c/read/b/read/3`
 
 
-#### <a name="6.4.4."></a> One to many relationships with 2 levels of separation
+#### <a name="6.4.4."></a> Intermediate relationship (one to many)
 ##### Preparation
 
 - Data
@@ -1734,7 +1734,7 @@ up till here
     });
   ```
 
-####  <a name="6.4.5."></a>One to many polymorphic relationships
+####  <a name="6.4.5."></a>Polymorphic relationship (one to many)
 ##### General
 - Definition
 	- A good way of understanding a polymorphic relationship is to think of it as a kind of "either-or to many relationship"
@@ -1874,7 +1874,7 @@ up till here
       TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(7)->delete();
     });
   ```
-####  <a name="6.4.6."></a>Many to many polymorphic relationships
+####  <a name="6.4.6."></a>Polymorphic relationship (many to many)
 ##### Prerequisites
 - Parent 2 table-model pair
     - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
@@ -2509,7 +2509,7 @@ Route::get('/64', function (){
 	- countries
 	  - Similar to
 	    - Model:  type_d_entities
-	    - From the section on: Advanced Relationships - One to many with 2 levels of separation 	
+	    - From the section on: Advanced Relationships - Intermediate relationship (one to many) 	
 	    - Video course's section: 68-70
 	  - Columns
 	  ```php

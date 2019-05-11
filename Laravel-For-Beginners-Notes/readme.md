@@ -1073,7 +1073,8 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - [One to many relationships](#6.4.2.)
 - [Many to many relationships](#6.4.3.)
 - [One to many with 2 levels of separation](#6.4.4.)
-- [Polymorphic Relationships](#6.4.5.)
+- [Many to many polymorphic relationships](#6.4.5.)
+- [One to many polymorphic relationships](#6.4.6.)
 
 
 
@@ -1733,317 +1734,316 @@ up till here
     });
   ```
 
-#### <a name="6.4.5."></a> Polymorphic Relationships
+####  <a name="6.4.5."></a>One to many polymorphic relationships
 ##### General
 - Definition
-  - A good way of understanding this is to think of it as a kind of "either-or to many relationship"
-  - A polymorphic relationship means a relationship where a child table can be shared between different types of parents (or different parent tables)
-##### One to many polymorphic relationships
-- Prerequisites
-  - Great-grand-child table-model pair
-      - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
-          - Migration
-              - Table's name `TypeEEntity`
-              - Table columns
-              ```php
-                $table->integer('parent_id');
-                $table->string('parent_type');
-                $table->string('data_field_a');
-              ```
-          - Model
-              - De-restrict fields
-					  	```php
-								'parent_id',
-								'parent_type',
-								'data_field_a',
-							```
-              - Relationship
-              ```php
-                public function parent() {
-                  return $this->morphTo();
+	- A good way of understanding a polymorphic relationship is to think of it as a kind of "either-or to many relationship"
+	- A polymorphic relationship means a relationship where a child table can be shared between different types of parents (or different parent tables)
+##### Prerequisites
+- Great-grand-child table-model pair
+    - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
+        - Migration
+            - Table's name `TypeEEntity`
+            - Table columns
+            ```php
+              $table->integer('parent_id');
+              $table->string('parent_type');
+              $table->string('data_field_a');
+            ```
+        - Model
+            - De-restrict fields
+				  	```php
+							'parent_id',
+							'parent_type',
+							'data_field_a',
+						```
+            - Relationship
+            ```php
+              public function parent() {
+                return $this->morphTo();
+              }
+            ```
+- `TypeAEntity`
+    - Migration
+        - Since we will now be using polymorphic relationships this will be configured.
+        - Comment this out `$table->integer('type_b_entity_id')->unsigned();`
+        - Refresh all the tables
+    - Model
+        - Relationship
+            - Add this
+            ```php
+              public function TypeEEntities() {
+                return $this->morphMany('App\TypeEEntity', 'parent');
+              }
+            ```
+- `TypeBEntity`
+    - Model
+        - Relationship
+            - Add this
+            ```php
+              public function TypeEEntities() {
+                return $this->morphMany('App\TypeEEntity', 'parent');
+              }
+            ```
+- Repopulate some content
+    - Since we refreshed all the tables we will need to repopulate some content.
+    - Use the following routes to add content
+        - For `type_a_entity` use `/ExampleRoute16` do not use `/ExampleRoute48`
+        - For `type_b_entity` use `/ExampleRoute40` don't use `/ExampleRoute46`
+        - For example grandparent model use `/ExampleRoute38`
+        - For example grandparent-parent relationship model use `/ExampleRoute36`
+##### Queries
+- Create
+  - Create 2 great grandchild records
+      - As done here `Create record with multiple field values`
+      - Use these details
+      ```php
+        Route::get('/ExampleRoute51', function(){
+          TypeEEntity::create(['parent_id'=>1, 'parent_type'=>'App\TypeAEntity']);
+          TypeEEntity::create(['parent_id'=>1, 'parent_type'=>'App\TypeBEntity']);
+        });
+      ```
+  - Create a great grandchild record through a parent
+  ```php
+    Route::get('/ExampleRoute51.2', function(){
+      TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->create(['data_field_a'=>'example_value']);
+    });
+  ```
+- Read
+  - View the descendent polymorphically
+      - `TypeAEntity`
+          - Route
+          ```php
+            Route::get('/ExampleRoute53', function(){
+                $example_variable = TypeAEntity::find(1);
+                foreach ($example_variable->TypeEEntities as $example_variable_part) {
+                  echo "<br><br>".$example_variable_part;
                 }
-              ```
-  - `TypeAEntity`
-      - Migration
-          - Since we will now be using polymorphic relationships this will be configured.
-          - Comment this out `$table->integer('type_b_entity_id')->unsigned();`
-          - Refresh all the tables
-      - Model
-          - Relationship
-              - Add this
-              ```php
-                public function TypeEEntities() {
-                  return $this->morphMany('App\TypeEEntity', 'parent');
+            });
+          ```
+      - `TypeBEntity`
+          - Route
+          ```php
+            Route::get('/ExampleRoute54', function(){
+                $example_variable = TypeBEntity::find(1);
+                foreach ($example_variable->TypeEEntities as $example_variable_part) {
+                  echo "<br><br>".$example_variable_part;
                 }
-              ```
-  - `TypeBEntity`
-      - Model
-          - Relationship
-              - Add this
-              ```php
-                public function TypeEEntities() {
-                  return $this->morphMany('App\TypeEEntity', 'parent');
-                }
-              ```
-  - Repopulate some content
-      - Since we refreshed all the tables we will need to repopulate some content.
-      - Use the following routes to add content
-          - For `type_a_entity` use `/ExampleRoute16` do not use `/ExampleRoute48`
-          - For `type_b_entity` use `/ExampleRoute40` don't use `/ExampleRoute46`
-          - For example grandparent model use `/ExampleRoute38`
-          - For example grandparent-parent relationship model use `/ExampleRoute36`
-- Queries
-  - Create
-    - Create 2 great grandchild records
-        - As done here `Create record with multiple field values`
-        - Use these details
-        ```php
-          Route::get('/ExampleRoute51', function(){
-            TypeEEntity::create(['parent_id'=>1, 'parent_type'=>'App\TypeAEntity']);
-            TypeEEntity::create(['parent_id'=>1, 'parent_type'=>'App\TypeBEntity']);
-          });
-        ```
-    - Create a great grandchild record through a parent
+            });
+          ```
+  - View the ancestor polymorphically (inverse of view the descendent polymorphically)
+    - Route
     ```php
-      Route::get('/ExampleRoute51.2', function(){
-        TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->create(['data_field_a'=>'example_value']);
+      Route::get('/ExampleRoute55', function(){
+          $example_variable = TypeEEntity::find(1);
+          return $example_variable->parent;
       });
     ```
-  - Read
-    - View the descendent polymorphically
-        - `TypeAEntity`
-            - Route
+- Update
+  - Update great grandchild through it's parent
+  ```php
+    Route::get('/ExampleRoute55.1', function(){
+      $example_variable = TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->first();
+      $example_variable->data_field_a = "example_value2";
+      $example_variable->save();
+    });
+  ```
+  - Update a great grandchild's relationship through a parent
+    - Give it a new parent
+    ```php
+      Route::get('/ExampleRoute55.2', function(){
+        TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->save(TypeEEntity::findOrFail(2));
+      });
+    ```
+    - Remove it's parent
+    ```php
+      Route::get('/ExampleRoute55.3', function(){
+        TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->update(['parent_id'=>'', 'parent_type'=>'']);
+      });
+    ```
+- Delete
+  - Delete great grandchild records
+  ```php
+    Route::get('/ExampleRoute52', function(){
+      TypeEEntity::find(1)->forceDelete();
+    });
+  ```
+  - Delete great grandchild record through parent
+  ```php
+    Route::get('/ExampleRoute52.1', function(){
+      TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(7)->delete();
+    });
+  ```
+####  <a name="6.4.6."></a>Many to many polymorphic relationships
+##### Prerequisites
+- Parent 2 table-model pair
+    - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
+        - Migration
+            - Table's name `TypeFEntity`
+            - Table columns
             ```php
-              Route::get('/ExampleRoute53', function(){
-                  $example_variable = TypeAEntity::find(1);
-                  foreach ($example_variable->TypeEEntities as $example_variable_part) {
-                    echo "<br><br>".$example_variable_part;
-                  }
-              });
+              $table->string('name');
             ```
-        - `TypeBEntity`
-            - Route
+        - Model
+            - De-restrict fields
+				  	```php
+							'name',
+						```
+            - Relationship
             ```php
-              Route::get('/ExampleRoute54', function(){
-                  $example_variable = TypeBEntity::find(1);
-                  foreach ($example_variable->TypeEEntities as $example_variable_part) {
-                    echo "<br><br>".$example_variable_part;
-                  }
-              });
+              public function TypeAEntities() {
+                return $this->morphedByMany('App\TypeAEntity', 'type_f_entity_relation');
+              }
+              public function TypeEEntities() {
+                return $this->morphedByMany('App\TypeEEntity', 'type_f_entity_relations');
+              }
             ```
-    - View the ancestor polymorphically (inverse of view the descendent polymorphically)
+- Bridging/relationship table-model pair
+    - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
+        - Migration
+            - Table's name `TypeFEntityRelationship`
+            - Table columns
+            ```php
+              $table->string('type_f_entities_id');
+              $table->integer('type_f_entity_relation_id');
+              $table->string('type_f_entity_relation_type');
+            ```
+        - Model
+            - De-restrict fields
+				  	```php
+						'type_f_entities_id',
+						'type_f_entity_relation_id',
+						'type_f_entity_relation_type',
+						```
+- `TypeAEntity`
+  - Model
+      - Relationship
+          - Add this
+          ```php
+            public function TypeFEntities() {
+              return $this->morphToMany('App\TypeFEntity', 'type_f_entity_relation');
+            }
+          ```
+- Example Great Grand Child model
+  - Model
+      - Relationship
+          - Add this
+          ```php
+            public function TypeFEntities() {
+              return $this->morphToMany('App\TypeFEntity', 'type_f_entity_relation');
+            }
+          ```
+##### Queries
+- Create
+  - Create 2 parent 2 records
+      - As done here `Create record with multiple field values`
+      - Use these details
+      ```php
+        Route::get('/ExampleRoute56', function(){
+          TypeFEntity::create(['name'=>'grand-child2.1']);
+          TypeFEntity::create(['name'=>'grand-child2.2']);
+        });
+      ```
+  - Create 2 relationship records
+    - As done here `Create record with multiple field values`
+    - Bear in mind you can use either the `save()` function of the `attach()` function
+    ```php
+      Route::get('/ExampleRoute58', function(){
+        TypeFEntityRelationship::create(['type_f_entities_id'=>'1', 'type_f_entity_relation_id'=>1, 'type_f_entity_relation_type'=>'App\TypeAEntity']);
+        TypeFEntityRelationship::create(['type_f_entities_id'=>'2', 'type_f_entity_relation_id'=>1, 'type_f_entity_relation_type'=>'App\TypeEEntity']);
+      });
+    ```
+  - Create relationship records through a child
+  ```php
+    Route::get('/ExampleRoute58.1', function(){
+      $example_variable = TypeFEntity::findOrFail(1);
+      TypeAEntity::findOrFail(7)->TypeFEntities()->save($example_variable);
+    });
+  ```
+  - Create relationship records through a child and delete any old relationships for that child
+  ```php
+    Route::get('/ExampleRoute58.2 ', function(){
+      TypeAEntity::findOrFail(7)->TypeFEntities()->sync([2]);
+    });
+  ```
+- Read
+  - View polymorphic parents of children
+    - While specifying child type 1
       - Route
       ```php
-        Route::get('/ExampleRoute55', function(){
-            $example_variable = TypeEEntity::find(1);
-            return $example_variable->parent;
-        });
-      ```
-  - Update
-    - Update great grandchild through it's parent
-    ```php
-      Route::get('/ExampleRoute55.1', function(){
-        $example_variable = TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->first();
-        $example_variable->data_field_a = "example_value2";
-        $example_variable->save();
-      });
-    ```
-    - Update a great grandchild's relationship through a parent
-      - Give it a new parent
-      ```php
-        Route::get('/ExampleRoute55.2', function(){
-          TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->save(TypeEEntity::findOrFail(2));
-        });
-      ```
-      - Remove it's parent
-      ```php
-        Route::get('/ExampleRoute55.3', function(){
-          TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(9)->update(['parent_id'=>'', 'parent_type'=>'']);
-        });
-      ```
-  - Delete
-    - Delete great grandchild records
-    ```php
-      Route::get('/ExampleRoute52', function(){
-        TypeEEntity::find(1)->forceDelete();
-      });
-    ```
-    - Delete great grandchild record through parent
-    ```php
-      Route::get('/ExampleRoute52.1', function(){
-        TypeAEntity::findOrFail(7)->ExampleGreatGrandChildren()->whereId(7)->delete();
-      });
-    ```
-##### Many to many polymorphic relationships
-- Prerequisites
-  - Parent 2 table-model pair
-      - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
-          - Migration
-              - Table's name `TypeFEntity`
-              - Table columns
-              ```php
-                $table->string('name');
-              ```
-          - Model
-              - De-restrict fields
-					  	```php
-								'name',
-							```
-              - Relationship
-              ```php
-                public function TypeAEntities() {
-                  return $this->morphedByMany('App\TypeAEntity', 'type_f_entity_relation');
-                }
-                public function TypeEEntities() {
-                  return $this->morphedByMany('App\TypeEEntity', 'type_f_entity_relations');
-                }
-              ```
-  - Bridging/relationship table-model pair
-      - Setup it up - just follow as previously demonstrated in `Setup a table-model pair - The short way` and use the following specs
-          - Migration
-              - Table's name `TypeFEntityRelationship`
-              - Table columns
-              ```php
-                $table->string('type_f_entities_id');
-                $table->integer('type_f_entity_relation_id');
-                $table->string('type_f_entity_relation_type');
-              ```
-          - Model
-              - De-restrict fields
-					  	```php
-							'type_f_entities_id',
-							'type_f_entity_relation_id',
-							'type_f_entity_relation_type',
-							```
-  - `TypeAEntity`
-    - Model
-        - Relationship
-            - Add this
-            ```php
-              public function TypeFEntities() {
-                return $this->morphToMany('App\TypeFEntity', 'type_f_entity_relation');
-              }
-            ```
-  - Example Great Grand Child model
-    - Model
-        - Relationship
-            - Add this
-            ```php
-              public function TypeFEntities() {
-                return $this->morphToMany('App\TypeFEntity', 'type_f_entity_relation');
-              }
-            ```
-- Queries
-  - Create
-    - Create 2 parent 2 records
-        - As done here `Create record with multiple field values`
-        - Use these details
-        ```php
-          Route::get('/ExampleRoute56', function(){
-            TypeFEntity::create(['name'=>'grand-child2.1']);
-            TypeFEntity::create(['name'=>'grand-child2.2']);
-          });
-        ```
-    - Create 2 relationship records
-      - As done here `Create record with multiple field values`
-      - Bear in mind you can use either the `save()` function of the `attach()` function
-      ```php
-        Route::get('/ExampleRoute58', function(){
-          TypeFEntityRelationship::create(['type_f_entities_id'=>'1', 'type_f_entity_relation_id'=>1, 'type_f_entity_relation_type'=>'App\TypeAEntity']);
-          TypeFEntityRelationship::create(['type_f_entities_id'=>'2', 'type_f_entity_relation_id'=>1, 'type_f_entity_relation_type'=>'App\TypeEEntity']);
-        });
-      ```
-    - Create relationship records through a child
-    ```php
-      Route::get('/ExampleRoute58.1', function(){
-        $example_variable = TypeFEntity::findOrFail(1);
-        TypeAEntity::findOrFail(7)->TypeFEntities()->save($example_variable);
-      });
-    ```
-    - Create relationship records through a child and delete any old relationships for that child
-    ```php
-      Route::get('/ExampleRoute58.2 ', function(){
-        TypeAEntity::findOrFail(7)->TypeFEntities()->sync([2]);
-      });
-    ```
-  - Read
-    - View polymorphic parents of children
-      - While specifying child type 1
-        - Route
-        ```php
-        Route::get('/ExampleRoute60', function(){
-            $example_variable = TypeAEntity::find(1);
-            foreach ($example_variable->TypeFEntities as $example_variable_part) {
-              echo "<br><br>".$example_variable_part;
-            }
-        });
-        ```
-      - While specifying child type 2
-        - Route
-        ```php
-        Route::get('/ExampleRoute61', function(){
-            $example_variable = TypeEEntity::find(1);
-            foreach ($example_variable->TypeFEntities as $example_variable_part) {
-              echo "<br><br>".$example_variable_part;
-            }
-        });
-        ```
-      - Read the parent through child
-      ```php
-        Route::get('/ExampleRoute61.1', function(){
-          $example_variable = TypeAEntity::findOrFail(7);
-          foreach($example_variable->TypeFEntities as $example_variable2){
-            echo $example_variable2;
+      Route::get('/ExampleRoute60', function(){
+          $example_variable = TypeAEntity::find(1);
+          foreach ($example_variable->TypeFEntities as $example_variable_part) {
+            echo "<br><br>".$example_variable_part;
           }
-        });
+      });
       ```
-    - View child of a specified child type of the polymorphic parent (inverse of above). Polymorphic means shared between different tables/types of data.
-      - While specifying child type 1
-        - Route
-        ```php
-          Route::get('/ExampleRoute62', function(){
-            $example_variable = TypeFEntity::find(1);
-            foreach ($example_variable->TypeAEntities as $example_variable_part) {
-              echo "<br><br>".$example_variable_part;
-            }
-          });
-        ```
-      - While specifying child type 2
-        - Route
-        ```php
-        Route::get('/ExampleRoute63', function(){
+    - While specifying child type 2
+      - Route
+      ```php
+      Route::get('/ExampleRoute61', function(){
+          $example_variable = TypeEEntity::find(1);
+          foreach ($example_variable->TypeFEntities as $example_variable_part) {
+            echo "<br><br>".$example_variable_part;
+          }
+      });
+      ```
+    - Read the parent through child
+    ```php
+      Route::get('/ExampleRoute61.1', function(){
+        $example_variable = TypeAEntity::findOrFail(7);
+        foreach($example_variable->TypeFEntities as $example_variable2){
+          echo $example_variable2;
+        }
+      });
+    ```
+  - View child of a specified child type of the polymorphic parent (inverse of above). Polymorphic means shared between different tables/types of data.
+    - While specifying child type 1
+      - Route
+      ```php
+        Route::get('/ExampleRoute62', function(){
           $example_variable = TypeFEntity::find(1);
-          foreach ($example_variable->TypeEEntities as $example_variable_part) {
+          foreach ($example_variable->TypeAEntities as $example_variable_part) {
             echo "<br><br>".$example_variable_part;
           }
         });
-        ```
-  - Update
-    - Update parent through child
-    ```php
-      Route::get('/ExampleRoute63.1', function(){
-        $example_variable = TypeAEntity::findOrFail(7)->TypeFEntities->first()->update(['name'=>'updated']);
+      ```
+    - While specifying child type 2
+      - Route
+      ```php
+      Route::get('/ExampleRoute63', function(){
+        $example_variable = TypeFEntity::find(1);
+        foreach ($example_variable->TypeEEntities as $example_variable_part) {
+          echo "<br><br>".$example_variable_part;
+        }
       });
-    ```
-  - Delete
-    - Delete parent 2 records
-    ```php
-      Route::get('/ExampleRoute57', function(){
-        TypeFEntity::find(1)->forceDelete();
-      });
-    ```   
-    - Delete parent through child
-    ```php
-      Route::get('/ExampleRoute57.1', function(){
-        $example_variable = ExampleObject::findOrFail(7)->TypeFEntities->first()->delete();
-      });
-    ```
-    - Delete parent 2 records
-    ```php
-      Route::get('/ExampleRoute59', function(){
-        TypeFEntityRelationship::find(1)->forceDelete();
-      });
-    ```  
+      ```
+- Update
+  - Update parent through child
+  ```php
+    Route::get('/ExampleRoute63.1', function(){
+      $example_variable = TypeAEntity::findOrFail(7)->TypeFEntities->first()->update(['name'=>'updated']);
+    });
+  ```
+- Delete
+  - Delete parent 2 records
+  ```php
+    Route::get('/ExampleRoute57', function(){
+      TypeFEntity::find(1)->forceDelete();
+    });
+  ```   
+  - Delete parent through child
+  ```php
+    Route::get('/ExampleRoute57.1', function(){
+      $example_variable = ExampleObject::findOrFail(7)->TypeFEntities->first()->delete();
+    });
+  ```
+  - Delete parent 2 records
+  ```php
+    Route::get('/ExampleRoute59', function(){
+      TypeFEntityRelationship::find(1)->forceDelete();
+    });
+  ```  
 
 ###  <a name="6.5."></a>  Model testing environment
 

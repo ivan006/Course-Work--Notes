@@ -1084,12 +1084,11 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- type_a_entities		posts	 
 	- type_b_entities		users	 
 	- type_b_entity_type_c_entity	role_user	 
-	- example_grandparent_models	roles	 
-	- type_d_entitys		countries	 
-	- example_great_grand_child_models 	photos	 
-	- type_b_entity2s 	
-	- type_b_entity2s		tags and videos (but videos is faulty as has no associative table) 	 
-	- type_b_entity2_relation		tag_relationships	 
+	- type_c_entities	roles	 
+	- type_d_entities		countries	 
+	- type_e_entities 	photos
+	- type_f_entities		tags and videos (but videos is faulty as has no associative table) 	 
+	- type_f_entities_relation		tag_relationships	 
 
 
 
@@ -1893,10 +1892,10 @@ up till here
               - Relationship
               ```php
                 public function TypeAEntities() {
-                  return $this->morphedByMany('App\TypeAEntity', 'type_b_entity2_relation');
+                  return $this->morphedByMany('App\TypeAEntity', 'type_f_entities_relation');
                 }
                 public function ExampleGreatGrandChildModels() {
-                  return $this->morphedByMany('App\ExampleGreatGrandChildModel', 'type_b_entity2_relations');
+                  return $this->morphedByMany('App\ExampleGreatGrandChildModel', 'type_f_entities_relations');
                 }
               ```
   - Bridging/relationship table-model pair
@@ -1905,16 +1904,16 @@ up till here
               - Table's name `TypeBEntity2Relationship`
               - Table columns
               ```php
-                $table->string('type_b_entity2_id');
-                $table->integer('type_b_entity2_relation_id');
-                $table->string('type_b_entity2_relation_type');
+                $table->string('type_f_entities_id');
+                $table->integer('type_f_entities_relation_id');
+                $table->string('type_f_entities_relation_type');
               ```
           - Model
               - De-restrict fields
 					  	```php
-							'type_b_entity2_id',
-							'type_b_entity2_relation_id',
-							'type_b_entity2_relation_type',
+							'type_f_entities_id',
+							'type_f_entities_relation_id',
+							'type_f_entities_relation_type',
 							```
   - `TypeAEntity`
     - Model
@@ -1922,7 +1921,7 @@ up till here
             - Add this
             ```php
               public function TypeBEntity2s() {
-                return $this->morphToMany('App\TypeBEntity2', 'type_b_entity2_relation');
+                return $this->morphToMany('App\TypeBEntity2', 'type_f_entities_relation');
               }
             ```
   - Example Great Grand Child model
@@ -1931,7 +1930,7 @@ up till here
             - Add this
             ```php
               public function TypeBEntity2s() {
-                return $this->morphToMany('App\TypeBEntity2', 'type_b_entity2_relation');
+                return $this->morphToMany('App\TypeBEntity2', 'type_f_entities_relation');
               }
             ```
 - Queries
@@ -1950,8 +1949,8 @@ up till here
       - Bear in mind you can use either the `save()` function of the `attach()` function
       ```php
         Route::get('/ExampleRoute58', function(){
-          TypeBEntity2Relationship::create(['type_b_entity2_id'=>'1', 'type_b_entity2_relation_id'=>1, 'type_b_entity2_relation_type'=>'App\TypeAEntity']);
-          TypeBEntity2Relationship::create(['type_b_entity2_id'=>'2', 'type_b_entity2_relation_id'=>1, 'type_b_entity2_relation_type'=>'App\ExampleGreatGrandChildModel']);
+          TypeBEntity2Relationship::create(['type_f_entities_id'=>'1', 'type_f_entities_relation_id'=>1, 'type_f_entities_relation_type'=>'App\TypeAEntity']);
+          TypeBEntity2Relationship::create(['type_f_entities_id'=>'2', 'type_f_entities_relation_id'=>1, 'type_f_entities_relation_type'=>'App\ExampleGreatGrandChildModel']);
         });
       ```
     - Create relationship records through a child
@@ -2491,7 +2490,7 @@ Route::get('/64', function (){
 	  ```
 	- roles
 	  - Similar to
-	    - Model:  example_grandparent_models
+	    - Model:  type_c_entities
 	    - From the section on: Basic Relationships - Many to many  	
 	    - Video course's section: 	66-67
 	  - Columns
@@ -2509,7 +2508,7 @@ Route::get('/64', function (){
 	  ```
 	- countries
 	  - Similar to
-	    - Model:  type_d_entitys
+	    - Model:  type_d_entities
 	    - From the section on: Advanced Relationships - One to many with 2 levels of separation 	
 	    - Video course's section: 68-70
 	  - Columns
@@ -2527,7 +2526,7 @@ Route::get('/64', function (){
 	  ```
 	- photos
 	  - Similar to
-	    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
+	    - Model:  type_e_entities (although due to a mistake it's equivalent is relatively different)
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
 	    - Video course's section: 71-73
 	  - Columns
@@ -2549,7 +2548,7 @@ Route::get('/64', function (){
 	  ```
 	- videos
 	  - Similar to
-	    - Model:  example_great_grand_child_models (although due to a mistake it's equivalent is relatively different)
+	    - Model:  type_e_entities (although due to a mistake it's equivalent is relatively different)
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - One to many 	
 	    - Video course's section: 71-73
 	  - Columns
@@ -2567,7 +2566,7 @@ Route::get('/64', function (){
 	  ```
 	- tags
 	  - Similar to
-	    - Model:  `type_b_entity2s`
+	    - Model:  `type_f_entities`
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many  	
 	    - Video course's section: 	74-77
 	  - Columns
@@ -2588,7 +2587,7 @@ Route::get('/64', function (){
 	  ```
 	- tag_relationships
 	  - Similar to
-	    - Model:  `type_b_entity2_relation`
+	    - Model:  `type_f_entities_relation`
 	    - From the section on: Advanced Relationships - Polymorphic Relationships - Many to many 	
 	    - Video course's section: 74-77
 	  - Columns

@@ -1328,7 +1328,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 	- `Refresh all the migrations` to have a clean start
 - Set up `TypeCEntity`
   - Table
-	 	- Method: `Setup a table-model pair - The short way`
+	 	- Setup method: `Setup a table-model pair - The short way`
     - Name: `TypeCEntity`
     - Columns
     ```php
@@ -1412,9 +1412,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 			- URL example: `fundamental-mechanisms-app.test/b/delete/1`
 - Set up `TypeBEntityTypeCEntity`
 	- Note: This is a associative entity as it simple relates other entities
-	- Table-model pair setup method
-	 	- `Setup a table-model pair - The long way`
-		- We use this method cause we want to keep our table name singular
+	- Table-model pair
+	 	- Setup method
+		 	- `Setup a table-model pair - The long way`
+			- We use this method cause we want to keep our table name singular
   - Table
     - Name
         - Rules
@@ -1574,9 +1575,10 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 - Data
 	- `Refresh all the migrations` to have a clean start
-- Set up `TypeDEntity`  
+- Set up `TypeDEntity`
+ 	- Table-model pair
+		- Setup method: `Setup a table-model pair - The short way`
   - Table
-	 	- Method: `Setup a table-model pair - The short way`
     - Name: `TypeDEntity`
     - Columns
     ```php
@@ -1600,7 +1602,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				- Accessor's 2nd parameter: Intermediate entity name
 				- Accessor's 3rd parameter: If you need a custom name for the foreign id column of the intermediary entity
 				- Accessor's 4th parameter: If you need a custom name for the foreign id column of the distant entity
-
 ---
 up till here
 ---
@@ -1609,13 +1610,14 @@ up till here
 
 
 
+
 	- Data
 		- Controller
 			- `Set up a controller that is resourced` as previously demonstrated.
-				- Name: `TypeCEntity_Controller`
+				- Name: `TypeDEntity_Controller`
 				- Aliases: add this to the header
 				```php
-					use App\TypeCEntity;
+					use App\TypeDEntity;
 				```
 		- Create records (make 3)
 			- Do as demonstrated in `Create record with multiple field values`

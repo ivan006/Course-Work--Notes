@@ -1602,15 +1602,6 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 				- Accessor's 2nd parameter: Intermediate entity name
 				- Accessor's 3rd parameter: If you need a custom name for the foreign id column of the intermediary entity
 				- Accessor's 4th parameter: If you need a custom name for the foreign id column of the distant entity
----
-up till here
----
-
-
-
-
-
-
 	- Data
 		- Controller
 			- `Set up a controller that is resourced` as previously demonstrated.
@@ -1622,119 +1613,87 @@ up till here
 		- Create records (make 3)
 			- Do as demonstrated in `Create record with multiple field values`
 			- Route
-				- Name/parameters: `/c/create/{a}` parameters to use - `$a`
+				- Name/parameters: `/d/create/{a}` parameters to use - `$a`
 			- Controller method
 				- Class/name/parameters: `TypeCEntity_Controller`->`create` parameters to use - `$a`
 				- Script:
 				```php
-					TypeCEntity::create([
+					TypeDEntity::create([
 						'name'=>$a,
 					]);
 				```
-			- URL example: `fundamental-mechanisms-app.test/c/create/1`
+			- URL example: `fundamental-mechanisms-app.test/d/create/1`
 		- Delete records (only use if needed)
 			- Do as demonstrated in `Delete method 2`
 			- Route
-				- Name/parameters: `/c/delete/{a}` parameters to use - `$a`
+				- Name/parameters: `/d/delete/{a}` parameters to use - `$a`
 			- Controller method
-				- Class/name/parameters: `TypeCEntity_Controller`->`destroy` parameters to use - `$a`
+				- Class/name/parameters: `TypeDEntity_Controller`->`destroy` parameters to use - `$a`
 				- Script:
 				```php
-					TypeCEntity::destroy($a);
+					TypeDEntity::destroy($a);
 				```
-				- URL example: `fundamental-mechanisms-app.test/c/delete/1`
-  - Manage records
-    - Create records
-      - Route
-        - Create 2 records
-        - Do as demonstrated in `Create record with multiple field values`
-        - For the route name use: `/ExampleRoute44`
-        - For the referenced model use `TypeDEntity`
-        - E.g.
-        ```php
-          Route::get('/ExampleRoute44', function(){
-            TypeDEntity::create(['name'=>'data_value_a']);
-            TypeDEntity::create(['name'=>'data_value_b']);
-          });
-        ```
-    - Delete records
-      - Just in case you create too many records u can delete them my using the delete query as demonstrated in `Delete method 2`
-      ```php
-      Route::get('/ExampleRoute45', function(){
-        TypeDEntity::destroy(3);
-      });
-      ```
-
-- Parent model's new column
-  - Setup it up
-    - Migration - As seen in the section `Create a column with a migration`
-      - Use the migration name of `type_b_entity_m_column_type_d_entity_id`
-      - Use the table specifier of `type_b_entities`.
+				- URL example: `fundamental-mechanisms-app.test/d/delete/1`
+- Set up `TypeBEntity`
+	- Table
+		- New column
+	    - Creation method: `Create a column with a migration`
+      - Migration name: `type_b_entity_m_column_type_d_entity_id`
+      - Table name: `type_b_entities`.
       - Table columns
       ```php
         $table->integer('type_d_entity_id');
-      ```
-      - Then activate migration      
-    - Parent model
-      - De-restrict fields
-	  	```php
-				'type_d_entity_id',
-			```
-  - Manage records
-    - Create at least 2 records
-    - To create 2 records
-    ```php
-    Route::get('/ExampleRoute46', function(){
-      TypeBEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_a', 'type_d_entity_id'=>'1']);
-      TypeBEntity::create(['data_field_a'=>'data_value_b', 'data_field_b'=>'data_value_b', 'type_d_entity_id'=>'2']);
-    });
-    ```
-    - To delete records
-    ```php
-      Route::get('/ExampleRoute47', function(){
-        TypeBEntity::destroy(1);
-        TypeBEntity::destroy(2);
-        TypeBEntity::destroy(3);
-      });
-    ```
-##### Grandchild of grandparent
-- Manage records
-  - Create at least 2 records
-  - To create
-    - As done here `Create record with multiple field values`
-    - Use these details
-    ```php
-      Route::get('/ExampleRoute48', function(){
-        TypeAEntity::create(['data_field_a'=>'data_value_a', 'data_field_b'=>'data_value_b', 'data_field_c'=>1, 'type_b_entity_id'=>1]);
-      });
-    ```
-      - For the `type_b_entity_id` value use the id of whatever record you have that also has a type_d_entity_id value. In my case it's `13` and `14`.
-  - To delete
-  ```php
-    Route::get('/ExampleRoute49', function(){
-      TypeAEntity::find(1)->forceDelete();
-      TypeAEntity::find(2)->forceDelete();
-      TypeAEntity::find(3)->forceDelete();
-    });
-  ```
-- View them as per grandparent
-  - Parent model
-  ```php
-    public function TypeAEntities(){
-      return $this->hasMany('App\TypeAEntity');
-    }
-  ```
-    - Add this in the model's class
-    - Regarding the function's name here we added use an "s" at the end to as it is a many relationship
-  - Route
-  ```php
-    Route::get('/ExampleRoute50', function(){
-      $example_variable = TypeDEntity::find(1);
-      foreach ($example_variable->TypeAEntities as $example_variable_part){
-        echo "<br><br>".$example_variable_part;
-      }
-    });
-  ```
+      ```  
+  - Model
+    - De-restrict fields
+  	```php
+			'type_d_entity_id',
+		```
+  - Data
+		- Create a record
+			- Route:
+				- Name/parameters: Reuse `/b/create/{a}/{b}` parameters to use - swap to `$a, $b`
+			- Controller method:
+				- Class/name/parameters: Reuse `TypeBEntity_Controller`->`create` parameters to use - swap to `$a, $b`
+				- Script: just add this
+				```php
+					TypeBEntity::create([
+						'data_field_a'=>$a,
+						'data_field_b'=>$a,
+						'type_d_entity_id'=>$b,
+					]);
+				```
+			- URL example: `fundamental-mechanisms-app.test/b/create/1/1`
+		- Delete a record (only use if needed)
+				- URL example: `fundamental-mechanisms-app.test/b/delete/1`
+- Set up `TypeAEntity`
+	- Data
+	  - Create a record
+			- URL example: `fundamental-mechanisms-app.test/b/read/a/create/1/1`
+	  - Delete a record (only use if needed)
+			- URL example: `fundamental-mechanisms-app.test/b/read/a/delete/1`
+
+---
+up till here
+---
+
+
+
+
+
+
+
+##### Query grandchild of parent entity
+- View
+	- Route
+	```php
+	  Route::get('/ExampleRoute50', function(){
+	    $example_variable = TypeDEntity::find(1);
+	    foreach ($example_variable->TypeAEntities as $example_variable_part){
+	      echo "<br><br>".$example_variable_part;
+	    }
+	  });
+	```
 
 ####  <a name="6.4.5."></a>Polymorphic relationship (one to many)
 ##### General

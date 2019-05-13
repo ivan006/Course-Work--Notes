@@ -10,4 +10,4 @@ Unlike p-admin (people oriented admin) a-admin leads to social harmony as people
 
 
 ## How
-To practice a-admin you must manage assets with the use of asset, unlike p-admin inwhich you must use people to manage other people.
+To practice a-admin you use of asset to manage other assets, unlike p-admin inwhich you use people to manage other people.

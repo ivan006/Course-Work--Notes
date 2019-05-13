@@ -6,7 +6,7 @@ A-admin is an asset oriented admin and aledgedly leads to social harmony
 
 ## Why 
 
-Unlike p-admin (people oriented admin) his leads to social harmony as people are simply not as reliable as assets. For example imagine that instead of voting for the next president we voted for the next government budget spending plan? 
+Unlike p-admin (people oriented admin) a-admin leads to social harmony as people are simply not as reliable as assets. For example imagine that instead of voting for the next president we voted for the next government budget spending plan? 
 
 
 ## How

@@ -564,7 +564,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
-### Non-separated action script
+### Non-separated action execution script
 - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
 ```php
   Route::get('/a/read', function(){

@@ -1,4 +1,4 @@
-- Hein
+- *Hein*
   - Hi Ivan,
   -  
   - Trust you are doing well. Andre said you would like to do our assessment in any case.
@@ -9,11 +9,11 @@
   -  
   - Kindest Regards
   -  
-  - Hein
-- Ivan
+  - *Hein*
+- *Ivan*
   - Yes please thanks. 5:30 would be perfect please.
   - Also please be sure to see my course work on github, here it is. Maybe you already saw it. https://github.com/ivan006/Briland-Edu-Dev/tree/master/Laravel-for-beginners/real-world-examples-app
-- Hein
+- *Hein*
   - Hi Ivan,
   - Here’s some things we are checking on this assignment:
     - Your understanding of Object Oriented Programming
@@ -31,11 +31,11 @@
   - NB -> After each step make sure to commit your code so we can see how you went about the process. Push your code to the remote branch at 18h34.
   - Let me know if you have any specific questions.
   - Kindest Regards
-  - Hein
-- Ivan
+  - *Hein*
+- *Ivan*
   - Noted thanks
   - I can't branch the repo I think it's cause I'm not added to it. I could make a clone?
-- Hein
+- *Hein*
   - That’s weird,
   -  
   - My apologies, I’ve added you as a collaborator now.
@@ -45,19 +45,19 @@
   - You can add 20 minutes to your time for submission. :-)
   -  
   - Kind Regards
-- Ivan
+- *Ivan*
   - No problem, thanks!
   - All I managed to do in the time given was step 1 and 2. Step 3 was a hold up cause i couldn't run migrate as I think some vendor files were needing installing.
   - Shall I continue persevering?
   - OK I managed to migrate now only so step three was also completed
-- Hein
+- *Hein*
   - Hi Ivan, Thanks for keeping us updated.
   -  
   - Sure, If you feel confident you’ll be able to complete the assignment (barring no further technical difficulties) then you’re welcome to submit as soon as you finish but ideally not later than 20h00. :-)
-- Ivan
+- *Ivan*
   - Will do, thanks!
   - My times up I did task 4 and 5 started step 6 and step 7
-- Hein
+- *Hein*
   - Thanks Ivan,
   -  
   - We will review tomorrow and let you know our thoughts.
@@ -65,7 +65,7 @@
   - Kindest Regards & Have a good evening.
   -  
   - PS – If you want to do the 2 steps as Exercise and submit it you are welcome to do so. It’s good to practice these things in any case. :-)
-- Ivan
+- *Ivan*
   - Will do, thanks!
 - 
 - 

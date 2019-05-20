@@ -1,0 +1,72 @@
+Hein
+  - Hi Ivan,
+  -  
+  - Trust you are doing well. Andre said you would like to do our assessment in any case.
+  -  
+  - Please let me know what time would suit you then we can send through the assignment. We usually give one hour from the time of sending until we expect it back, even though it shouldn’t really take you more than 30 minutes or so.
+  -  
+  - Let me know and I’ll send you the instructions and link to the repo.
+  -  
+  - Kindest Regards
+  -  
+  - Hein
+- Ivan
+  - Yes please thanks. 5:30 would be perfect please.
+  - Also please be sure to see my course work on github, here it is. Maybe you already saw it. https://github.com/ivan006/Briland-Edu-Dev/tree/master/Laravel-for-beginners/real-world-examples-app
+- Hein
+  - Hi Ivan,
+  - Here’s some things we are checking on this assignment:
+    - Your understanding of Object Oriented Programming
+    - Attention to detail
+    - Code Style & Structure (Clarity of commit messages, attribute names, function names, code commenting etc)
+  - We created a basic Laravel project with some code in for the purpose of listing all contacts and creating new contacts. The code itself (Especially in the ContactController) is in a very bad condition. Your tasks and the outcome we are looking for is as follows:
+    - Create a new branch for the project from the remote branch called contacts-test-ivan (https://github.com/HeinHanekom/Sinov8Test.git )
+    - Create a database.sqlite file in the Database directory so you can use SQlite as the database. Make sure to set this up in your env file as well
+    - Once you have that setup you can run migrate and seed to populate the database.
+    - Refactor the Existing code to use sound Laravel/PSR standards and make use of Eloquent as far as possible to try and reduce the controller code to only a few lines. You are welcome to rename, move around etc. There’s no limitations.
+    - Once refactored the included tests should still pass.
+    - Make sure to add some validation so that contacts cannot be created without an email address
+    - Implement code as you see fit to allow a list of contacts to be returned in Alphabetical order by Last name. Make sure to add a new route in the web file that can be used to call this function. Note you can assume the contacts will always have only one first name and one last name. (You may not split this on the migration. So in the database it is still full_name).
+    - Also take out any code or imports or classes or functions that don’t serve any purpose. Remember, all this project needs to be able to do is to return all contacts alphabetically by Last Last name in JSON format & have the ability to add a new contact.
+  - NB -> After each step make sure to commit your code so we can see how you went about the process. Push your code to the remote branch at 18h34.
+  - Let me know if you have any specific questions.
+  - Kindest Regards
+  - Hein
+- Ivan
+  - Noted thanks
+  - I can't branch the repo I think it's cause I'm not added to it. I could make a clone?
+- Hein
+  - That’s weird,
+  -  
+  - My apologies, I’ve added you as a collaborator now.
+  -  
+  - However you are welcome to clone it and just do a pull request when you are done.
+  -  
+  - You can add 20 minutes to your time for submission. :-)
+  -  
+  - Kind Regards
+- Ivan
+  - No problem, thanks!
+  - All I managed to do in the time given was step 1 and 2. Step 3 was a hold up cause i couldn't run migrate as I think some vendor files were needing installing.
+  - Shall I continue persevering?
+  - OK I managed to migrate now only so step three was also completed
+- Hein
+  - Hi Ivan, Thanks for keeping us updated.
+  -  
+  - Sure, If you feel confident you’ll be able to complete the assignment (barring no further technical difficulties) then you’re welcome to submit as soon as you finish but ideally not later than 20h00. :-)
+- Ivan
+  - Will do, thanks!
+  - My times up I did task 4 and 5 started step 6 and step 7
+- Hein
+  - Thanks Ivan,
+  -  
+  - We will review tomorrow and let you know our thoughts.
+  -  
+  - Kindest Regards & Have a good evening.
+  -  
+  - PS – If you want to do the 2 steps as Exercise and submit it you are welcome to do so. It’s good to practice these things in any case. :-)
+- Ivan
+  - Will do, thanks!
+- 
+- 
+- 

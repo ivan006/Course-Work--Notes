@@ -4,7 +4,7 @@
 Harmony management is a management technique thats leads to social harmony.
 
 ## Why
-Our lives are impacted hugely by the way we manage them. Some managment techniques lead away from harmony and others towards it.
+Our lives are hugely impacted by the way we manage them. Some managment techniques lead away from harmony and others towards it.
 
 I've observed the types of managment techniques that lead away from it are the kinds that are people oriented, and the kind that lead towards it are asset oriented. I believe this phenomena is due to the fact that assets are more reliable than people as people have limitations that assets do not.
 

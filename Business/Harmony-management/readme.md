@@ -10,4 +10,4 @@ I've observed the types of managment techniques that lead away from it are the k
 ## How
 Harmony management makes primary use of and focuses on the managment of assets. It's opposite, disharmony management, both makes primary use of and focuses on the management of people. 
 
-For an illustration of the difference between asset and people oriented management imagine, for a moment, that instead of voting for the next president (person) we voted for the next government spending plan (asset)? Patriarchy, the system with which we currently operate is a good example of people oriented management.
+For an illustration of the difference between asset and people oriented management imagine, for a moment, that instead of voting for the next president (person) we voted for the next government spending plan (asset)? Patriarchy, the system with which we currently operate, is a good example of disharmony management.

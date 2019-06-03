@@ -6,7 +6,7 @@ Our lives are hugely impacted by the way we manage them. Some managment techniqu
 
 ## How 
 I've observed the types of managment techniques that lead away from it are the kinds that are people oriented, and the kinds that lead towards it are asset oriented. 
-When management is asset oriented it makes primary use of assets to help manage. Alternatively when management is people oriented it makes primary use of people to help manage. 
+For management to be asset oriented it must make primary use of assets to help manage. Alternatively for management to be people oriented it must make primary use of people to help manage. 
 
 ## Why
 I believe this phenomena is due to the fact that assets are more reliable than people as people have limitations that assets do not. 

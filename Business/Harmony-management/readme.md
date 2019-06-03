@@ -10,5 +10,5 @@ For management to be asset oriented it must make primary use of assets to help m
 ## Why
 I believe this phenomena is due to the fact that assets are more reliable than people as people have limitations that assets do not. 
 
-## Examples
+## Example
 For an example imagine, for a moment, that instead of relying on a new president/patriarch (person) we relied on a new government spending plan (asset)?

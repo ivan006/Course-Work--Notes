@@ -373,7 +373,7 @@
 - MVC is a code organizational structure
 	- It separates the execution script from the helpers scripts
 	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
-	- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
+	- ![](https://raw.githubusercontent.com/ivan006/Study_Notes/master/Web-dev/Laravel-For-Beginners-Notes/MVC-pattern2.png)
 
 ### Overview of components
 - Entity data components

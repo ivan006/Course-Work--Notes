@@ -9,12 +9,12 @@ Asset-centric Harmonyism is a philosophy that has
 - An associated theoretical framework
 - And a name that ends up being a mouthful so can be abreviated as ACH
 
-### Value
+### The value
 Create harmony
 
 ### Theoretical framework
-- Asset-Centrism
-- Asset-Centrism works by focusing and relying on assets instead of people
+- Asset-centrism
+- Asset-centrism works by focusing and relying on assets instead of people
 
 ### What is the connection between the value and the theoretical framework?
 Knowing that assets are more reliable than people helps you to create harmony. This works because when you rely on people you tend to be easily tricked and let down (especially in romance) but when you rely on assets you can build your life on a solid foundation.
@@ -30,7 +30,7 @@ Communism is also a philosophy that has
 - An associated theoretical framework.
 - And a nice short name which doesn't need abbreviating
 
-####  Value
+####  The value
 
 Reduce exploitation and increase equality.
 

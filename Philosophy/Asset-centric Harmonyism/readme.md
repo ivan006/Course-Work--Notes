@@ -34,3 +34,14 @@ Reduce exploitation and increase equality.
 
 ### The connection between the value and the theoretical framework
 Now this is speculative so I can only guess. But I'd say it is that knowing that the material is more reliable than consciousness helps you to reduce inequality. This works because when you rely on consciousness you tend to believe some conscious individuals are more relable than others, which is the main argument for inequality.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.

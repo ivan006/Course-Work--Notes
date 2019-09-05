@@ -29,7 +29,7 @@ Communism is also a philosophy that has
 - An associated value
 - And and associated theoretical framework.
 
-####  Values
+####  Value
 
 Reduce exploitation and increase equality.
 

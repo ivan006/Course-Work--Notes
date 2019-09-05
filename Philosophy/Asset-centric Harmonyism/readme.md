@@ -16,7 +16,7 @@ Create harmony
 - Asset-Centrism works by focusing and relying on asset instead of people
 
 ### What is the connection between the value and the theoretical framework?
-Knowing that assets are more reliable than people helps you to create harmony. This works because when you rely on people you tend to be easily let tricked and let down (especially in romance) but when you rely on assets you can build you life on a solid foundation.
+Knowing that assets are more reliable than people helps you to create harmony. This works because when you rely on people you tend to be easily tricked and let down (especially in romance) but when you rely on assets you can build your life on a solid foundation.
 
 ## A side note
 

@@ -21,13 +21,14 @@ Knowing that assets are more reliable than people helps you to create harmony. T
 
 ## A side note
 
-### What is the similarity to between ACH and communism
+### What is the similarity between ACH and communism
 
 #### As an overview
 
 Communism is also a philosophy that has
 - An associated value
-- And and associated theoretical framework.
+- An associated theoretical framework.
+- And a nice short name which doesn't need abbreviating
 
 ####  Value
 
@@ -50,5 +51,8 @@ Knowing that the material is more reliable than consciousness helps you to reduc
 .
 .
 .
+
+
+
 
 

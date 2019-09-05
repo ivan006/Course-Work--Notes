@@ -1,18 +1,14 @@
 # ACH (Asset-centric Harmonyism)
 
-## The main idea
-
-### The goal
+## The goal
 To create harmony
 
-### The method
+## The method
 - Asset-centrism
 - Asset-centrism works by focusing and relying on assets instead of people
 - This helps to create harmony because when you rely on people you tend to be easily tricked and let down (especially in romance) but when you rely on assets you can build your life on a solid foundation.
 
-## A side note
-
-### What is the similarity between ACH and communism
+## We can look at communism's goal and method to see some similarities
 
 ####  The goal
 

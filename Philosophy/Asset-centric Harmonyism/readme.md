@@ -6,9 +6,9 @@ To create harmony
 ## The method
 - Asset-centrism
 - Asset-centrism works by focusing and relying on assets instead of people
-- This helps to create harmony because when you rely on people you tend to be easily tricked and let down (especially in romance) but when you rely on assets you can build your life on a solid foundation.
+- This helps to create harmony because when you rely on people you tend to be easily tricked and let down but when you rely on assets you can build your life on a solid foundation.
 
-## We can look at communism's goal and method to see some similarities
+## We can look at communism's goal and method and see some similarities
 
 ####  The goal
 

@@ -6,7 +6,8 @@
 
 Asset-centric Harmonyism is a philosophy that has
 - An associated value
-- And an associated theoretical framework
+- An associated theoretical framework
+- And a name that end up being a mouthful so can be abreviated as ACH
 
 ### Value
 Create harmony
@@ -20,7 +21,7 @@ Knowing that assets are more reliable than people helps you to create harmony. T
 
 ## A side note
 
-### Similarity to communism
+### What is the similarity to between ACH and communism
 
 #### As an overview
 

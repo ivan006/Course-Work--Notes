@@ -4,7 +4,7 @@
 
 ### As an overview
 
-It's a philosophy that has
+Asset-centric Harmonyism is a philosophy that has
 - An associated value
 - And an associated theoretical framework
 
@@ -15,7 +15,7 @@ Create harmony
 - Asset-Centrism
 - Asset-Centrism works by focusing and relying on asset instead of people
 
-### The connection between the value and the theoretical framework
+### What is the connection between the value and the theoretical framework?
 Knowing that assets are more reliable than people helps you to create harmony. This works because when you rely on people you tend to be easily let tricked and let down (especially in romance) but when you rely on assets you can build you life on a solid foundation.
 
 ## A side note

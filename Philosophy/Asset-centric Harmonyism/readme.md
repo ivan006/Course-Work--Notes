@@ -10,7 +10,7 @@ Asset-centric Harmonyism is a philosophy that has
 - And a name that ends up being a mouthful so can be abreviated as ACH
 
 ### The value
-Create harmony
+To create harmony
 
 ### Theoretical framework
 - Asset-centrism
@@ -32,7 +32,7 @@ Communism is also a philosophy that has
 
 ####  The value
 
-Reduce exploitation and increase equality.
+To reduce exploitation and increase equality.
 
 #### Theoretical framework
 - Materialism

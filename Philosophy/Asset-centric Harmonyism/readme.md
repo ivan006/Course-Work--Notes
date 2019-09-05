@@ -7,14 +7,14 @@
 Asset-centric Harmonyism is a philosophy that has
 - An associated value
 - An associated theoretical framework
-- And a name that end up being a mouthful so can be abreviated as ACH
+- And a name that ends up being a mouthful so can be abreviated as ACH
 
 ### Value
 Create harmony
 
 ### Theoretical framework
 - Asset-Centrism
-- Asset-Centrism works by focusing and relying on asset instead of people
+- Asset-Centrism works by focusing and relying on assets instead of people
 
 ### What is the connection between the value and the theoretical framework?
 Knowing that assets are more reliable than people helps you to create harmony. This works because when you rely on people you tend to be easily tricked and let down (especially in romance) but when you rely on assets you can build your life on a solid foundation.

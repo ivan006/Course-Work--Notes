@@ -1,15 +1,17 @@
 # Laravel web app development
 
-- [Section 1. Dev tools preparation (Line 30)](#1.)
-	- [Chapter 1. Dev tools preparation (Line 30)](#1.)
-- Section 2. Dev tools usage
+- [Section 1. Install development tools (Line 30)](#1.)
+	- [Chapter 1. Install development tools
+
+ (Line 30)](#1.)
+- Section 2. Use the dev tools
 	- [2. Introduction (Line 378)](#2.)
 	- [3. Database component (Line 414)](#3.)
 	- [4. Routes (Line 531)](#4.)
 	- [5. Controllers (Line 588)](#5.)
 	- [6. Models (Line 634)](#6.)
 	- [7. Views component (Line )](#7.)
-- [13. Real-World Examples (Line )](#13.)
+- [13. Use common dev stratergies (Line )](#13.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
@@ -17,7 +19,9 @@
 
 
 
-## <a name="1."></a>Chapter 1. Dev tools preparation
+## <a name="1."></a>Chapter 1. Install development tools
+
+
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)
@@ -2337,7 +2341,7 @@ Route::get('/64', function (){
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="13."></a>Chapter 15. Real world examples
+## <a name="13."></a>Chapter 15. Use common dev stratergies
 ### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
 #### Make a new laravel powered app

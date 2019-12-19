@@ -1,9 +1,7 @@
 # Laravel web app development
 
 - [Section 1. Install development tools (Line 30)](#1.)
-	- [Chapter 1. Install development tools
-
- (Line 30)](#1.)
+	- [Chapter 1. Install development tools (Line 30)](#1.)
 - Section 2. Use the dev tools
 	- [2. Introduction (Line 378)](#2.)
 	- [3. Database component (Line 414)](#3.)

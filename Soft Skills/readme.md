@@ -63,7 +63,7 @@
 </td>
 <td>
 <ul>
-<li style="font-weight: 400;"><span style="font-weight: 400;">Email management</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Email management and</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Meeting management</span></li>
 </ul>
 </td>

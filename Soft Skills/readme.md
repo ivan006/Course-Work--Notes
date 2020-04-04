@@ -30,7 +30,6 @@
 <li style="font-weight: 400;"><span style="font-weight: 400;">Business development</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Career development and</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Lifestyle management</span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">Crisis management</span></li>
 </ul>
 </td>
 </tr>
@@ -79,6 +78,7 @@
 <li style="font-weight: 400;"><span style="font-weight: 400;">Relaxation management</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Morale management and</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Stress management</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Crisis management</span></li>
 </ul>
 </td>
 </tr>

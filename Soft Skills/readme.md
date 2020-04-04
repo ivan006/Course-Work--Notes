@@ -76,8 +76,8 @@
 <ul>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Conflict management</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Relaxation management</span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">Morale management and</span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;">Stress management</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Morale management</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Stress management and</span></li>
 <li style="font-weight: 400;"><span style="font-weight: 400;">Crisis management</span></li>
 </ul>
 </td>

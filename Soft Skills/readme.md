@@ -1,4 +1,4 @@
-<h1><span style="font-weight: 400;">The Price of a good life: A soft skills guidebook</span></h1>
+<h1><span style="font-weight: 400;">The Price of a Good Life: A Soft Skills Tutorial</span></h1>
 <p><span style="font-weight: 400;">Soft skills are like managerial skills and learning them is the price you have to pay for a good life.</span></p>
 <p>&nbsp;</p>
 <table>
@@ -85,3 +85,4 @@
 </tbody>
 </table>
 <p><br /><br /></p>
+<p>&nbsp;</p>

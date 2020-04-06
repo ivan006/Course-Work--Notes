@@ -67,7 +67,7 @@
 <p><span style="font-weight: 400;">A field is a single piece of information.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">A file.</span></p>
+<p><span style="font-weight: 400;">A piece of information. For example a paragraph in a report.</span></p>
 </td>
 </tr>
 <tr>

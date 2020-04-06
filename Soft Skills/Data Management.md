@@ -34,7 +34,7 @@
 <p><span style="font-weight: 400;">The other thing a super-entity can contain is a dataset which can itself contain different types of things.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">-</span></p>
+<p><span style="font-weight: 400;">The data in a report.</span></p>
 </td>
 </tr>
 <tr>

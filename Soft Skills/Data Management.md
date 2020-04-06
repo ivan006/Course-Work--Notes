@@ -67,7 +67,7 @@
 <p><span style="font-weight: 400;">A field is a single piece of information.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">For example a section's description, title, image, or even any corresponding fact (e.i if the report is a comparison of product and each section covers a product then each section might have a field for the price total product grading etc).</span></p>
+<p><span style="font-weight: 400;">For example a section's description, title, image, or simply any corresponding fact.</span></p>
 </td>
 </tr>
 <tr>

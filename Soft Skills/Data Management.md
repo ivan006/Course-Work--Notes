@@ -56,7 +56,7 @@
 <p><span style="font-weight: 400;">The dataset can contain children-sets, these are like a group. Children sets can also be contained within a sub-entity.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">They are a set of similar things that can be looped through like a list or table.&nbsp;</span></p>
+<p><span style="font-weight: 400;">This is like a set. That can be looped through like a list or table.&nbsp;</span></p>
 </td>
 </tr>
 <tr>

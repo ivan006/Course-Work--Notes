@@ -45,7 +45,7 @@
 <p><span style="font-weight: 400;">The dataset can contain a subentity.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">This is like an item. For instance a section in a report.</span></p>
+<p><span style="font-weight: 400;">Item (for instance a section in a report).</span></p>
 </td>
 </tr>
 <tr>
@@ -56,7 +56,7 @@
 <p><span style="font-weight: 400;">The dataset can contain children-sets, these are like a group. Children sets can also be contained within a sub-entity.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">This is like a set. That can be looped through like a list or table.&nbsp;</span></p>
+<p><span style="font-weight: 400;">Set (that can be looped through like a list or table).&nbsp;</span></p>
 </td>
 </tr>
 <tr>
@@ -67,7 +67,7 @@
 <p><span style="font-weight: 400;">A field is a single piece of information.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">For example a section's description, title, image, or simply any corresponding fact.</span></p>
+<p><span style="font-weight: 400;">Fact (for example a section's description, title, image, or simply any corresponding fact).</span></p>
 </td>
 </tr>
 <tr>

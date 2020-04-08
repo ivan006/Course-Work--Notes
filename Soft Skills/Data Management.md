@@ -67,7 +67,7 @@
 <p><span style="font-weight: 400;">A field is a single piece of information.</span></p>
 </td>
 <td>
-<p><span style="font-weight: 400;">Fact (for example a section's description, title, image, or simply any corresponding fact).</span></p>
+<p><span style="font-weight: 400;">Field (for example a section's description, title, image, or simply any corresponding fact).</span></p>
 </td>
 </tr>
 <tr>

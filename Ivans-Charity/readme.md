@@ -1,22 +1,24 @@
 # Ivans-Charity
-- 2020-03: R215 (given to less fortunate)
-- 2020-02: R0 (given to less fortunate)
-- 2020-01: R15 (given to less fortunate)
-- 2019-12: R300 (given to less fortunate)
-- 2019-11: R720 (given to less fortunate)
-- 2019-10: R940 (given to less fortunate)
-- 2019-09: R200 (given to less fortunate)
-- 2019-08: R200 (given to less fortunate)
-- 2019-07: R200 (given to less fortunate)
-- 2019-06: R250 (given to less fortunate)
-- 2019-05: R250 (given to less fortunate)
-- 2019-04: R200 (given to less fortunate)
-- 2019-03: R200 (given to less fortunate)
-- 2019-02: R200 (given to less fortunate)
-- 2019-01: R200 (given to less fortunate)
-- 2018-12: R200 (given to less fortunate)
-- 2018-11: R200 (given to less fortunate)
-- 2018-10: R200 (given to less fortunate)
-- 2018-09: R200 (given to less fortunate)
-- 2018-08: R200 (given to less fortunate)
-- 2018-07: R200 (given to less fortunate)
+All money has been given to the less fortunate. Currency is ZAR.
+
+- 2020-03: 215
+- 2020-02: 0
+- 2020-01: 15
+- 2019-12: 300
+- 2019-11: 720
+- 2019-10: 940
+- 2019-09: 200
+- 2019-08: 200
+- 2019-07: 200
+- 2019-06: 250
+- 2019-05: 250
+- 2019-04: 200
+- 2019-03: 200
+- 2019-02: 200
+- 2019-01: 200
+- 2018-12: 200
+- 2018-11: 200
+- 2018-10: 200
+- 2018-09: 200
+- 2018-08: 200
+- 2018-07: 200

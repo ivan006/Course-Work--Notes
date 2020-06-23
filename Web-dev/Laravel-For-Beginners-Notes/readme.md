@@ -162,7 +162,7 @@
   - Atom Snippets comes as a built-in extra feature
   - In atom orient yourself to the snippets settings file with `File > Snippets`
   - At the bottom of the file add this code
-  ```code
+  ```
     '.php':
     'Greeting for php':
     'prefix': 'greet'
@@ -175,7 +175,7 @@
     - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
     - For multi lines samples wrap the code in two sets of these `'''`
   - To make multiple snippet for the same code type you must structure it like this
-  ```code
+  ```
     '.php':
     'Greeting for php':
     'prefix': 'greet'
@@ -274,7 +274,7 @@
 	 - to: `/home/vagrant/code/fundamental-mechanisms-app/public`
 	 - For multiple project running in parallel do This
 	    - Duplicate the above mentioned set of attributes and configure like this
-	    ```code
+	    ```
 	sites:
 	    - map: fundamental-mechanisms-app.test
 	      to: /home/vagrant/code/fundamental-mechanisms-app/public
@@ -285,7 +285,7 @@
 	 - Using windows explorer locate yourself to here `C:\Windows\System32\drivers\etc\`
 	 - Temporarily move the `host` file to your desktop.
 	 - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
-	 ```code
+	 ```
 	 192.168.10.10 laravel.test
 	 192.168.10.10 homestead.test
 	 192.168.10.10 fundamental-mechanisms-app.test
@@ -307,7 +307,7 @@
 - Change
 	- Open `Homestead.yaml`
 	- Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
-	 ```code
+	 ```
 	   sites:
 	 - map: fundamental-mechanisms-app.test
 	   to: /home/vagrant/code/fundamental-mechanisms-app/public

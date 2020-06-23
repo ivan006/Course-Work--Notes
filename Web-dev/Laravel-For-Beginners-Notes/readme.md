@@ -275,11 +275,11 @@
 	 - For multiple project running in parallel do This
 	    - Duplicate the above mentioned set of attributes and configure like this
 	    ```
-	sites:
-	    - map: fundamental-mechanisms-app.test
-	      to: /home/vagrant/code/fundamental-mechanisms-app/public
-	    - map: fundamental-mechanisms-app2.test
-	      to: /home/vagrant/code/fundamental-mechanisms-app2/public
+		sites:
+		    - map: fundamental-mechanisms-app.test
+		      to: /home/vagrant/code/fundamental-mechanisms-app/public
+		    - map: fundamental-mechanisms-app2.test
+		      to: /home/vagrant/code/fundamental-mechanisms-app2/public
 	    ```
 - Map it in your host file
 	 - Using windows explorer locate yourself to here `C:\Windows\System32\drivers\etc\`

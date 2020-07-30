@@ -116,7 +116,7 @@
 ## Urls using views
 - Orient to 
   - first_project > urls.py
-  - Add “from first_app import views”
+- Add “from first_app import views”
 - Orient to 
   - urlpatterns = [
 - Add “path('',views.index, name="index"),”
@@ -146,7 +146,7 @@
 ## Templates
 - Orient to 
   - First_project
-  - Add “templates” folder
+- Add “templates” folder
 - Orient to 
   - First_project
   - First_project
@@ -326,7 +326,8 @@
 - Orient to
   - http://127.0.0.1:8000/admin 
 - Login
-- Add db record via admin tool
+
+## Add db record via admin tool
 - Orient to
   - Webpages
   - Add webpage

@@ -1,6 +1,6 @@
-#Setup
+# Setup
 
-##Conda
+## Conda
 
 - anaconda python 3.6 (https://www.anaconda.com/products/individual#windows)
 -use conda prompt

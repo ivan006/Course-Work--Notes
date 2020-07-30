@@ -4,7 +4,7 @@
 ## Conda
 
 - anaconda python 3.6 (https://www.anaconda.com/products/individual#windows)
--use conda prompt
+- use conda prompt
 
 ## Enable python in gitbash (didnt use - )
 

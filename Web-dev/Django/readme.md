@@ -5,18 +5,18 @@
 - anaconda python 3.6 (https://www.anaconda.com/products/individual#windows)
 -use conda prompt
 
-# Enable python in gitbash (didnt use - )
+## Enable python in gitbash (didnt use - )
 
 - alias python='winpty python.exe'
 
-# Atom packages
+## Atom packages
 - autocomplete-python by autocomplete-python
 - kite - recommended with autocomplete-python (dont install )
 - platformio-ide-terminal by platformio ( dont install)
 - atom-django by zacharytamas
 
 
-# Create conda env
+## Create conda env
 
 - C:\Users\ivan\Documents\multimedia\b-python-course
 - C:/Users/ivan\Documents/multimedia/b-python-course

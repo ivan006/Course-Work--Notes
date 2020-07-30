@@ -1,3 +1,4 @@
+
 # Setup
 
 ## Conda
@@ -103,397 +104,383 @@
 - Add “‘first_app’”
 
 ## Views
+
 - Add
-  - from django.http import HttpResponse
-  
-```
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello World")
-```
-
-
-Urls using views
-Orient to 
-first_project > urls.py
-Add “from first_app import views”
-Orient to 
-urlpatterns = [
-Add “path('',views.index, name="index"),”
-Urls with app scope
-Orient to 
-first_app
-Manually create a “urls.py” file 
-Add “from django.conf.urls import url”
-
-
-from django.conf.urls import url
-from first_app import views
-
-urlpatterns = [
-    path('', views.index, name="index")
-]
-
-
-
-
-
-Orient to 
-first_project > urls.py
-Add “from django.conf.urls import include”
-Orient to 
-urlpatterns = [
-Add “path('first_app/', include('first_app.urls')),”
-
-Templates
-Orient to 
-First_project
-Add “templates” folder
-Orient to 
-First_project
-First_project
-Settings.py
-The blank line below “BASE_DIR =”
-Add “TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")”
-Orient to 
-TEMPLATES = [
-'DIRS': [],
-Update “'DIRS': [TEMPLATE_DIR,],”
-Orient to 
-First_project
-templates
-Add “first_app” folder
-Orient to 
-first_app
-Add “index.html” file
-Orient to 
-Index.html
-Add 
-
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>First app</title>
-  </head>
-  <body>
-    <h1>Hello this is index.html!</h1>
-    {{ insert_me }}
-  </body>
-</html>
-
-
-
-Orient to 
-First_project
-First_app
-views.py
-return HttpResponse("Hello World")
-Update
-
-
-my_dict = {'insert_me':"Hello I am from view.py!"}
-return render(request, "first_app/index.html", context=my_dict)
-
-
-Static files
-Static dir setup
-Orient to 
-First_project
-Add “static” folder
-Orient to 
-First_project
-First_project
-Settings.py
-The blank line below “TEMPLATES = [”
-Add “STATIC_DIR = os.path.join(BASE_DIR,"templates")”
-Orient to 
-The blank line below STATIC_URL =
-Add 
-
-
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
-
-
-
-
-Images dir
-Orient to 
-First_project
-static
-Add “images” folder
-Orient to 
-images
-Add “image.png” file
-Orient to 
-First_project
-templates
-First_app
-Index.html
-New line below “<!DOCTYPE html>”
-Add “{% load static %}”
-Orient to
-The line below “{{ insert_me }}”
-Add “<img src="{% static "images/image.png" %}" alt="">”
-
-CSS dir
-This time make one called “css” follow instructions above
-Call your example file “style.css”
-Orient to this file
-Add “.Bo_1 {border: 1px solid black;}”
-Instead of the image tag orient yourself to the line below the template title tag
-Add “<link rel="stylesheet" href="{% static "css/style.css" %}">”
-Orient to the img tag 
-Add this as an attribute “class="Bo_1"”
-
-Rough notes
-https://stackoverflow.com/questions/44026548/getting-typeerror-init-missing-1-required-positional-argument-on-delete
-https://stackoverflow.com/questions/11164420/django-help-attributeerror-module-object-has-no-attribute-charfield/43137403
-
-Model Migration
-Orient to
-first_project 
-first_app 
-models.py
-The line below “# Create your models here.”
-Add
-
-
-
-class Topic(models.Model):
-    top_name = models.CharField(max_length=264, unique=True)
-
-    def __str__(self):
-        return self.top_name
-
-class Webpage(models.Model):
-    topic = models.ForeignKey(
-        Topic,
-        on_delete=models.CASCADE,
-    )
-    name = models.CharField(max_length=264, unique=True)
-    url = models.URLField(unique=True)
-
-    def __str__(self):
-        return self.name
-
-class AccessRecord(models.Model):
-    name = models.ForeignKey(
-        Webpage,
-        on_delete=models.CASCADE,
-    )
-    date = models.DateField()
-
-    def __str__(self):
-        return str(self.date)
-Orient to 
-Terminal
-Working dir
-first_project
-Run “python manage.py migrate”
-Run “python manage.py makemigrations first_app”
-Run “python manage.py migrate”
-Model add db record
-python manage.py shell
-from first_app.models import Topic
-print(Topic.objects.all())
-t = Topic(top_name="Social Network")
-t.save()
-print(Topic.objects.all())
-quite() 
-Register Admin interface
-Orient to
-first_project 
-first_app
-admin.py
-The line above “# Register your models here.”
-Add “from first_app.models import AccessRecord, Topic, Webpage”
-Orient to
-The line below “# Register your models here.”
-Add
-
-
-admin.site.register(AccessRecord)
-admin.site.register(Topic)
-admin.site.register(Webpage)
-Create superuser
-Orient to 
-Terminal
-Run 
-python manage.py createsuperuser
-Ivan
-ivan.copeland2015@gmail.com
-Readyforanything123
-Run 
-python manage.py runserver
-Orient to
-http://127.0.0.1:8000/admin 
-Login
-Add db record via admin tool
-Orient to
-Webpages
-Add webpage
-Populate form
-Topic: socal network
-Name: Google
-URL: www.google.com
-Click save
-Add db record via faker
-Orient to
-Terminal
-Run
-activate myEny
-pip install Faker
-Orient to
-First_project
-Add file “populate_first_app.py”
-Add this content
-
-
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'first_project.settings')
-
-import django
-django.setup()
-
-## FAKE POP SCRIPT
-import random
-from first_app.models import AccessRecord, Webpage, Topic
-from faker import Faker
-
-fakegen = Faker()
-topics = ['Search', 'Social', 'Marketplace', 'New', 'Games']
-
-def add_topic():
-    t = Topic.objects.get_or_create(top_name=random.choice(topics))[0]
-    t.save()
-    return t
-
-def populate(N=5):
-    for entry in range(N):
-        # get topic for the entry
-        top = add_topic()
-
-        # Create the fake data for that entry
-        fake_url = fakegen.url()
-        fake_date = fakegen.date()
-        fake_name = fakegen.company()
-
-        # Create the new webpage entrye.
-        webp = Webpage.objects.get_or_create(topic=top, url=fake_url, name=fake_name)[0]
-
-        # Create a fake access record forthat webpage
-        acc_rec = AccessRecord.objects.get_or_create(name=webp, date=fake_date)[0]
-
-if __name__ == '__main__':
-    print("populating scripts!")
-    populate(20)
-    print("population complete!")
-
-
-
- 
-Orient to 
-Terminal
-Run 
-python populate_first_app.py
-Run server
-
-Architecture
-MTV
-M - data hadler
-T - Template handler
-V - Page main function
-Urls - Url handler
-
-Database
-Orient to
-first_project
-first_app
-views.py
-New line below “from django.http import HttpResponse”
-Add
-from first_app.models import Topic, Webpage, AccessRecord
-Orient to
-New line below “return render(request, "first_app/index.html", context=my_dict)”
-Update to
-
-
-
-    webpages_list = AccessRecord.objects.order_by('date')
-    date_dict = {'access_records' : webpages_list}
-    my_dict = {'insert_me':"Hello I am from view.py!!!"}
-    return render(request, "first_app/index.html", context=date_dict)
-Orient to
-first_project 
-templates 
-first_app 
-Index.html
-New line below “<img src=...”
-Add
-
-
-<div class="djangotwo">
-      {% if access_records %}
-        <table>
-          <thead>
-            <th>Site Name</th>
-            <th>Date Accessed</th>
-          </thead>
-          <tbody>
-            {% for acc in access_records %}
-              <tr>
-                <td>
-                  {{ acc.name }}
-                </td>
-                <td>
-                  {{ acc.date }}
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% else %}
-        <p>No access records found.</p>
-      {% endif %}
-    </div>
- 
-Run server
-Rough notes
-https://stackoverflow.com/questions/3597143/php-style-inline-tags-for-python
-Forms
-Orient to
-first_project 
-first_app
-Add
-forms.py
-Orient to 
-Forms.py
-Add
-
-
-from django import forms
-
-class FormName(forms.Form):
-    name = forms.CharField()
-    email = forms.EmailField()
-    text = forms.CharField(widget=forms.Textarea)
-    
-
-
-Orient to
-first_project 
-first_app 
-views.py
-Below the  “from first_app.models import Topic, Webpage, AccessRecord” line
-Add
-from . import forms 
-Orient to
-The end of the file
-Add
+	```
+	from django.http import HttpResponse
+	# Create your views here.
+	def index(request):
+		return HttpResponse("Hello World")
+	```
+
+## Urls using views
+- Orient to 
+  - first_project > urls.py
+  - Add “from first_app import views”
+- Orient to 
+  - urlpatterns = [
+- Add “path('',views.index, name="index"),”
+
+## Urls with app scope
+- Orient to 
+  - first_app
+- Manually create a “urls.py” file 
+- Add “from django.conf.urls import url”
+  ```
+
+  from django.conf.urls import url
+  from first_app import views
+
+  urlpatterns = [
+      path('', views.index, name="index")
+  ]
+  ```
+
+- Orient to 
+  - first_project > urls.py
+- Add “from django.conf.urls import include”
+- Orient to 
+  - urlpatterns = [
+- Add “path('first_app/', include('first_app.urls')),”
+
+## Templates
+- Orient to 
+  - First_project
+  - Add “templates” folder
+- Orient to 
+  - First_project
+  - First_project
+  - Settings.py
+  - The blank line below “BASE_DIR =”
+- Add “TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")”
+- Orient to 
+  - TEMPLATES = [
+  - 'DIRS': [],
+- Update “'DIRS': [TEMPLATE_DIR,],”
+- Orient to 
+  - First_project
+  - templates
+- Add “first_app” folder
+- Orient to 
+  - first_app
+- Add “index.html” file
+- Orient to 
+  - Index.html
+- Add 
+  ```
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>First app</title>
+    </head>
+    <body>
+      <h1>Hello this is index.html!</h1>
+      {{ insert_me }}
+    </body>
+  </html>
+  ```
+- Orient to 
+  - First_project
+  - First_app
+  - views.py
+  - return HttpResponse("Hello World")
+- Update
+  ```
+  my_dict = {'insert_me':"Hello I am from view.py!"}
+  return render(request, "first_app/index.html", context=my_dict)
+  ```
+
+## Static files
+### Static dir setup
+- Orient to 
+  - First_project
+- Add “static” folder
+- Orient to 
+  - First_project
+  - First_project
+  - Settings.py
+  - The blank line below “TEMPLATES = [”
+- Add “STATIC_DIR = os.path.join(BASE_DIR,"templates")”
+- Orient to 
+  - The blank line below STATIC_URL =
+- Add 
+  ```
+  STATICFILES_DIRS = [
+      STATIC_DIR,
+  ]
+  ```
+
+
+### Images dir
+- Orient to 
+  - First_project
+  - static
+- Add “images” folder
+- Orient to 
+  - images
+- Add “image.png” file
+- Orient to 
+  - First_project
+  - templates
+  - First_app
+  - Index.html
+  - New line below “<!DOCTYPE html>”
+- Add “{% load static %}”
+- Orient to
+  - The line below “{{ insert_me }}”
+- Add “<img src="{% static "images/image.png" %}" alt="">”
+
+### CSS dir
+- This time make one called “css” follow instructions above
+- Call your example file “style.css”
+- Orient to this file
+- Add “.Bo_1 {border: 1px solid black;}”
+- Instead of the image tag orient yourself to the line below the template title tag
+- Add “<link rel="stylesheet" href="{% static "css/style.css" %}">”
+- Orient to the img tag 
+- Add this as an attribute “class="Bo_1"”
+- Rough notes
+  - https://stackoverflow.com/questions/44026548/getting-typeerror-init-missing-1-required-positional-argument-on-delete
+  - https://stackoverflow.com/questions/11164420/django-help-attributeerror-module-object-has-no-attribute-charfield/43137403
+
+## Model Migration
+- Orient to
+  - first_project 
+  - first_app 
+  - models.py
+  - The line below “# Create your models here.”
+- Add
+  ```
+  class Topic(models.Model):
+      top_name = models.CharField(max_length=264, unique=True)
+
+      def __str__(self):
+          return self.top_name
+
+  class Webpage(models.Model):
+      topic = models.ForeignKey(
+          Topic,
+          on_delete=models.CASCADE,
+      )
+      name = models.CharField(max_length=264, unique=True)
+      url = models.URLField(unique=True)
+
+      def __str__(self):
+          return self.name
+
+  class AccessRecord(models.Model):
+      name = models.ForeignKey(
+          Webpage,
+          on_delete=models.CASCADE,
+      )
+      date = models.DateField()
+
+      def __str__(self):
+          return str(self.date)
+  ```
+- Orient to 
+  - Terminal
+  - Working dir
+  - first_project
+- Run 
+  - “python manage.py migrate”
+  - “python manage.py makemigrations first_app”
+  - “python manage.py migrate”
+
+## Model add db record
+- python manage.py shell
+- from first_app.models import Topic
+- print(Topic.objects.all())
+- t = Topic(top_name="Social Network")
+- t.save()
+- print(Topic.objects.all())
+- quite() 
+
+## Register Admin interface
+- Orient to
+  - first_project 
+  - first_app
+  - admin.py
+  - The line above “# Register your models here.”
+- Add “from first_app.models import AccessRecord, Topic, Webpage”
+- Orient to
+  - The line below “# Register your models here.”
+- Add
+  ```
+  admin.site.register(AccessRecord)
+  admin.site.register(Topic)
+  admin.site.register(Webpage)
+  ```
+
+## Create superuser
+- Orient to 
+  - Terminal
+- Run 
+  - python manage.py createsuperuser
+  - Ivan
+  - ivan.copeland2015@gmail.com
+  - Readyforanything123
+- Run 
+  - python manage.py runserver
+- Orient to
+  - http://127.0.0.1:8000/admin 
+- Login
+- Add db record via admin tool
+- Orient to
+  - Webpages
+  - Add webpage
+- Populate form
+  - Topic: socal network
+  - Name: Google
+  - URL: www.google.com
+  - Click save
+
+## Add db record via faker
+- Orient to
+  - Terminal
+- Run
+  - activate myEny
+  - pip install Faker
+- Orient to
+  - First_project
+- Add file “populate_first_app.py”
+- Add this content
+  ```
+  import os
+  os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'first_project.settings')
+
+  import django
+  django.setup()
+
+  ## FAKE POP SCRIPT
+  import random
+  from first_app.models import AccessRecord, Webpage, Topic
+  from faker import Faker
+
+  fakegen = Faker()
+  topics = ['Search', 'Social', 'Marketplace', 'New', 'Games']
+
+  def add_topic():
+      t = Topic.objects.get_or_create(top_name=random.choice(topics))[0]
+      t.save()
+      return t
+
+  def populate(N=5):
+      for entry in range(N):
+          # get topic for the entry
+          top = add_topic()
+
+          # Create the fake data for that entry
+          fake_url = fakegen.url()
+          fake_date = fakegen.date()
+          fake_name = fakegen.company()
+
+          # Create the new webpage entrye.
+          webp = Webpage.objects.get_or_create(topic=top, url=fake_url, name=fake_name)[0]
+
+          # Create a fake access record forthat webpage
+          acc_rec = AccessRecord.objects.get_or_create(name=webp, date=fake_date)[0]
+
+  if __name__ == '__main__':
+      print("populating scripts!")
+      populate(20)
+      print("population complete!")
+  ```
+- Orient to 
+  - Terminal
+- Run 
+  - python populate_first_app.py
+- Run server
+
+## Architecture
+- MTV
+- M - data hadler
+- T - Template handler
+- V - Page main function
+- Urls - Url handler
+
+## Database
+- Orient to
+  - first_project
+  - first_app
+  - views.py
+  - New line below “from django.http import HttpResponse”
+- Add
+  - from first_app.models import Topic, Webpage, AccessRecord
+- Orient to
+  - New line below “return render(request, "first_app/index.html", context=my_dict)”
+- Update to
+  ```
+      webpages_list = AccessRecord.objects.order_by('date')
+      date_dict = {'access_records' : webpages_list}
+      my_dict = {'insert_me':"Hello I am from view.py!!!"}
+      return render(request, "first_app/index.html", context=date_dict)
+  ```
+- Orient to
+  - first_project 
+  - templates 
+  - first_app 
+  - Index.html
+  - New line below “<img src=...”
+- Add
+  ```
+  <div class="djangotwo">
+        {% if access_records %}
+          <table>
+            <thead>
+              <th>Site Name</th>
+              <th>Date Accessed</th>
+            </thead>
+            <tbody>
+              {% for acc in access_records %}
+                <tr>
+                  <td>
+                    {{ acc.name }}
+                  </td>
+                  <td>
+                    {{ acc.date }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p>No access records found.</p>
+        {% endif %}
+      </div>
+  ```
+- Run server
+- Rough notes
+  - https://stackoverflow.com/questions/3597143/php-style-inline-tags-for-python
+
+## Forms
+- Orient to
+  - first_project 
+  - first_app
+- Add
+  - forms.py
+- Orient to 
+  - Forms.py
+- Add
+  ```
+  from django import forms
+
+  class FormName(forms.Form):
+      name = forms.CharField()
+      email = forms.EmailField()
+      text = forms.CharField(widget=forms.Textarea)
+  ```
+- Orient to
+  - first_project 
+  - first_app 
+  - views.py
+  - Below the  “from first_app.models import Topic, Webpage, AccessRecord” line
+- Add
+  - from . import forms 
+- Orient to
+  - The end of the file
+- Add
 
 
 

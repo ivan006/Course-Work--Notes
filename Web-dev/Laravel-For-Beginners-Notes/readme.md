@@ -1,15 +1,15 @@
 # Laravel web app development
 
-- [Section 1. Dev tools preparation (Line 30)](#1.)
-	- [Chapter 1. Dev tools preparation (Line 30)](#1.)
-- Section 2. Dev tools usage
+- [Section 1. Install development tools (Line 30)](#1.)
+	- [Chapter 1. Install development tools (Line 30)](#1.)
+- Section 2. Use the dev tools
 	- [2. Introduction (Line 378)](#2.)
 	- [3. Database component (Line 414)](#3.)
 	- [4. Routes (Line 531)](#4.)
 	- [5. Controllers (Line 588)](#5.)
 	- [6. Models (Line 634)](#6.)
 	- [7. Views component (Line )](#7.)
-- [13. Real-World Examples (Line )](#13.)
+- [13. Use common dev stratergies (Line )](#13.)
   - [8.1. /5.1. Intro](#8.1)
   - [8.2. /5.2. Forms](#8.2)
   - [8.3. /5.3. Coming soon](##)
@@ -17,7 +17,9 @@
 
 
 
-## <a name="1."></a>Chapter 1. Dev tools preparation
+## <a name="1."></a>Chapter 1. Install development tools
+
+
 ### Table Of Content
 
 - [Virtual Local Server (VLS)](#Virtual_Local_Server)
@@ -160,7 +162,7 @@
   - Atom Snippets comes as a built-in extra feature
   - In atom orient yourself to the snippets settings file with `File > Snippets`
   - At the bottom of the file add this code
-  ```code
+  ```
     '.php':
     'Greeting for php':
     'prefix': 'greet'
@@ -173,7 +175,7 @@
     - $1, $2.. etc: Is for the cursor position (press tab to go to the next position)
     - For multi lines samples wrap the code in two sets of these `'''`
   - To make multiple snippet for the same code type you must structure it like this
-  ```code
+  ```
     '.php':
     'Greeting for php':
     'prefix': 'greet'
@@ -237,6 +239,10 @@
 - [Database](#Database)
 
 #### <a name="General"></a>General
+
+##### Helpfull links
+- https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/
+
 ##### Laravel Overview
 - Laravel is something you install on an app by app basis.
 - It determines the architecture of your apps source code and provides it with lots of useful prebuilt functions.
@@ -268,18 +274,18 @@
 	 - to: `/home/vagrant/code/fundamental-mechanisms-app/public`
 	 - For multiple project running in parallel do This
 	    - Duplicate the above mentioned set of attributes and configure like this
-	    ```code
-	sites:
-	    - map: fundamental-mechanisms-app.test
-	      to: /home/vagrant/code/fundamental-mechanisms-app/public
-	    - map: fundamental-mechanisms-app2.test
-	      to: /home/vagrant/code/fundamental-mechanisms-app2/public
+	    ```
+		sites:
+		    - map: fundamental-mechanisms-app.test
+		      to: /home/vagrant/code/fundamental-mechanisms-app/public
+		    - map: fundamental-mechanisms-app2.test
+		      to: /home/vagrant/code/fundamental-mechanisms-app2/public
 	    ```
 - Map it in your host file
 	 - Using windows explorer locate yourself to here `C:\Windows\System32\drivers\etc\`
 	 - Temporarily move the `host` file to your desktop.
 	 - Open the host file in a code editor and configure it so it's contents ends with (to run multiple projects duplicate one of these code lines and configure).
-	 ```code
+	 ```
 	 192.168.10.10 laravel.test
 	 192.168.10.10 homestead.test
 	 192.168.10.10 fundamental-mechanisms-app.test
@@ -301,7 +307,7 @@
 - Change
 	- Open `Homestead.yaml`
 	- Add and set a php field in your site configurations. The versions available to use are limited to "5.6", "7.0", "7.1", "7.2" and "7.3" ("7.3" is default)
-	 ```code
+	 ```
 	   sites:
 	 - map: fundamental-mechanisms-app.test
 	   to: /home/vagrant/code/fundamental-mechanisms-app/public
@@ -373,7 +379,7 @@
 - MVC is a code organizational structure
 	- It separates the execution script from the helpers scripts
 	- The main execution script is in the letter "C", meaning controller, and the helper scripts are in the letter "M" and "V, model and view.
-	- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/MVC-pattern2.png)
+	- ![](https://raw.githubusercontent.com/ivan006/Study_Notes/master/Web-dev/Laravel-For-Beginners-Notes/MVC-pattern2.png)
 
 ### Overview of components
 - Entity data components
@@ -564,7 +570,7 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 - This you use in accordance with a CRUD type controller (mentioned later) and note in the example only a controller file is mentioned.
 - Check what routes you have made by checking all your route's details (see how here [Check All Route Details](#Check-All-Route-Details)).
 
-### Non-separated action script
+### Non-separated action execution script
 - Not separating your action execution script into a controller is possible but is discouraged as it is too disorganized.
 ```php
   Route::get('/a/read', function(){
@@ -1080,16 +1086,16 @@ They are stored in `C:\laravel-apps\fundamental-mechanisms-app\app\Http\Controll
 
 #### General
 - This section covers ORM models methods. These are a type of model method that makes tables interrelated. The purpose of these relationships is to create super entities or networks of entities. For instance an entity can be primarily based on a record in one table but then also have supplementary info stored in a record of of a related table. There are many different types of relationships.
-- ![](https://raw.githubusercontent.com/ivan006/Blue-Gem-Education/master/Laravel-For-Beginners-Notes/erd.png)
-- d
-	- type_a_entities		posts	 
-	- type_b_entities		users	 
-	- type_b_entity_type_c_entity	role_user	 
-	- type_c_entities	roles	 
-	- type_d_entities		countries	 
-	- type_e_entities 	photos
-	- type_f_entities		tags and videos (but videos is faulty as has no associative table) 	 
-	- type_f_entity_relation		tag_relationships	 
+- ![](https://raw.githubusercontent.com/ivan006/Study_Notes/master/Web-dev/Laravel-For-Beginners-Notes/erd_2.png)
+- Entities as real examples
+	- type_a_entities -		posts	 
+	- type_b_entities -		users	 
+	- type_b_entity_type_c_entity -	role_user	 
+	- type_c_entities -	roles	 
+	- type_d_entities -		countries	 
+	- type_e_entities - 	photos
+	- type_f_entities -		tags and videos (but videos is faulty as has no associative table) 	 
+	- type_f_entity_relation -		tag_relationships	 
 
 
 
@@ -2337,7 +2343,7 @@ Route::get('/64', function (){
     ```
   - Test URL: `fundamental-mechanisms-app.test/ExampleRoute10/1/2/3`
 
-## <a name="13."></a>Chapter 15. Real world examples
+## <a name="13."></a>Chapter 15. Use common dev stratergies
 ### <a name="5.1.%20Intro"></a>Chapter 5.1. Intro
 
 #### Make a new laravel powered app

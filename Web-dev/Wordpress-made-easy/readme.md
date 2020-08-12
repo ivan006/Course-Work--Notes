@@ -39,7 +39,7 @@ Best Home Planet
 	- Header
 	- General
 - Action
-	- Change style to "full screen" "medium" or "transparent"
+	- Change style to "full screen" "medium" or "transparent" or "top menu"
 	- Uncheck "header border bottom"
 	- If you opted for "transparent" change the background color to black and reduce the alpha
 	- Disactivate the eyeball on "search form" and "social buttons"
@@ -102,6 +102,7 @@ Best Home Planet
 	- Customize 
 	- General Options 
 	- General Setting
+	- Pages
 - Action 
 	- Change layout to 100% full width
 - Orient to 
@@ -115,7 +116,32 @@ Best Home Planet
 - Action 
 	- Change background color to whatever you want 
 	- Change text color to whatever you want
-- 
+- Orient to 
+	- Customise 
+	- Custom CSS 
+- Action 
+	- Add ".BoSh_10_wpb-ea-video-inner .wpb-ea-video-inner {box-shadow: 10px 10px 10px rgba(0,0,0,0.5);}"
+	- Add "/* color grey */ #site-description h2 {color: hsl(195, 0%, 35%) !important;}"
+	- Add "/* text align center */ .page-header-title {text-align: center;}"
+- Orient to 
+	- Home page 
+	- Elementor 
+	- Edit WPB Video popup 
+	- Advanced 
+- Action 
+	- Add ".BoSh_10_wpb-ea-video-inner" to the css classes
+- Orient to
+	- Customize 
+	- General Options 
+	- Page title
+- Action 
+	- Uncheck enable breadcrumbs
+- Orient to 
+	- Customize 
+	- Menus
+	- View all locations
+- Action 
+	- Change main menu to - Select -
 
 # Add text/images to a page
 
@@ -126,3 +152,9 @@ Best Home Planet
 - https://www.youtube.com/watch?v=E2cl8uEJZdI
 
 im at 33min
+
+- tagline 
+	https://wpmarmite.com/en/oceanwp-theme/
+	https://www.gplforest.org/oceanwp-elementor-widgets-1-2-1/
+	https://wpbuilt.co/tutorials/global-section-without-using-any-plugin/
+	https://wordpress.org/support/topic/how-to-load-a-template-partial-in-elementor-using-a-shortcode/

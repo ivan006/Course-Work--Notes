@@ -142,6 +142,13 @@ Best Home Planet
 	- View all locations
 - Action 
 	- Change main menu to - Select -
+- Orient to
+	- Customise
+	- Header
+	- Mobile menu 
+- Action 
+	- Change mobile menu style to full screen
+	- Change hamburger button to 3D X
 
 # Add text/images to a page
 
@@ -158,3 +165,21 @@ im at 33min
 	https://www.gplforest.org/oceanwp-elementor-widgets-1-2-1/
 	https://wpbuilt.co/tutorials/global-section-without-using-any-plugin/
 	https://wordpress.org/support/topic/how-to-load-a-template-partial-in-elementor-using-a-shortcode/
+	
+	
+	elementor video carousel free
+	https://elementor.com/blog/introducing-media-carousel/
+	https://www.powr.io/tutorials/how-to-add-video-slider-add_on-to-your-elementor-site#lp-demo-anchor
+	https://powerpackelements.com/elementor-widgets/video-gallery/
+	https://elfsight.com/youtube-channel-plugin-yottie/elementor/
+	elementor video playlist
+	https://bdthemes.com/support/knowledge/details/29/How%20to%20Create%20Video%20Gallery%20Widget%20in%20Elementor%20by%20Element%20Pack.html
+	https://crocoblock.com/widgets/video-playlist/
+	https://elementpack.pro/demo/element/video-gallery/
+
+	https://wordpress.org/plugins/bdthemes-element-pack-lite/
+	https://thepiratebay.org/search.php?q=element+pack&all=on&search=Pirate+Search&page=0&orderby=
+	https://thepiratebay.org/description.php?id=30609849
+	element pack free
+	create link to open lightbox elementor
+	https://elementor.com/blog/introducing-action-links/

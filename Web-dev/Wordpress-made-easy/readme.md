@@ -123,6 +123,7 @@ Best Home Planet
 	- Add ".BoSh_10_wpb-ea-video-inner .wpb-ea-video-inner {box-shadow: 10px 10px 10px rgba(0,0,0,0.5);}"
 	- Add "/* color grey */ #site-description h2 {color: hsl(195, 0%, 35%) !important;}"
 	- Add "/* text align center */ .page-header-title {text-align: center;}"
+	- Add ".NotPageId314_DiNo_GrecaptchaBadge:not(.page-id-314) .grecaptcha-badge {display: none;}"
 - Orient to 
 	- Home page 
 	- Elementor 
@@ -149,6 +150,15 @@ Best Home Planet
 - Action 
 	- Change mobile menu style to full screen
 	- Change hamburger button to 3D X
+- Orient to 
+	- Settings 
+	- Custom body class (wp-custom-body-class must first be installed)
+- Action 
+	- Change global class to "NotPageId314_DiNo_GrecaptchaBadge"
+- Orient to 
+	- https://thepiratebay.org/description.php?id=30609849
+- Action 
+	- Download and install it to use video gallary
 
 # Add text/images to a page
 
@@ -183,3 +193,11 @@ im at 33min
 	element pack free
 	create link to open lightbox elementor
 	https://elementor.com/blog/introducing-action-links/
+	captcha 
+	https://support.bestwebsoft.com/hc/en-us/articles/202353399-Can-I-add-Captcha-plugin-to-Contact-Form-7-
+	https://contactform7.com/recaptcha/
+	https://wordpress.org/support/topic/recaptcha-badge-on-all-pages-not-just-pages-with-contact-forms/
+	custom body class 
+	https://wordpress.org/plugins/wp-custom-body-class/
+	add text and logo to header 
+	https://wordpress.org/support/topic/adding-title-next-to-logo/

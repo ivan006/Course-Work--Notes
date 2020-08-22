@@ -124,6 +124,7 @@ Best Home Planet
 	- Add "/* color grey */ #site-description h2 {color: hsl(195, 0%, 35%) !important;}"
 	- Add "/* text align center */ .page-header-title {text-align: center;}"
 	- Add ".NotPageId314_DiNo_GrecaptchaBadge:not(.page-id-314) .grecaptcha-badge {display: none;}"
+	- Add ".Wi100_topbar-template #topbar-template {width: 100%;} .Wi100_top-bar-content #top-bar-content {width: 100%;}"
 - Orient to 
 	- Home page 
 	- Elementor 
@@ -131,6 +132,15 @@ Best Home Planet
 	- Advanced 
 - Action 
 	- Add ".BoSh_10_wpb-ea-video-inner" to the css classes
+- Orient to (alternative to WPB video popup)
+	- Home page 
+	- Elementor 
+	- Edit Premium video grid (you first need to install Premium addons for elementor)
+	- Style
+	- Title and decription
+	- Background 
+- Action 
+	- Change to tranparent black
 - Orient to
 	- Customize 
 	- General Options 
@@ -151,14 +161,32 @@ Best Home Planet
 	- Change mobile menu style to full screen
 	- Change hamburger button to 3D X
 - Orient to 
-	- Settings 
-	- Custom body class (wp-custom-body-class must first be installed)
+	- Appearance
+	- Theme editor
+	- Theme header 
+	- The "body_class()" line 
 - Action 
-	- Change global class to "NotPageId314_DiNo_GrecaptchaBadge"
+	-  Add 'array( "class1", "class2" )' between the brackets 
+	- Add a class called "NotPageId314_DiNo_GrecaptchaBadge"
+	- Add a class called "Wi100_topbar-template" and "Wi100_top-bar-content"
+	- Update file
 - Orient to 
 	- https://thepiratebay.org/description.php?id=30609849
 - Action 
 	- Download and install it to use video gallary
+- Orient to 
+	- Theme panel (you must first install oceanwp extra)
+	- My library
+- Action 
+	- Add new called "header"
+- Orient to 
+	- Customise
+	- Header
+	- General
+- Action
+	- Change style to "custom header"
+	- Change select template to "header"
+
 
 # Add text/images to a page
 
@@ -201,3 +229,9 @@ im at 33min
 	https://wordpress.org/plugins/wp-custom-body-class/
 	add text and logo to header 
 	https://wordpress.org/support/topic/adding-title-next-to-logo/
+	https://wordpress.org/support/topic/top-bar-full-width/
+	https://wordpress.org/support/topic/how-to-make-the-top-bar-content-go-full-width/
+	https://code.tutsplus.com/tutorials/adding-to-the-body-class-in-wordpress--cms-21077
+	video gallery 
+	https://elementor.com/widgets/media-carousel-widget/?utm_source=media-carousel-pro-widget&utm_medium=wp-dash&utm_campaign=gopro
+	https://elementor.com/pricing/

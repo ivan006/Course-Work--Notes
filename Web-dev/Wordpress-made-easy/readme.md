@@ -175,7 +175,7 @@ Best Home Planet
 - Action 
 	- Download and install it to use video gallary
 - Orient to 
-	- Theme panel (you must first install oceanwp extra)
+	- Theme panel (you must first install Ocean Extra By OceanWP)
 	- My library
 - Action 
 	- Add new called "header"
@@ -186,11 +186,48 @@ Best Home Planet
 - Action
 	- Change style to "custom header"
 	- Change select template to "header"
+- Orient to 
+	- Plugins 
+	
+### Contact form 
+
+- Action 
+	- Add contact form 7 
+- Orient to 
+	- The page you want your contact form on 
+	- Open it with elementor 
+	- Search the widgets for "contact form 7"
+- Action 
+	- Add this widget to your page 
+- Orient to 
+	- https://www.google.com/recaptcha/admin
+- Action
+	- Click the plus
+	- Fill in the form (select capcha 3)
+	- Take note of you site and secret keys
+- Orient to 
+	- Contact 
+	- Integrations
+	- reCaptcha 
+- Action 
+	- Click Setup intergration
+	- Add site and secret keys 
+	
+	
 
 
 # Add text/images to a page
 
 - To be continued 
+
+# Go live 
+- Orient to 
+	- The hosting dashboard 
+	- The corresponding table 
+	- The wp_otions table 
+- Action 
+	- Change the siteurl to the correct url if needed
+	- Change the home to the correct url if needed
 
 # Add a video gallery to a page 
 
@@ -235,3 +272,12 @@ im at 33min
 	video gallery 
 	https://elementor.com/widgets/media-carousel-widget/?utm_source=media-carousel-pro-widget&utm_medium=wp-dash&utm_campaign=gopro
 	https://elementor.com/pricing/
+	https://forums.envato.com/t/removing-elementor-template-kit-css/306661/
+	google: Velvet Blues Update URLs By VelvetBlues.com
+	https://wordpress.org/support/topic/my-wp-site-redirects-to-wrong-address/
+	google: premium media grid elemteor template export disables vimeo videos form playing
+	google: exporting template premium addon for elementor problem
+	https://wordpress.org/support/topic/export-import-of-elementor-templates-not-working-correct/
+	google: elementor template import casing vimeo not working
+	google: vimeo videos not worrking in premium addons for elementor media grid
+	google: premium media grid elementor vimeo not working

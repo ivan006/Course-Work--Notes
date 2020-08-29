@@ -43,6 +43,7 @@ Best Home Planet
 	- Uncheck "header border bottom"
 	- If you opted for "transparent" change the background color to black and reduce the alpha
 	- Disactivate the eyeball on "search form" and "social buttons"
+	- Change the menu background color to whatever you want
 	- Publish 
 - Orient to
 	- Customise
@@ -51,7 +52,8 @@ Best Home Planet
 - Action 
 	- Change the link color (to white if you opted for "transparent")
 	- Change link hover color (to light yellow if you opted for "transparent")
-	- Change the current menu item color (to white if you opted for "transparent")  
+	- Change the current menu item color (to white if you opted for "transparent") 
+	- Change the background color to whatever you want
 - Orient to
 	- Customise
 	- Header
@@ -116,31 +118,6 @@ Best Home Planet
 - Action 
 	- Change background color to whatever you want 
 	- Change text color to whatever you want
-- Orient to 
-	- Customise 
-	- Custom CSS 
-- Action 
-	- Add ".BoSh_10_wpb-ea-video-inner .wpb-ea-video-inner {box-shadow: 10px 10px 10px rgba(0,0,0,0.5);}"
-	- Add "/* color grey */ #site-description h2 {color: hsl(195, 0%, 35%) !important;}"
-	- Add "/* text align center */ .page-header-title {text-align: center;}"
-	- Add ".NotPageId314_DiNo_GrecaptchaBadge:not(.page-id-314) .grecaptcha-badge {display: none;}"
-	- Add ".Wi100_topbar-template #topbar-template {width: 100%;} .Wi100_top-bar-content #top-bar-content {width: 100%;}"
-- Orient to 
-	- Home page 
-	- Elementor 
-	- Edit WPB Video popup 
-	- Advanced 
-- Action 
-	- Add ".BoSh_10_wpb-ea-video-inner" to the css classes
-- Orient to (alternative to WPB video popup)
-	- Home page 
-	- Elementor 
-	- Edit Premium video grid (you first need to install Premium addons for elementor)
-	- Style
-	- Title and decription
-	- Background 
-- Action 
-	- Change to tranparent black
 - Orient to
 	- Customize 
 	- General Options 
@@ -161,20 +138,6 @@ Best Home Planet
 	- Change mobile menu style to full screen
 	- Change hamburger button to 3D X
 - Orient to 
-	- Appearance
-	- Theme editor
-	- Theme header 
-	- The "body_class()" line 
-- Action 
-	-  Add 'array( "class1", "class2" )' between the brackets 
-	- Add a class called "NotPageId314_DiNo_GrecaptchaBadge"
-	- Add a class called "Wi100_topbar-template" and "Wi100_top-bar-content"
-	- Update file
-- Orient to 
-	- https://thepiratebay.org/description.php?id=30609849
-- Action 
-	- Download and install it to use video gallary
-- Orient to 
 	- Theme panel (you must first install Ocean Extra By OceanWP)
 	- My library
 - Action 
@@ -186,8 +149,8 @@ Best Home Planet
 - Action
 	- Change style to "custom header"
 	- Change select template to "header"
-- Orient to 
-	- Plugins 
+
+
 	
 ### Contact form 
 
@@ -218,7 +181,7 @@ Best Home Planet
 
 # Add text/images to a page
 
-- To be continued 
+- Add whatever you like
 
 # Go live 
 - Orient to 
@@ -230,18 +193,59 @@ Best Home Planet
 	- Change the home to the correct url if needed
 
 # Add a video gallery to a page 
+## Further nice things to changes
 
-- https://www.youtube.com/watch?v=E2cl8uEJZdI
+- Orient to 
+	- Customise 
+	- Custom CSS 
+- Action 
+	- Add ".BoSh_10_wpb-ea-video-inner .wpb-ea-video-inner {box-shadow: 10px 10px 10px rgba(0,0,0,0.5);}"
+	- Add "/* color grey */ #site-description h2 {color: hsl(195, 0%, 35%) !important;}"
+	- Add "/* text align center */ .page-header-title {text-align: center;}"
+	- Add ".NotPageId314_DiNo_GrecaptchaBadge:not(.page-id-314) .grecaptcha-badge {display: none;}"
+	- Add ".Wi100_topbar-template #topbar-template {width: 100%;} .Wi100_top-bar-content #top-bar-content {width: 100%;}"
+- Orient to 
+	- Home page 
+	- Elementor 
+	- Edit WPB Video popup 
+	- Advanced 
+- Action 
+	- Add ".BoSh_10_wpb-ea-video-inner" to the css classes
+- Orient to (alternative to WPB video popup)
+	- Home page 
+	- Elementor 
+	- Edit Premium video grid (you first need to install Premium addons for elementor)
+	- Style
+	- Title and decription
+	- Background 
+- Action 
+	- Change to tranparent black
+- Orient to 
+	- Appearance
+	- Theme editor
+	- Theme header 
+	- The "body_class()" line 
+- Action 
+	-  Add 'array( "class1", "class2" )' between the brackets 
+	- Add a class called "NotPageId314_DiNo_GrecaptchaBadge"
+	- Add a class called "Wi100_topbar-template" and "Wi100_top-bar-content"
+	- Update file
+- Orient to 
+	- https://thepiratebay.org/description.php?id=30609849
+- Action 
+	- Download and install it to use video gallary
 
-im at 33min
-
-- tagline 
+## Rough notes 
+	
+- Rough notes
+	- https://www.youtube.com/watch?v=E2cl8uEJZdI - im at 33min
+	- 
+	- tagline 
 	https://wpmarmite.com/en/oceanwp-theme/
 	https://www.gplforest.org/oceanwp-elementor-widgets-1-2-1/
 	https://wpbuilt.co/tutorials/global-section-without-using-any-plugin/
 	https://wordpress.org/support/topic/how-to-load-a-template-partial-in-elementor-using-a-shortcode/
-	
-	
+	-
 	elementor video carousel free
 	https://elementor.com/blog/introducing-media-carousel/
 	https://www.powr.io/tutorials/how-to-add-video-slider-add_on-to-your-elementor-site#lp-demo-anchor
@@ -251,7 +255,7 @@ im at 33min
 	https://bdthemes.com/support/knowledge/details/29/How%20to%20Create%20Video%20Gallery%20Widget%20in%20Elementor%20by%20Element%20Pack.html
 	https://crocoblock.com/widgets/video-playlist/
 	https://elementpack.pro/demo/element/video-gallery/
-
+	-
 	https://wordpress.org/plugins/bdthemes-element-pack-lite/
 	https://thepiratebay.org/search.php?q=element+pack&all=on&search=Pirate+Search&page=0&orderby=
 	https://thepiratebay.org/description.php?id=30609849

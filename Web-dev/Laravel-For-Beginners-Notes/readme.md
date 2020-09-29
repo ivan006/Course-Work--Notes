@@ -399,6 +399,12 @@
 	- A view - Response template
 		- These guide the parts of the action that generate the response, back end action component
 
+### Databases vs File formats
+
+- Similar to a file format - entities types store your data in a certain structure. You get subentity types and super entity types. 
+- Entity tools are what make up your app. Similar to desktop programs - entity tools are for opening your entities. Each one contains multiple action protocols. 
+
+- In business giving each document type its own entity type and tool does create rigidity but with rigidity comes enhanced performance.
 
 
 ### Controllers

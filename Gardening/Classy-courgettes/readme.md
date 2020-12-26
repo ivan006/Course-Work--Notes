@@ -110,7 +110,7 @@
 ### Week 3
 - Harvesting - your first big harvest will be around this time (my harvest for the week was 1/3kg per plant)
 
-### Week 4, 7, 10 and 13 (week 3: was 16 plants to feed; date was 2019/04/07; used R165 compost; used 10L chicken manure(double what i was meant to); used 112minutes (7min per plant))
+### Weeks 4, 7, 10 and 13
 - Bed preparation and tending the soil - Repeat the soil tending and bed preparation steps as shown in day 1 and 2  unless the plants are soon to die or are no longer productive
 
 
@@ -119,6 +119,7 @@
 # Footnotes
 - ? 
 	- this stage starts at 5 weeks after germination
+	- week 3: was 16 plants to feed; date was 2019/04/07; used R165 compost; used 10L chicken manure(double what i was meant to); used 112minutes (7min per plant)
 - Pest control ideas
 	- sypemephrine
 	- tamalon

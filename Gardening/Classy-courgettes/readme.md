@@ -116,9 +116,9 @@
 
 
 
-# fff
+# Footnotes
 - this stage starts at 5 weeks after germination
-- for pests
+- Pest control ideas
 	- sypemephrine
 	- tamalon
 	- organanaciide plu 
@@ -126,7 +126,7 @@
 		- garlic extract 	
 		- pyrethrins extract from flower of chrysanthemum cinerariaefolium
 		- piperonyl butoxide (synergist)
-- ff
+- Types of operations 
 	- bed preparation
 		- spacing
 		- water retention (mulch/water catchement)

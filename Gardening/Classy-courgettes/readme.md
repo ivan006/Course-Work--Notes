@@ -117,7 +117,8 @@
 
 
 # Footnotes
-- this stage starts at 5 weeks after germination
+- ? 
+	- this stage starts at 5 weeks after germination
 - Pest control ideas
 	- sypemephrine
 	- tamalon

@@ -481,22 +481,13 @@
         "Key": "PRI",
         "Extra": "auto_increment"
       },
-      "prospect_id": {
-        "Type": "bigint(20) unsigned"
-      },
       "visitor_id": {
         "Type": "bigint(20) unsigned"
       },
-      "campaign_parameter": {
-        "Type": "varchar(100)"
+      "prospect_id": {
+        "Type": "bigint(20) unsigned"
       },
-      "content_parameter": {
-        "Type": "varchar(100)"
-      },
-      "created_at": {
-        "Type": "datetime"
-      },
-      "duration_in_seconds": {
+      "visitor_page_view_count": {
         "Type": "bigint(20) unsigned"
       },
       "first_visitor_page_view_at": {
@@ -505,25 +496,36 @@
       "last_visitor_page_view_at": {
         "Type": "datetime"
       },
+      "duration_in_seconds": {
+        "Type": "bigint(20) unsigned"
+      },
+      "campaign_parameter": {
+        "Type": "varchar(100)"
+      },
       "medium_parameter": {
         "Type": "varchar(100)"
       },
       "source_parameter": {
         "Type": "varchar(100)"
       },
+      "content_parameter": {
+        "Type": "varchar(100)"
+      },
       "term_parameter": {
         "Type": "varchar(100)"
+      },
+      "created_at": {
+        "Type": "datetime"
       },
       "updated_at": {
         "Type": "datetime"
       },
-      "visitor_page_view_count": {
-        "Type": "bigint(20) unsigned"
+      "visitor_page_views": {
+        "Type": "varchar(100)"
       }
     },
     "items": {
-      "visitor_page_view": "visit_id",
-      "visitor_activity": "visit_id"
+      "visitor_page_view": "visit_id"
     }
   },
   "visitor_page_view": {
@@ -562,10 +564,16 @@
       "campaign_id": {
         "Type": "bigint(20) unsigned"
       },
-      "created_at": {
-        "Type": "datetime"
+      "prospect_id": {
+        "Type": "bigint(20) unsigned"
       },
-      "updated_at": {
+      "visitor_id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "email_id": {
+        "Type": "varchar(100)"
+      },
+      "created_at": {
         "Type": "datetime"
       },
       "custom_redirect_id": {
@@ -574,19 +582,16 @@
       "details": {
         "Type": "varchar(100)"
       },
-      "email_id": {
-        "Type": "varchar(100)"
-      },
       "email_template_id": {
         "Type": "bigint(20) unsigned"
       },
       "file_id": {
         "Type": "bigint(20) unsigned"
       },
-      "form_id": {
+      "form_handler_id": {
         "Type": "bigint(20) unsigned"
       },
-      "form_handler_id": {
+      "form_id": {
         "Type": "bigint(20) unsigned"
       },
       "landing_page_id": {
@@ -598,13 +603,7 @@
       "multivariate_test_variation_id": {
         "Type": "bigint(20) unsigned"
       },
-      "opportunity_id": {
-        "Type": "bigint(20) unsigned"
-      },
       "paid_search_ad_id": {
-        "Type": "bigint(20) unsigned"
-      },
-      "prospect_id": {
         "Type": "bigint(20) unsigned"
       },
       "site_search_query_id": {
@@ -616,14 +615,8 @@
       "type_name": {
         "Type": "varchar(100)"
       },
-      "visit_id": {
-        "Type": "bigint(20) unsigned"
-      },
-      "visitor_id": {
-        "Type": "bigint(20) unsigned"
-      },
-      "visitor_page_view_id": {
-        "Type": "bigint(20) unsigned"
+      "updated_at": {
+        "Type": "datetime"
       }
     }
   }

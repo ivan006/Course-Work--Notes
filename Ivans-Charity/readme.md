@@ -1,7 +1,15 @@
 # Ivans-Charity
 All money has been given to the less fortunate. Currency is ZAR. Total over all time is Rx.
 
-- 2020-12: 335
+
+- 2021-07: 400
+- 2021-06: 400
+- 2021-05: 400
+- 2021-04: 400
+- 2021-03: 400
+- 2021-02: 400
+- 2021-01: 400
+- 2020-12: 400
 - 2020-11: 400
 - 2020-10: 400
 - 2020-09: 400

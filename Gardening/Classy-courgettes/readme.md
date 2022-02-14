@@ -30,7 +30,7 @@
 <tr>
 <td>
 
-**1. **Sprout part 1
+**1.** Sprout part 1
 
 </td>
 <td>
@@ -69,7 +69,7 @@ N/A
 <tr>
 <td>
 
-**2. **Sprout part 2
+**2.** Sprout part 2
 
 </td>
 <td>
@@ -124,7 +124,7 @@ Day 8 - 14
 <tr>
 <td>
 
-**3. **Vegetation
+**3.** Vegetation
 
 </td>
 <td>
@@ -162,7 +162,7 @@ N/A
 <tr>
 <td>
 
-**4. **Fruiting
+**4.** Fruiting
 
 </td>
 <td>

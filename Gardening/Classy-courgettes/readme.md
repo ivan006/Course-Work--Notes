@@ -18,7 +18,7 @@
   - If still not sprouted after 1 week change to 1L every day until it does
 - Space:
   - Width: 70cm
- - Length: 50cm
+  - Length: 50cm
   - Depth: 1 spade
   - Paths: 10cm
 # Instructions

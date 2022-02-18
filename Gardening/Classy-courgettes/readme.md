@@ -14,8 +14,8 @@
 - Time: Day 8 - 14
 - Food: 10L compost / plant section
 - Water:
--- 5L / plant section every 2 days (third water is meant to be 3 L but does that just complicate things?)
--- If still not sprouted after 1 week change to 1L every day until it does
+ - 5L / plant section every 2 days (third water is meant to be 3 L but does that just complicate things?)
+ - If still not sprouted after 1 week change to 1L every day until it does
 - Space:
   - Width: 70cm
   - Length: 50cm

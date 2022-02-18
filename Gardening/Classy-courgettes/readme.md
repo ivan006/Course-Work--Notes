@@ -36,7 +36,6 @@
 - Food: N/A
 - Water: 5L / plant section every 3 days (second water is meant to be 2 days after first water and 2nd and third water is meant to be 6L but does that just complicate things?)
 - Space: N/A
-
 ## Instructions
 1. When watering from now on, water with a watering can which has a nozzle and not directly on the plant.
 2. After 1 week of this phase mulch the plants

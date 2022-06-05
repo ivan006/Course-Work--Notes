@@ -1,5 +1,9 @@
 # Ivans-Charity
-All money has been given to the less fortunate. Currency is ZAR. Total over all time is Rx.
+
+Who is money given to: The less fortunate. 
+Currency: ZAR. 
+Total over all time: Rx.
+Percent of net income given: As of 2022-05 roughly 3%
 
 - 2022-05: 57
 - 2022-04: 400

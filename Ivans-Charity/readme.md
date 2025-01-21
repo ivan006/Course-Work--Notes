@@ -6,9 +6,9 @@ Total over all time: Rx.
 Percent of net income given: As of 2022-05 roughly 3%
 
 
-- 2025-01: 0
-- 2024-12: 0
-- 2024-11: 0
+- 2025-01: 500
+- 2024-12: 500
+- 2024-11: 500
 - 2024-10: 500 Cam
 - 2024-09: 500 Cam
 - 2024-08: 400 Aj
